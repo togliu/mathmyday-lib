@@ -22,7 +22,7 @@ on:
       - '.editorconfig'
       - 'LICENSE'
       - 'README.md'
-      - wrapper.gradle
+      - 'wrapper.gradle'
 jobs:
   build:
     runs-on: ubuntu-latest
