@@ -1,0 +1,364 @@
+#
+# Copyright 2020 Lars Tennstedt
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+name: Java CI
+on:
+  push:
+    branches-ignore: [main]
+    paths-ignore:
+      - '.editorconfig'
+      - 'LICENSE'
+      - 'README.md'
+      - wrapper.gradle
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle
+        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+    - name: Cache output cache
+      uses: actions/cache@v2
+      with:
+        path: .gradle
+        key: ${{ runner.os }}-gradle-output-cache-${{ hashFiles('build.gradle.kts') }}
+    - run: gradle -i --no-daemon clean classes testClasses
+    - name: Upload classes
+      uses: actions/upload-artifact@v2
+      with:
+        name: classes
+        path: ./**/build/classes/
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle
+        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+    - name: Cache output cache
+      uses: actions/cache@v2
+      with:
+        path: .gradle
+        key: ${{ runner.os }}-gradle-output-cache-${{ hashFiles('build.gradle.kts') }}
+    - name: Download classes
+      uses: actions/download-artifact@v2
+      with:
+        name: classes
+    - run: gradle -i --no-daemon test
+    - name: Upload tests report
+      uses: actions/upload-artifact@v2
+      with:
+        name: tests-report
+        path: ./**/build/reports/tests/
+    - name: Upload test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: ./**/build/test-results/
+    - name: Upload JaCoCo exec
+      uses: actions/upload-artifact@v2
+      with:
+        name: jacoco-exec
+        path: ./**/build/jacoco/
+  lint:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle
+        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+    - run: gradle -i --no-daemon ktlintCheck detekt
+    - name: Upload ktlint report
+      uses: actions/upload-artifact@v2
+      with:
+        name: ktlint
+        path: ./**/build/reports/ktlint/
+    - name: Upload detekt report
+      uses: actions/upload-artifact@v2
+      with:
+        name: detekt
+        path: ./**/build/reports/detekt/
+  coverage:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle
+        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+    - name: Cache output cache
+      uses: actions/cache@v2
+      with:
+        path: .gradle
+        key: ${{ runner.os }}-gradle-output-cache-${{ hashFiles('build.gradle.kts') }}
+    - name: Download classes
+      uses: actions/download-artifact@v2
+      with:
+        name: classes
+    - name: Download tests report
+      uses: actions/download-artifact@v2
+      with:
+        name: tests-report
+    - name: Download test results
+      uses: actions/download-artifact@v2
+      with:
+        name: test-results
+    - name: Download JaCoCo exec
+      uses: actions/download-artifact@v2
+      with:
+        name: jacoco-exec
+    - run: gradle -i --no-daemon jacocoTestReport
+    - name: Upload JaCoCo report
+      uses: actions/upload-artifact@v2
+      with:
+        name: jacoco-report
+        path: ./**/build/reports/jacoco/
+  sonar:
+    runs-on: ubuntu-latest
+    needs: coverage
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2.3.4
+      with:
+        fetch-depth: 0
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle
+        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+    - name: Cache output cache
+      uses: actions/cache@v2
+      with:
+        path: .gradle
+        key: ${{ runner.os }}-gradle-output-cache-${{ hashFiles('build.gradle.kts') }}
+    - name: Download JaCoCo report
+      uses: actions/download-artifact@v2
+      with:
+        name: jacoco-report
+    - name: SonarScanner
+      run: |
+        ./scripts/prepare-sonar.sh
+        cd finnmath/
+        gradle -i --no-daemon sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  doc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+      - run: gradle -i --no-daemon dokkaHtml dokkaJavadoc javadoc
+      - name: Upload KDoc/Javadoc
+        uses: actions/upload-artifact@v2
+        with:
+          name: doc
+          path: |
+            ./**/build/dokka/
+            ./**/build/docs/javadoc
+  package:
+    runs-on: ubuntu-latest
+    needs: coverage
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle
+        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+    - name: Cache output cache
+      uses: actions/cache@v2
+      with:
+        path: .gradle
+        key: ${{ runner.os }}-gradle-output-cache-${{ hashFiles('build.gradle.kts') }}
+    - name: Download classes
+      uses: actions/download-artifact@v2
+      with:
+        name: classes
+    - name: Download KDoc/Javadoc
+      uses: actions/download-artifact@v2
+      with:
+        name: doc
+    - run: gradle -i --no-daemon jar kotlinSourcesJar sourcesJar javadocJar
+    - name: Upload libs
+      uses: actions/upload-artifact@v2
+      with:
+        name: libs
+        path: ./**/build/libs/
+  publish:
+    runs-on: ubuntu-latest
+    needs: package
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle
+        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+    - name: Cache output cache
+      uses: actions/cache@v2
+      with:
+        path: .gradle
+        key: ${{ runner.os }}-gradle-output-cache-${{ hashFiles('build.gradle.kts') }}
+    - name: Download libs
+      uses: actions/download-artifact@v2
+      with:
+        name: libs
+    - run: gradle -i --no-daemon publishToMavenLocal
+  report:
+    runs-on: ubuntu-latest
+    needs: [lint, coverage]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up Java
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.gradle
+        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
+    - name: Cache output cache
+      uses: actions/cache@v2
+      with:
+        path: .gradle
+        key: ${{ runner.os }}-gradle-output-cache-${{ hashFiles('build.gradle.kts') }}
+    - name: Download tests report
+      uses: actions/download-artifact@v2
+      with:
+        name: tests-report
+    - name: Download test results
+      uses: actions/download-artifact@v2
+      with:
+        name: test-results
+    - name: Download ktlint
+      uses: actions/download-artifact@v2
+      with:
+        name: ktlint
+    - name: Download detekt
+      uses: actions/download-artifact@v2
+      with:
+        name: detekt
+    - name: Download JaCoCo report
+      uses: actions/download-artifact@v2
+      with:
+        name: jacoco-report
+    - run: gradle -i --no-daemon projectReport buildDashboard generateSiteHtml dependencyUpdates
+    - name: Upload reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: reports
+        path: ./**/build/reports/
+    - name: Upload site
+      uses: actions/upload-artifact@v2
+      with:
+        name: site
+        path: ./**/build/docs/
+    - name: Upload dependency updates report
+      uses: actions/upload-artifact@v2
+      with:
+        name: dependency-updates-report
+        path: ./**/build/dependencyUpdates/report.html
+  pages:
+    runs-on: ubuntu-latest
+    needs: [doc, report]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Download KDoc/Javadoc
+      uses: actions/download-artifact@v2
+      with:
+        name: doc
+    - name: Download site
+      uses: actions/download-artifact@v2
+      with:
+        name: site
+    - name: Download reports
+      uses: actions/download-artifact@v2
+      with:
+        name: reports
+    - name: Download test results
+      uses: actions/download-artifact@v2
+      with:
+        name: test-results
+    - name: Download dependency updates report
+      uses: actions/download-artifact@v2
+      with:
+        name: dependency-updates-report
+    - name: Filesystem operations
+      run: ./scripts/build-pages.sh
+    - name: GitHub Pages
+      uses: crazy-max/ghaction-github-pages@v2
+      with:
+        build_dir: pages
+        commit_message: "Pages"
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
