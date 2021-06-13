@@ -33,7 +33,7 @@ plugins {
 }
 group = "io.github.ltennstedt.finnmath"
 version = "0.0.1-SNAPSHOT"
-description = "Mathematical library for the JVM based on BigInteger and BigDecimal written in Kotlin"
+description = "Mathematical library for the JVM and Android written in Kotlin"
 kotlin {
     explicitApi()
 }
