@@ -44,7 +44,7 @@ java {
 tasks {
     withType<KotlinCompile> {
         kotlinOptions {
-            val kotlinVersion = "1.4"
+            val kotlinVersion = "1.5"
             apiVersion = kotlinVersion
             languageVersion = kotlinVersion
             jvmTarget = "1.8"
@@ -180,13 +180,9 @@ dependencies {
     implementation("ch.obermuhlner:big-math:2.3.0")
     implementation("com.marcinmoskala:DiscreteMathToolkit:1.0.3")
     testImplementation(kotlin("test-junit5"))
-    val kotestVersion = "4.6.0"
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
-    testImplementation("io.kotest:kotest-property-jvm:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:4.6.0")
     val junitJupiterVersion = "5.7.2"
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-    testImplementation("io.mockk:mockk:1.11.0")
     testImplementation("org.assertj:assertj-core:3.19.0")
     testRuntimeOnly(kotlin("reflect"))
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")

@@ -40,7 +40,7 @@ kotlin {
 tasks {
     withType<KotlinCompile> {
         kotlinOptions {
-            val kotlinVersion = "1.4"
+            val kotlinVersion = "1.5"
             apiVersion = kotlinVersion
             languageVersion = kotlinVersion
             jvmTarget = "1.8"
@@ -170,11 +170,8 @@ repositories {
 }
 dependencies {
     api(project(":finnmath"))
-    val kotestVersion = "4.6.0"
-    api("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
+    api("io.kotest:kotest-assertions-core-jvm:4.6.0")
     testImplementation(kotlin("test-junit5"))
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
-    testImplementation("io.kotest:kotest-property-jvm:$kotestVersion")
     val junitJupiterVersion = "5.7.2"
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
     testRuntimeOnly(kotlin("reflect"))
