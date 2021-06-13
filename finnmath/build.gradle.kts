@@ -31,7 +31,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.39.0"
     idea
 }
-group = "com.github.ltennstedt.finnmath"
+group = "io.github.ltennstedt.finnmath"
 version = "0.0.1-SNAPSHOT"
 description = "Mathematical library for the JVM based on BigInteger and BigDecimal written in Kotlin"
 kotlin {
