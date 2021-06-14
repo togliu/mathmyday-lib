@@ -56,8 +56,8 @@ tasks {
     }
     jacocoTestReport {
         reports {
-            xml.isEnabled = true
-            xml.destination = file("$buildDir/reports/jacoco/test/report.xml")
+            xml.required.set(true)
+            xml.outputLocation.set(file("$buildDir/reports/jacoco/test/report.xml"))
         }
     }
     dokkaHtml {
