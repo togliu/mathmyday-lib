@@ -179,8 +179,9 @@ dependencies {
     api("org.jetbrains:annotations:21.0.1")
     implementation("ch.obermuhlner:big-math:2.3.0")
     implementation("com.marcinmoskala:DiscreteMathToolkit:1.0.3")
-    testImplementation(kotlin("test-junit5"))
-    testImplementation("io.kotest:kotest-assertions-core-jvm:4.6.0")
+    val kotestVersion = "4.6.0"
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
     val junitJupiterVersion = "5.7.2"
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
     testImplementation("org.assertj:assertj-core:3.19.0")

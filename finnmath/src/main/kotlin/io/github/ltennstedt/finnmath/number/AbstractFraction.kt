@@ -88,7 +88,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      *
      * @since 0.0.1
      */
-    public val isReducible: Boolean = !isIrreducible
+    public val isReducible: Boolean get() = !isIrreducible
 
     /**
      * Indicates if [this][AbstractFraction] is proper
@@ -102,7 +102,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      *
      * @since 0.0.1
      */
-    public val isImproper: Boolean = !isProper
+    public val isImproper: Boolean get() = !isProper
 
     /**
      * Signum
