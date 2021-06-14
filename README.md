@@ -41,9 +41,8 @@ build automation tool but currently the port to [Kotlin](https://kotlinlang.org/
 is in progress. It should interoperate seamlessly with other JVM technologies. Dependencies are 
 [big-math](https://eobermuhlner.github.io/big-math/),
 [KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit) and 
-[Guava](https://guava.dev/) and for tests 
-[Kotest](https://kotest.io/), [MockK](https://mockk.io/),
-[JUnit](https://junit.org/junit5/) and [AssertJ](https://assertj.github.io/doc/)
+[Guava](https://guava.dev/) and for tests [Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/) and 
+[AssertJ](https://assertj.github.io/doc/)
 
 ## Building
 
@@ -74,6 +73,7 @@ gradle default
 * Extension functions for `kotlin.Int`, `kotlin.Long`, `kotlin.Float`, `kotlin.Double`, `java.math.BigInteger` and
   `java.math.BigDecimal`
 * Operators for numbers, vectors and matrices
+* [Kotest](https://kotest.io/) DSL and matchers are used for tests
 
 ## Usage
 
@@ -183,18 +183,11 @@ Please keep in mind that perfection is not reachable, impressions are very subje
 ## Information
 
 finnmath is open source and free software and is licensed under the permissive Apache License.
-
 finnmath is still in a very early state and a work in progress.
 
 ## Developing
 
 The code formatting follows the ktlint code style.
-
-## What about multiplatform and opt-in requirements support ?
-
-Maybe when these features are stable, [this bug](https://youtrack.jetbrains.com/issue/KT-17345) is fixed, all needed 
-functionality of the JVM-only dependencies have a multiplatform alternative (table implementation and 
-permutations) and I will have the time.
 
 ### Who is Finn?
 
