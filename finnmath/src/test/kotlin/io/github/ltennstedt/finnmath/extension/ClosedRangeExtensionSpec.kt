@@ -21,17 +21,20 @@ import io.github.ltennstedt.finnmath.number.LongFractionRange
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
-object ClosedRangeExtensionTest : FunSpec({
-    test("isNotEmpty should return false when range is empty") {
-        val actual = LongFractionRange.EMPTY.isNotEmpty()
+@Suppress("UNUSED")
+object ClosedRangeExtensionSpec : FunSpec({
+    context("isNotEmpty") {
+        test("should return false when range is empty") {
+            val actual = LongFractionRange.EMPTY.isNotEmpty()
 
-        actual shouldBe false
-    }
-    test("isNotEmpty should return true when range is empty") {
-        val range = LongFractionRange(LongFraction.ZERO, LongFraction.ONE)
+            actual shouldBe false
+        }
+        test("should return true when range is empty") {
+            val range = LongFractionRange(LongFraction.ZERO, LongFraction.ONE)
 
-        val actual = range.isNotEmpty()
+            val actual = range.isNotEmpty()
 
-        actual shouldBe true
+            actual shouldBe true
+        }
     }
 })
