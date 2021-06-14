@@ -190,6 +190,12 @@ finnmath is still in a very early state and a work in progress.
 
 The code formatting follows the ktlint code style.
 
+## What about multiplatform and opt-in requirements support ?
+
+Maybe when these features are stable, [this bug](https://youtrack.jetbrains.com/issue/KT-17345) is fixed, all needed 
+functionality of the JVM-only dependencies have a multiplatform alternative (table implementation and 
+permutations) and I will have the time.
+
 ### Who is Finn?
 
 * [Long video](https://www.youtube.com/watch?v=Z8-rtor3G9Q)
