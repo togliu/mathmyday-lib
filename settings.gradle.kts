@@ -15,7 +15,7 @@
  */
 
 rootProject.name = "finnmath-root"
-include("finnmath", "finnmath-kotest", "finnmath-assertj")
+include("finnmath", "finnmath-kotest")
 pluginManagement {
     repositories {
         gradlePluginPortal()

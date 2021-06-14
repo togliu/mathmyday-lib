@@ -17,15 +17,13 @@
 #
 
 mkdir pages
-for dir in finnmath finnmath-kotest finnmath-assertj
+for dir in finnmath finnmath-kotest
 do
   mkdir pages/$dir/
   cp -R $dir/build/docs/ pages/$dir/
   cp -R $dir/build/reports/ pages/$dir/
   rm -R pages/$dir/reports/project/*.txt
   cp -R $dir/build/dependencyUpdates/ pages/$dir/
-  if [ $dir != 'finnmath-assertj' ]; then
-    cp -R $dir/build/dokka/ pages/$dir/
-    rm -R pages/$dir/reports/ktlint/
-  fi
+  cp -R $dir/build/dokka/ pages/$dir/
+  rm -R pages/$dir/reports/ktlint/
 done

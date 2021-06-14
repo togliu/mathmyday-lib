@@ -185,7 +185,6 @@ dependencies {
     testImplementation("io.kotest:kotest-property-jvm:$kotestVersion")
     val junitJupiterVersion = "5.7.2"
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-    testImplementation("org.assertj:assertj-core:3.19.0")
     testRuntimeOnly(kotlin("reflect"))
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
     val junitPlatformVersion = "1.7.2"

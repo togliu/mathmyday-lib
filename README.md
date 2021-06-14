@@ -28,7 +28,6 @@ What finnmath will provide:
 * Fractions and complex numbers
 * Determinant calculation
 * Custom Kotest matchers (separate module)
-* Custom AssertJ assertions (separate module)
 
 What finnmath will not provide:
 
@@ -41,8 +40,7 @@ build automation tool but currently the port to [Kotlin](https://kotlinlang.org/
 is in progress. It should interoperate seamlessly with other JVM technologies. Dependencies are 
 [big-math](https://eobermuhlner.github.io/big-math/),
 [KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit) and 
-[Guava](https://guava.dev/) and for tests [Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/) and 
-[AssertJ](https://assertj.github.io/doc/)
+[Guava](https://guava.dev/) and for tests [Kotest](https://kotest.io/) and [JUnit](https://junit.org/junit5/)
 
 ## Building
 
@@ -141,8 +139,7 @@ class A {
 * High code quality with the help of [ktlint](https://ktlint.github.io/), [detekt](https://detekt.github.io/detekt/),
   [SonarLint](https://www.sonarlint.org/), [SonarQube](https://www.sonarqube.org/) and 
   [SonarCloud](https://sonarcloud.io/)
-* High code coverage with the help of [Kotest](https://kotest.io/), [MockK](https://mockk.io/), 
-  [JUnit](https://junit.org/junit5/), [AssertJ](https://assertj.github.io/doc/), 
+* High code coverage with the help of [Kotest](https://kotest.io/) and [JUnit](https://junit.org/junit5/) 
   [JaCoCo](https://www.jacoco.org/jacoco/), [SonarQube](https://www.sonarqube.org/) and
   [SonarCloud](https://sonarcloud.io/)
 * Idiomatic Kotlin and Java API
@@ -172,13 +169,6 @@ Please keep in mind that perfection is not reachable, impressions are very subje
 * [detekt report](https://ltennstedt.github.io/finnmath/finnmath-kotest/reports/detekt/detekt.html)
 * [Build Dashboard](https://ltennstedt.github.io/finnmath/finnmath-kotest/reports/buildDashboard/index.html)
 * [Dependency Updates report](https://ltennstedt.github.io/finnmath/finnmath-kotest/dependencyUpdates/report.html)
-
-### finnmath-assertj
-
-* [Javadoc](https://ltennstedt.github.io/finnmath/finnmath-assertj/docs/javadoc/index.html)
-* [Gradle Site](https://ltennstedt.github.io/finnmath/finnmath-assertj/docs/site/index.html)
-* [Build Dashboard](https://ltennstedt.github.io/finnmath/finnmath-assertj/reports/buildDashboard/index.html)
-* [Dependency Updates report](https://ltennstedt.github.io/finnmath/finnmath-assertj/dependencyUpdates/report.html)
 
 ## Information
 

@@ -46,4 +46,4 @@ public operator fun <
     N : Number,
     T : AbstractFraction<N, T, R>,
     R : ClosedRange<T>
-    > AbstractFraction<N, T, R>.unaryMinus(): T = negate() as T
+    > AbstractFraction<N, T, R>.unaryMinus(): T = negate()
