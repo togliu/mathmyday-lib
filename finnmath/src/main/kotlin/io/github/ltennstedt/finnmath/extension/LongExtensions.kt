@@ -17,10 +17,25 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.LongMath
+import kotlin.math.absoluteValue
 
 /**
- * Returns the GCD of [this][Long] and [other]
+ * Returns if [this][Long] is even
  *
  * @since 0.0.1
  */
-public fun Long.gcd(other: Long): Long = LongMath.gcd(this, other)
+public fun Long.isEven(): Boolean = this % 2L == 0L
+
+/**
+ * Returns if [this][Long] is odd
+ *
+ * @since 0.0.1
+ */
+public fun Long.isOdd(): Boolean = this % 2L != 0L
+
+/**
+ * Returns the positive GCD of [this][Long] and [other]
+ *
+ * @since 0.0.1
+ */
+public fun Long.gcd(other: Long): Long = LongMath.gcd(this.absoluteValue, other.absoluteValue)

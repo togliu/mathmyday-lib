@@ -17,10 +17,25 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.IntMath
+import kotlin.math.absoluteValue
 
 /**
- * Returns the GCD of [this][Int] and [other]
+ * Returns if [this][Int] is even
  *
  * @since 0.0.1
  */
-public fun Int.gcd(other: Int): Int = IntMath.gcd(this, other)
+public fun Int.isEven(): Boolean = this % 2 == 0
+
+/**
+ * Returns if [this][Int] is odd
+ *
+ * @since 0.0.1
+ */
+public fun Int.isOdd(): Boolean = this % 2 != 0
+
+/**
+ * Returns the positive GCD of [this][Int] and [other]
+ *
+ * @since 0.0.1
+ */
+public fun Int.gcd(other: Int): Int = IntMath.gcd(this.absoluteValue, other.absoluteValue)
