@@ -16,10 +16,16 @@
 
 plugins {
     kotlin("jvm") version "1.5.10" apply false
+    `java-library`
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0" apply false
     id("io.gitlab.arturbosch.detekt") version "1.17.1" apply false
+    jacoco
     id("org.sonarqube") version "3.3" apply false
     id("org.jetbrains.dokka") version "1.4.32" apply false
+    `maven-publish`
+    `project-report`
+    `build-dashboard`
     id("gradle.site") version "0.6" apply false
     id("com.github.ben-manes.versions") version "0.39.0" apply false
+    idea
 }
