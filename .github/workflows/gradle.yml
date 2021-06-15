@@ -17,7 +17,6 @@
 name: Java CI
 on:
   push:
-    branches-ignore: [main]
     paths-ignore:
       - '.editorconfig'
       - 'LICENSE'

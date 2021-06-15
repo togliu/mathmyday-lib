@@ -17,18 +17,18 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.10"
+    kotlin("jvm")
     `java-library`
-    id("org.jlleitschuh.gradle.ktlint") version "10.1.0"
-    id("io.gitlab.arturbosch.detekt") version "1.17.1"
+    id("org.jlleitschuh.gradle.ktlint")
+    id("io.gitlab.arturbosch.detekt")
     jacoco
-    id("org.sonarqube") version "3.2.0"
-    id("org.jetbrains.dokka") version "1.4.32"
+    id("org.sonarqube")
+    id("org.jetbrains.dokka")
     `maven-publish`
     `project-report`
     `build-dashboard`
-    id("gradle.site") version "0.6"
-    id("com.github.ben-manes.versions") version "0.39.0"
+    id("gradle.site")
+    id("com.github.ben-manes.versions")
     idea
 }
 group = "io.github.ltennstedt.finnmath"
@@ -89,7 +89,8 @@ tasks {
         rejectVersionIf {
             candidate.version.endsWith("-RC") ||
                 candidate.version.endsWith("-M2") ||
-                candidate.version.endsWith("-M1")
+                candidate.version.endsWith("-M1") ||
+                candidate.version.endsWith("-jre")
         }
     }
     register("default") {
