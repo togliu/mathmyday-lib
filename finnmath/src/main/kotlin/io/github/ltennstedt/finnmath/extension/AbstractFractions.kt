@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.operator
+package io.github.ltennstedt.finnmath.extension
 
 import io.github.ltennstedt.finnmath.number.AbstractFraction
 

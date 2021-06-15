@@ -34,6 +34,13 @@ public fun Long.isEven(): Boolean = this % 2L == 0L
 public fun Long.isOdd(): Boolean = this % 2L != 0L
 
 /**
+ * Returns if [this][Long] is a power of 2
+ *
+ * @since 0.0.1
+ */
+public fun Long.isPowerOfTwo(): Boolean = LongMath.isPowerOfTwo(this)
+
+/**
  * Returns the positive GCD of [this][Long] and [other]
  *
  * @since 0.0.1

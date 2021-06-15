@@ -16,7 +16,7 @@
 
 package io.github.ltennstedt.finnmath.number
 
-import io.github.ltennstedt.finnmath.operator.minus
+import io.github.ltennstedt.finnmath.extension.minus
 
 /**
  * Base class for ranges of fractions

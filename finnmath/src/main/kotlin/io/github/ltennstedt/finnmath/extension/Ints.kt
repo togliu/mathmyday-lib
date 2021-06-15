@@ -34,6 +34,13 @@ public fun Int.isEven(): Boolean = this % 2 == 0
 public fun Int.isOdd(): Boolean = this % 2 != 0
 
 /**
+ * Returns if [this][Int] is a power of 2
+ *
+ * @since 0.0.1
+ */
+public fun Int.isPowerOfTwo(): Boolean = IntMath.isPowerOfTwo(this)
+
+/**
  * Returns the positive GCD of [this][Int] and [other]
  *
  * @since 0.0.1

@@ -16,41 +16,39 @@
 
 package io.github.ltennstedt.finnmath.extension
 
-import com.google.common.math.IntMath
+import com.google.common.math.LongMath
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.property.Arb
+import io.kotest.property.arbitrary.long
 import io.kotest.property.forAll
 import kotlin.math.absoluteValue
 
+val longArb = Arb.long((-10L)..10L)
+
 @Suppress("UNUSED")
-object IntExtensionsSpec : FunSpec({
+object LongExtensionsSpec : FunSpec({
     context("isEven") {
-        test("should return false when an Int is odd") {
-            val actual = 1.isEven()
-
-            actual shouldBe false
+        test("should return false when a Long is odd") {
+            1L.isEven() shouldBe false
         }
-        test("should return true when an Int is even") {
-            val actual = 2.isEven()
-
-            actual shouldBe true
+        test("should return true when a Long is even") {
+            2L.isEven() shouldBe true
         }
     }
     context("isOdd") {
-        test("should return false when an Int is even") {
-            val actual = 2.isOdd()
-
-            actual shouldBe false
+        test("should return false when a Long is even") {
+            2L.isOdd() shouldBe false
         }
-        test("should return true when an Int is odd") {
-            val actual = 1.isOdd()
-
-            actual shouldBe true
+        test("should return true when a Long is odd") {
+            1L.isOdd() shouldBe true
         }
     }
     context("gcd") {
-        test("should call IntMath.gcd with absolute values") {
-            forAll<Int, Int>(10) { a, b -> a.gcd(b) == IntMath.gcd(a.absoluteValue, b.absoluteValue) }
+        test("should call LongMath.gcd with absolute values") {
+            forAll(longArb, longArb) { a, b ->
+                a.gcd(b) == LongMath.gcd(a.absoluteValue, b.absoluteValue)
+            }
         }
     }
 })

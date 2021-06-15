@@ -17,6 +17,8 @@
 package io.github.ltennstedt.finnmath.number
 
 import com.google.common.math.LongMath
+import io.github.ltennstedt.finnmath.extension.gcd
+import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
 import java.math.BigDecimal
 import kotlin.math.absoluteValue
 import kotlin.math.sign
@@ -51,9 +53,9 @@ public class Fraction @JvmOverloads constructor(
 
     override val isUnit: Boolean get() = numerator == 1L
 
-    override val isDyadic: Boolean by lazy { LongMath.isPowerOfTwo(denominator) }
+    override val isDyadic: Boolean by lazy { denominator.isPowerOfTwo() }
 
-    override val isIrreducible: Boolean by lazy { LongMath.gcd(numerator, denominator) == 1L }
+    override val isIrreducible: Boolean by lazy { numerator.gcd(denominator) == 1L }
 
     override val isProper: Boolean by lazy { abs().lessThan(ONE) }
 

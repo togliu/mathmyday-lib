@@ -22,19 +22,13 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
 @Suppress("UNUSED")
-object ClosedRangeExtensionSpec : FunSpec({
+object ClosedRangesSpec : FunSpec({
     context("isNotEmpty") {
         test("should return false when range is empty") {
-            val actual = FractionRange.EMPTY.isNotEmpty()
-
-            actual shouldBe false
+            FractionRange.EMPTY.isNotEmpty() shouldBe false
         }
         test("should return true when range is empty") {
-            val range = FractionRange(Fraction.ZERO, Fraction.ONE)
-
-            val actual = range.isNotEmpty()
-
-            actual shouldBe true
+            FractionRange(Fraction.ZERO, Fraction.ONE).isNotEmpty() shouldBe true
         }
     }
 })

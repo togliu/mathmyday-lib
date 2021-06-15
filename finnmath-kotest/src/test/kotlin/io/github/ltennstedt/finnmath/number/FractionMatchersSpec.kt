@@ -18,7 +18,9 @@ val invertibleArb = arbitrary { rs ->
 object LongFractionMatchersSpec : FunSpec({
     context("shouldBeInvertible") {
         test("should not fail when LongFraction is invertible") {
-            checkAll(invertibleArb) { it.shouldBeInvertible() }
+            checkAll(invertibleArb) {
+                it.shouldBeInvertible()
+            }
         }
     }
 })
