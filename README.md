@@ -59,7 +59,6 @@ gradle default
 * Absolutely no null values
 * Numbers extend `kotlin.Number` and `finnmath.number.BigFraction` implements `kotlin.Comparable`
 * Comparators implements `kotlin.Comparator`
-* Pseudo random generators are based on `kotlin.random.Random`
 * Lambdas, Sequences and Streams
 * Classes of numbers, vectors and matrices are final.
 * Classes of random generators are open for better compatibility with DI containers
@@ -71,6 +70,10 @@ gradle default
 * Extension functions for `kotlin.Int`, `kotlin.Long`, `kotlin.Float`, `kotlin.Double`, `java.math.BigInteger` and
   `java.math.BigDecimal`
 * Operators for numbers, vectors and matrices
+* Primary and secondary constructors  
+* Default arguments
+* when expressions
+* Computed and delegated properties
 * [Kotest](https://kotest.io/) DSL and matchers are used for tests
 
 ## Usage
