@@ -22,10 +22,13 @@ import java.math.BigInteger
 import java.util.Objects
 
 /**
- * Immutable implementation of a fraction which uses [BigInteger] as type for its [numerator] and [denominator]
+ * Base class for fractions
  *
+ * @param N type of the [Number]
+ * @param T type of [this][AbstractFractionRange]
+ * @param R type of the [ClosedRange]
  * @property numerator numerator
- * @property denominator denominator; default argument is [BigInteger.ONE]
+ * @property denominator denominator
  * @author Lars Tennstedt
  * @since 0.0.1
  */

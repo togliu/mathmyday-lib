@@ -18,18 +18,17 @@ package io.github.ltennstedt.finnmath.number
 
 import com.google.common.math.LongMath
 import java.math.BigDecimal
-import java.math.BigInteger
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
 /**
  * Immutable implementation of a fraction which uses [Long] as type for its [numerator] and [denominator]
  *
- * The returned [Fractions][LongFraction] of most methods are neither normalized nor reduced
+ * The returned [Fractions][Fraction] of most methods are neither normalized nor reduced
  *
  * @property numerator numerator
- * @property denominator denominator; default argument is [BigInteger.ONE]
- * @constructor Constructs a [LongFraction]
+ * @property denominator denominator; default argument is 1
+ * @constructor Constructs a [Fraction]
  * @throws IllegalArgumentException `if [denominator] == 0`
  * @see .normalize
  * @see .reduce
@@ -37,10 +36,10 @@ import kotlin.math.sign
  * @since 0.0.1
  */
 @Suppress("TooManyFunctions")
-public class LongFraction @JvmOverloads constructor(
+public class Fraction @JvmOverloads constructor(
     numerator: Long,
     denominator: Long = 1L
-) : AbstractFraction<Long, LongFraction, LongFractionRange>(
+) : AbstractFraction<Long, Fraction, FractionRange>(
     numerator,
     denominator
 ) {
@@ -61,7 +60,7 @@ public class LongFraction @JvmOverloads constructor(
     override val signum: Int get() = numerator.sign * denominator.sign
 
     /**
-     * Constructs a [LongFraction] from the [numerator] and [denominator]
+     * Constructs a [Fraction] from the [numerator] and [denominator]
      *
      * Default argument for [denominator] is `1`.
      *
@@ -74,42 +73,42 @@ public class LongFraction @JvmOverloads constructor(
         denominator.toLong()
     )
 
-    override fun add(summand: LongFraction): LongFraction {
+    override fun add(summand: Fraction): Fraction {
         val newNumerator = summand.denominator * numerator + denominator * summand.numerator
         val newDenominator = denominator * summand.denominator
-        return LongFraction(newNumerator, newDenominator)
+        return Fraction(newNumerator, newDenominator)
     }
 
-    override fun subtract(subtrahend: LongFraction): LongFraction {
+    override fun subtract(subtrahend: Fraction): Fraction {
         val newNumerator = subtrahend.denominator * numerator - denominator * subtrahend.numerator
         val newDenominator = denominator * subtrahend.denominator
-        return LongFraction(newNumerator, newDenominator)
+        return Fraction(newNumerator, newDenominator)
     }
 
-    override fun multiply(factor: LongFraction): LongFraction =
-        LongFraction(numerator * factor.numerator, denominator * factor.denominator)
+    override fun multiply(factor: Fraction): Fraction =
+        Fraction(numerator * factor.numerator, denominator * factor.denominator)
 
-    override fun divide(divisor: LongFraction): LongFraction {
+    override fun divide(divisor: Fraction): Fraction {
         require(divisor.isInvertible) { "expected divisor to be invertible but divisor = $divisor" }
         return multiply(divisor.invert())
     }
 
-    override fun pow(exponent: Int): LongFraction = when {
+    override fun pow(exponent: Int): Fraction = when {
         exponent > 0 -> multiply(pow(exponent - 1))
         exponent < 0 -> multiply(pow(-exponent - 1)).invert()
         else -> ONE
     }
 
-    override fun negate(): LongFraction = LongFraction(-numerator, denominator)
+    override fun negate(): Fraction = Fraction(-numerator, denominator)
 
-    override fun invert(): LongFraction {
+    override fun invert(): Fraction {
         check(isInvertible) { "expected this to be invertible but this = $this" }
-        return LongFraction(denominator, numerator)
+        return Fraction(denominator, numerator)
     }
 
-    override fun abs(): LongFraction = LongFraction(numerator.absoluteValue, denominator.absoluteValue)
+    override fun abs(): Fraction = Fraction(numerator.absoluteValue, denominator.absoluteValue)
 
-    override fun lessThanOrEqualTo(other: LongFraction): Boolean {
+    override fun lessThanOrEqualTo(other: Fraction): Boolean {
         val normalized = normalize()
         val normalizedOther = other.normalize()
         val left = normalizedOther.denominator * normalized.numerator
@@ -117,32 +116,32 @@ public class LongFraction @JvmOverloads constructor(
         return left <= right
     }
 
-    override fun inc(): LongFraction = add(ONE)
+    override fun inc(): Fraction = add(ONE)
 
-    override fun dec(): LongFraction = subtract(ONE)
+    override fun dec(): Fraction = subtract(ONE)
 
-    override fun normalize(): LongFraction = when {
-        signum < 0 && numerator.sign > 0 -> LongFraction(-numerator, denominator.absoluteValue)
+    override fun normalize(): Fraction = when {
+        signum < 0 && numerator.sign > 0 -> Fraction(-numerator, denominator.absoluteValue)
         signum < 0 -> this
         signum == 0 -> ZERO
         else -> abs()
     }
 
-    override fun reduce(): LongFraction {
+    override fun reduce(): Fraction {
         val gcd = LongMath.gcd(numerator, denominator)
-        return LongFraction(numerator / gcd, denominator / gcd)
+        return Fraction(numerator / gcd, denominator / gcd)
     }
 
-    override fun expand(number: Long): LongFraction = LongFraction(number * numerator, number * denominator)
+    override fun expand(number: Long): Fraction = Fraction(number * numerator, number * denominator)
 
     /**
-     * Returns [this][LongFraction]..[other]
+     * Returns [this][Fraction]..[other]
      *
      * @since 0.0.1
      */
-    public operator fun rangeTo(other: LongFraction): LongFractionRange = LongFractionRange(this, other)
+    public operator fun rangeTo(other: Fraction): FractionRange = FractionRange(this, other)
 
-    override fun compareTo(other: LongFraction): Int = COMPARATOR.compare(this, other)
+    override fun compareTo(other: Fraction): Int = COMPARATOR.compare(this, other)
 
     override fun toByte(): Byte = toBigDecimal().toByte()
 
@@ -162,20 +161,20 @@ public class LongFraction @JvmOverloads constructor(
 
     public companion object {
         /**
-         * `0` as [LongFraction]
+         * `0` as [Fraction]
          *
          * @since 0.0.1
          */
         @JvmField
-        public val ZERO: LongFraction = LongFraction(0L, 1L)
+        public val ZERO: Fraction = Fraction(0L, 1L)
 
         /**
-         * `1` as [LongFraction]
+         * `1` as [Fraction]
          *
          * @since 0.0.1
          */
         @JvmField
-        public val ONE: LongFraction = LongFraction(1L, 1L)
+        public val ONE: Fraction = Fraction(1L, 1L)
 
         /**
          * Units
@@ -183,8 +182,8 @@ public class LongFraction @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val UNITS: Sequence<LongFraction> =
-            generateSequence(ONE) { LongFraction(it.denominator.inc()).invert() }
+        public val UNITS: Sequence<Fraction> =
+            generateSequence(ONE) { Fraction(it.denominator.inc()).invert() }
 
         /**
          * [Comparator]
@@ -192,7 +191,7 @@ public class LongFraction @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val COMPARATOR: Comparator<LongFraction> = Comparator { a: LongFraction, b: LongFraction ->
+        public val COMPARATOR: Comparator<Fraction> = Comparator { a: Fraction, b: Fraction ->
             when {
                 a.lessThan(b) -> -1
                 a.greaterThan(b) -> 1

@@ -16,10 +16,8 @@
 
 package io.github.ltennstedt.finnmath.number
 
-import io.github.ltennstedt.finnmath.operator.minus
-
 /**
- * Immutable implementation of a range for [BigFractions][BigFraction]
+ * Immutable implementation of a range for [Fractions][Fraction]
  *
  * @property start start
  * @property endInclusive endInclusive
@@ -27,17 +25,17 @@ import io.github.ltennstedt.finnmath.operator.minus
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public interface FractionRange<
-    N : Number,
-    T : AbstractFraction<N, T, R>,
-    R : ClosedRange<T>
-    > : ClosedRange<T> {
-    /**
-     * Length
-     *
-     * @since 0.0.1
-     */
-    public val length: T get() = (endInclusive - start).abs()
-
-    public companion object
+public data class FractionRange(
+    override val start: Fraction,
+    override val endInclusive: Fraction
+) : AbstractFractionRange<Long, Fraction, FractionRange>() {
+    public companion object {
+        /**
+         * Empty [BigFractionRange]
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+        public val EMPTY: FractionRange = FractionRange(Fraction.ONE, Fraction.ZERO)
+    }
 }

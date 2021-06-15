@@ -16,17 +16,17 @@
 
 package io.github.ltennstedt.finnmath.kotest.number
 
-import io.github.ltennstedt.finnmath.number.LongFraction
+import io.github.ltennstedt.finnmath.number.Fraction
 import io.kotest.matchers.Matcher
 import io.kotest.matchers.MatcherResult
 import io.kotest.matchers.shouldBe
 
-public fun invertible(): Matcher<LongFraction> = object : Matcher<LongFraction> {
-    override fun test(value: LongFraction): MatcherResult = MatcherResult(
+public fun invertible(): Matcher<Fraction> = object : Matcher<Fraction> {
+    override fun test(value: Fraction): MatcherResult = MatcherResult(
         value.isInvertible,
         "LongFraction $value should be invertible",
         "LongFraction $value should not be invertible"
     )
 }
 
-public fun LongFraction.shouldBeInvertible(): Unit = this shouldBe invertible()
+public fun Fraction.shouldBeInvertible(): Unit = this shouldBe invertible()
