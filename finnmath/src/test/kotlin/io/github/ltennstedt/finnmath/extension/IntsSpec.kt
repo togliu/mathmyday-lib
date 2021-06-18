@@ -17,52 +17,30 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.IntMath
+import io.github.ltennstedt.finnmath.arbInt
 import io.kotest.core.spec.style.FunSpec
+import io.kotest.matchers.shouldBe
 import io.kotest.property.PropertyTesting
-import io.kotest.property.RandomSource
-import io.kotest.property.arbitrary.arbitrary
-import io.kotest.property.arbitrary.filter
 import io.kotest.property.forAll
 import kotlin.math.absoluteValue
-import kotlin.random.nextInt
-
-val arbOdd = arbitrary { rs: RandomSource ->
-    rs.random.nextInt((-10)..10)
-}.filter { it % 2 == 1 }
-
-val arbEven = arbitrary { rs: RandomSource ->
-    rs.random.nextInt((-10)..10)
-}.filter { it % 2 == 0 }
-
-val arbInt = arbitrary { rs: RandomSource ->
-    rs.random.nextInt((-10)..10)
-}
 
 @Suppress("UNUSED")
-object IntExtensionsSpec : FunSpec({
+object IntsSpec : FunSpec({
     PropertyTesting.defaultIterationCount = 10
     context("isEven") {
         test("should return false when an Int is odd") {
-            forAll(arbOdd) { a ->
-                !a.isEven()
-            }
+            1.isEven() shouldBe false
         }
         test("should return true when an Int is even") {
-            forAll(arbEven) { a ->
-                a.isEven()
-            }
+            2.isEven() shouldBe true
         }
     }
     context("isOdd") {
         test("should return false when an Int is even") {
-            forAll(arbEven) { a ->
-                !a.isOdd()
-            }
+            2.isOdd() shouldBe false
         }
         test("should return true when an Int is odd") {
-            forAll(arbOdd) { a ->
-                a.isOdd()
-            }
+            1.isOdd() shouldBe true
         }
     }
     context("gcd") {

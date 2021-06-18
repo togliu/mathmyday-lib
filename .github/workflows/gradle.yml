@@ -156,39 +156,6 @@ jobs:
       with:
         name: jacoco-report
         path: ./**/build/reports/jacoco/
-  sonar:
-    runs-on: ubuntu-latest
-    needs: coverage
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2.3.4
-      with:
-        fetch-depth: 0
-    - name: Set up Java
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.gradle
-        key: ${{ runner.os }}-gradle-dependencies-${{ hashFiles('settings.gradle.kts') }}
-    - name: Cache output cache
-      uses: actions/cache@v2
-      with:
-        path: .gradle
-        key: ${{ runner.os }}-gradle-output-cache-${{ hashFiles('build.gradle.kts') }}
-    - name: Download JaCoCo report
-      uses: actions/download-artifact@v2
-      with:
-        name: jacoco-report
-    - name: SonarScanner
-      run: |
-        ./scripts/prepare-sonar.sh
-        cd finnmath/
-        gradle -i --no-daemon sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   doc:
     runs-on: ubuntu-latest
     steps:
@@ -239,7 +206,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: doc
-    - run: gradle -i --no-daemon jar kotlinSourcesJar sourcesJar javadocJar
+    - run: gradle -i --no-daemon jar kotlinSourcesJar javadocJar
     - name: Upload libs
       uses: actions/upload-artifact@v2
       with:

@@ -17,17 +17,16 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.LongMath
+import io.github.ltennstedt.finnmath.arbLong
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.property.Arb
-import io.kotest.property.arbitrary.long
+import io.kotest.property.PropertyTesting
 import io.kotest.property.forAll
 import kotlin.math.absoluteValue
 
-val longArb = Arb.long((-10L)..10L)
-
 @Suppress("UNUSED")
-object LongExtensionsSpec : FunSpec({
+object LongsSpec : FunSpec({
+    PropertyTesting.defaultIterationCount = 10
     context("isEven") {
         test("should return false when a Long is odd") {
             1L.isEven() shouldBe false
@@ -46,7 +45,7 @@ object LongExtensionsSpec : FunSpec({
     }
     context("gcd") {
         test("should call LongMath.gcd with absolute values") {
-            forAll(longArb, longArb) { a, b ->
+            forAll(arbLong, arbLong) { a, b ->
                 a.gcd(b) == LongMath.gcd(a.absoluteValue, b.absoluteValue)
             }
         }

@@ -1,25 +1,14 @@
 # finnmath: Mathematical library for the JVM and Android written in Kotlin
 
 ![](https://github.com/ltennstedt/finnmath/workflows/Java%20CI/badge.svg)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=bugs)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=code_smells)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=coverage)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=ncloc)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=alert_status)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=security_rating)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=sqale_index)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
-[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=ltennstedt_finnmath&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
 [![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
-finnmath is a free software library for the [JVM](https://www.java.com/) and [Android](https://www.android.com/) 
-written in [Kotlin](https://kotlinlang.org/) which provides or will provide implementations of fractions, complex 
-numbers, matrices and vectors and their arithmetic. This library is designed with Kotlin and Java users in mind but 
-the Kotlin support is the main driver for this project (Sequences over Streams, no special treatment of primitives 
-etc.). The great [Apache Commons Math](https://commons.apache.org/proper/commons-math/) and the new 
-[Apache Commons Numbers](https://commons.apache.org/proper/commons-numbers/) provide less cluttered Java APIs and 
+finnmath is a free software library for the [JVM](https://www.java.com/) and [Android](https://www.android.com/)
+written in [Kotlin](https://kotlinlang.org/) which provides or will provide implementations of fractions, complex
+numbers, matrices and vectors and their arithmetic. This library is designed with Kotlin and Java users in mind but the
+Kotlin support is the main driver for this project (Sequences over Streams, no special treatment of primitives etc.).
+The great [Apache Commons Math](https://commons.apache.org/proper/commons-math/) and the new
+[Apache Commons Numbers](https://commons.apache.org/proper/commons-numbers/) provide less cluttered Java APIs and
 support implementations based on primitives as well.
 
 What finnmath will provide:
@@ -35,11 +24,11 @@ What finnmath will not provide:
 * Matrix decomposition, reduction or factorization
 * Polynomials
 
-Previously finnmath was written in [Java](https://www.java.com/) and used [Maven](https://maven.apache.org/) as its 
-build automation tool but currently the port to [Kotlin](https://kotlinlang.org/) and [Gradle](https://gradle.org/) 
-is in progress. It should interoperate seamlessly with other JVM technologies. Dependencies are 
+Previously finnmath was written in [Java](https://www.java.com/) and used [Maven](https://maven.apache.org/) as its
+build automation tool but currently the port to [Kotlin](https://kotlinlang.org/) and [Gradle](https://gradle.org/)
+is in progress. It should interoperate seamlessly with other JVM technologies. Dependencies are
 [big-math](https://eobermuhlner.github.io/big-math/),
-[KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit) and 
+[KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit) and
 [Guava](https://guava.dev/) and for tests [Kotest](https://kotest.io/) and [JUnit](https://junit.org/junit5/)
 
 ## Building
@@ -70,7 +59,7 @@ gradle default
 * Extension functions for `kotlin.Int`, `kotlin.Long`, `kotlin.Float`, `kotlin.Double`, `java.math.BigInteger` and
   `java.math.BigDecimal`
 * Operators for numbers, vectors and matrices
-* Primary and secondary constructors  
+* Primary and secondary constructors
 * Default arguments
 * when expressions
 * Computed and delegated properties
@@ -139,12 +128,10 @@ class A {
 
 * Complete KDoc/Javadoc (generated partially by [Dokka](https://github.com/Kotlin/dokka))
 * Clean code
-* High code quality with the help of [ktlint](https://ktlint.github.io/), [detekt](https://detekt.github.io/detekt/),
-  [SonarLint](https://www.sonarlint.org/), [SonarQube](https://www.sonarqube.org/) and 
-  [SonarCloud](https://sonarcloud.io/)
-* High code coverage with the help of [Kotest](https://kotest.io/) and [JUnit](https://junit.org/junit5/) 
-  [JaCoCo](https://www.jacoco.org/jacoco/), [SonarQube](https://www.sonarqube.org/) and
-  [SonarCloud](https://sonarcloud.io/)
+* High code quality with the help of [ktlint](https://ktlint.github.io/), [detekt](https://detekt.github.io/detekt/)
+  and [SonarLint](https://www.sonarlint.org/)
+* High code coverage with the help of [Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/) and
+  [JaCoCo](https://www.jacoco.org/jacoco/)
 * Idiomatic Kotlin and Java API
 * Stay up to date with versions of libraries and plugins
 * Object-oriented design
@@ -159,7 +146,6 @@ Please keep in mind that perfection is not reachable, impressions are very subje
 * [KDoc](https://ltennstedt.github.io/finnmath/finnmath/dokka/html/index.html)
 * [Javadoc](https://ltennstedt.github.io/finnmath/finnmath/dokka/javadoc/index.html)
 * [Gradle Site](https://ltennstedt.github.io/finnmath/finnmath/docs/site/index.html)
-* [finnmath on SonarCloud](https://sonarcloud.io/dashboard?id=ltennstedt_finnmath)
 * [detekt report](https://ltennstedt.github.io/finnmath/finnmath/reports/detekt/detekt.html)
 * [Build Dashboard](https://ltennstedt.github.io/finnmath/finnmath/reports/buildDashboard/index.html)
 * [Dependency Updates report](https://ltennstedt.github.io/finnmath/finnmath/dependencyUpdates/report.html)
@@ -175,8 +161,8 @@ Please keep in mind that perfection is not reachable, impressions are very subje
 
 ## Information
 
-finnmath is open source and free software and is licensed under the permissive Apache License.
-finnmath is still in a very early state and a work in progress.
+finnmath is open source and free software and is licensed under the permissive Apache License. finnmath is still in a
+very early state and a work in progress.
 
 ## Developing
 

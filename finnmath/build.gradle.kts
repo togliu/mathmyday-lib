@@ -22,7 +22,6 @@ plugins {
     id("org.jlleitschuh.gradle.ktlint")
     id("io.gitlab.arturbosch.detekt")
     jacoco
-    id("org.sonarqube")
     id("org.jetbrains.dokka")
     `maven-publish`
     `project-report`
