@@ -16,7 +16,7 @@
 
 package io.github.ltennstedt.finnmath.number
 
-import com.google.common.math.BigIntegerMath
+import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
 import java.math.BigDecimal
 import java.math.BigInteger
 
@@ -47,7 +47,7 @@ public class BigFraction @JvmOverloads constructor(
 
     override val isUnit: Boolean get() = numerator == BigInteger.ONE
 
-    override val isDyadic: Boolean by lazy { BigIntegerMath.isPowerOfTwo(denominator) }
+    override val isDyadic: Boolean by lazy { denominator.isPowerOfTwo() }
 
     override val isIrreducible: Boolean by lazy { numerator.gcd(denominator) == BigInteger.ONE }
 
@@ -153,21 +153,7 @@ public class BigFraction @JvmOverloads constructor(
 
     override fun compareTo(other: BigFraction): Int = COMPARATOR.compare(this, other)
 
-    override fun toByte(): Byte = toBigDecimal().toByte()
-
-    override fun toShort(): Short = toBigDecimal().toShort()
-
-    override fun toInt(): Int = toBigDecimal().toInt()
-
-    override fun toLong(): Long = toBigDecimal().toLong()
-
-    override fun toFloat(): Float = toBigDecimal().toFloat()
-
-    override fun toDouble(): Double = toBigDecimal().toDouble()
-
     override fun toBigDecimal(): BigDecimal = numerator.toBigDecimal().divide(denominator.toBigDecimal())
-
-    override fun toChar(): Char = toBigDecimal().toChar()
 
     public companion object {
         /**

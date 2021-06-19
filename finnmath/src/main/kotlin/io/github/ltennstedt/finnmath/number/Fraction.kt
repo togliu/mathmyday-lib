@@ -145,21 +145,7 @@ public class Fraction @JvmOverloads constructor(
 
     override fun compareTo(other: Fraction): Int = COMPARATOR.compare(this, other)
 
-    override fun toByte(): Byte = toBigDecimal().toByte()
-
-    override fun toShort(): Short = toBigDecimal().toShort()
-
-    override fun toInt(): Int = toBigDecimal().toInt()
-
-    override fun toLong(): Long = toBigDecimal().toLong()
-
-    override fun toFloat(): Float = toBigDecimal().toFloat()
-
-    override fun toDouble(): Double = toBigDecimal().toDouble()
-
     override fun toBigDecimal(): BigDecimal = numerator.toBigDecimal().divide(denominator.toBigDecimal())
-
-    override fun toChar(): Char = toBigDecimal().toChar()
 
     public companion object {
         /**
@@ -184,8 +170,9 @@ public class Fraction @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val UNITS: Sequence<Fraction> =
-            generateSequence(ONE) { Fraction(it.denominator.inc()).invert() }
+        public val UNITS: Sequence<Fraction> = generateSequence(ONE) {
+            Fraction(1L, it.denominator.inc())
+        }
 
         /**
          * [Comparator]

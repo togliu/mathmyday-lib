@@ -17,7 +17,7 @@
 package io.github.ltennstedt.finnmath.number
 
 import com.google.common.base.MoreObjects
-import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
@@ -151,7 +151,7 @@ object AbstractFractionSpec : FunSpec({
         }
         context("toBigIntegerExact") {
             test("should throw an Exception when a Fraction is not an exact BigInteger") {
-                shouldThrow<ArithmeticException> {
+                shouldThrowExactly<ArithmeticException> {
                     Fraction(1L, 2L).toBigIntegerExact()
                 }
             }
