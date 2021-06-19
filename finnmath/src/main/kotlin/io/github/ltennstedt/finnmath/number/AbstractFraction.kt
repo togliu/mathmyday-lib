@@ -208,7 +208,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      * @since 0.0.1
      */
     @Suppress("UNCHECKED_CAST")
-    public fun min(other: T): T = if (greaterThan(other)) other else this as T
+    public infix fun min(other: T): T = if (greaterThan(other)) other else this as T
 
     /**
      * Returns the maximum of [this][AbstractFraction] and [other]
@@ -216,7 +216,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      * @since 0.0.1
      */
     @Suppress("UNCHECKED_CAST")
-    public fun max(other: T): T = if (lessThan(other)) other else this as T
+    public infix fun max(other: T): T = if (lessThan(other)) other else this as T
 
     /**
      * Returns the [AbstractFraction] incremented by 1
@@ -258,7 +258,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      *
      * @since 0.0.1
      */
-    public fun equivalent(other: T): Boolean = normalize().reduce() == other.normalize().reduce()
+    public infix fun equivalent(other: T): Boolean = normalize().reduce() == other.normalize().reduce()
 
     override fun toByte(): Byte = toBigDecimal().toByte()
 
