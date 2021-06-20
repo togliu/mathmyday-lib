@@ -21,8 +21,7 @@ import io.github.ltennstedt.finnmath.number.FractionRange
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
-@Suppress("UNUSED")
-object ClosedRangesSpec : FunSpec({
+class ClosedRangesSpec : FunSpec({
     context("isNotEmpty") {
         test("should return false when range is empty") {
             FractionRange.EMPTY.isNotEmpty() shouldBe false

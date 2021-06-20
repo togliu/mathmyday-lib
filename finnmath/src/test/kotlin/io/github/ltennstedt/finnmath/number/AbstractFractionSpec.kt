@@ -25,8 +25,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.util.Objects
 
-@Suppress("UNUSED")
-object AbstractFractionSpec : FunSpec({
+class AbstractFractionSpec : FunSpec({
     context("isNotInvertible") {
         test("should be false when a Fraction is invertible") {
             Fraction(1L, 2L).isNotInvertible shouldBe false

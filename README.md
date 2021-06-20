@@ -136,6 +136,7 @@ class A {
 * Stay up to date with versions of libraries and plugins
 * Object-oriented design
 * Use Kotlin features to create a DSL-like API
+* Use [Kotest](https://kotest.io/) features for tests (FunSpec style, matchers and property-based testing)
 
 Please keep in mind that perfection is not reachable, impressions are very subjective and definitions can vary! ;-)
 

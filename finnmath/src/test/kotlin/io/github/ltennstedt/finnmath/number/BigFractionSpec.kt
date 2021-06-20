@@ -22,7 +22,7 @@ import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import java.math.BigInteger
 
-object BigFractionSpec : FunSpec({
+class BigFractionSpec : FunSpec({
     test("primary constructor should throw Exception when denominator is 0") {
         shouldThrowExactly<IllegalArgumentException> {
             BigFraction(BigInteger.ONE, BigInteger.ZERO)

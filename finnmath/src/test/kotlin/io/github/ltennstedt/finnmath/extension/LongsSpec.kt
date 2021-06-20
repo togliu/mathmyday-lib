@@ -24,8 +24,7 @@ import io.kotest.property.PropertyTesting
 import io.kotest.property.forAll
 import kotlin.math.absoluteValue
 
-@Suppress("UNUSED")
-object LongsSpec : FunSpec({
+class LongsSpec : FunSpec({
     PropertyTesting.defaultIterationCount = 10
     context("isEven") {
         test("should return false when a Long is odd") {

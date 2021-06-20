@@ -21,14 +21,13 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import java.math.BigInteger
 
-@Suppress("UNUSED")
-object BigIntegersSpec : FunSpec({
+class BigIntegersSpec : FunSpec({
     context("isPowerOfTwo") {
         test("should be false when a BigInteger is not a power of 2") {
-            BigInteger.valueOf(3L).isPowerOfTwo() shouldBe false
+            3L.toBigInteger().isPowerOfTwo() shouldBe false
         }
         test("should be true when a BigInteger is a power of 2") {
-            BigInteger.valueOf(4L).isPowerOfTwo() shouldBe true
+            4L.toBigInteger().isPowerOfTwo() shouldBe true
         }
     }
     test("toBigFraction should return a BigInteger as BigFraction") {

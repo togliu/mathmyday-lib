@@ -16,7 +16,8 @@
 
 package io.github.ltennstedt.finnmath.number
 
-import ch.obermuhlner.math.big.BigDecimalMath
+import io.github.ltennstedt.finnmath.extension.cos
+import io.github.ltennstedt.finnmath.extension.sin
 import java.math.BigDecimal
 import java.math.MathContext
 
@@ -40,9 +41,10 @@ public data class BigPolarForm(val radial: BigDecimal, val angular: BigDecimal) 
      * @return [BigComplex]
      * @since 0.0.1
      */
+    @JvmOverloads
     public fun toComplexNumber(mathContext: MathContext = MathContext.UNLIMITED): BigComplex {
-        val real = radial.multiply(BigDecimalMath.cos(angular, mathContext), mathContext)
-        val imaginary = radial.multiply(BigDecimalMath.sin(angular, mathContext), mathContext)
+        val real = radial.multiply(angular.cos(mathContext), mathContext)
+        val imaginary = radial.multiply(angular.sin(mathContext), mathContext)
         return BigComplex(real, imaginary)
     }
 

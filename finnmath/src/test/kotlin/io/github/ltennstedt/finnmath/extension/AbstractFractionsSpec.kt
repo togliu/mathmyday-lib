@@ -19,9 +19,9 @@ package io.github.ltennstedt.finnmath.extension
 import io.github.ltennstedt.finnmath.number.Fraction
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.types.shouldBeSameInstanceAs
 
-@Suppress("UNUSED")
-object AbstractFractionsSpec : FunSpec({
+class AbstractFractionsSpec : FunSpec({
     val a = Fraction(1L, 2L)
     val b = Fraction(2L, 3L)
     test("plus should delegate to add") {
@@ -37,7 +37,7 @@ object AbstractFractionsSpec : FunSpec({
         (a / b) shouldBe Fraction(3L, 4L)
     }
     test("unaryPlus should be this") {
-        +a shouldBe a
+        +a shouldBeSameInstanceAs a
     }
     test("unaryMinus should delegate to negate") {
         (-a) shouldBe a.negate()

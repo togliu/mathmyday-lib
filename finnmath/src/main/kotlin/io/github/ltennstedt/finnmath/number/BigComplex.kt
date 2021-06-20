@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number
 
 import ch.obermuhlner.math.big.BigDecimalMath
+import io.github.ltennstedt.finnmath.extension.sqrt
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
@@ -166,11 +167,15 @@ public class BigComplex @JvmOverloads constructor(
      *
      * @since 0.0.1
      */
-    public fun add(summand: BigComplex, mathContext: MathContext): BigComplex =
-        BigComplex(real.add(summand.real, mathContext), imaginary.add(summand.imaginary, mathContext))
+    public fun add(summand: BigComplex, mathContext: MathContext): BigComplex = BigComplex(
+        real.add(summand.real, mathContext),
+        imaginary.add(summand.imaginary, mathContext)
+    )
 
-    override fun subtract(subtrahend: BigComplex): BigComplex =
-        BigComplex(real - subtrahend.real, imaginary - subtrahend.imaginary)
+    override fun subtract(subtrahend: BigComplex): BigComplex = BigComplex(
+        real - subtrahend.real,
+        imaginary - subtrahend.imaginary
+    )
 
     /**
      * Returns the difference of [this][BigComplex] and the [subtrahend] based on the [mathContext]
@@ -285,14 +290,14 @@ public class BigComplex @JvmOverloads constructor(
     public fun absPow2(mathContext: MathContext): BigDecimal =
         real.pow(2, mathContext).add(imaginary.pow(2, mathContext), mathContext)
 
-    override fun abs(): BigDecimal = BigDecimalMath.sqrt(absPow2(), MathContext.UNLIMITED)
+    override fun abs(): BigDecimal = absPow2().sqrt()
 
     /**
      * Returns the absolute value based on the [mathContext]
      *
      * @since 0.0.1
      */
-    public fun abs(mathContext: MathContext): BigDecimal = BigDecimalMath.sqrt(absPow2(mathContext), mathContext)
+    public fun abs(mathContext: MathContext): BigDecimal = absPow2(mathContext).sqrt(mathContext)
 
     override fun conjugate(): BigComplex = BigComplex(real, -imaginary)
 

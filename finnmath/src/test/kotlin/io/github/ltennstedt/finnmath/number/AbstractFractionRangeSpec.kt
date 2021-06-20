@@ -19,8 +19,7 @@ package io.github.ltennstedt.finnmath.number
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 
-@Suppress("UNUSED")
-object AbstractFractionRangeSpec : FunSpec({
+class AbstractFractionRangeSpec : FunSpec({
     test("length should return length") {
         val a = Fraction(1L, 2L)
         val b = Fraction(3L, 2L)

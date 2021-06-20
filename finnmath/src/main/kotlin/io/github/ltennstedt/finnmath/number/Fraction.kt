@@ -170,9 +170,7 @@ public class Fraction @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val UNITS: Sequence<Fraction> = generateSequence(ONE) {
-            Fraction(1L, it.denominator.inc())
-        }
+        public val UNITS: Sequence<Fraction> = generateSequence(ONE) { Fraction(1L, it.denominator.inc()) }
 
         /**
          * [Comparator]
