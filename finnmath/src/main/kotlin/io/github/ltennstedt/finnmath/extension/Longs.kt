@@ -17,6 +17,8 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.LongMath
+import io.github.ltennstedt.finnmath.number.BigFraction
+import io.github.ltennstedt.finnmath.number.Fraction
 import kotlin.math.absoluteValue
 
 /**
@@ -46,3 +48,17 @@ public fun Long.isPowerOfTwo(): Boolean = LongMath.isPowerOfTwo(this)
  * @since 0.0.1
  */
 public fun Long.gcd(other: Long): Long = LongMath.gcd(this.absoluteValue, other.absoluteValue)
+
+/**
+ * Returns [this][Long] as [Fraction]
+ *
+ * @since 0.0.1
+ */
+public fun Long.toFraction(): Fraction = Fraction(this)
+
+/**
+ * Returns [this][Long] as [BigFraction]
+ *
+ * @since 0.0.1
+ */
+public fun Long.toBigFraction(): BigFraction = BigFraction(this)
