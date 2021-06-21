@@ -45,13 +45,25 @@ public fun BigDecimal.sin(mathContext: MathContext = MathContext.UNLIMITED): Big
 )
 
 /**
- * Returns the cossinus of [this][BigDecimal]
+ * Returns the cosinus of [this][BigDecimal]
  * Default argument for [mathContext] is [MathContext.UNLIMITED]
  *
  * @since 0.0.1
  *
  */
 public fun BigDecimal.cos(mathContext: MathContext = MathContext.UNLIMITED): BigDecimal = BigDecimalMath.cos(
+    this,
+    mathContext
+)
+
+/**
+ * Returns the arc cosinus of [this][BigDecimal]
+ * Default argument for [mathContext] is [MathContext.UNLIMITED]
+ *
+ * @since 0.0.1
+ *
+ */
+public fun BigDecimal.acos(mathContext: MathContext = MathContext.UNLIMITED): BigDecimal = BigDecimalMath.acos(
     this,
     mathContext
 )
