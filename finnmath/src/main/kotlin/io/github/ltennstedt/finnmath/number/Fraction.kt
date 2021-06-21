@@ -49,9 +49,11 @@ public class Fraction @JvmOverloads constructor(
         require(denominator != 0L) { "expected denominator != 0 but denominator = $denominator" }
     }
 
-    override val isInvertible: Boolean get() = numerator != 0L
+    override val isInvertible: Boolean
+        get() = numerator != 0L
 
-    override val isUnit: Boolean get() = numerator == 1L
+    override val isUnit: Boolean
+        get() = numerator == 1L
 
     override val isDyadic: Boolean by lazy { denominator.isPowerOfTwo() }
 
@@ -59,7 +61,8 @@ public class Fraction @JvmOverloads constructor(
 
     override val isProper: Boolean by lazy { abs().lessThan(ONE) }
 
-    override val signum: Int get() = numerator.sign * denominator.sign
+    override val signum: Int
+        get() = numerator.sign * denominator.sign
 
     /**
      * Constructs a [Fraction] from the [numerator] and [denominator]

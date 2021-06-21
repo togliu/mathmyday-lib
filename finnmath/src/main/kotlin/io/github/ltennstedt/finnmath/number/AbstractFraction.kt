@@ -49,7 +49,8 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      *
      * @since 0.0.1
      */
-    public val isNotInvertible: Boolean get() = !isInvertible
+    public val isNotInvertible: Boolean
+        get() = !isInvertible
 
     /**
      * Indicates if [this][AbstractFraction] is a unit
@@ -63,7 +64,8 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      *
      * @since 0.0.1
      */
-    public val isNotUnit: Boolean get() = !isUnit
+    public val isNotUnit: Boolean
+        get() = !isUnit
 
     /**
      * Indicates if [this][AbstractFraction] is dyadic
@@ -77,7 +79,8 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      *
      * @since 0.0.1
      */
-    public val isNotDyadic: Boolean get() = !isDyadic
+    public val isNotDyadic: Boolean
+        get() = !isDyadic
 
     /**
      * Indicates if [this][AbstractFraction] is irreducible
@@ -91,7 +94,8 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      *
      * @since 0.0.1
      */
-    public val isReducible: Boolean get() = !isIrreducible
+    public val isReducible: Boolean
+        get() = !isIrreducible
 
     /**
      * Indicates if [this][AbstractFraction] is proper
@@ -105,7 +109,8 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      *
      * @since 0.0.1
      */
-    public val isImproper: Boolean get() = !isProper
+    public val isImproper: Boolean
+        get() = !isProper
 
     /**
      * Signum

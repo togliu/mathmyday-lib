@@ -37,7 +37,8 @@ public abstract class AbstractFractionRange<
      *
      * @since 0.0.1
      */
-    public val length: T get() = (endInclusive - start).abs()
+    public val length: T
+        get() = (endInclusive - start).abs()
 
     public companion object
 }

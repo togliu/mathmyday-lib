@@ -43,9 +43,11 @@ public class BigFraction @JvmOverloads constructor(
         require(denominator != BigInteger.ZERO) { "expected denominator != 0 but denominator = $denominator" }
     }
 
-    override val isInvertible: Boolean get() = numerator != BigInteger.ZERO
+    override val isInvertible: Boolean
+        get() = numerator != BigInteger.ZERO
 
-    override val isUnit: Boolean get() = numerator == BigInteger.ONE
+    override val isUnit: Boolean
+        get() = numerator == BigInteger.ONE
 
     override val isDyadic: Boolean by lazy { denominator.isPowerOfTwo() }
 
@@ -53,7 +55,8 @@ public class BigFraction @JvmOverloads constructor(
 
     override val isProper: Boolean by lazy { abs().lessThan(ONE) }
 
-    override val signum: Int get() = numerator.signum() * denominator.signum()
+    override val signum: Int
+        get() = numerator.signum() * denominator.signum()
 
     /**
      * Constructs a [BigFraction] from the [numerator] and [denominator]
