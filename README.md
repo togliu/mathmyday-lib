@@ -62,6 +62,8 @@ gradle default
 * Default arguments
 * when expressions
 * Derived and delegated properties
+* Infix notation
+* Single-expression functions
 
 ## Usage
 
