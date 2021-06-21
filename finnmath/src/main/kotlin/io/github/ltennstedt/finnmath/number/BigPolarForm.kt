@@ -42,7 +42,7 @@ public data class BigPolarForm(val radial: BigDecimal, val angular: BigDecimal) 
      * @since 0.0.1
      */
     @JvmOverloads
-    public fun toComplexNumber(mathContext: MathContext = MathContext.UNLIMITED): BigComplex {
+    public fun toBigComplex(mathContext: MathContext = MathContext.UNLIMITED): BigComplex {
         val real = radial.multiply(angular.cos(mathContext), mathContext)
         val imaginary = radial.multiply(angular.sin(mathContext), mathContext)
         return BigComplex(real, imaginary)
