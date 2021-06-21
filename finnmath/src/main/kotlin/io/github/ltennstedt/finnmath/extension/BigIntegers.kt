@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.BigIntegerMath
+import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.number.BigFraction
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -40,13 +41,13 @@ public fun BigInteger.sqrt(mathContext: MathContext = MathContext.UNLIMITED): Bi
     toBigDecimal().sqrt(mathContext)
 
 /**
- * Returns the square root of [this][BigInteger] based on the [scale] and [mathContext]
+ * Returns the square root of [this][BigInteger] based on the [context]
  *
  * @since 0.0.1
  *
  */
-public fun BigInteger.sqrt(scale: Int, mathContext: MathContext): BigDecimal =
-    toBigDecimal(scale, mathContext).sqrt(mathContext)
+public fun BigInteger.sqrt(context: FinnmathContext): BigDecimal =
+    toBigDecimal(context.scale, context.mathContext).sqrt(context.mathContext)
 
 /**
  * Returns the sinus of [this][BigInteger] based on the [mathContext]
@@ -59,14 +60,13 @@ public fun BigInteger.sin(mathContext: MathContext = MathContext.UNLIMITED): Big
     toBigDecimal().sin(mathContext)
 
 /**
- * Returns the sinus of [this][BigInteger] based on the [scale] and [mathContext]
- * Default argument for [mathContext] is [MathContext.UNLIMITED]
+ * Returns the sinus of [this][BigInteger] based on the [context]
  *
  * @since 0.0.1
  *
  */
-public fun BigInteger.sin(scale: Int, mathContext: MathContext): BigDecimal =
-    toBigDecimal(scale, mathContext).sin(mathContext)
+public fun BigInteger.sin(context: FinnmathContext): BigDecimal =
+    toBigDecimal(context.scale, context.mathContext).sin(context.mathContext)
 
 /**
  * Returns the cosinus of [this][BigInteger] based on the [mathContext]
@@ -79,14 +79,13 @@ public fun BigInteger.cos(mathContext: MathContext = MathContext.UNLIMITED): Big
     toBigDecimal().cos(mathContext)
 
 /**
- * Returns the cosinus of [this][BigInteger] based on the [scale] and [mathContext]
- * Default argument for [mathContext] is [MathContext.UNLIMITED]
+ * Returns the cosinus of [this][BigInteger] based on the [context]
  *
  * @since 0.0.1
  *
  */
-public fun BigInteger.cos(scale: Int, mathContext: MathContext): BigDecimal =
-    toBigDecimal(scale, mathContext).cos(mathContext)
+public fun BigInteger.cos(context: FinnmathContext): BigDecimal =
+    toBigDecimal(context.scale, context.mathContext).cos(context.mathContext)
 
 /**
  * Returns the arc cosinus of [this][BigInteger] based on the [mathContext]
@@ -99,14 +98,13 @@ public fun BigInteger.acos(mathContext: MathContext = MathContext.UNLIMITED): Bi
     toBigDecimal().acos(mathContext)
 
 /**
- * Returns the arc cosinus of [this][BigInteger] based on the [scale] and [mathContext]
- * Default argument for [mathContext] is [MathContext.UNLIMITED]
+ * Returns the arc cosinus of [this][BigInteger] based on the [context]
  *
  * @since 0.0.1
  *
  */
-public fun BigInteger.acos(scale: Int, mathContext: MathContext): BigDecimal =
-    toBigDecimal(scale, mathContext).acos(mathContext)
+public fun BigInteger.acos(context: FinnmathContext): BigDecimal =
+    toBigDecimal(context.scale, context.mathContext).acos(context.mathContext)
 
 /**
  * Returns [this][BigInteger] as [BigFraction]

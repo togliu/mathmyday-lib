@@ -16,6 +16,7 @@
 
 package io.github.ltennstedt.finnmath.number
 
+import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.acos
 import io.github.ltennstedt.finnmath.extension.sqrt
 import java.math.BigDecimal
@@ -84,16 +85,18 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns the quotient of [this][BigGaussian] and the [divisor] based on the [scale] and [mathContext]
+     * Returns the quotient of [this][BigGaussian] and the [divisor] based on the [context]
      *
      * @throws IllegalArgumentException if [divisor] is not a unit
      * @since 0.0.1
      */
-    public fun divide(divisor: BigGaussian, scale: Int, mathContext: MathContext): BigComplex {
+    public fun divide(divisor: BigGaussian, context: FinnmathContext): BigComplex {
         require(divisor.isUnit) { "expected divisor to be a unit but divisor = $divisor" }
-        val d = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal(scale, mathContext)
-        val r = (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal(scale, mathContext) / d
-        val i = (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal(scale, mathContext) / d
+        val d = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal(context.scale, context.mathContext)
+        val r =
+            (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / d
+        val i =
+            (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / d
         return BigComplex(r, i)
     }
 
@@ -108,11 +111,10 @@ public class BigGaussian @JvmOverloads constructor(
      *
      * @since 0.0.1
      */
-    public fun pow(exponent: Int, scale: Int, mathContext: MathContext): BigComplex = when {
-        exponent < 0 -> toBigComplex(scale, mathContext).multiply(pow(-exponent - 1, scale, mathContext))
-            .invert(mathContext)
+    public fun pow(exponent: Int, context: FinnmathContext): BigComplex = when {
+        exponent < 0 -> toBigComplex(context).multiply(pow(-exponent - 1, context)).invert(context.mathContext)
         exponent == 0 -> BigComplex.ONE
-        else -> toBigComplex(scale, mathContext).multiply(pow(exponent - 1, scale, mathContext))
+        else -> toBigComplex(context).multiply(pow(exponent - 1, context))
     }
 
     override fun negate(): BigGaussian = BigGaussian(-real, -imaginary)
@@ -123,14 +125,14 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns the inverted [BigGaussian] based on the [scale] and [mathContext]
+     * Returns the inverted [BigGaussian] based on the [context]
      *
      *@throws IllegalStateException if [this][BigGaussian] is not a unit
      * @since 0.0.1
      */
-    public fun invert(scale: Int, mathContext: MathContext): BigComplex {
+    public fun invert(context: FinnmathContext): BigComplex {
         check(isUnit) { "expected this to be a unit but this = $this" }
-        return ONE.divide(this, scale, mathContext)
+        return ONE.divide(this, context)
     }
 
     override fun absPow2(): BigInteger = real.pow(2) + imaginary.pow(2)
@@ -145,11 +147,11 @@ public class BigGaussian @JvmOverloads constructor(
     public fun abs(mathContext: MathContext): BigDecimal = absPow2().sqrt(mathContext)
 
     /**
-     * Returns the absolute value based on the [scale] and [mathContext]
+     * Returns the absolute value based on the [context]
      *
      * @since 0.0.1
      */
-    public fun abs(scale: Int, mathContext: MathContext): BigDecimal = absPow2().sqrt(scale, mathContext)
+    public fun abs(context: FinnmathContext): BigDecimal = absPow2().sqrt(context.scale, context.mathContext)
 
     override fun conjugate(): BigGaussian = BigGaussian(real, -imaginary)
 
@@ -161,15 +163,15 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns the argument based on the [scale] and [mathContext]
+     * Returns the argument based on the [context]
      *
      * @throws IllegalStateException if [this][BigGaussian] is equal to 0 by comparing
      * @since 0.0.1
      */
-    public fun argument(scale: Int, mathContext: MathContext): BigDecimal {
+    public fun argument(context: FinnmathContext): BigDecimal {
         check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
-        val value = real.toBigDecimal(scale, mathContext).divide(abs(mathContext))
-        val acos = value.acos(mathContext)
+        val value = real.toBigDecimal(context.scale, context.mathContext).divide(abs(context.mathContext))
+        val acos = value.acos(context.mathContext)
         return if (imaginary < BigInteger.ZERO) -acos else acos
     }
 
@@ -179,14 +181,14 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns the [BigPolarForm] based on the [scale] and [mathContext]
+     * Returns the [BigPolarForm] based on the [context]
      *
      * @throws IllegalStateException if [this][BigGaussian] is equal to 0 by comparing
      * @since 0.0.1
      */
-    public fun toPolarForm(scale: Int, mathContext: MathContext): BigPolarForm {
+    public fun toPolarForm(context: FinnmathContext): BigPolarForm {
         check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
-        return BigPolarForm(abs(mathContext), argument(scale, mathContext))
+        return BigPolarForm(abs(context.mathContext), argument(context))
     }
 
     /**
@@ -197,13 +199,13 @@ public class BigGaussian @JvmOverloads constructor(
     public fun toBigComplex(): BigComplex = BigComplex(real.toBigDecimal(), imaginary.toBigDecimal())
 
     /**
-     * Returns [this][BigGaussian] as [BigComplex] based on the [scale] and [mathContext]
+     * Returns [this][BigGaussian] as [BigComplex] based on the [context]
      *
      * @since 0.0.1
      */
-    public fun toBigComplex(scale: Int, mathContext: MathContext): BigComplex = BigComplex(
-        real.toBigDecimal(scale, mathContext),
-        imaginary.toBigDecimal(scale, mathContext)
+    public fun toBigComplex(context: FinnmathContext): BigComplex = BigComplex(
+        real.toBigDecimal(context.scale, context.mathContext),
+        imaginary.toBigDecimal(context.scale, context.mathContext)
     )
 
     override fun equalsByComparing(other: BigGaussian): Boolean =
