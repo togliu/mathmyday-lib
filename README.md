@@ -105,7 +105,7 @@ bigIntegerVector {
 ```java
 // Classic builders for vectors and matrices
 // Fluent API
-class A {
+class C {
     void m() {
         BigIntegerMatrix.builder(2, 2)
                 .put(1, 2, BigInteger.ONE)
@@ -152,20 +152,10 @@ Please keep in mind that perfection is not reachable, impressions are very subje
 ### finnmath-kotest
 
 * [KDoc](https://ltennstedt.github.io/finnmath/finnmath-kotest/dokka/html/index.html)
-* [Javadoc](https://ltennstedt.github.io/finnmath/finnmath-kotest/dokka/javadoc/index.html)
 * [Gradle Site](https://ltennstedt.github.io/finnmath/finnmath-kotest/docs/site/index.html)
 * [detekt report](https://ltennstedt.github.io/finnmath/finnmath-kotest/reports/detekt/detekt.html)
 * [Build Dashboard](https://ltennstedt.github.io/finnmath/finnmath-kotest/reports/buildDashboard/index.html)
 * [Dependency Updates report](https://ltennstedt.github.io/finnmath/finnmath-kotest/dependencyUpdates/report.html)
-
-## Information
-
-finnmath is open source and free software and is licensed under the permissive Apache License. finnmath is still in a
-very early state and a work in progress.
-
-## Developing
-
-The code formatting follows the ktlint code style.
 
 ### Who is Finn?
 
