@@ -87,6 +87,9 @@ when (BigInteger.ZERO) {
     else -> false
 }
 
+// Infix notation
+val x = (Fraction.ZERO min Fraction.ONE)
+
 // Type safe builders for vectors and matrices
 bigIntegerVector {
     size = 3
