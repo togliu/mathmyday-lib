@@ -107,7 +107,7 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns the power of [this][BigGaussian] raised by the [exponent] based on the [mathContext]
+     * Returns the power of [this][BigGaussian] raised by the [exponent] based on the [context]
      *
      * @since 0.0.1
      */
@@ -151,7 +151,7 @@ public class BigGaussian @JvmOverloads constructor(
      *
      * @since 0.0.1
      */
-    public fun abs(context: FinnmathContext): BigDecimal = absPow2().sqrt(context.scale, context.mathContext)
+    public fun abs(context: FinnmathContext): BigDecimal = absPow2().sqrt(context)
 
     override fun conjugate(): BigGaussian = BigGaussian(real, -imaginary)
 

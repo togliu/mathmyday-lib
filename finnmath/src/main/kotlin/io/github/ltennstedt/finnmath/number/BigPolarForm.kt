@@ -33,28 +33,26 @@ import java.math.MathContext
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public data class BigPolarForm(val radial: BigDecimal, val angular: BigDecimal) {
-    /**
-     * Returns the corresponding [BigComplex] of [this][BigPolarForm] based on the [mathContext]
-     *
-     * @param mathContext [MathContext]; default argument is [MathContext.UNLIMITED]
-     * @return [BigComplex]
-     * @since 0.0.1
-     */
-    @JvmOverloads
-    public fun toBigComplex(mathContext: MathContext = MathContext.UNLIMITED): BigComplex {
-        val real = radial.multiply(angular.cos(mathContext), mathContext)
-        val imaginary = radial.multiply(angular.sin(mathContext), mathContext)
+public data class BigPolarForm(
+    override val radial: BigDecimal,
+    override val angular: BigDecimal
+) : AbstractPolarForm<BigDecimal, BigPolarForm, BigComplex>(radial, angular) {
+    override fun toComplexNumber(): BigComplex {
+        val real = radial.multiply(angular.cos(MathContext.UNLIMITED), MathContext.UNLIMITED)
+        val imaginary = radial.multiply(angular.sin(MathContext.UNLIMITED), MathContext.UNLIMITED)
         return BigComplex(real, imaginary)
     }
 
     /**
-     * Returns if [this][BigPolarForm] is equal to the [other one][other] by comparing coordinates
+     * Returns the corresponding [BigComplex] of [this][BigPolarForm] based on the [mathContext]
      *
      * @since 0.0.1
      */
-    public fun equalsByComparing(other: BigPolarForm): Boolean =
-        radial.compareTo(other.radial) == 0 && angular.compareTo(other.angular) == 0
+    public fun toComplexNumber(mathContext: MathContext): BigComplex {
+        val real = radial.multiply(angular.cos(mathContext), mathContext)
+        val imaginary = radial.multiply(angular.sin(mathContext), mathContext)
+        return BigComplex(real, imaginary)
+    }
 
     public companion object
 }

@@ -16,6 +16,7 @@
 
 package io.github.ltennstedt.finnmath.number
 
+import java.math.MathContext
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -31,21 +32,33 @@ import kotlin.math.sin
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public data class PolarForm(val radial: Double, val angular: Double) {
+public data class PolarForm(
+    override val radial: Double,
+    override val angular: Double
+) : AbstractPolarForm<Double, PolarForm, Complex>(radial, angular) {
     /**
      * Returns the corresponding [Complex] of [this][PolarForm]
      *
      * @since 0.0.1
      */
-    public fun toComplex(): Complex = Complex(radial * cos(angular), radial * sin(angular))
+    override fun toComplexNumber(): Complex = Complex(radial * cos(angular), radial * sin(angular))
 
     /**
-     * Returns if [this][PolarForm] is equal to the [other one][other] by comparing coordinates
+     * Returns [this][PolarForm] as [BigPolarForm]
      *
      * @since 0.0.1
      */
-    public fun equalsByComparing(other: PolarForm): Boolean =
-        radial.compareTo(other.radial) == 0 && angular.compareTo(other.angular) == 0
+    public fun toBigPolarForm(): BigPolarForm = BigPolarForm(radial.toBigDecimal(), angular.toBigDecimal())
+
+    /**
+     * Returns [this][PolarForm] as [BigPolarForm] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigPolarForm(mathContext: MathContext): BigPolarForm = BigPolarForm(
+        radial.toBigDecimal(mathContext),
+        angular.toBigDecimal(mathContext)
+    )
 
     public companion object
 }
