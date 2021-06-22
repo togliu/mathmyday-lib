@@ -23,7 +23,7 @@ import java.math.BigInteger
  *
  * @property start start
  * @property endInclusive endInclusive
- * @constructor Constructs a [BigFractionRange]
+ * @constructor Constructs a BigFractionRange
  * @author Lars Tennstedt
  * @since 0.0.1
  */

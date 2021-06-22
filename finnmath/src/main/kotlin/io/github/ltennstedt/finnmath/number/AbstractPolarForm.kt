@@ -8,7 +8,7 @@ package io.github.ltennstedt.finnmath.number
  * @param C type of the complex number
  * @property radial radial
  * @property angular angular
- * @constructor Constructs a [AbstractPolarForm]
+ * @constructor Constructs a AbstractPolarForm
  * @author Lars Tennstedt
  * @since 0.0.1
  */
@@ -32,7 +32,7 @@ public abstract class AbstractPolarForm<N : Comparable<N>, T : AbstractPolarForm
         radial.compareTo(other.radial) == 0 && angular.compareTo(other.angular) == 0
 
     /**
-     * Returns if [this][AbstractPolarForm] is not equal to the [other one][other] by comparing coordinates
+     * Returns if [this][T] is not equal to the [other one][other] by comparing coordinates
      *
      * @since 0.0.1
      */

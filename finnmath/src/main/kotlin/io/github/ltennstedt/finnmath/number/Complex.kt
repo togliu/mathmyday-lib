@@ -25,7 +25,7 @@ import kotlin.math.sqrt
  *
  * @property real real part
  * @property imaginary imaginary part
- * @constructor Constructs a [Complex]
+ * @constructor Constructs a Complex
  * @author Lars Tennstedt
  * @since 0.0.1
  */
@@ -40,7 +40,7 @@ public class Complex @JvmOverloads constructor(
     override val isUnit: Boolean by lazy { doesNotEqualByComparing(ZERO) }
 
     /**
-     * Constructs a [Complex] from [real] and [imaginary]
+     * Constructs a Complex from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0`
      *
@@ -50,7 +50,7 @@ public class Complex @JvmOverloads constructor(
     public constructor(real: Int, imaginary: Int = 0) : this(real.toDouble(), imaginary.toDouble())
 
     /**
-     * Constructs a [Complex] from [real] and [imaginary]
+     * Constructs a Complex from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0`
      *
@@ -60,7 +60,7 @@ public class Complex @JvmOverloads constructor(
     public constructor(real: Long, imaginary: Long = 0L) : this(real.toDouble(), imaginary.toDouble())
 
     /**
-     * Constructs a [Complex] from [real] and [imaginary]
+     * Constructs a Complex from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0.0F`
      *
@@ -125,7 +125,7 @@ public class Complex @JvmOverloads constructor(
 
     public companion object {
         /**
-         * `0` as [Complex]
+         * `0` as Complex
          *
          * @since 0.0.1
          */
@@ -133,7 +133,7 @@ public class Complex @JvmOverloads constructor(
         public val ZERO: Complex = Complex(0.0)
 
         /**
-         * `1` as [Complex]
+         * `1` as Complex
          *
          * @since 0.0.1
          */
@@ -141,7 +141,7 @@ public class Complex @JvmOverloads constructor(
         public val ONE: Complex = Complex(1.0)
 
         /**
-         * `i` as [Complex]
+         * `i` as Complex
          *
          * @since 0.0.1
          */
@@ -149,7 +149,7 @@ public class Complex @JvmOverloads constructor(
         public val IMAGINARY: Complex = Complex(0.0, 1.0)
 
         /**
-         * `-1` as [Complex]
+         * `-1` as Complex
          *
          * @since 0.0.1
          */
@@ -157,7 +157,7 @@ public class Complex @JvmOverloads constructor(
         public val MINUS_ONE: Complex = ONE.negate()
 
         /**
-         * `-i` as [Complex]
+         * `-i` as Complex
          *
          * @since 0.0.1
          */

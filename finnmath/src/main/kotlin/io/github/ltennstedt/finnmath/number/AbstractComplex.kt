@@ -24,17 +24,17 @@ import java.util.Objects
  *
  * @param N type of [real] and [imaginary]
  * @param T type of [this][AbstractComplex]
- * @param D type of the result of division
+ * @param Q type of the quotient
  * @param A type of the absolute value
  * @param P type of the polar form
  * @property real real part
  * @property imaginary imaginary part
- * @constructor Constructs a [T]
+ * @constructor Constructs a AbstractComplex
  * @author Lars Tennstedt
  * @since 0.0.1
  */
 @Suppress("TooManyFunctions")
-public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, D, A, P>, D, A, P>(
+public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P>(
     public val real: N,
     public val imaginary: N
 ) : Number() {
@@ -73,14 +73,14 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, D, A
      * @throws IllegalArgumentException if [divisor] is not a unit
      * @since 0.0.1
      */
-    public abstract fun divide(divisor: T): D
+    public abstract fun divide(divisor: T): Q
 
     /**
      * Returns the power of [this][T] raised by the [exponent]
      *
      * @since 0.0.1
      */
-    public abstract fun pow(exponent: Int): D
+    public abstract fun pow(exponent: Int): Q
 
     /**
      * Returns the negated [T]
@@ -95,7 +95,7 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, D, A
      *@throws IllegalStateException if [this][T] is not a unit
      * @since 0.0.1
      */
-    public abstract fun invert(): D
+    public abstract fun invert(): Q
 
     /**
      * Returns the square of the absolute value

@@ -29,7 +29,7 @@ import java.math.MathContext
  *
  * @property radial radial
  * @property angular angular
- * @constructor Constructs a [BigPolarForm]
+ * @constructor Constructs a BigPolarForm
  * @author Lars Tennstedt
  * @since 0.0.1
  */
@@ -44,7 +44,7 @@ public data class BigPolarForm(
     }
 
     /**
-     * Returns the corresponding [BigComplex] of [this][BigPolarForm] based on the [mathContext]
+     * Returns the corresponding [BigComplex] of this based on the [mathContext]
      *
      * @since 0.0.1
      */

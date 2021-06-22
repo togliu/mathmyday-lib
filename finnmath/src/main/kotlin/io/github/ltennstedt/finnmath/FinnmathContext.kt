@@ -18,6 +18,14 @@ package io.github.ltennstedt.finnmath
 
 import java.math.MathContext
 
+/**
+ * Immutable data class
+ *
+ * @property scale scale; default argument is 0
+ * @property mathContext [MathContext]; default argument is [MathContext.UNLIMITED]
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 public data class FinnmathContext @JvmOverloads constructor(
     val scale: Int = 0,
     val mathContext: MathContext = MathContext.UNLIMITED

@@ -22,7 +22,7 @@ import io.github.ltennstedt.finnmath.extension.minus
  * Base class for ranges of fractions
  *
  * @param N type of the [Number]
- * @param T type of [this][AbstractFractionRange]
+ * @param T type of this
  * @param R type of the [ClosedRange]
  * @author Lars Tennstedt
  * @since 0.0.1

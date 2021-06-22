@@ -26,11 +26,11 @@ import kotlin.math.sign
 /**
  * Immutable implementation of a fraction which uses [Long] as type for its [numerator] and [denominator]
  *
- * The returned [Fractions][Fraction] of most methods are neither normalized nor reduced
+ * The returned Fractions of most methods are neither normalized nor reduced
  *
  * @property numerator numerator
  * @property denominator denominator; default argument is 1
- * @constructor Constructs a [Fraction]
+ * @constructor Constructs a Fraction
  * @throws IllegalArgumentException `if [denominator] == 0`
  * @see .normalize
  * @see .reduce
@@ -65,7 +65,7 @@ public class Fraction @JvmOverloads constructor(
         get() = numerator.sign * denominator.sign
 
     /**
-     * Constructs a [Fraction] from the [numerator] and [denominator]
+     * Constructs a Fraction from the [numerator] and [denominator]
      *
      * Default argument for [denominator] is `1`.
      *
@@ -140,7 +140,7 @@ public class Fraction @JvmOverloads constructor(
     override fun expand(number: Long): Fraction = Fraction(number * numerator, number * denominator)
 
     /**
-     * Returns [this][Fraction]..[other]
+     * Returns this..[other]
      *
      * @since 0.0.1
      */
@@ -152,7 +152,7 @@ public class Fraction @JvmOverloads constructor(
 
     public companion object {
         /**
-         * `0` as [Fraction]
+         * `0` as Fraction
          *
          * @since 0.0.1
          */
@@ -160,7 +160,7 @@ public class Fraction @JvmOverloads constructor(
         public val ZERO: Fraction = Fraction(0L, 1L)
 
         /**
-         * `1` as [Fraction]
+         * `1` as Fraction
          *
          * @since 0.0.1
          */

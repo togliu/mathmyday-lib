@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number
 
 import ch.obermuhlner.math.big.BigDecimalMath
+import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -27,7 +28,7 @@ import java.math.MathContext
  *
  * @property real real part
  * @property imaginary imaginary part
- * @constructor Constructs a [BigComplex]
+ * @constructor Constructs a BigComplex
  * @author Lars Tennstedt
  * @since 0.0.1
  */
@@ -42,7 +43,7 @@ public class BigComplex @JvmOverloads constructor(
     override val isUnit: Boolean by lazy { doesNotEqualByComparing(ZERO) }
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary]
+     * Constructs a BigComplex from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0`
      *
@@ -52,7 +53,7 @@ public class BigComplex @JvmOverloads constructor(
     public constructor(real: Int, imaginary: Int = 0) : this(real.toBigDecimal(), imaginary.toBigDecimal())
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary] based on the [mathContext]
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
      *
      * Default argument for [imaginary] is `0`
      *
@@ -65,7 +66,7 @@ public class BigComplex @JvmOverloads constructor(
     )
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary]
+     * Constructs a BigComplex from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0`
      *
@@ -75,7 +76,7 @@ public class BigComplex @JvmOverloads constructor(
     public constructor(real: Long, imaginary: Long = 0L) : this(real.toBigDecimal(), imaginary.toBigDecimal())
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary] based on the [mathContext]
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
      *
      * Default argument for [imaginary] is `0`
      *
@@ -88,7 +89,7 @@ public class BigComplex @JvmOverloads constructor(
     )
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary]
+     * Constructs a BigComplex from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0.0F`
      *
@@ -98,7 +99,7 @@ public class BigComplex @JvmOverloads constructor(
     public constructor(real: Float, imaginary: Float = 0.0F) : this(real.toBigDecimal(), imaginary.toBigDecimal())
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary] based on the [mathContext]
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
      *
      * @since 0.0.1
      */
@@ -109,7 +110,7 @@ public class BigComplex @JvmOverloads constructor(
     )
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary]
+     * Constructs a BigComplex from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0.0`
      *
@@ -119,7 +120,7 @@ public class BigComplex @JvmOverloads constructor(
     public constructor(real: Double, imaginary: Double = 0.0) : this(real.toBigDecimal(), imaginary.toBigDecimal())
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary] based on the [mathContext]
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
      *
      * @since 0.0.1
      */
@@ -130,7 +131,7 @@ public class BigComplex @JvmOverloads constructor(
     )
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary]
+     * Constructs a BigComplex from [real] and [imaginary]
      *
      * Default argument for [imaginary] is [BigInteger.ZERO]
      *
@@ -143,27 +144,25 @@ public class BigComplex @JvmOverloads constructor(
     )
 
     /**
-     * Constructs a [BigComplex] from [real] and [imaginary] based on the [mathContext]
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
      *
-     * Default argument for [imaginary] is [BigInteger.ZERO], for [scale] `0` and for [mathContext]
-     * [MathContext.UNLIMITED]
+     * Default argument for [imaginary] is [BigInteger.ZERO]
      *
      * @since 0.0.1
      */
     public constructor(
         real: BigInteger,
         imaginary: BigInteger = BigInteger.ZERO,
-        scale: Int = 0,
-        mathContext: MathContext = MathContext.UNLIMITED
+        context: FinnmathContext
     ) : this(
-        real.toBigDecimal(scale, mathContext),
-        imaginary.toBigDecimal(scale, mathContext)
+        real.toBigDecimal(context.scale, context.mathContext),
+        imaginary.toBigDecimal(context.scale, context.mathContext)
     )
 
     override fun add(summand: BigComplex): BigComplex = BigComplex(real + summand.real, imaginary + summand.imaginary)
 
     /**
-     * Returns the sum of [this][BigComplex] and the [summand] based on the [mathContext]
+     * Returns the sum of this and the [summand] based on the [mathContext]
      *
      * @since 0.0.1
      */
@@ -178,7 +177,7 @@ public class BigComplex @JvmOverloads constructor(
     )
 
     /**
-     * Returns the difference of [this][BigComplex] and the [subtrahend] based on the [mathContext]
+     * Returns the difference of this and the [subtrahend] based on the [mathContext]
      *
      * Default argument for [mathContext] is [MathContext.UNLIMITED]
      *
@@ -197,7 +196,7 @@ public class BigComplex @JvmOverloads constructor(
     }
 
     /**
-     * Returns the product of [this][BigComplex] and the [factor] based on the [mathContext]
+     * Returns the product of this and the [factor] based on the [mathContext]
      *
      * @since 0.0.1
      */
@@ -218,7 +217,7 @@ public class BigComplex @JvmOverloads constructor(
     }
 
     /**
-     * Returns the quotient of [this][BigComplex] and the [divisor] based on the [mathContext]
+     * Returns the quotient of this and the [divisor] based on the [mathContext]
      *
      * @throws IllegalArgumentException if [divisor] is not a unit
      * @since 0.0.1
@@ -244,7 +243,7 @@ public class BigComplex @JvmOverloads constructor(
     }
 
     /**
-     * Returns the power of [this][BigComplex] raised by the [exponent] based on the [mathContext]
+     * Returns the power of this raised by the [exponent] based on the [mathContext]
      *
      * @since 0.0.1
      */
@@ -257,7 +256,7 @@ public class BigComplex @JvmOverloads constructor(
     override fun negate(): BigComplex = BigComplex(-real, -imaginary)
 
     /**
-     * Returns the negated [BigComplex] based on the [mathContext]
+     * Returns the negated BigComplex based on the [mathContext]
      *
      * @since 0.0.1
      */
@@ -270,9 +269,9 @@ public class BigComplex @JvmOverloads constructor(
     }
 
     /**
-     * Returns the inverted [BigComplex] based on the [mathContext]
+     * Returns the inverted BigComplex based on the [mathContext]
      *
-     *@throws IllegalStateException if [this][BigComplex] is not a unit
+     *@throws IllegalStateException if this is not a unit
      * @since 0.0.1
      */
     public fun invert(mathContext: MathContext): BigComplex {
@@ -302,7 +301,7 @@ public class BigComplex @JvmOverloads constructor(
     override fun conjugate(): BigComplex = BigComplex(real, -imaginary)
 
     /**
-     * Returns the conjugated [BigComplex] based on the [mathContext]
+     * Returns the conjugated BigComplex based on the [mathContext]
      *
      * @since 0.0.1
      */
@@ -318,7 +317,7 @@ public class BigComplex @JvmOverloads constructor(
     /**
      * Returns the argument based on the [mathContext]
      *
-     * @throws IllegalStateException if [this][BigComplex] is equal to 0 by comparing
+     * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1
      */
     public fun argument(mathContext: MathContext): BigDecimal {
@@ -336,7 +335,7 @@ public class BigComplex @JvmOverloads constructor(
     /**
      * Returns the [BigPolarForm]
      *
-     * @throws IllegalStateException if [this][BigComplex] is equal to 0 by comparing
+     * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1
      */
     public fun toPolarForm(mathContext: MathContext): BigPolarForm {
@@ -349,7 +348,7 @@ public class BigComplex @JvmOverloads constructor(
 
     public companion object {
         /**
-         * `0` as [BigComplex]
+         * `0` as BigComplex
          *
          * @since 0.0.1
          */
@@ -357,7 +356,7 @@ public class BigComplex @JvmOverloads constructor(
         public val ZERO: BigComplex = BigComplex(BigDecimal.ZERO, BigDecimal.ZERO)
 
         /**
-         * `1` as [BigComplex]
+         * `1` as BigComplex
          *
          * @since 0.0.1
          */
@@ -365,7 +364,7 @@ public class BigComplex @JvmOverloads constructor(
         public val ONE: BigComplex = BigComplex(BigDecimal.ONE, BigDecimal.ZERO)
 
         /**
-         * `i` as [BigComplex]
+         * `i` as BigComplex
          *
          * @since 0.0.1
          */
@@ -373,7 +372,7 @@ public class BigComplex @JvmOverloads constructor(
         public val IMAGINARY: BigComplex = BigComplex(BigDecimal.ZERO, BigDecimal.ONE)
 
         /**
-         * `-1` as [BigComplex]
+         * `-1` as BigComplex
          *
          * @since 0.0.1
          */
@@ -381,7 +380,7 @@ public class BigComplex @JvmOverloads constructor(
         public val MINUS_ONE: BigComplex = ONE.negate()
 
         /**
-         * `-i` as [BigComplex]
+         * `-i` as BigComplex
          *
          * @since 0.0.1
          */

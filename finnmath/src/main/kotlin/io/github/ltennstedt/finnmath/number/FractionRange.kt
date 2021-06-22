@@ -21,7 +21,7 @@ package io.github.ltennstedt.finnmath.number
  *
  * @property start start
  * @property endInclusive endInclusive
- * @constructor Constructs a [BigFractionRange]
+ * @constructor Constructs a BigFractionRange
  * @author Lars Tennstedt
  * @since 0.0.1
  */
@@ -31,7 +31,7 @@ public data class FractionRange(
 ) : AbstractFractionRange<Long, Fraction, FractionRange>() {
     public companion object {
         /**
-         * Empty [BigFractionRange]
+         * Empty BigFractionRange
          *
          * @since 0.0.1
          */

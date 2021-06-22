@@ -28,7 +28,7 @@ import java.math.MathContext
  *
  * @property real real part
  * @property imaginary imaginary part
- * @constructor Constructs a [BigGaussian]
+ * @constructor Constructs a BigGaussian
  * @author Lars Tennstedt
  * @since 0.0.1
  */
@@ -43,7 +43,7 @@ public class BigGaussian @JvmOverloads constructor(
     override val isUnit: Boolean by lazy { doesNotEqualByComparing(ZERO) }
 
     /**
-     * Constructs a [BigGaussian] from [real] and [imaginary]
+     * Constructs a BigGaussian from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0`
      *
@@ -53,7 +53,7 @@ public class BigGaussian @JvmOverloads constructor(
     public constructor(real: Int, imaginary: Int = 0) : this(real.toBigInteger(), imaginary.toBigInteger())
 
     /**
-     * Constructs a [BigGaussian] from [real] and [imaginary]
+     * Constructs a BigGaussian from [real] and [imaginary]
      *
      * Default argument for [imaginary] is `0`
      *
@@ -85,7 +85,7 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns the quotient of [this][BigGaussian] and the [divisor] based on the [context]
+     * Returns the quotient of this and the [divisor] based on the [context]
      *
      * @throws IllegalArgumentException if [divisor] is not a unit
      * @since 0.0.1
@@ -107,7 +107,7 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns the power of [this][BigGaussian] raised by the [exponent] based on the [context]
+     * Returns the power of this raised by the [exponent] based on the [context]
      *
      * @since 0.0.1
      */
@@ -125,9 +125,9 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns the inverted [BigGaussian] based on the [context]
+     * Returns the inverted BigGaussian based on the [context]
      *
-     *@throws IllegalStateException if [this][BigGaussian] is not a unit
+     *@throws IllegalStateException if this is not a unit
      * @since 0.0.1
      */
     public fun invert(context: FinnmathContext): BigComplex {
@@ -165,7 +165,7 @@ public class BigGaussian @JvmOverloads constructor(
     /**
      * Returns the argument based on the [context]
      *
-     * @throws IllegalStateException if [this][BigGaussian] is equal to 0 by comparing
+     * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1
      */
     public fun argument(context: FinnmathContext): BigDecimal {
@@ -183,7 +183,7 @@ public class BigGaussian @JvmOverloads constructor(
     /**
      * Returns the [BigPolarForm] based on the [context]
      *
-     * @throws IllegalStateException if [this][BigGaussian] is equal to 0 by comparing
+     * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1
      */
     public fun toPolarForm(context: FinnmathContext): BigPolarForm {
@@ -192,14 +192,14 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     /**
-     * Returns [this][BigGaussian] as [BigComplex]
+     * Returns this as [BigComplex]
      *
      * @since 0.0.1
      */
     public fun toBigComplex(): BigComplex = BigComplex(real.toBigDecimal(), imaginary.toBigDecimal())
 
     /**
-     * Returns [this][BigGaussian] as [BigComplex] based on the [context]
+     * Returns this as [BigComplex] based on the [context]
      *
      * @since 0.0.1
      */
@@ -213,7 +213,7 @@ public class BigGaussian @JvmOverloads constructor(
 
     public companion object {
         /**
-         * `0` as [BigGaussian]
+         * `0` as BigGaussian
          *
          * @since 0.0.1
          */
@@ -221,7 +221,7 @@ public class BigGaussian @JvmOverloads constructor(
         public val ZERO: BigGaussian = BigGaussian(BigInteger.ZERO, BigInteger.ZERO)
 
         /**
-         * `1` as [BigGaussian]
+         * `1` as BigGaussian
          *
          * @since 0.0.1
          */
@@ -229,7 +229,7 @@ public class BigGaussian @JvmOverloads constructor(
         public val ONE: BigGaussian = BigGaussian(BigInteger.ONE, BigInteger.ZERO)
 
         /**
-         * `i` as [BigGaussian]
+         * `i` as BigGaussian
          *
          * @since 0.0.1
          */
@@ -237,7 +237,7 @@ public class BigGaussian @JvmOverloads constructor(
         public val IMAGINARY: BigGaussian = BigGaussian(BigInteger.ZERO, BigInteger.ONE)
 
         /**
-         * `-1` as [BigGaussian]
+         * `-1` as BigGaussian
          *
          * @since 0.0.1
          */
@@ -245,7 +245,7 @@ public class BigGaussian @JvmOverloads constructor(
         public val MINUS_ONE: BigGaussian = ONE.negate()
 
         /**
-         * `-i` as [BigGaussian]
+         * `-i` as BigGaussian
          *
          * @since 0.0.1
          */

@@ -28,7 +28,7 @@ import kotlin.math.sin
  *
  * @property radial radial
  * @property angular angular
- * @constructor Constructs a [PolarForm]
+ * @constructor Constructs a PolarForm
  * @author Lars Tennstedt
  * @since 0.0.1
  */
@@ -37,21 +37,21 @@ public data class PolarForm(
     override val angular: Double
 ) : AbstractPolarForm<Double, PolarForm, Complex>(radial, angular) {
     /**
-     * Returns the corresponding [Complex] of [this][PolarForm]
+     * Returns the corresponding [Complex] of this
      *
      * @since 0.0.1
      */
     override fun toComplexNumber(): Complex = Complex(radial * cos(angular), radial * sin(angular))
 
     /**
-     * Returns [this][PolarForm] as [BigPolarForm]
+     * Returns this as [BigPolarForm]
      *
      * @since 0.0.1
      */
     public fun toBigPolarForm(): BigPolarForm = BigPolarForm(radial.toBigDecimal(), angular.toBigDecimal())
 
     /**
-     * Returns [this][PolarForm] as [BigPolarForm] based on the [mathContext]
+     * Returns this as [BigPolarForm] based on the [mathContext]
      *
      * @since 0.0.1
      */

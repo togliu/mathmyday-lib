@@ -26,7 +26,7 @@ package io.github.ltennstedt.finnmath.linear
  * @property multiplication multiplication
  * @property division division
  * @property zero 0
- * @constructor Constructs a MutableField
+ * @constructor Constructs a Field
  * @author Lars Tennstedt
  * @since 0.0.1
  */

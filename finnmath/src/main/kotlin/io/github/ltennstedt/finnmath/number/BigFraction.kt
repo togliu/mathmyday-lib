@@ -23,11 +23,11 @@ import java.math.BigInteger
 /**
  * Immutable implementation of a fraction which uses [BigInteger] as type for its [numerator] and [denominator]
  *
- * The returned [BigFractions][BigFraction] of most methods are neither normalized nor reduced
+ * The returned BigFractions of most methods are neither normalized nor reduced
  *
  * @property numerator numerator
  * @property denominator denominator; default argument is [BigInteger.ONE]
- * @constructor Constructs a [BigFraction]
+ * @constructor Constructs a BigFraction
  * @throws IllegalArgumentException `if [denominator] == 0`
  * @see .normalize
  * @see .reduce
@@ -59,7 +59,7 @@ public class BigFraction @JvmOverloads constructor(
         get() = numerator.signum() * denominator.signum()
 
     /**
-     * Constructs a [BigFraction] from the [numerator] and [denominator]
+     * Constructs a BigFraction from the [numerator] and [denominator]
      *
      * Default argument for [denominator] is `1`.
      *
@@ -73,7 +73,7 @@ public class BigFraction @JvmOverloads constructor(
     )
 
     /**
-     * Constructs a [BigFraction] from the [numerator] and [denominator]
+     * Constructs a BigFraction from the [numerator] and [denominator]
      *
      * Default argument for [denominator] is `1`.
      *
@@ -148,7 +148,7 @@ public class BigFraction @JvmOverloads constructor(
     override fun expand(number: BigInteger): BigFraction = BigFraction(number * numerator, number * denominator)
 
     /**
-     * Returns [this][BigFraction]..[other]
+     * Returns this..[other]
      *
      * @since 0.0.1
      */
@@ -160,7 +160,7 @@ public class BigFraction @JvmOverloads constructor(
 
     public companion object {
         /**
-         * `0` as [BigFraction]
+         * `0` as BigFraction
          *
          * @since 0.0.1
          */
@@ -168,7 +168,7 @@ public class BigFraction @JvmOverloads constructor(
         public val ZERO: BigFraction = BigFraction(BigInteger.ZERO, BigInteger.ONE)
 
         /**
-         * `1` as [BigFraction]
+         * `1` as BigFraction
          *
          * @since 0.0.1
          */
