@@ -46,10 +46,10 @@ class BigFractionSpec : FunSpec({
     }
     context("isDyadic") {
         test("should be false when denominator is not a power of 2") {
-            BigFraction(BigInteger.ONE, BigInteger.valueOf(3L)).isDyadic shouldBe false
+            BigFraction(BigInteger.ONE, 3.toBigInteger()).isDyadic shouldBe false
         }
         test("should be true when denominator is a power of 2") {
-            BigFraction(BigInteger.ONE, BigInteger.valueOf(4L)).isDyadic shouldBe true
+            BigFraction(BigInteger.ONE, 4.toBigInteger()).isDyadic shouldBe true
         }
     }
 })

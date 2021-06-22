@@ -37,7 +37,7 @@ class AbstractFractionsSpec : FunSpec({
         (a / b) shouldBe Fraction(3L, 4L)
     }
     test("unaryPlus should be this") {
-        +a shouldBeSameInstanceAs a
+        (+a) shouldBeSameInstanceAs a
     }
     test("unaryMinus should delegate to negate") {
         (-a) shouldBe a.negate()
