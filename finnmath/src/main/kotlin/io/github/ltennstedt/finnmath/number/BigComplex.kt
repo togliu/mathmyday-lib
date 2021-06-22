@@ -143,7 +143,7 @@ public class BigComplex @JvmOverloads constructor(
     )
 
     /**
-     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
+     * Constructs a BigComplex from [real] and [imaginary] based on the [context]
      *
      * Default argument for [imaginary] is [BigInteger.ZERO]
      *
