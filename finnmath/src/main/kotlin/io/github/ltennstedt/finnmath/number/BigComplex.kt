@@ -352,7 +352,7 @@ public class BigComplex @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val ZERO: BigComplex = BigComplex(BigDecimal.ZERO, BigDecimal.ZERO)
+        public val ZERO: BigComplex = BigComplex(BigDecimal.ZERO)
 
         /**
          * `1` as BigComplex
@@ -360,7 +360,7 @@ public class BigComplex @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val ONE: BigComplex = BigComplex(BigDecimal.ONE, BigDecimal.ZERO)
+        public val ONE: BigComplex = BigComplex(BigDecimal.ONE)
 
         /**
          * `i` as BigComplex

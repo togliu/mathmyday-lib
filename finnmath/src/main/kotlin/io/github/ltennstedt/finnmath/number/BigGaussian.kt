@@ -217,7 +217,7 @@ public class BigGaussian @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val ZERO: BigGaussian = BigGaussian(BigInteger.ZERO, BigInteger.ZERO)
+        public val ZERO: BigGaussian = BigGaussian(BigInteger.ZERO)
 
         /**
          * `1` as BigGaussian
@@ -225,7 +225,7 @@ public class BigGaussian @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val ONE: BigGaussian = BigGaussian(BigInteger.ONE, BigInteger.ZERO)
+        public val ONE: BigGaussian = BigGaussian(BigInteger.ONE)
 
         /**
          * `i` as BigGaussian

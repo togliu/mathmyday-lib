@@ -156,7 +156,7 @@ public class Fraction @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val ZERO: Fraction = Fraction(0L, 1L)
+        public val ZERO: Fraction = Fraction(0L)
 
         /**
          * `1` as Fraction
@@ -164,7 +164,7 @@ public class Fraction @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val ONE: Fraction = Fraction(1L, 1L)
+        public val ONE: Fraction = Fraction(1L)
 
         /**
          * Units

@@ -65,6 +65,7 @@ gradle default
 * Infix notation
 * Single-expression functions
 * JVM annotations
+* Companion objects
 
 ## Usage
 

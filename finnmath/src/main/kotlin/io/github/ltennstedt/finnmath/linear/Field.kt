@@ -36,4 +36,6 @@ public interface Field<N : Number, Q : Number> {
     public val multiplication: (a: N, b: N) -> N
     public val division: (a: N, b: N) -> Q
     public val zero: N
+
+    public companion object
 }

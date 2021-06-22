@@ -37,4 +37,6 @@ public abstract class AbstractPolarForm<N : Comparable<N>, T : AbstractPolarForm
      * @since 0.0.1
      */
     public fun doesNotequalsByComparing(other: T): Boolean = !equalsByComparing(other)
+
+    public companion object
 }

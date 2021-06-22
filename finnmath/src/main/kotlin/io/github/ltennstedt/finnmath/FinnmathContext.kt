@@ -29,4 +29,6 @@ import java.math.MathContext
 public data class FinnmathContext @JvmOverloads constructor(
     val scale: Int = 0,
     val mathContext: MathContext = MathContext.UNLIMITED
-)
+) {
+    public companion object
+}

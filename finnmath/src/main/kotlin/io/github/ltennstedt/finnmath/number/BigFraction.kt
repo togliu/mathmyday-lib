@@ -164,7 +164,7 @@ public class BigFraction @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val ZERO: BigFraction = BigFraction(BigInteger.ZERO, BigInteger.ONE)
+        public val ZERO: BigFraction = BigFraction(BigInteger.ZERO)
 
         /**
          * `1` as BigFraction
@@ -172,7 +172,7 @@ public class BigFraction @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val ONE: BigFraction = BigFraction(BigInteger.ONE, BigInteger.ONE)
+        public val ONE: BigFraction = BigFraction(BigInteger.ONE)
 
         /**
          * Units
@@ -181,7 +181,7 @@ public class BigFraction @JvmOverloads constructor(
          */
         @JvmField
         public val UNITS: Sequence<BigFraction> =
-            generateSequence(ONE) { BigFraction(it.denominator.inc()).invert() }
+            generateSequence(ONE) { BigFraction(BigInteger.ONE, it.denominator.inc()) }
 
         /**
          * [Comparator]
