@@ -64,6 +64,7 @@ gradle default
 * Derived and delegated properties
 * Infix notation
 * Single-expression functions
+* JVM annotations
 
 ## Usage
 
