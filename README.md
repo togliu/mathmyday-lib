@@ -61,7 +61,7 @@ gradle default
 * Primary and secondary constructors
 * Default arguments
 * when expressions
-* Derived and delegated properties
+* Derived, delegated and lazy properties
 * Infix notation
 * Single-expression functions
 * JVM annotations
@@ -138,7 +138,7 @@ class C {
   [JaCoCo](https://www.jacoco.org/jacoco/)
 * Idiomatic Kotlin and Java API
 * Stay up to date with versions of libraries and plugins
-* Object-oriented design
+* Object-oriented design with functional abstraction
 * Use Kotlin features to create a DSL-like API
 * Use [Kotest](https://kotest.io/) features for tests (FunSpec style, matchers and property-based testing)
 
