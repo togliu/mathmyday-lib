@@ -32,7 +32,6 @@ import java.math.MathContext
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-@Suppress("TooManyFunctions")
 public class BigGaussian @JvmOverloads constructor(
     real: BigInteger,
     imaginary: BigInteger = BigInteger.ZERO

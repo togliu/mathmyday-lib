@@ -37,7 +37,6 @@ import kotlin.math.sign
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-@Suppress("TooManyFunctions")
 public class Fraction @JvmOverloads constructor(
     numerator: Long,
     denominator: Long = 1L

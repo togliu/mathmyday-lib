@@ -34,7 +34,6 @@ import java.math.BigInteger
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-@Suppress("TooManyFunctions")
 public class BigFraction @JvmOverloads constructor(
     numerator: BigInteger,
     denominator: BigInteger = BigInteger.ONE

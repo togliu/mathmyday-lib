@@ -32,7 +32,6 @@ import java.math.MathContext
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-@Suppress("TooManyFunctions")
 public class BigComplex @JvmOverloads constructor(
     real: BigDecimal,
     imaginary: BigDecimal = BigDecimal.ZERO

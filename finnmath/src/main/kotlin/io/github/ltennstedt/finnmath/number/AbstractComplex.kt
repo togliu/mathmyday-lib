@@ -33,7 +33,6 @@ import java.util.Objects
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-@Suppress("TooManyFunctions")
 public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P>(
     public val real: N,
     public val imaginary: N

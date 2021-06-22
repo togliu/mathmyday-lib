@@ -29,7 +29,6 @@ import kotlin.math.sqrt
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-@Suppress("TooManyFunctions")
 public class Complex @JvmOverloads constructor(
     real: Double,
     imaginary: Double = 0.0

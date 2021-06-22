@@ -32,7 +32,6 @@ import java.util.Objects
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-@Suppress("TooManyFunctions")
 public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>>(
     public val numerator: N,
     public val denominator: N

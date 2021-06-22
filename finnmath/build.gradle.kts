@@ -62,7 +62,7 @@ tasks {
     dokkaHtml {
         dokkaSourceSets {
             configureEach {
-                @Suppress("MagicNumber") jdkVersion.set(8)
+                jdkVersion.set(8)
                 noJdkLink.set(true)
                 noStdlibLink.set(true)
             }
@@ -71,7 +71,7 @@ tasks {
     dokkaJavadoc {
         dokkaSourceSets {
             configureEach {
-                @Suppress("MagicNumber") jdkVersion.set(8)
+                jdkVersion.set(8)
                 noJdkLink.set(true)
                 noStdlibLink.set(true)
             }
