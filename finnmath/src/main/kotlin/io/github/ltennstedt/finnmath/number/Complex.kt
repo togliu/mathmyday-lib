@@ -16,6 +16,7 @@
 
 package io.github.ltennstedt.finnmath.number
 
+import java.math.MathContext
 import kotlin.math.acos
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -118,6 +119,40 @@ public class Complex @JvmOverloads constructor(
         check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
         return PolarForm(abs(), argument())
     }
+
+    /**
+     * Returns the [BigPolarForm]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigPolarForm(): BigPolarForm {
+        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        return BigPolarForm(abs(), argument())
+    }
+
+    /**
+     * Returns the [BigPolarForm] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigPolarForm(mathContext: MathContext): BigPolarForm {
+        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        return BigPolarForm(abs(), argument(), mathContext)
+    }
+
+    /**
+     * Returns the [BigComplex]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplex(): BigComplex = BigComplex(real, imaginary)
+
+    /**
+     * Returns the [BigComplex] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplex(mathContext: MathContext): BigComplex = BigComplex(real, imaginary, mathContext)
 
     override fun equalsByComparing(other: Complex): Boolean =
         real.compareTo(other.real) == 0 && imaginary.compareTo(other.imaginary) == 0

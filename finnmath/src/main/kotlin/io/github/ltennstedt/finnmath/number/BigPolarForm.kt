@@ -37,6 +37,27 @@ public data class BigPolarForm(
     override val radial: BigDecimal,
     override val angular: BigDecimal
 ) : AbstractPolarForm<BigDecimal, BigPolarForm, BigComplex>(radial, angular) {
+    /**
+     * Constructs a BigPolarForm
+     *
+     * @since 0.0.1
+     */
+    public constructor(angular: Double, radial: Double) : this(radial.toBigDecimal(), angular.toBigDecimal())
+
+    /**
+     * Constructs a BigPolarForm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public constructor(
+        angular: Double,
+        radial: Double,
+        mathContext: MathContext
+    ) : this(
+        radial.toBigDecimal(mathContext),
+        angular.toBigDecimal(mathContext)
+    )
+
     override fun toComplexNumber(): BigComplex {
         val real = radial.multiply(angular.cos(MathContext.UNLIMITED), MathContext.UNLIMITED)
         val imaginary = radial.multiply(angular.sin(MathContext.UNLIMITED), MathContext.UNLIMITED)
