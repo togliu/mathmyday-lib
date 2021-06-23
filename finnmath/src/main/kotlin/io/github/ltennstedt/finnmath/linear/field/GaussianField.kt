@@ -38,6 +38,9 @@ public object GaussianField : Field<Gaussian, Complex> {
     override val division: (a: Gaussian, b: Gaussian) -> Complex
         get() = Gaussian::divide
 
+    override val equalityByComparing: (a: Gaussian, b: Gaussian) -> Boolean
+        get() = Gaussian::equalsByComparing
+
     override val zero: Gaussian
         get() = Gaussian.ZERO
 }

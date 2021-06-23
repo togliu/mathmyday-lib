@@ -37,6 +37,9 @@ public object BigComplexField : Field<BigComplex, BigComplex> {
     override val division: (a: BigComplex, b: BigComplex) -> BigComplex
         get() = BigComplex::divide
 
+    override val equalityByComparing: (a: BigComplex, b: BigComplex) -> Boolean
+        get() = BigComplex::equalsByComparing
+
     override val zero: BigComplex
         get() = BigComplex.ZERO
 }

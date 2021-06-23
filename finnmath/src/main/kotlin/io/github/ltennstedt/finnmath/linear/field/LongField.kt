@@ -35,6 +35,9 @@ public object LongField : Field<Long, Double> {
     override val division: (a: Long, b: Long) -> Double
         get() = { a, b -> a.toDouble() / b.toDouble() }
 
+    override val equalityByComparing: (a: Long, b: Long) -> Boolean
+        get() = { a, b -> a.compareTo(b) == 0 }
+
     override val zero: Long
         get() = 0L
 }

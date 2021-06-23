@@ -37,6 +37,9 @@ public object ComplexField : Field<Complex, Complex> {
     override val division: (a: Complex, b: Complex) -> Complex
         get() = Complex::divide
 
+    override val equalityByComparing: (a: Complex, b: Complex) -> Boolean
+        get() = Complex::equalsByComparing
+
     override val zero: Complex
         get() = Complex.ZERO
 }

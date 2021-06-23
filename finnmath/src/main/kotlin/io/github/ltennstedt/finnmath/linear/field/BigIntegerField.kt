@@ -38,6 +38,9 @@ public object BigIntegerField : Field<BigInteger, BigDecimal> {
     override val division: (a: BigInteger, b: BigInteger) -> BigDecimal
         get() = { a, b -> a.toBigDecimal() / b.toBigDecimal() }
 
+    override val equalityByComparing: (a: BigInteger, b: BigInteger) -> Boolean
+        get() = { a, b -> a.compareTo(b) == 0 }
+
     override val zero: BigInteger
         get() = BigInteger.ZERO
 }

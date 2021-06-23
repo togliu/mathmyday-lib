@@ -37,6 +37,9 @@ public object BigDecimalField : Field<BigDecimal, BigDecimal> {
     override val division: (a: BigDecimal, b: BigDecimal) -> BigDecimal
         get() = BigDecimal::divide
 
+    override val equalityByComparing: (a: BigDecimal, b: BigDecimal) -> Boolean
+        get() = { a, b -> a.compareTo(b) == 0 }
+
     override val zero: BigDecimal
         get() = BigDecimal.ZERO
 }

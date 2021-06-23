@@ -25,6 +25,7 @@ package io.github.ltennstedt.finnmath.linear.field
  * @property subtraction subtraction
  * @property multiplication multiplication
  * @property division division
+ * @property equalityByComparing equality by comparing
  * @property zero 0
  * @constructor Constructs a Field
  * @author Lars Tennstedt
@@ -36,6 +37,7 @@ public interface Field<N : Number, Q : Number> {
     public val multiplication: (a: N, b: N) -> N
     public val division: (a: N, b: N) -> Q
     public val zero: N
+    public val equalityByComparing: (a: N, b: N) -> Boolean
 
     public companion object
 }

@@ -35,6 +35,9 @@ public object DoubleField : Field<Double, Double> {
     override val division: (a: Double, b: Double) -> Double
         get() = { a, b -> a / b }
 
+    override val equalityByComparing: (a: Double, b: Double) -> Boolean
+        get() = { a, b -> a.compareTo(b) == 0 }
+
     override val zero: Double
         get() = 0.0
 }

@@ -38,6 +38,9 @@ public object BigGaussianField : Field<BigGaussian, BigComplex> {
     override val division: (a: BigGaussian, b: BigGaussian) -> BigComplex
         get() = BigGaussian::divide
 
+    override val equalityByComparing: (a: BigGaussian, b: BigGaussian) -> Boolean
+        get() = BigGaussian::equalsByComparing
+
     override val zero: BigGaussian
         get() = BigGaussian.ZERO
 }
