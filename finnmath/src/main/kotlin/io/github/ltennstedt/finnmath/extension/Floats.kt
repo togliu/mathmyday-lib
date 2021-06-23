@@ -16,9 +16,19 @@
 
 package io.github.ltennstedt.finnmath.extension
 
+import io.github.ltennstedt.finnmath.number.BigComplex
+import io.github.ltennstedt.finnmath.number.Complex
+
 /**
- * Returns if this is not empty.
+ * Returns the [Complex]
  *
  * @since 0.0.1
  */
-public fun <T : Comparable<T>> ClosedRange<T>.isNotEmpty(): Boolean = !isEmpty()
+public fun Float.toComplex(): Complex = Complex(this)
+
+/**
+ * Returns the [BigComplex]
+ *
+ * @since 0.0.1
+ */
+public fun Float.toBigComplex(): BigComplex = BigComplex(this)

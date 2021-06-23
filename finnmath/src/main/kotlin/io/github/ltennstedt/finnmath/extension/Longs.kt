@@ -17,48 +17,80 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.LongMath
+import io.github.ltennstedt.finnmath.number.BigComplex
 import io.github.ltennstedt.finnmath.number.BigFraction
+import io.github.ltennstedt.finnmath.number.BigGaussian
+import io.github.ltennstedt.finnmath.number.Complex
 import io.github.ltennstedt.finnmath.number.Fraction
+import io.github.ltennstedt.finnmath.number.Gaussian
 import kotlin.math.absoluteValue
 
 /**
- * Returns if [this][Long] is even
+ * Returns if this is even
  *
  * @since 0.0.1
  */
 public fun Long.isEven(): Boolean = this % 2L == 0L
 
 /**
- * Returns if [this][Long] is odd
+ * Returns if this is odd
  *
  * @since 0.0.1
  */
 public fun Long.isOdd(): Boolean = this % 2L != 0L
 
 /**
- * Returns if [this][Long] is a power of 2
+ * Returns if this is a power of 2
  *
  * @since 0.0.1
  */
 public fun Long.isPowerOfTwo(): Boolean = LongMath.isPowerOfTwo(this)
 
 /**
- * Returns the positive GCD of [this][Long] and [other]
+ * Returns the positive GCD of this and [other]
  *
  * @since 0.0.1
  */
 public fun Long.gcd(other: Long): Long = LongMath.gcd(this.absoluteValue, other.absoluteValue)
 
 /**
- * Returns [this][Long] as [Fraction]
+ * Returns the [Fraction]
  *
  * @since 0.0.1
  */
 public fun Long.toFraction(): Fraction = Fraction(this)
 
 /**
- * Returns [this][Long] as [BigFraction]
+ * Returns the [BigFraction]
  *
  * @since 0.0.1
  */
 public fun Long.toBigFraction(): BigFraction = BigFraction(this)
+
+/**
+ * Returns the [Gaussian]
+ *
+ * @since 0.0.1
+ */
+public fun Long.toGaussian(): Gaussian = Gaussian(this)
+
+/**
+ * Returns the [Complex]
+ *
+ * @since 0.0.1
+ */
+public fun Long.toComplex(): Complex = Complex(this)
+
+/**
+ * Returns the [BigGaussian]
+ *
+ * @since 0.0.1
+ */
+public fun Long.toBigGaussian(): BigGaussian = BigGaussian(this)
+
+/**
+ * Returns the [BigComplex]
+ *
+ * @since 0.0.1
+ */
+public fun Long.toBigComplex(): BigComplex = BigComplex(this)

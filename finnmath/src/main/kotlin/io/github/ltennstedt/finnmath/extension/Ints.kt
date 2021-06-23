@@ -17,8 +17,12 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.IntMath
+import io.github.ltennstedt.finnmath.number.BigComplex
 import io.github.ltennstedt.finnmath.number.BigFraction
+import io.github.ltennstedt.finnmath.number.BigGaussian
+import io.github.ltennstedt.finnmath.number.Complex
 import io.github.ltennstedt.finnmath.number.Fraction
+import io.github.ltennstedt.finnmath.number.Gaussian
 import kotlin.math.absoluteValue
 
 /**
@@ -43,22 +47,50 @@ public fun Int.isOdd(): Boolean = this % 2 != 0
 public fun Int.isPowerOfTwo(): Boolean = IntMath.isPowerOfTwo(this)
 
 /**
- * Returns the positive GCD of [this][Int] and [other]
+ * Returns the positive GCD of this and [other]
  *
  * @since 0.0.1
  */
 public fun Int.gcd(other: Int): Int = IntMath.gcd(this.absoluteValue, other.absoluteValue)
 
 /**
- * Returns [this][Int] as [Fraction]
+ * Returns the [Fraction]
  *
  * @since 0.0.1
  */
 public fun Int.toFraction(): Fraction = Fraction(this)
 
 /**
- * Returns [this][Int] as [BigFraction]
+ * Returns the [BigFraction]
  *
  * @since 0.0.1
  */
 public fun Int.toBigFraction(): BigFraction = BigFraction(this)
+
+/**
+ * Returns the [Gaussian]
+ *
+ * @since 0.0.1
+ */
+public fun Int.toGaussian(): Gaussian = Gaussian(this)
+
+/**
+ * Returns the [Complex]
+ *
+ * @since 0.0.1
+ */
+public fun Int.toComplex(): Complex = Complex(this)
+
+/**
+ * Returns the [BigGaussian]
+ *
+ * @since 0.0.1
+ */
+public fun Int.toBigGaussian(): BigGaussian = BigGaussian(this)
+
+/**
+ * Returns the [BigComplex]
+ *
+ * @since 0.0.1
+ */
+public fun Int.toBigComplex(): BigComplex = BigComplex(this)

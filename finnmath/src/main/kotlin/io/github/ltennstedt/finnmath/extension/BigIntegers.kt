@@ -79,7 +79,7 @@ public fun BigInteger.cos(mathContext: MathContext = MathContext.UNLIMITED): Big
     toBigDecimal().cos(mathContext)
 
 /**
- * Returns the cosinus of [this][BigInteger] based on the [context]
+ * Returns the cosinus based on the [context]
  *
  * @since 0.0.1
  *
@@ -88,7 +88,7 @@ public fun BigInteger.cos(context: FinnmathContext): BigDecimal =
     toBigDecimal(context.scale, context.mathContext).cos(context.mathContext)
 
 /**
- * Returns the arc cosinus of [this][BigInteger] based on the [mathContext]
+ * Returns the arc cosinus based on the [mathContext]
  * Default argument for [mathContext] is [MathContext.UNLIMITED]
  *
  * @since 0.0.1
@@ -98,7 +98,7 @@ public fun BigInteger.acos(mathContext: MathContext = MathContext.UNLIMITED): Bi
     toBigDecimal().acos(mathContext)
 
 /**
- * Returns the arc cosinus of [this][BigInteger] based on the [context]
+ * Returns the arc cosinus based on the [context]
  *
  * @since 0.0.1
  *
@@ -107,7 +107,7 @@ public fun BigInteger.acos(context: FinnmathContext): BigDecimal =
     toBigDecimal(context.scale, context.mathContext).acos(context.mathContext)
 
 /**
- * Returns [this][BigInteger] as [BigFraction]
+ * Returns the [BigFraction]
  *
  * @since 0.0.1
  */

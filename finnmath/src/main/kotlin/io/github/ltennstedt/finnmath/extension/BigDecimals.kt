@@ -33,7 +33,7 @@ public fun BigDecimal.sqrt(mathContext: MathContext = MathContext.UNLIMITED): Bi
 )
 
 /**
- * Returns the sinus of [this][BigDecimal]
+ * Returns the sinus
  * Default argument for [mathContext] is [MathContext.UNLIMITED]
  *
  * @since 0.0.1
@@ -45,7 +45,7 @@ public fun BigDecimal.sin(mathContext: MathContext = MathContext.UNLIMITED): Big
 )
 
 /**
- * Returns the cosinus of [this][BigDecimal]
+ * Returns the cosinus
  * Default argument for [mathContext] is [MathContext.UNLIMITED]
  *
  * @since 0.0.1
@@ -57,7 +57,7 @@ public fun BigDecimal.cos(mathContext: MathContext = MathContext.UNLIMITED): Big
 )
 
 /**
- * Returns the arc cosinus of [this][BigDecimal]
+ * Returns the arc cosinus
  * Default argument for [mathContext] is [MathContext.UNLIMITED]
  *
  * @since 0.0.1
