@@ -29,7 +29,8 @@ build automation tool but currently the port to [Kotlin](https://kotlinlang.org/
 is in progress. It should interoperate seamlessly with other JVM technologies. Dependencies are
 [big-math](https://eobermuhlner.github.io/big-math/),
 [KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit) and
-[Guava](https://guava.dev/) and for tests [Kotest](https://kotest.io/) and [JUnit](https://junit.org/junit5/)
+[Guava](https://guava.dev/) and for tests [Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/) and 
+[AssertJ](https://assertj.github.io/doc/).
 
 ## Building
 
@@ -66,6 +67,7 @@ gradle default
 * Single-expression functions
 * JVM annotations
 * Companion objects
+* Generics
 
 ## Usage
 
@@ -118,7 +120,6 @@ class C {
                 .put(1, 2, BigInteger.ONE)
                 .put(2, 1, BigInteger.valueOf(2))
                 .put(2, 2, BigInteger.valueOf(3))
-                .nullsToZeros()
                 .build();
 
         // Lambdas
@@ -135,8 +136,8 @@ class C {
 * Clean code
 * High code quality with the help of [ktlint](https://ktlint.github.io/), [detekt](https://detekt.github.io/detekt/)
   and [SonarLint](https://www.sonarlint.org/)
-* High code coverage with the help of [Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/) and
-  [JaCoCo](https://www.jacoco.org/jacoco/)
+* High code coverage with the help of [Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/),
+  [AssertJ](https://assertj.github.io/doc/) and [JaCoCo](https://www.jacoco.org/jacoco/)
 * Idiomatic Kotlin and Java API
 * Stay up to date with versions of libraries and plugins
 * Object-oriented design with functional abstraction

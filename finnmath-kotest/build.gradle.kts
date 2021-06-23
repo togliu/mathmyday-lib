@@ -58,14 +58,23 @@ tasks {
     dokkaHtml {
         dokkaSourceSets {
             configureEach {
-                @Suppress("MagicNumber") jdkVersion.set(8)
+                jdkVersion.set(8)
+                noJdkLink.set(true)
+                noStdlibLink.set(true)
+            }
+        }
+    }
+    dokkaJavadoc {
+        dokkaSourceSets {
+            configureEach {
+                jdkVersion.set(8)
                 noJdkLink.set(true)
                 noStdlibLink.set(true)
             }
         }
     }
     register("javadocJar", Jar::class) {
-        from(dokkaHtml)
+        from(dokkaJavadoc)
         archiveClassifier.set("javadoc")
     }
     dependencyUpdates {
@@ -84,6 +93,7 @@ tasks {
             check,
             jacocoTestReport,
             dokkaHtml,
+            dokkaJavadoc,
             publishToMavenLocal,
             projectReport,
             buildDashboard,
