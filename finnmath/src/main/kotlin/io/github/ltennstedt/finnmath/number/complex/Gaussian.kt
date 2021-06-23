@@ -105,7 +105,7 @@ public class Gaussian @JvmOverloads constructor(
     /**
      * Returns the [BigPolarForm]
      *
-     * @throws IllegalStateException if [this][T] is equal to 0 by comparing
+     * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1
      */
     public fun toBigPolarForm(): BigPolarForm {
