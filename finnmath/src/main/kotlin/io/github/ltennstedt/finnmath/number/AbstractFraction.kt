@@ -37,14 +37,14 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
     public val denominator: N
 ) : Number(), Comparable<T> {
     /**
-     * Indicates if [this][T] is invertible
+     * Indicates if this is invertible
      *
      * @since 0.0.1
      */
     public abstract val isInvertible: Boolean
 
     /**
-     * Indicates if [this][T] is not invertible
+     * Indicates if this is not invertible
      *
      * @since 0.0.1
      */
@@ -52,14 +52,14 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
         get() = !isInvertible
 
     /**
-     * Indicates if [this][T] is a unit
+     * Indicates if this is a unit
      *
      * @since 0.0.1
      */
     public abstract val isUnit: Boolean
 
     /**
-     * Indicates if [this][T] is not a unit
+     * Indicates if this is not a unit
      *
      * @since 0.0.1
      */
@@ -67,14 +67,14 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
         get() = !isUnit
 
     /**
-     * Indicates if [this][T] is dyadic
+     * Indicates if this is dyadic
      *
      * @since 0.0.1
      */
     public abstract val isDyadic: Boolean
 
     /**
-     * Indicates if [this][T] is not dyadic
+     * Indicates if this is not dyadic
      *
      * @since 0.0.1
      */
@@ -82,14 +82,14 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
         get() = !isDyadic
 
     /**
-     * Indicates if [this][T] is irreducible
+     * Indicates if this is irreducible
      *
      * @since 0.0.1
      */
     public abstract val isIrreducible: Boolean
 
     /**
-     * Indicates if [this][T] is reducible
+     * Indicates if this is reducible
      *
      * @since 0.0.1
      */
@@ -97,14 +97,14 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
         get() = !isIrreducible
 
     /**
-     * Indicates if [this][T] is proper
+     * Indicates if this is proper
      *
      * @since 0.0.1
      */
     public abstract val isProper: Boolean
 
     /**
-     * Indicates if [this][T] is improper
+     * Indicates if this is improper
      *
      * @since 0.0.1
      */
@@ -119,28 +119,28 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
     public abstract val signum: Int
 
     /**
-     * Returns the sum of [this][T] and the [summand]
+     * Returns the sum of this and the [summand]
      *
      * @since 0.0.1
      */
     public abstract fun add(summand: T): T
 
     /**
-     * Returns the difference of [this][T] and the [subtrahend]
+     * Returns the difference of this and the [subtrahend]
      *
      * @since 0.0.1
      */
     public abstract fun subtract(subtrahend: T): T
 
     /**
-     * Returns the product of [this][T] and the [factor]
+     * Returns the product of this and the [factor]
      *
      * @since 0.0.1
      */
     public abstract fun multiply(factor: T): T
 
     /**
-     * Return the quotient of [this][T] and the [divisor]
+     * Return the quotient of this and the [divisor]
      *
      * @throws IllegalArgumentException if `!divisor.isInvertible`
      * @since 0.0.1
@@ -149,7 +149,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
     public abstract fun divide(divisor: T): T
 
     /**
-     * Returns the power of [this][T] raised by the [exponent]
+     * Returns the power of this raised by the [exponent]
      *
      * @since 0.0.1
      */
@@ -179,35 +179,35 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
     public abstract fun abs(): T
 
     /**
-     * Returns if [this][T] is less than or equal to [other]
+     * Returns if this is less than or equal to [other]
      *
      * @since 0.0.1
      */
     public abstract fun lessThanOrEqualTo(other: T): Boolean
 
     /**
-     * Returns if [this][T] is greater than or equal to [other]
+     * Returns if this is greater than or equal to [other]
      *
      * @since 0.0.1
      */
     public fun greaterThanOrEqualTo(other: T): Boolean = !lessThanOrEqualTo(other) || equivalent(other)
 
     /**
-     * Returns if [this][T] is strictly less than [other]
+     * Returns if this is strictly less than [other]
      *
      * @since 0.0.1
      */
     public fun lessThan(other: T): Boolean = !greaterThanOrEqualTo(other)
 
     /**
-     * Returns if [this][T] is strictly greater than [other]
+     * Returns if this is strictly greater than [other]
      *
      * @since 0.0.1
      */
     public fun greaterThan(other: T): Boolean = !lessThanOrEqualTo(other)
 
     /**
-     * Returns the minimum of [this][T] and [other]
+     * Returns the minimum of this and [other]
      *
      * @since 0.0.1
      */
@@ -215,7 +215,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
     public infix fun min(other: T): T = if (greaterThan(other)) other else this as T
 
     /**
-     * Returns the maximum of [this][T] and [other]
+     * Returns the maximum of this and [other]
      *
      * @since 0.0.1
      */
@@ -258,7 +258,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
     public abstract fun expand(number: N): T
 
     /**
-     * Returns if [this][T] is equivalent to [other]
+     * Returns if this is equivalent to [other]
      *
      * @since 0.0.1
      */
@@ -279,22 +279,22 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
     override fun toChar(): Char = toBigDecimal().toChar()
 
     /**
-     * Returns [this][T] as [BigInteger]
+     * Returns this as [BigInteger]
      *
      * @since 0.0.1
      */
     public fun toBigInteger(): BigInteger = toBigDecimal().toBigInteger()
 
     /**
-     * Returns [this][T] as exact [BigInteger]
+     * Returns this as exact [BigInteger]
      *
-     * @throws ArithmeticException if [this][T] is not an exact [BigInteger]
+     * @throws ArithmeticException if this is not an exact [BigInteger]
      * @since 0.0.1
      */
     public fun toBigIntegerExact(): BigInteger = toBigDecimal().toBigIntegerExact()
 
     /**
-     * Returns [this][T] as [BigDecimal]
+     * Returns this as [BigDecimal]
      *
      * @since 0.0.1
      */

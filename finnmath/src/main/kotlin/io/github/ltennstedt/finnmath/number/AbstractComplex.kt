@@ -38,21 +38,21 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
     public val imaginary: N
 ) : Number() {
     /**
-     * Indicates if [this][T] is a unit
+     * Indicates if this is a unit
      *
      * @since 0.0.1
      */
     public abstract val isUnit: Boolean
 
     /**
-     * Returns the sum of [this][T] and the [summand]
+     * Returns the sum of this and the [summand]
      *
      * @since 0.0.1
      */
     public abstract fun add(summand: T): T
 
     /**
-     * Returns the difference of [this][T] and the [subtrahend]
+     * Returns the difference of this and the [subtrahend]
      *
      * @since 0.0.1
      */
@@ -60,14 +60,14 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
     public abstract fun subtract(subtrahend: T): T
 
     /**
-     * Returns the product of [this][T] and the [factor]
+     * Returns the product of this and the [factor]
      *
      * @since 0.0.1
      */
     public abstract fun multiply(factor: T): T
 
     /**
-     * Returns the quotient of [this][T] and the [divisor]
+     * Returns the quotient of this and the [divisor]
      *
      * @throws IllegalArgumentException if [divisor] is not a unit
      * @since 0.0.1
@@ -75,7 +75,7 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
     public abstract fun divide(divisor: T): Q
 
     /**
-     * Returns the power of [this][T] raised by the [exponent]
+     * Returns the power of this raised by the [exponent]
      *
      * @since 0.0.1
      */
@@ -91,7 +91,7 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
     /**
      * Returns the inverted [T]
      *
-     *@throws IllegalStateException if [this][T] is not a unit
+     *@throws IllegalStateException if this is not a unit
      * @since 0.0.1
      */
     public abstract fun invert(): Q
@@ -120,7 +120,7 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
     /**
      * Returns the argument
      *
-     * @throws IllegalStateException if [this][T] is equal to 0 by comparing
+     * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1
      */
     public abstract fun argument(): A
@@ -142,20 +142,20 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
     /**
      * Returns the [P]
      *
-     * @throws IllegalStateException if [this][T] is equal to 0 by comparing
+     * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1
      */
     public abstract fun toPolarForm(): P
 
     /**
-     * Returns if [this][T] is equal to [other] by comparing
+     * Returns if this is equal to [other] by comparing
      *
      * @since 0.0.1
      */
     public abstract fun equalsByComparing(other: T): Boolean
 
     /**
-     * Returns if [this][T] is not equal to [other] by comparing
+     * Returns if this is not equal to [other] by comparing
      *
      * @since 0.0.1
      */
