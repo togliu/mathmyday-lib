@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.number
+package io.github.ltennstedt.finnmath.number.complex
 
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.acos

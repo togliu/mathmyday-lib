@@ -14,29 +14,28 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.linear
-
-import io.github.ltennstedt.finnmath.number.Complex
+package io.github.ltennstedt.finnmath.linear.field
 
 /**
- * Single implementation of the [Complex] field
+ * Imutable implementation of a field
  *
+ * @param N type of the number
+ * @param Q type of the quotient
+ * @property addition addition
+ * @property subtraction subtraction
+ * @property multiplication multiplication
+ * @property division division
+ * @property zero 0
+ * @constructor Constructs a Field
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public object ComplexField : Field<Complex, Complex> {
-    override val addition: (a: Complex, b: Complex) -> Complex
-        get() = Complex::add
+public interface Field<N : Number, Q : Number> {
+    public val addition: (a: N, b: N) -> N
+    public val subtraction: (a: N, b: N) -> N
+    public val multiplication: (a: N, b: N) -> N
+    public val division: (a: N, b: N) -> Q
+    public val zero: N
 
-    override val subtraction: (a: Complex, b: Complex) -> Complex
-        get() = Complex::subtract
-
-    override val multiplication: (a: Complex, b: Complex) -> Complex
-        get() = Complex::multiply
-
-    override val division: (a: Complex, b: Complex) -> Complex
-        get() = Complex::divide
-
-    override val zero: Complex
-        get() = Complex.ZERO
+    public companion object
 }

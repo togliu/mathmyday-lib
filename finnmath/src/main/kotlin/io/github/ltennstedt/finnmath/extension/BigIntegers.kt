@@ -18,7 +18,7 @@ package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.BigIntegerMath
 import io.github.ltennstedt.finnmath.FinnmathContext
-import io.github.ltennstedt.finnmath.number.BigFraction
+import io.github.ltennstedt.finnmath.number.fraction.BigFraction
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext

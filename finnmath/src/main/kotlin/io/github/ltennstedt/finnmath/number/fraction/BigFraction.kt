@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.number
+package io.github.ltennstedt.finnmath.number.fraction
 
 import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
+import io.github.ltennstedt.finnmath.number.range.BigFractionRange
 import java.math.BigDecimal
 import java.math.BigInteger
 

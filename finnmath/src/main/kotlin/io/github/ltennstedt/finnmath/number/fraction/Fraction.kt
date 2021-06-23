@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.number
+package io.github.ltennstedt.finnmath.number.fraction
 
 import com.google.common.math.LongMath
 import io.github.ltennstedt.finnmath.extension.gcd
 import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
+import io.github.ltennstedt.finnmath.number.range.FractionRange
 import java.math.BigDecimal
 import kotlin.math.absoluteValue
 import kotlin.math.sign

@@ -1,6 +1,7 @@
 package io.github.ltennstedt.finnmath.number
 
 import io.github.ltennstedt.finnmath.kotest.number.shouldBeInvertible
+import io.github.ltennstedt.finnmath.number.fraction.Fraction
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.arbitrary

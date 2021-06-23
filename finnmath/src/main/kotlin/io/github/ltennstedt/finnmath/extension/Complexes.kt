@@ -16,7 +16,7 @@
 
 package io.github.ltennstedt.finnmath.extension
 
-import io.github.ltennstedt.finnmath.number.AbstractComplex
+import io.github.ltennstedt.finnmath.number.complex.AbstractComplex
 
 public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.plus(
     summand: T

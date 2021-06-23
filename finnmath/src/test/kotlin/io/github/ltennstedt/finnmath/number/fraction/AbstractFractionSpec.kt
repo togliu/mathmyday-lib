@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.number
+package io.github.ltennstedt.finnmath.number.fraction
 
 import com.google.common.base.MoreObjects
 import io.kotest.assertions.throwables.shouldThrowExactly

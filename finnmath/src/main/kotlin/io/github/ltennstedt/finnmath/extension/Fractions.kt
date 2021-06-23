@@ -16,7 +16,7 @@
 
 package io.github.ltennstedt.finnmath.extension
 
-import io.github.ltennstedt.finnmath.number.AbstractFraction
+import io.github.ltennstedt.finnmath.number.fraction.AbstractFraction
 
 public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.plus(
     summand: T

@@ -16,8 +16,8 @@
 
 package io.github.ltennstedt.finnmath.extension
 
-import io.github.ltennstedt.finnmath.number.BigComplex
-import io.github.ltennstedt.finnmath.number.Complex
+import io.github.ltennstedt.finnmath.number.complex.BigComplex
+import io.github.ltennstedt.finnmath.number.complex.Complex
 
 /**
  * Returns the [Complex]

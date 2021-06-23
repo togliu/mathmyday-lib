@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.number
+package io.github.ltennstedt.finnmath.number.range
 
+import io.github.ltennstedt.finnmath.number.fraction.Fraction
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 

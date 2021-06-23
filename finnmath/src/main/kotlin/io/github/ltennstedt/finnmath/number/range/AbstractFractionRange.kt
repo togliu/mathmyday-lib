@@ -14,28 +14,32 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.number
+package io.github.ltennstedt.finnmath.number.range
+
+import io.github.ltennstedt.finnmath.extension.minus
+import io.github.ltennstedt.finnmath.number.fraction.AbstractFraction
 
 /**
- * Immutable implementation of a range for [Fractions][Fraction]
+ * Base class for ranges of fractions
  *
- * @property start start
- * @property endInclusive endInclusive
- * @constructor Constructs a BigFractionRange
+ * @param N type of the [Number]
+ * @param T type of this
+ * @param R type of the [ClosedRange]
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public data class FractionRange(
-    override val start: Fraction,
-    override val endInclusive: Fraction
-) : AbstractFractionRange<Long, Fraction, FractionRange>() {
-    public companion object {
-        /**
-         * Empty BigFractionRange
-         *
-         * @since 0.0.1
-         */
-        @JvmField
-        public val EMPTY: FractionRange = FractionRange(Fraction.ONE, Fraction.ZERO)
-    }
+public abstract class AbstractFractionRange<
+    N : Number,
+    T : AbstractFraction<N, T, R>,
+    R : ClosedRange<T>
+    > : ClosedRange<T> {
+    /**
+     * Length
+     *
+     * @since 0.0.1
+     */
+    public val length: T
+        get() = (endInclusive - start).abs()
+
+    public companion object
 }

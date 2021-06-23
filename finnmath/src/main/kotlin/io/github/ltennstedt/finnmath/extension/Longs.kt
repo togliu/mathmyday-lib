@@ -17,12 +17,12 @@
 package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.LongMath
-import io.github.ltennstedt.finnmath.number.BigComplex
-import io.github.ltennstedt.finnmath.number.BigFraction
-import io.github.ltennstedt.finnmath.number.BigGaussian
-import io.github.ltennstedt.finnmath.number.Complex
-import io.github.ltennstedt.finnmath.number.Fraction
-import io.github.ltennstedt.finnmath.number.Gaussian
+import io.github.ltennstedt.finnmath.number.complex.BigComplex
+import io.github.ltennstedt.finnmath.number.complex.BigGaussian
+import io.github.ltennstedt.finnmath.number.complex.Complex
+import io.github.ltennstedt.finnmath.number.complex.Gaussian
+import io.github.ltennstedt.finnmath.number.fraction.BigFraction
+import io.github.ltennstedt.finnmath.number.fraction.Fraction
 import kotlin.math.absoluteValue
 
 /**

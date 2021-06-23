@@ -16,7 +16,7 @@
 
 package io.github.ltennstedt.finnmath.extension
 
-import io.github.ltennstedt.finnmath.number.Fraction
+import io.github.ltennstedt.finnmath.number.fraction.Fraction
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs

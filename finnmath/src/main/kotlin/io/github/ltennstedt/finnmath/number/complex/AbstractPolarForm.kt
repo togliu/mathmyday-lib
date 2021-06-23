@@ -1,4 +1,4 @@
-package io.github.ltennstedt.finnmath.number
+package io.github.ltennstedt.finnmath.number.complex
 
 /**
  * Base class for polar forms

@@ -14,21 +14,29 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.extension
+package io.github.ltennstedt.finnmath.linear.field
 
-import io.github.ltennstedt.finnmath.number.complex.BigComplex
 import io.github.ltennstedt.finnmath.number.complex.Complex
 
 /**
- * Returns the [Complex]
+ * Single implementation of the [Complex] field
  *
+ * @author Lars Tennstedt
  * @since 0.0.1
  */
-public fun Double.toComplex(): Complex = Complex(this)
+public object ComplexField : Field<Complex, Complex> {
+    override val addition: (a: Complex, b: Complex) -> Complex
+        get() = Complex::add
 
-/**
- * Returns the [BigComplex]
- *
- * @since 0.0.1
- */
-public fun Double.toBigComplex(): BigComplex = BigComplex(this)
+    override val subtraction: (a: Complex, b: Complex) -> Complex
+        get() = Complex::subtract
+
+    override val multiplication: (a: Complex, b: Complex) -> Complex
+        get() = Complex::multiply
+
+    override val division: (a: Complex, b: Complex) -> Complex
+        get() = Complex::divide
+
+    override val zero: Complex
+        get() = Complex.ZERO
+}
