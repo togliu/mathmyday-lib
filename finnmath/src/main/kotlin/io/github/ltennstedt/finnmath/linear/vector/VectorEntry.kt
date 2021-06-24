@@ -16,7 +16,9 @@
 
 package io.github.ltennstedt.finnmath.linear.vector
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import java.io.Serializable
+import org.apiguardian.api.API
 
 /**
  * Immutable implementation of a vector entry
@@ -29,6 +31,8 @@ import java.io.Serializable
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public data class VectorEntry<E : Number>(val index: Int, val element: E) : Comparable<VectorEntry<E>>, Serializable {
     init {
         require(index > 0) { "expected index > 0 but index = $index" }

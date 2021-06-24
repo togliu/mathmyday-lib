@@ -19,6 +19,7 @@ package io.github.ltennstedt.finnmath.linear.builder;
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.annotations.Beta;
 import com.google.common.base.MoreObjects;
 import io.github.ltennstedt.finnmath.linear.vector.AbstractVector;
 import io.github.ltennstedt.finnmath.linear.vector.VectorEntry;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.IntFunction;
 import java.util.function.Supplier;
+import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -37,6 +39,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public abstract class AbstractVectorJavaBuilder<
     E extends Number,
     V extends AbstractVector<E, V, ?, ?>,

@@ -16,10 +16,12 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import io.github.ltennstedt.finnmath.extension.cos
 import io.github.ltennstedt.finnmath.extension.sin
 import java.math.BigDecimal
 import java.math.MathContext
+import org.apiguardian.api.API
 
 /**
  * Immutable implementation of the polar form of a complex number number which uses [BigDecimal] as type for its
@@ -33,6 +35,8 @@ import java.math.MathContext
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public data class BigPolarForm(
     override val radial: BigDecimal,
     override val angular: BigDecimal

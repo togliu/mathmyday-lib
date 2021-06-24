@@ -16,10 +16,12 @@
 
 package io.github.ltennstedt.finnmath.number.fraction
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
 import io.github.ltennstedt.finnmath.number.range.BigFractionRange
 import java.math.BigDecimal
 import java.math.BigInteger
+import org.apiguardian.api.API
 
 /**
  * Immutable implementation of a fraction which uses [BigInteger] as type for its [numerator] and [denominator]
@@ -35,6 +37,8 @@ import java.math.BigInteger
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public class BigFraction @JvmOverloads constructor(
     numerator: BigInteger,
     denominator: BigInteger = BigInteger.ONE

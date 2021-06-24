@@ -16,10 +16,12 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import java.math.MathContext
 import kotlin.math.acos
 import kotlin.math.pow
 import kotlin.math.sqrt
+import org.apiguardian.api.API
 
 /**
  * Immutable implementation of a complex number which uses [Double] as type for its real and imaginary part
@@ -30,6 +32,8 @@ import kotlin.math.sqrt
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public class Complex @JvmOverloads constructor(
     real: Double,
     imaginary: Double = 0.0

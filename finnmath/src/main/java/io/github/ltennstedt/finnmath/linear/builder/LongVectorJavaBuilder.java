@@ -15,7 +15,9 @@
  */
 package io.github.ltennstedt.finnmath.linear.builder;
 
+import com.google.common.annotations.Beta;
 import io.github.ltennstedt.finnmath.linear.vector.LongVector;
+import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -24,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongVector, LongVectorJavaBuilder> {
     /**
      * Constructor

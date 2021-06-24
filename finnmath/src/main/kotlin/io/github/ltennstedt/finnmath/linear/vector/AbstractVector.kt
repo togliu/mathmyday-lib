@@ -16,9 +16,11 @@
 
 package io.github.ltennstedt.finnmath.linear.vector
 
+import com.google.common.annotations.Beta
 import com.google.common.base.MoreObjects
 import java.io.Serializable
 import java.util.Objects
+import org.apiguardian.api.API
 
 /**
  * Base class for vectors
@@ -34,6 +36,8 @@ import java.util.Objects
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>, N, P>(
     protected val indexToElement: Map<Int, E>
 ) : Serializable {

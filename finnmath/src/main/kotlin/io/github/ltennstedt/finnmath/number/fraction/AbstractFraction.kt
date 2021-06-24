@@ -16,11 +16,13 @@
 
 package io.github.ltennstedt.finnmath.number.fraction
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import com.google.common.base.MoreObjects
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.util.Objects
+import org.apiguardian.api.API
 
 /**
  * Base class for fractions
@@ -33,6 +35,8 @@ import java.util.Objects
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>>(
     public val numerator: N,
     public val denominator: N

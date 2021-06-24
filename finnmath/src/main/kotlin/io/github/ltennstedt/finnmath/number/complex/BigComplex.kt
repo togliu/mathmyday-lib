@@ -16,12 +16,14 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
-import ch.obermuhlner.math.big.BigDecimalMath
+import ch.obermuhlner.math.big.BigDecimalMath // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
+import org.apiguardian.api.API
 
 /**
  * Immutable implementation of a complex number which uses [BigDecimal] as type for its real and imaginary part
@@ -32,6 +34,8 @@ import java.math.MathContext
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public class BigComplex @JvmOverloads constructor(
     real: BigDecimal,
     imaginary: BigDecimal = BigDecimal.ZERO

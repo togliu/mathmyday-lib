@@ -1,6 +1,8 @@
 package io.github.ltennstedt.finnmath.number.complex
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import java.io.Serializable
+import org.apiguardian.api.API
 
 /**
  * Base class for polar forms
@@ -14,6 +16,8 @@ import java.io.Serializable
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public abstract class AbstractPolarForm<N : Comparable<N>, T : AbstractPolarForm<N, T, C>, C>(
     public open val radial: N,
     public open val angular: N

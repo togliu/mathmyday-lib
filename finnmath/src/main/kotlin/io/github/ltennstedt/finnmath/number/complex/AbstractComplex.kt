@@ -16,9 +16,11 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import com.google.common.base.MoreObjects
 import java.io.Serializable
 import java.util.Objects
+import org.apiguardian.api.API
 
 /**
  * Base class for complex numbers
@@ -34,6 +36,8 @@ import java.util.Objects
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P>(
     public val real: N,
     public val imaginary: N

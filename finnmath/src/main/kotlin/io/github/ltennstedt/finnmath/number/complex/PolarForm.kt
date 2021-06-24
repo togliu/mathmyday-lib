@@ -16,9 +16,11 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import java.math.MathContext
 import kotlin.math.cos
 import kotlin.math.sin
+import org.apiguardian.api.API
 
 /**
  * Immutable implementation of the polar form of a complex number number which uses [Double] as type for its
@@ -32,6 +34,8 @@ import kotlin.math.sin
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public data class PolarForm(
     override val radial: Double,
     override val angular: Double

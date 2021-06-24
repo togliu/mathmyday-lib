@@ -16,8 +16,10 @@
 
 package io.github.ltennstedt.finnmath
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import java.io.Serializable
 import java.math.MathContext
+import org.apiguardian.api.API
 
 /**
  * Immutable data class holding a [scale] and a [mathContext]
@@ -27,6 +29,8 @@ import java.math.MathContext
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public data class FinnmathContext @JvmOverloads constructor(
     val scale: Int = 0,
     val mathContext: MathContext = MathContext.UNLIMITED

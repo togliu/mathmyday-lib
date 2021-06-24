@@ -16,9 +16,11 @@
 
 package io.github.ltennstedt.finnmath.number.range
 
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import io.github.ltennstedt.finnmath.extension.minus
 import io.github.ltennstedt.finnmath.number.fraction.AbstractFraction
 import java.io.Serializable
+import org.apiguardian.api.API
 
 /**
  * Base class for ranges of fractions
@@ -29,6 +31,8 @@ import java.io.Serializable
  * @author Lars Tennstedt
  * @since 0.0.1
  */
+@API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
+@Beta
 public abstract class AbstractFractionRange<
     N : Number,
     T : AbstractFraction<N, T, R>,
