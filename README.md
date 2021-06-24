@@ -29,8 +29,9 @@ build automation tool but currently the port to [Kotlin](https://kotlinlang.org/
 is in progress. It should interoperate seamlessly with other JVM technologies. Dependencies are
 [big-math](https://eobermuhlner.github.io/big-math/),
 [KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit), 
-[Katlib](https://github.com/LukasForst/katlib) and[Guava](https://guava.dev/) and for tests 
-[Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/) and [AssertJ](https://assertj.github.io/doc/).
+[Katlib](https://github.com/LukasForst/katlib), [Guava](https://guava.dev/), 
+[API Guardian](https://github.com/apiguardian-team/apiguardian) and for tests [Kotest](https://kotest.io/), 
+[JUnit](https://junit.org/junit5/) and [AssertJ](https://assertj.github.io/doc/).
 
 ## Building
 
@@ -49,6 +50,7 @@ gradle default
 * Absolutely no null values
 * Numbers extend `kotlin.Number` and fractions implements `kotlin.Comparable`
 * Comparators implements `kotlin.Comparator`
+* Numbers, vectors and matrices implement `java.io.Serializable`
 * Lambdas, Sequences and Streams
 * Classes of numbers, vectors and matrices are final.
 * Useful hashCode, equals and toString methods
