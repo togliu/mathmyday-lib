@@ -15,7 +15,7 @@
  */
 
 plugins {
-    kotlin("jvm") version "1.5.10" apply false
+    kotlin("jvm") version "1.5.20" apply false
     id("org.jlleitschuh.gradle.ktlint") version "10.1.0" apply false
     id("io.gitlab.arturbosch.detekt") version "1.17.1" apply false
     id("org.jetbrains.dokka") version "1.4.32" apply false
