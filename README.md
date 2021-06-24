@@ -55,7 +55,7 @@ gradle default
 * Classes of numbers, vectors and matrices are final.
 * Useful hashCode, equals and toString methods
 * Data classes
-* Builders for vectors and matrices (Java style and Kotlin's type-safe builders)
+* Builders for vectors and matrices (Java-style and Kotlin's type-safe builders)
 * Parameter validation and fast failing
 * Singletons via objects
 * Extension functions for `kotlin.Int`, `kotlin.Long`, `kotlin.Float`, `kotlin.Double`, `java.math.BigInteger` and
@@ -140,7 +140,7 @@ class C {
 * High code coverage with the help of [Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/),
   [AssertJ](https://assertj.github.io/doc/) and [JaCoCo](https://www.jacoco.org/jacoco/)
 * Idiomatic Kotlin and Java API
-* Stay up to date with versions of libraries and plugins
+* Stay up-to-date with versions of libraries and plugins
 * Object-oriented design with functional abstraction
 * Use Kotlin features to create a DSL-like API
 * Use [Kotest](https://kotest.io/) features for tests (FunSpec style, matchers and property-based testing)
