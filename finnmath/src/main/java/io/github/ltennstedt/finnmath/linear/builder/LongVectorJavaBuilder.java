@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.ltennstedt.finnmath.linear.vector;
+package io.github.ltennstedt.finnmath.linear.builder;
+
+import io.github.ltennstedt.finnmath.linear.vector.LongVector;
 
 /**
  * Java-style builder for {@link LongVector LongVectors}

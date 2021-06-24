@@ -28,9 +28,9 @@ Previously finnmath was written in [Java](https://www.java.com/) and used [Maven
 build automation tool but currently the port to [Kotlin](https://kotlinlang.org/) and [Gradle](https://gradle.org/)
 is in progress. It should interoperate seamlessly with other JVM technologies. Dependencies are
 [big-math](https://eobermuhlner.github.io/big-math/),
-[KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit) and
-[Guava](https://guava.dev/) and for tests [Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/) and 
-[AssertJ](https://assertj.github.io/doc/).
+[KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit), 
+[Katlib](https://github.com/LukasForst/katlib) and[Guava](https://guava.dev/) and for tests 
+[Kotest](https://kotest.io/), [JUnit](https://junit.org/junit5/) and [AssertJ](https://assertj.github.io/doc/).
 
 ## Building
 
@@ -95,16 +95,15 @@ when (BigInteger.ZERO) {
 val x = (Fraction.ZERO min Fraction.ONE)
 
 // Type safe builders for vectors and matrices
-bigIntegerVector {
-    size = 3
-    computationForAbsent = { _ -> BigIntegerRandom().nextNumber() }
+longVector {
+    size = 5
     entry {
         index = 2
-        element = BigInteger.ONE
+        element = 1L
     }
     entry {
-        index = 3
-        element = BigInteger.valueOf(2)
+        index = 4
+        element = 2L
     }
 }
 ```
@@ -124,7 +123,7 @@ class C {
 
         // Lambdas
         BigIntegerMatrix.builder(2, 2)
-                .computeIfAbsent(BigIntegerRandom::nextNumber)
+                .computeIfAbsent(() -> random.nextInt().toBigInteger())
                 .build();
     }
 }

@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.linear.vector;
+package io.github.ltennstedt.finnmath.linear.builder;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.MoreObjects;
+import io.github.ltennstedt.finnmath.linear.vector.AbstractVector;
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.IntFunction;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.github.ltennstedt.finnmath.linear.vector;
+package io.github.ltennstedt.finnmath.linear.builder;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
