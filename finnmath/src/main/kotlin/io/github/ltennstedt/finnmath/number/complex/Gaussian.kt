@@ -16,7 +16,7 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
-import com.google.common.annotations.Beta
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import java.math.MathContext
 import kotlin.math.acos
 import kotlin.math.pow

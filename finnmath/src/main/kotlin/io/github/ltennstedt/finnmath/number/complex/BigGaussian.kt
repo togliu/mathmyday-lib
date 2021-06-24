@@ -16,7 +16,7 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
-import com.google.common.annotations.Beta
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.acos
 import io.github.ltennstedt.finnmath.extension.sqrt
