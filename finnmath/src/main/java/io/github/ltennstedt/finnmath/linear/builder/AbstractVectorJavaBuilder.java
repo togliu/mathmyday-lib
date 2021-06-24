@@ -42,7 +42,8 @@ public abstract class AbstractVectorJavaBuilder<
     V extends AbstractVector<E, V, ?, ?>,
     B extends AbstractVectorJavaBuilder<E, V, B>
     > {
-    private final Map<Integer, E> indexToElement = new HashMap<>();
+    private final @NotNull Map<Integer, E> indexToElement = new HashMap<>();
+
     private final int size;
 
     /**
@@ -66,7 +67,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws ArithmeticException if {@code size + 1} overflows
      * @since 0.0.1
      */
-    public B put(@NotNull final E element) {
+    public @NotNull B put(@NotNull final E element) {
         requireNonNull(element, "element");
         final int index = Math.addExact(indexToElement.size(), 1);
         checkArgument(0 < index && index <= size, "0 < index <= size expected but index=%s", index);
@@ -84,7 +85,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws IllegalArgumentException if {@code indey < 1 || index > size}
      * @throws NullPointerException if {@code element == null}
      */
-    public B put(final int index, @NotNull final E element) {
+    public @NotNull B put(final int index, @NotNull final E element) {
         checkArgument(0 < index && index <= size, "0 < index <= size expected but index = %s", index);
         requireNonNull(element, "element");
         indexToElement.put(index, element);
@@ -101,7 +102,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws IllegalArgumentException if {@code entry.index < 1 || entry.index > size}
      * @since 0.0.1
      */
-    public B put(@NotNull final VectorEntry<E> entry) {
+    public @NotNull B put(@NotNull final VectorEntry<E> entry) {
         requireNonNull(entry, "entry");
         checkArgument(
             0 < entry.getIndex() && entry.getIndex() <= size,
@@ -119,7 +120,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws NullPointerException if {@code supplier == null}
      * @since 0.0.1
      */
-    public B compute(@NotNull final Supplier<E> supplier) {
+    public @NotNull B compute(@NotNull final Supplier<E> supplier) {
         requireNonNull(supplier, "supplier");
         for (int i = 1; i <= size; i++) {
             indexToElement.put(i, supplier.get());
@@ -136,7 +137,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws NullPointerException if {@code function == null}
      * @since 0.0.1
      */
-    public B compute(@NotNull final IntFunction<E> function) {
+    public @NotNull B compute(@NotNull final IntFunction<E> function) {
         requireNonNull(function, "function");
         for (int i = 1; i <= size; i++) {
             indexToElement.put(i, function.apply(i));
@@ -153,7 +154,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws NullPointerException if {@code supplier == null}
      * @since 0.0.1
      */
-    public B computeIfAbsent(@NotNull final Supplier<E> supplier) {
+    public @NotNull B computeIfAbsent(@NotNull final Supplier<E> supplier) {
         requireNonNull(supplier, "supplier");
         for (int i = 1; i <= size; i++) {
             indexToElement.putIfAbsent(i, supplier.get());
@@ -170,7 +171,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws NullPointerException if {@code function == null}
      * @since 0.0.1
      */
-    public B computeIfAbsent(@NotNull final IntFunction<E> function) {
+    public @NotNull B computeIfAbsent(@NotNull final IntFunction<E> function) {
         requireNonNull(function, "function");
         for (int i = 1; i <= size; i++) {
             indexToElement.putIfAbsent(i, function.apply(i));
@@ -185,7 +186,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @return vector
      * @since 0.0.1
      */
-    public abstract V build();
+    public abstract @NotNull V build();
 
     /**
      * Replaces all null values at with 0 and returns this
@@ -193,7 +194,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @return this
      * @since 0.0.1
      */
-    protected abstract B nullsToZero();
+    protected abstract @NotNull B nullsToZero();
 
     /**
      * Size
@@ -211,12 +212,12 @@ public abstract class AbstractVectorJavaBuilder<
      * @return indexToElement
      * @since 0.0.1
      */
-    protected Map<Integer, E> getIndexToElement() {
+    protected @NotNull Map<Integer, E> getIndexToElement() {
         return indexToElement;
     }
 
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return MoreObjects.toStringHelper(this).add("size", size).add("indexToElement", indexToElement).toString();
     }
 }

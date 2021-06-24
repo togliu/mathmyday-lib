@@ -16,6 +16,7 @@
 package io.github.ltennstedt.finnmath.linear.builder;
 
 import io.github.ltennstedt.finnmath.linear.vector.LongVector;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Java-style builder for {@link LongVector LongVectors}
@@ -36,12 +37,12 @@ public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongV
     }
 
     @Override
-    public LongVectorJavaBuilder nullsToZero() {
+    public @NotNull LongVectorJavaBuilder nullsToZero() {
         return computeIfAbsent(() -> 0L);
     }
 
     @Override
-    public LongVector build() {
+    public @NotNull LongVector build() {
         nullsToZero();
         return new LongVector(getIndexToElement());
     }
