@@ -16,6 +16,8 @@
 
 package io.github.ltennstedt.finnmath.linear.vector
 
+import java.io.Serializable
+
 /**
  * Immutable implementation of a vector entry
  *
@@ -27,7 +29,7 @@ package io.github.ltennstedt.finnmath.linear.vector
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public data class VectorEntry<E : Number>(val index: Int, val element: E) : Comparable<VectorEntry<E>> {
+public data class VectorEntry<E : Number>(val index: Int, val element: E) : Comparable<VectorEntry<E>>, Serializable {
     init {
         require(index > 0) { "expected index > 0 but index = $index" }
     }
@@ -40,5 +42,7 @@ public data class VectorEntry<E : Number>(val index: Int, val element: E) : Comp
          */
         @JvmField
         public val COMPARATOR: Comparator<VectorEntry<*>> = compareBy { it.index }
+
+        private const val serialVersionUID = 1L
     }
 }

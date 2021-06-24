@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.complex
 
 import com.google.common.base.MoreObjects
+import java.io.Serializable
 import java.util.Objects
 
 /**
@@ -36,7 +37,7 @@ import java.util.Objects
 public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P>(
     public val real: N,
     public val imaginary: N
-) : Number() {
+) : Number(), Serializable {
     /**
      * Indicates if this is a unit
      *
@@ -188,5 +189,7 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
         .add("imaginary", imaginary)
         .toString()
 
-    public companion object
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
 }

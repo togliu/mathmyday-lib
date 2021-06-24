@@ -16,10 +16,11 @@
 
 package io.github.ltennstedt.finnmath
 
+import java.io.Serializable
 import java.math.MathContext
 
 /**
- * Immutable data class
+ * Immutable data class holding a [scale] and a [mathContext]
  *
  * @property scale scale; default argument is 0
  * @property mathContext [MathContext]; default argument is [MathContext.UNLIMITED]
@@ -29,6 +30,8 @@ import java.math.MathContext
 public data class FinnmathContext @JvmOverloads constructor(
     val scale: Int = 0,
     val mathContext: MathContext = MathContext.UNLIMITED
-) {
-    public companion object
+) : Serializable {
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
 }

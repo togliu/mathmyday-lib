@@ -1,5 +1,7 @@
 package io.github.ltennstedt.finnmath.number.complex
 
+import java.io.Serializable
+
 /**
  * Base class for polar forms
  *
@@ -15,7 +17,7 @@ package io.github.ltennstedt.finnmath.number.complex
 public abstract class AbstractPolarForm<N : Comparable<N>, T : AbstractPolarForm<N, T, C>, C>(
     public open val radial: N,
     public open val angular: N
-) {
+) : Serializable {
     /**
      * Returns the [C]
      *
@@ -38,5 +40,7 @@ public abstract class AbstractPolarForm<N : Comparable<N>, T : AbstractPolarForm
      */
     public fun doesNotequalsByComparing(other: T): Boolean = !equalsByComparing(other)
 
-    public companion object
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
 }

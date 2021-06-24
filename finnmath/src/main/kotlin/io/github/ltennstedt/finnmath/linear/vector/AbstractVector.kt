@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.base.MoreObjects
+import java.io.Serializable
 import java.util.Objects
 
 /**
@@ -35,7 +36,7 @@ import java.util.Objects
  */
 public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>, N, P>(
     protected val indexToElement: Map<Int, E>
-) {
+) : Serializable {
     /**
      * Indices
      *
@@ -227,5 +228,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
 
     override fun toString(): String = MoreObjects.toStringHelper(this).add("map", indexToElement).toString()
 
-    public companion object
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
 }

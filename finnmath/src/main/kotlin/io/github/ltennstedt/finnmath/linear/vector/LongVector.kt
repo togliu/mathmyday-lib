@@ -63,4 +63,6 @@ public class LongVector(
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.all { (i, e) -> e.compareTo(other.element(i)) == 0 }
     }
+
+    public companion object
 }

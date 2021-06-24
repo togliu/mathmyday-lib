@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.fraction
 
 import com.google.common.base.MoreObjects
+import java.io.Serializable
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.util.Objects
@@ -35,7 +36,7 @@ import java.util.Objects
 public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>>(
     public val numerator: N,
     public val denominator: N
-) : Number(), Comparable<T> {
+) : Number(), Comparable<T>, Serializable {
     /**
      * Indicates if this is invertible
      *
@@ -327,5 +328,7 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
         .add("denominator", denominator)
         .toString()
 
-    public companion object
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
 }

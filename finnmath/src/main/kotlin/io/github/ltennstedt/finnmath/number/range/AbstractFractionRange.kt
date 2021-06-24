@@ -18,6 +18,7 @@ package io.github.ltennstedt.finnmath.number.range
 
 import io.github.ltennstedt.finnmath.extension.minus
 import io.github.ltennstedt.finnmath.number.fraction.AbstractFraction
+import java.io.Serializable
 
 /**
  * Base class for ranges of fractions
@@ -32,7 +33,7 @@ public abstract class AbstractFractionRange<
     N : Number,
     T : AbstractFraction<N, T, R>,
     R : ClosedRange<T>
-    > : ClosedRange<T> {
+    > : ClosedRange<T>, Serializable {
     /**
      * Length
      *
@@ -41,5 +42,7 @@ public abstract class AbstractFractionRange<
     public val length: T
         get() = (endInclusive - start).abs()
 
-    public companion object
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
 }
