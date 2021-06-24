@@ -16,9 +16,3 @@
 
 rootProject.name = "finnmath-root"
 include("finnmath", "finnmath-kotest")
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        jcenter()
-    }
-}
