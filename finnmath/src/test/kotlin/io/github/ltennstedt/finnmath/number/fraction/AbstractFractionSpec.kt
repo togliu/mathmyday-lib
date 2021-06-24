@@ -121,7 +121,7 @@ class AbstractFractionSpec : FunSpec({
         test("should be false when Fractions are not equivalent to each other") {
             (Fraction(1L, 2L) equivalent Fraction(2L, 3L)) shouldBe false
         }
-        test("should be false when Fractions are not equivalent to each other") {
+        test("should be true when Fractions are equivalent to each other") {
             (Fraction(1L, 2L) equivalent Fraction(2L, 4L)) shouldBe true
         }
     }
@@ -175,27 +175,24 @@ class AbstractFractionSpec : FunSpec({
         Fraction(2L, 3L).hashCode() shouldBe Objects.hash(2L, 3L)
     }
     context("equals") {
-        test("returns true when other Fraction is the same") {
+        test("should return true when other Fraction is the same") {
             val fraction = Fraction(2L, 3L)
             (fraction == fraction) shouldBe true
         }
-        test("returns false when other Fraction has the wrong type") {
+        test("should return false when other Fraction has the wrong type") {
             (Fraction(2L, 3L) == Any()) shouldBe false
         }
-        test("returns false when numerators are not equal") {
+        test("should return false when numerators are not equal") {
             (Fraction(1L, 3L) == Fraction(2L, 3L)) shouldBe false
         }
-        test("returns false when denominators are not equal") {
+        test("should return false when denominators are not equal") {
             (Fraction(1L, 2L) == Fraction(1L, 3L)) shouldBe false
         }
-        test("returns false when denominators are not equal") {
-            (Fraction(1L, 2L) == Fraction(1L, 3L)) shouldBe false
-        }
-        test("returns true when numerators and denominators are equal") {
+        test("should return true when numerators and denominators are equal") {
             (Fraction(1L, 2L) == Fraction(1L, 2L)) shouldBe true
         }
     }
-    test("toString returns a String based on numerator and denominator") {
+    test("toString should return a String based on numerator and denominator") {
         val fraction = Fraction(1L, 2L)
         val expected = MoreObjects.toStringHelper(fraction)
             .add("numerator", 1L)
