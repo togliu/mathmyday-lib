@@ -28,9 +28,10 @@ Previously finnmath was written in [Java](https://www.java.com/) and used [Maven
 build automation tool but currently the port to [Kotlin](https://kotlinlang.org/) and [Gradle](https://gradle.org/)
 is in progress. It should interoperate seamlessly with other JVM technologies. Dependencies are
 [big-math](https://eobermuhlner.github.io/big-math/),
-[KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit), 
-[Katlib](https://github.com/LukasForst/katlib), [Guava](https://guava.dev/), 
-[API Guardian](https://github.com/apiguardian-team/apiguardian) and for tests [Kotest](https://kotest.io/), 
+[KotlinDiscreteMathToolkit](https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit),
+[Katlib](https://github.com/LukasForst/katlib), [Guava](https://guava.dev/),
+[API Guardian](https://github.com/apiguardian-team/apiguardian) and
+[JetBrains Java Annotations](https://github.com/JetBrains/java-annotations) and for tests [Kotest](https://kotest.io/),
 [JUnit](https://junit.org/junit5/) and [AssertJ](https://assertj.github.io/doc/).
 
 ## Building
@@ -70,33 +71,34 @@ gradle default
 * JVM annotations
 * Companion objects
 * Generics
+* Lambdas with receivers
 
 ## Usage
 
 ### Kotlin
 
 ```kotlin
-// Operators
-BigFraction(2, 3) + BigFraction(3, 4)
+// operators
+Fraction(2L, 3L) + Fraction(3L, 4L)
 
-// Extensions
-12.toBigGaussian()
+// extensions
+12.toGaussian()
 
-// Getting an element of a vector or matrix
+// getting an element of a vector or matrix
 vector[1]
 matrix[2, 3]
 
-// Check if an element is contained in a vector or matrix
-when (BigInteger.ZERO) {
+// check if an element is contained in a vector or matrix
+when (0L) {
     in vector -> true
     in matrix -> true
     else -> false
 }
 
-// Infix notation
+// infix notation
 val x = (Fraction.ZERO min Fraction.ONE)
 
-// Type safe builders for vectors and matrices
+// type-safe builders for vectors and matrices
 longVector {
     size = 5
     entry {
@@ -113,18 +115,29 @@ longVector {
 ### Java
 
 ```java
-// Classic builders for vectors and matrices
-// Fluent API
 class C {
     void m() {
-        BigIntegerMatrix.builder(2, 2)
-                .put(1, 2, BigInteger.ONE)
-                .put(2, 1, BigInteger.valueOf(2))
-                .put(2, 2, BigInteger.valueOf(3))
+        // arithmetic        
+        Fraction(2L, 3L).add(Fraction(3L, 4L));
+
+        // getting an element of a vector or matrix
+        vector.element(1);
+        matrix.element(2, 3);
+
+        // check if an element is contained in a vector or matrix
+        if (vector.contains(0L)) {
+            doSomethingCool();
+        }
+
+        // classic builders for vectors and matrices with a fluent API        
+        LongVector.builder(5)
+                .put(2, 1L)
+                .put(4, 2L)
+                .nullsToZeros()
                 .build();
 
-        // Lambdas
-        BigIntegerMatrix.builder(2, 2)
+        // everyone loves lambdas
+        LongVector.builder(5)
                 .computeIfAbsent(() -> random.nextInt().toBigInteger())
                 .build();
     }
