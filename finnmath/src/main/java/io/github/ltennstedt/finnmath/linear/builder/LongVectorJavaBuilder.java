@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.ltennstedt.finnmath.linear.builder;
 
 import com.google.common.annotations.Beta;
@@ -47,7 +48,6 @@ public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongV
 
     @Override
     public @NotNull LongVector build() {
-        nullsToZero();
         return new LongVector(getIndexToElement());
     }
 }
