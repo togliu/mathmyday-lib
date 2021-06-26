@@ -30,6 +30,3 @@ public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractV
 
 public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.times(scalar: E): V =
     scalarMultiply(scalar)
-
-public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.get(index: Int): E =
-    element(index)

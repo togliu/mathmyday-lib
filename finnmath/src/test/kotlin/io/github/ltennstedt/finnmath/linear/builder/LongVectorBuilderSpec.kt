@@ -16,7 +16,6 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
-import io.github.ltennstedt.finnmath.extension.get
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 

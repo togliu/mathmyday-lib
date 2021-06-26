@@ -39,7 +39,7 @@ public fun longVector(init: LongVectorBuilder.() -> Unit): LongVector {
  * @since 0.0.1
  */
 public class LongVectorBuilder : AbstractVectorBuilder<Long, LongVector>() {
-    override var computationForAbsent: (Int) -> Long = { _ -> 0L }
+    override var computationOfAbsent: (Int) -> Long = { _ -> 0L }
 
     override fun build(): LongVector {
         check(entries.isNotEmpty()) {
@@ -54,7 +54,7 @@ public class LongVectorBuilder : AbstractVectorBuilder<Long, LongVector>() {
         }
         for (i in 1..size) {
             entries.filter { it.index == i }.map { it.element }.singleOrNull().whenNull {
-                entries.add(VectorEntry(i, computationForAbsent(i)))
+                entries.add(VectorEntry(i, computationOfAbsent(i)))
             }
         }
         return LongVector(entries.associate { (i, e) -> i to e })

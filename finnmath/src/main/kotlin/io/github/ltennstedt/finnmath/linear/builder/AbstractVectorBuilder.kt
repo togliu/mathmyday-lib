@@ -41,7 +41,7 @@ public abstract class AbstractVectorBuilder<E : Number, V> {
      *
      * @since 0.0.1
      */
-    public abstract var computationForAbsent: (Int) -> E
+    public abstract var computationOfAbsent: (Int) -> E
 
     /**
      * Entries

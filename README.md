@@ -72,6 +72,7 @@ gradle default
 * Companion objects
 * Generics
 * Lambdas with receivers
+* Explicit API mode
 
 ## Usage
 
@@ -96,11 +97,12 @@ when (0L) {
 }
 
 // infix notation
-val x = (Fraction.ZERO min Fraction.ONE)
+Fraction.ZERO min Fraction.ONE
 
 // type-safe builders for vectors and matrices
 longVector {
     size = 5
+    computationOfAbsent = { _ -> random.nextLong() }
     entry {
         index = 2
         element = 1L
@@ -121,8 +123,8 @@ class C {
         Fraction(2L, 3L).add(Fraction(3L, 4L));
 
         // getting an element of a vector or matrix
-        vector.element(1);
-        matrix.element(2, 3);
+        vector.get(1);
+        matrix.get(2, 3);
 
         // check if an element is contained in a vector or matrix
         if (vector.contains(0L)) {
@@ -131,14 +133,9 @@ class C {
 
         // classic builders for vectors and matrices with a fluent API        
         LongVector.builder(5)
+                .computationOfAbsent(i -> random.nextLong())
                 .put(2, 1L)
                 .put(4, 2L)
-                .nullsToZeros()
-                .build();
-
-        // everyone loves lambdas
-        LongVector.builder(5)
-                .computeIfAbsent(() -> random.nextInt().toBigInteger())
                 .build();
     }
 }

@@ -26,7 +26,6 @@ import io.github.ltennstedt.finnmath.linear.vector.VectorEntry;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.IntFunction;
-import java.util.function.Supplier;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
 
@@ -47,8 +46,8 @@ public abstract class AbstractVectorJavaBuilder<
     B extends AbstractVectorJavaBuilder<E, V, B>
     > {
     private final @NotNull Map<Integer, E> indexToElement = new HashMap<>();
-
     private final int size;
+    private IntFunction<E> computationOfAbsent;
 
     /**
      * Constructor
@@ -117,69 +116,15 @@ public abstract class AbstractVectorJavaBuilder<
     }
 
     /**
-     * Computes elements based on the supplier, puts them and returns this
-     *
-     * @param supplier {@link Supplier}
-     * @return this
-     * @throws NullPointerException if {@code supplier == null}
-     * @since 0.0.1
-     */
-    public @NotNull B compute(final @NotNull Supplier<E> supplier) {
-        requireNonNull(supplier, "supplier");
-        for (int i = 1; i <= size; i++) {
-            indexToElement.put(i, supplier.get());
-        }
-        @SuppressWarnings("unchecked") final B casted = (B) this;
-        return casted;
-    }
-
-    /**
-     * Computes elements based on the function, puts them and returns this
-     *
-     * @param function {@link IntFunction}
-     * @return this
-     * @throws NullPointerException if {@code function == null}
-     * @since 0.0.1
-     */
-    public @NotNull B compute(final @NotNull IntFunction<E> function) {
-        requireNonNull(function, "function");
-        for (int i = 1; i <= size; i++) {
-            indexToElement.put(i, function.apply(i));
-        }
-        @SuppressWarnings("unchecked") final B casted = (B) this;
-        return casted;
-    }
-
-    /**
-     * Computes elements if absent based on the supplier, puts them and returns this
-     *
-     * @param supplier {@link Supplier}
-     * @return this
-     * @throws NullPointerException if {@code supplier == null}
-     * @since 0.0.1
-     */
-    public @NotNull B computeIfAbsent(final @NotNull Supplier<E> supplier) {
-        requireNonNull(supplier, "supplier");
-        for (int i = 1; i <= size; i++) {
-            indexToElement.putIfAbsent(i, supplier.get());
-        }
-        @SuppressWarnings("unchecked") final B casted = (B) this;
-        return casted;
-    }
-
-    /**
      * Computes elements if absent based on the function, puts them and returns this
      *
-     * @param function {@link IntFunction}
+     * @param computationOfAbsent {@link IntFunction}
      * @return this
      * @throws NullPointerException if {@code function == null}
      * @since 0.0.1
      */
-    public @NotNull B computeIfAbsent(final @NotNull IntFunction<E> function) {
-        requireNonNull(function, "function");
-        for (int i = 1; i <= size; i++) {
-            indexToElement.putIfAbsent(i, function.apply(i));
-        }
+    public @NotNull B computationOfAbsent(final @NotNull IntFunction<E> computationOfAbsent) {
+        this.computationOfAbsent = requireNonNull(computationOfAbsent, "computationOfAbsent");
         @SuppressWarnings("unchecked") final B casted = (B) this;
         return casted;
     }
@@ -193,24 +138,6 @@ public abstract class AbstractVectorJavaBuilder<
     public abstract @NotNull V build();
 
     /**
-     * Replaces all null values at with 0 and returns this
-     *
-     * @return this
-     * @since 0.0.1
-     */
-    public abstract @NotNull B nullsToZero();
-
-    /**
-     * Size
-     *
-     * @return size
-     * @since 0.0.1
-     */
-    public int getSize() {
-        return size;
-    }
-
-    /**
      * indexToElement
      *
      * @return indexToElement
@@ -218,6 +145,26 @@ public abstract class AbstractVectorJavaBuilder<
      */
     protected @NotNull Map<Integer, E> getIndexToElement() {
         return indexToElement;
+    }
+
+    /**
+     * Size
+     *
+     * @return size
+     * @since 0.0.1
+     */
+    protected int getSize() {
+        return size;
+    }
+
+    /**
+     * Computation of absent
+     *
+     * @return computation of absent
+     * @since 0.0.1
+     */
+    public IntFunction<E> getComputationOfAbsent() {
+        return computationOfAbsent;
     }
 
     @Override

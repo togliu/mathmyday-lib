@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
@@ -29,17 +30,17 @@ public class LongVector(
 ) {
     override fun add(summand: LongVector): LongVector {
         require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return LongVector(indexToElement.map { (i, e) -> i to (e + summand.element(i)) }.toMap())
+        return LongVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
     }
 
     override fun subtract(subtrahend: LongVector): LongVector {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return LongVector(indexToElement.map { (i, e) -> i to (e + subtrahend.element(i)) }.toMap())
+        return LongVector(indexToElement.map { (i, e) -> i to (e + subtrahend[i]) }.toMap())
     }
 
     override fun dotProduct(other: LongVector): Long {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other.element(i) }.reduce { a, b -> a + b }
+        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
     }
 
     override fun scalarMultiply(scalar: Long): LongVector = LongVector(
@@ -50,7 +51,7 @@ public class LongVector(
 
     override fun orthogonalTo(other: LongVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other.element(i) }.reduce { a, b -> a + b } == 0L
+        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == 0L
     }
 
     override fun taxicabNorm(): Double = indexToElement.values.map { e -> e.absoluteValue }
@@ -65,7 +66,7 @@ public class LongVector(
 
     override fun equalsByComparing(other: LongVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.all { (i, e) -> e.compareTo(other.element(i)) == 0 }
+        return indexToElement.all { (i, e) -> e.compareTo(other[i]) == 0 }
     }
 
     public companion object

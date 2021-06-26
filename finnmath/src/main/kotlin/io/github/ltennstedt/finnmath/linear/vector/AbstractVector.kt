@@ -183,7 +183,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @throws IllegalArgumentException if [index] !in 1..[size]
      * @since 0.0.1
      */
-    public fun element(index: Int): E {
+    public operator fun get(index: Int): E {
         require(index in 1..size) { "expected index in 1..$size but index = $index" }
         @Suppress("UNCHECKED_CAST") return indexToElement[index] as E
     }

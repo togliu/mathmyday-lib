@@ -42,12 +42,10 @@ public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongV
     }
 
     @Override
-    public @NotNull LongVectorJavaBuilder nullsToZero() {
-        return computeIfAbsent(() -> 0L);
-    }
-
-    @Override
     public @NotNull LongVector build() {
+        for (int i = 1; i <= getSize(); i++) {
+            getIndexToElement().putIfAbsent(i, getComputationOfAbsent().apply(i));
+        }
         return new LongVector(getIndexToElement());
     }
 }
