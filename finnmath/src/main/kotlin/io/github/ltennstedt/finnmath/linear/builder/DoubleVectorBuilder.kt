@@ -16,33 +16,32 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
-import io.github.ltennstedt.finnmath.linear.vector.BigIntegerVector
+import io.github.ltennstedt.finnmath.linear.vector.DoubleVector
 import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import pw.forst.katlib.whenNull
-import java.math.BigInteger
 
 /**
- * Provides BigIntegerVector block
+ * Provides DoubleVector block
  *
  * @since 0.0.1
  */
-public fun bigIntegerVector(init: BigIntegerVectorBuilder.() -> Unit): BigIntegerVector {
-    val builder = BigIntegerVectorBuilder()
+public fun doubleVector(init: DoubleVectorBuilder.() -> Unit): DoubleVector {
+    val builder = DoubleVectorBuilder()
     builder.init()
     return builder.build()
 }
 
 /**
- * Builder for [BigIntegerVectors][BigIntegerVector]
+ * Builder for [DoubleVectors][DoubleVector]
  *
- * @constructor Constructs a BigIntegerVectorBuilder
+ * @constructor Constructs a DoubleVectorBuilder
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public class BigIntegerVectorBuilder : AbstractVectorBuilder<BigInteger, BigIntegerVector>() {
-    override var computationOfAbsent: (Int) -> BigInteger = { _ -> BigInteger.ZERO }
+public class DoubleVectorBuilder : AbstractVectorBuilder<Double, DoubleVector>() {
+    override var computationOfAbsent: (Int) -> Double = { _ -> 0.0 }
 
-    override fun build(): BigIntegerVector {
+    override fun build(): DoubleVector {
         check(entries.isNotEmpty()) { "entries expected not to be empty but entries = $entries}" }
         val indices = entries.map { it.index }
         val maxIndex = indices.maxOrNull() as Int
@@ -56,6 +55,6 @@ public class BigIntegerVectorBuilder : AbstractVectorBuilder<BigInteger, BigInte
                 entries.add(VectorEntry(i, computationOfAbsent(i)))
             }
         }
-        return BigIntegerVector(entries.associate { (i, e) -> i to e })
+        return DoubleVector(entries.associate { (i, e) -> i to e })
     }
 }

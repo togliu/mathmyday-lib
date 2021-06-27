@@ -39,9 +39,8 @@ public class BigIntegerVectorJavaBuilder extends
      * @throws IllegalArgumentException if {@code size < 1}
      * @since 0.0.1
      */
-    protected BigIntegerVectorJavaBuilder(final int size) {
-        super(size);
-        setComputationOfAbsent(i -> BigInteger.ZERO);
+    public BigIntegerVectorJavaBuilder(final int size) {
+        super(size, i -> BigInteger.ZERO);
     }
 
     @Override

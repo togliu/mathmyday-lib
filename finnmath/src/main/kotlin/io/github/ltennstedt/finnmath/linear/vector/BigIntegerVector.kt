@@ -16,12 +16,13 @@
 
 package io.github.ltennstedt.finnmath.linear.vector
 
-import com.google.common.annotations.Beta
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
-import org.apiguardian.api.API
+import io.github.ltennstedt.finnmath.linear.builder.BigIntegerVectorJavaBuilder
 import java.math.BigDecimal
 import java.math.BigInteger
+import org.apiguardian.api.API
 
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
@@ -97,5 +98,13 @@ public class BigIntegerVector(
         return indexToElement.all { (i, e) -> e.compareTo(other[i]) == 0 }
     }
 
-    public companion object
+    public companion object {
+        /**
+         * Returns a [BigIntegerVectorJavaBuilder] of [size]
+         *
+         * @since 0.0.1
+         */
+        @JvmStatic
+        public fun builder(size: Int): BigIntegerVectorJavaBuilder = BigIntegerVectorJavaBuilder(size)
+    }
 }

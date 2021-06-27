@@ -17,19 +17,19 @@
 package io.github.ltennstedt.finnmath.linear.builder;
 
 import com.google.common.annotations.Beta;
-import io.github.ltennstedt.finnmath.linear.vector.LongVector;
+import io.github.ltennstedt.finnmath.linear.vector.DoubleVector;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Java-style builder for {@link LongVector LongVectors}
+ * Java-style builder for {@link DoubleVector DoubleVectors}
  *
  * @author Lars Tennstedt
  * @since 0.0.1
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongVector, LongVectorJavaBuilder> {
+public class DoubleVectorJavaBuilder extends AbstractVectorJavaBuilder<Double, DoubleVector, DoubleVectorJavaBuilder> {
     /**
      * Constructor
      *
@@ -37,15 +37,15 @@ public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongV
      * @throws IllegalArgumentException if {@code size < 1}
      * @since 0.0.1
      */
-    public LongVectorJavaBuilder(final int size) {
-        super(size, i -> 0L);
+    public DoubleVectorJavaBuilder(final int size) {
+        super(size, i -> 0.0D);
     }
 
     @Override
-    public @NotNull LongVector build() {
+    public @NotNull DoubleVector build() {
         for (int i = 1; i <= getSize(); i++) {
             getIndexToElement().putIfAbsent(i, getComputationOfAbsent().apply(i));
         }
-        return new LongVector(getIndexToElement());
+        return new DoubleVector(getIndexToElement());
     }
 }

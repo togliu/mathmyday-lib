@@ -53,12 +53,15 @@ public abstract class AbstractVectorJavaBuilder<
      * Constructor
      *
      * @param size size
+     * @param computationOfAbsent computation of absent
      * @throws IllegalArgumentException if {@code size < 1}
+     * @throws NullPointerException if {@code computationOfAbsent == null}
      * @since 0.0.1
      */
-    protected AbstractVectorJavaBuilder(final int size) {
+    protected AbstractVectorJavaBuilder(final int size, final @NotNull IntFunction<E> computationOfAbsent) {
         checkArgument(size > 0, "size > 0 expected but size = %s", size);
         this.size = size;
+        this.computationOfAbsent = requireNonNull(computationOfAbsent, "computationOfAbsent");
     }
 
     /**
@@ -165,16 +168,6 @@ public abstract class AbstractVectorJavaBuilder<
      */
     protected @NotNull IntFunction<E> getComputationOfAbsent() {
         return computationOfAbsent;
-    }
-
-    /**
-     * Computation of absent
-     *
-     * @throws NullPointerException if {@code computationOfAbsent == null}
-     * @since 0.0.1
-     */
-    protected void setComputationOfAbsent(final @NotNull IntFunction<E> computationOfAbsent) {
-        this.computationOfAbsent = requireNonNull(computationOfAbsent, "computationOfAbsent");
     }
 
     @Override
