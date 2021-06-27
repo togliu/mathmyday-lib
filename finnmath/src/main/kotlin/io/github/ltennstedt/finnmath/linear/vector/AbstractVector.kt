@@ -147,7 +147,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
     public abstract fun euclideanNorm(): N
 
     /**
-     * Returns the maximum norm of this
+     * Returns the maximum norm
      *
      * @since 0.0.1
      */

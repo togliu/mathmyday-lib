@@ -64,6 +64,14 @@ public class LongVector(
 
     override fun maxNorm(): Double = indexToElement.values.map { it.absoluteValue.toDouble() }.maxOrNull() as Double
 
+    /**
+     * Returns this as [BigIntegerVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigIntegerVector(): BigIntegerVector =
+        BigIntegerVector(indexToElement.map { (i, e) -> i to e.toBigInteger() }.toMap())
+
     override fun equalsByComparing(other: LongVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.all { (i, e) -> e.compareTo(other[i]) == 0 }
