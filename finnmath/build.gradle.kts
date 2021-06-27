@@ -177,10 +177,10 @@ repositories {
 dependencies {
     api("com.google.guava:guava:30.1.1-android")
     api("org.jetbrains:annotations:21.0.1")
-    api("org.apiguardian:apiguardian-api:1.1.1")
+    api("org.apiguardian:apiguardian-api:1.1.2")
     implementation("ch.obermuhlner:big-math:2.3.0")
     implementation("com.marcinmoskala:DiscreteMathToolkit:1.0.3")
-    implementation("pw.forst:katlib:2.0.1")
+    implementation("pw.forst:katlib:2.0.2")
     val kotestVersion = "4.6.0"
     testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
     testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
