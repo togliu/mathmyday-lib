@@ -39,6 +39,7 @@ public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongV
      */
     protected LongVectorJavaBuilder(final int size) {
         super(size);
+        setComputationOfAbsent(i -> 0L);
     }
 
     @Override

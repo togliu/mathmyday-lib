@@ -47,7 +47,7 @@ public abstract class AbstractVectorJavaBuilder<
     > {
     private final @NotNull Map<Integer, E> indexToElement = new HashMap<>();
     private final int size;
-    private IntFunction<E> computationOfAbsent;
+    private @NotNull IntFunction<E> computationOfAbsent;
 
     /**
      * Constructor
@@ -163,8 +163,18 @@ public abstract class AbstractVectorJavaBuilder<
      * @return computation of absent
      * @since 0.0.1
      */
-    public IntFunction<E> getComputationOfAbsent() {
+    protected @NotNull IntFunction<E> getComputationOfAbsent() {
         return computationOfAbsent;
+    }
+
+    /**
+     * Computation of absent
+     *
+     * @throws NullPointerException if {@code computationOfAbsent == null}
+     * @since 0.0.1
+     */
+    protected void setComputationOfAbsent(final @NotNull IntFunction<E> computationOfAbsent) {
+        this.computationOfAbsent = requireNonNull(computationOfAbsent, "computationOfAbsent");
     }
 
     @Override
