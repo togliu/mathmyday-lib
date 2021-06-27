@@ -44,7 +44,7 @@ public class BigFraction @JvmOverloads constructor(
     denominator: BigInteger = BigInteger.ONE
 ) : AbstractFraction<BigInteger, BigFraction, BigFractionRange>(numerator, denominator) {
     init {
-        require(denominator != BigInteger.ZERO) { "expected denominator != 0 but denominator = $denominator" }
+        require(denominator != BigInteger.ZERO) { "denominator != 0 expected but denominator = $denominator" }
     }
 
     override val isInvertible: Boolean
@@ -106,7 +106,7 @@ public class BigFraction @JvmOverloads constructor(
         BigFraction(numerator * factor.numerator, denominator * factor.denominator)
 
     override fun divide(divisor: BigFraction): BigFraction {
-        require(divisor.isInvertible) { "expected divisor to be invertible but divisor = $divisor" }
+        require(divisor.isInvertible) { "divisor expected to be invertible but divisor = $divisor" }
         return multiply(divisor.invert())
     }
 
@@ -119,7 +119,7 @@ public class BigFraction @JvmOverloads constructor(
     override fun negate(): BigFraction = BigFraction(-numerator, denominator)
 
     override fun invert(): BigFraction {
-        check(isInvertible) { "expected this to be invertible but this = $this" }
+        check(isInvertible) { "this expected to be invertible but this = $this" }
         return BigFraction(denominator, numerator)
     }
 

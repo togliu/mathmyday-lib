@@ -50,7 +50,7 @@ public class Fraction @JvmOverloads constructor(
     denominator
 ) {
     init {
-        require(denominator != 0L) { "expected denominator != 0 but denominator = $denominator" }
+        require(denominator != 0L) { "denominator != 0 expected but denominator = $denominator" }
     }
 
     override val isInvertible: Boolean
@@ -98,7 +98,7 @@ public class Fraction @JvmOverloads constructor(
         Fraction(numerator * factor.numerator, denominator * factor.denominator)
 
     override fun divide(divisor: Fraction): Fraction {
-        require(divisor.isInvertible) { "expected divisor to be invertible but divisor = $divisor" }
+        require(divisor.isInvertible) { "divisor expected to be invertible but divisor = $divisor" }
         return multiply(divisor.invert())
     }
 
@@ -111,7 +111,7 @@ public class Fraction @JvmOverloads constructor(
     override fun negate(): Fraction = Fraction(-numerator, denominator)
 
     override fun invert(): Fraction {
-        check(isInvertible) { "expected this to be invertible but this = $this" }
+        check(isInvertible) { "this expected to be invertible but this = $this" }
         return Fraction(denominator, numerator)
     }
 

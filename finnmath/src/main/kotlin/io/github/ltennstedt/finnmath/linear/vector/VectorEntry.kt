@@ -35,7 +35,7 @@ import org.apiguardian.api.API
 @Beta
 public data class VectorEntry<E : Number>(val index: Int, val element: E) : Comparable<VectorEntry<E>>, Serializable {
     init {
-        require(index > 0) { "expected index > 0 but index = $index" }
+        require(index > 0) { "index > 0 expected but index = $index" }
     }
 
     override fun compareTo(other: VectorEntry<E>): Int = COMPARATOR.compare(this, other)
@@ -43,6 +43,8 @@ public data class VectorEntry<E : Number>(val index: Int, val element: E) : Comp
     public companion object {
         /**
          * [Comparator]
+         *
+         * @since 0.0.1
          */
         @JvmField
         public val COMPARATOR: Comparator<VectorEntry<*>> = compareBy { it.index }

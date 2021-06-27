@@ -86,7 +86,7 @@ public class Complex @JvmOverloads constructor(
     }
 
     override fun divide(divisor: Complex): Complex {
-        require(divisor.isUnit) { "expected divisor to be a unit but divisor = $divisor" }
+        require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
         val denominator = divisor.real.pow(2) + divisor.imaginary.pow(2)
         val newReal = (real * divisor.real + imaginary * divisor.imaginary) / denominator
         val newImaginary = (imaginary * divisor.real - real * divisor.imaginary) / denominator
@@ -113,46 +113,46 @@ public class Complex @JvmOverloads constructor(
     override fun conjugate(): Complex = Complex(real, -imaginary)
 
     override fun argument(): Double {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         val value = real / abs()
         val acos = acos(value)
         return if (imaginary < 0.0) -acos else acos
     }
 
     override fun toPolarForm(): PolarForm {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         return PolarForm(abs(), argument())
     }
 
     /**
-     * Returns the [BigPolarForm]
+     * Returns this as [BigPolarForm]
      *
      * @since 0.0.1
      */
     public fun toBigPolarForm(): BigPolarForm {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         return BigPolarForm(abs(), argument())
     }
 
     /**
-     * Returns the [BigPolarForm] based on the [mathContext]
+     * Returns this as [BigPolarForm] based on the [mathContext]
      *
      * @since 0.0.1
      */
     public fun toBigPolarForm(mathContext: MathContext): BigPolarForm {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         return BigPolarForm(abs(), argument(), mathContext)
     }
 
     /**
-     * Returns the [BigComplex]
+     * Returns this as [BigComplex]
      *
      * @since 0.0.1
      */
     public fun toBigComplex(): BigComplex = BigComplex(real, imaginary)
 
     /**
-     * Returns the [BigComplex] based on the [mathContext]
+     * Returns this as [BigComplex] based on the [mathContext]
      *
      * @since 0.0.1
      */

@@ -69,7 +69,7 @@ public data class BigPolarForm(
     }
 
     /**
-     * Returns the corresponding [BigComplex] of this based on the [mathContext]
+     * Returns this as [BigComplex] based on the [mathContext]
      *
      * @since 0.0.1
      */

@@ -72,9 +72,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
     public val size: Int get() = indexToElement.size
 
     init {
-        require(indexToElement.isNotEmpty()) {
-            "expected map.isNotEmpty() but map.isNotEmpty() = ${indexToElement.isNotEmpty()}"
-        }
+        require(indexToElement.isNotEmpty()) { "indexToElement expected not to be empty but map = $indexToElement" }
         val expectedIndices = (1..size).toSet()
         require(indices == expectedIndices) {
             "expected indices == expectedIndices but $indices != $expectedIndices"
@@ -162,7 +160,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @since 0.0.1
      */
     public fun euclideanDistance(other: V): N {
-        require(size == other.size) { "expected equal sizes but $size != ${other.size}" }
+        require(size == other.size) { "Equal sizes expected but $size != ${other.size}" }
         return subtract(other).euclideanNorm()
     }
 
@@ -173,7 +171,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @since 0.0.1
      */
     public fun maxDistance(other: V): N {
-        require(size == other.size) { "expected equal sizes but $size != ${other.size}" }
+        require(size == other.size) { "Equal sizes expected but $size != ${other.size}" }
         return subtract(other).maxNorm()
     }
 
@@ -184,7 +182,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @since 0.0.1
      */
     public operator fun get(index: Int): E {
-        require(index in 1..size) { "expected index in 1..$size but index = $index" }
+        require(index in 1..size) { "index in 1..$size expected but index = $index" }
         @Suppress("UNCHECKED_CAST") return indexToElement[index] as E
     }
 
@@ -195,7 +193,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @since 0.0.1
      */
     public fun entry(index: Int): VectorEntry<E> {
-        require(index in 1..size) { "expected index in 1..$size but index = $index" }
+        require(index in 1..size) { "index in 1..$size expected but index = $index" }
         @Suppress("UNCHECKED_CAST") return VectorEntry(index, indexToElement[index] as E)
     }
 

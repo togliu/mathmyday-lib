@@ -38,7 +38,7 @@ public data class BigFractionRange(
 ) : AbstractFractionRange<BigInteger, BigFraction, BigFractionRange>() {
     public companion object {
         /**
-         * Empty [BigFractionRange]
+         * Empty BigFractionRange
          *
          * @since 0.0.1
          */

@@ -42,15 +42,13 @@ public class LongVectorBuilder : AbstractVectorBuilder<Long, LongVector>() {
     override var computationOfAbsent: (Int) -> Long = { _ -> 0L }
 
     override fun build(): LongVector {
-        check(entries.isNotEmpty()) {
-            "expected entries not to be empty but entries.isNotEmpty() = ${entries.isNotEmpty()}"
-        }
+        check(entries.isNotEmpty()) { "entries expected not to be empty but entries = $entries}" }
         val indices = entries.map { it.index }
         val maxIndex = indices.maxOrNull() as Int
-        check(maxIndex <= size) { "expected maxIndex <= size but maxIndex > $maxIndex" }
+        check(maxIndex <= size) { "maxIndex <= size expected but $maxIndex < $size" }
         val distinctIndices = indices.distinct()
         check(distinctIndices.size == indices.size) {
-            "expected indices.distinct().size == indices.size but ${distinctIndices.size} != ${indices.size}"
+            "indices.distinct().size == indices.size expected but ${distinctIndices.size} != ${indices.size}"
         }
         for (i in 1..size) {
             entries.filter { it.index == i }.map { it.element }.singleOrNull().whenNull {

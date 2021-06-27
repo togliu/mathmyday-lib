@@ -34,6 +34,11 @@ public class MutableVectorEntry<E : Number> {
     public var index: Int = 0
     public var element: E? = null
 
+    /**
+     * Returns this as [VectorEntry]
+     *
+     * @since 0.0.1
+     */
     public fun toVectorEntry(): VectorEntry<E> = VectorEntry(index, element as E)
 
     override fun toString(): String =

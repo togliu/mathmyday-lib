@@ -68,7 +68,7 @@ public class Gaussian @JvmOverloads constructor(
     }
 
     override fun divide(divisor: Gaussian): Complex {
-        require(divisor.isUnit) { "expected divisor to be a unit but divisor = $divisor" }
+        require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
         val d = divisor.real.toDouble().pow(2) + divisor.imaginary.toDouble().pow(2)
         val r = (real * divisor.real + imaginary * divisor.imaginary).toDouble() / d
         val i = (imaginary * divisor.real - real * divisor.imaginary).toDouble() / d
@@ -84,7 +84,7 @@ public class Gaussian @JvmOverloads constructor(
     override fun negate(): Gaussian = Gaussian(-real, -imaginary)
 
     override fun invert(): Complex {
-        check(isUnit) { "expected this to be a unit but this = $this" }
+        check(isUnit) { "this expected to be a unit but this = $this" }
         return ONE.divide(this)
     }
 
@@ -95,14 +95,14 @@ public class Gaussian @JvmOverloads constructor(
     override fun conjugate(): Gaussian = Gaussian(real, -imaginary)
 
     override fun argument(): Double {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         val value = real.toDouble() / abs()
         val acos = acos(value)
         return if (imaginary < 0L) -acos else acos
     }
 
     override fun toPolarForm(): PolarForm {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         return PolarForm(abs(), argument())
     }
 
@@ -113,7 +113,7 @@ public class Gaussian @JvmOverloads constructor(
      * @since 0.0.1
      */
     public fun toBigPolarForm(): BigPolarForm {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         return BigPolarForm(abs().toBigDecimal(), argument().toBigDecimal())
     }
 
@@ -124,26 +124,26 @@ public class Gaussian @JvmOverloads constructor(
      * @since 0.0.1
      */
     public fun toBigPolarForm(mathContext: MathContext): BigPolarForm {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         return BigPolarForm(abs().toBigDecimal(mathContext), argument().toBigDecimal(mathContext))
     }
 
     /**
-     * Returns the [Complex]
+     * Returns this as [Complex]
      *
      * @since 0.0.1
      */
     public fun toComplex(): Complex = Complex(real, imaginary)
 
     /**
-     * Returns the [BigGaussian]
+     * Returns this as [BigGaussian]
      *
      * @since 0.0.1
      */
     public fun toBigGaussian(): BigGaussian = BigGaussian(real, imaginary)
 
     /**
-     * Returns the [BigComplex]
+     * Returns this as [BigComplex]
      *
      * @since 0.0.1
      */

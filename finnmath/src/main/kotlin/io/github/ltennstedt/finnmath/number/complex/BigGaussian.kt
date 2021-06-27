@@ -80,7 +80,7 @@ public class BigGaussian @JvmOverloads constructor(
     }
 
     override fun divide(divisor: BigGaussian): BigComplex {
-        require(divisor.isUnit) { "expected divisor to be a unit but divisor = $divisor" }
+        require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
         val d = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal()
         val r = (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal() / d
         val i = (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal() / d
@@ -94,7 +94,7 @@ public class BigGaussian @JvmOverloads constructor(
      * @since 0.0.1
      */
     public fun divide(divisor: BigGaussian, context: FinnmathContext): BigComplex {
-        require(divisor.isUnit) { "expected divisor to be a unit but divisor = $divisor" }
+        require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
         val d = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal(context.scale, context.mathContext)
         val r =
             (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / d
@@ -123,7 +123,7 @@ public class BigGaussian @JvmOverloads constructor(
     override fun negate(): BigGaussian = BigGaussian(-real, -imaginary)
 
     override fun invert(): BigComplex {
-        check(isUnit) { "expected this to be a unit but this = $this" }
+        check(isUnit) { "this expected to be a unit but this = $this" }
         return ONE.divide(this)
     }
 
@@ -134,7 +134,7 @@ public class BigGaussian @JvmOverloads constructor(
      * @since 0.0.1
      */
     public fun invert(context: FinnmathContext): BigComplex {
-        check(isUnit) { "expected this to be a unit but this = $this" }
+        check(isUnit) { "this expected to be a unit but this = $this" }
         return ONE.divide(this, context)
     }
 
@@ -159,7 +159,7 @@ public class BigGaussian @JvmOverloads constructor(
     override fun conjugate(): BigGaussian = BigGaussian(real, -imaginary)
 
     override fun argument(): BigDecimal {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         val value = real.toBigDecimal().divide(abs())
         val acos = value.acos()
         return if (imaginary < BigInteger.ZERO) -acos else acos
@@ -172,14 +172,14 @@ public class BigGaussian @JvmOverloads constructor(
      * @since 0.0.1
      */
     public fun argument(context: FinnmathContext): BigDecimal {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         val value = real.toBigDecimal(context.scale, context.mathContext).divide(abs(context.mathContext))
         val acos = value.acos(context.mathContext)
         return if (imaginary < BigInteger.ZERO) -acos else acos
     }
 
     override fun toPolarForm(): BigPolarForm {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         return BigPolarForm(abs(), argument())
     }
 
@@ -190,7 +190,7 @@ public class BigGaussian @JvmOverloads constructor(
      * @since 0.0.1
      */
     public fun toPolarForm(context: FinnmathContext): BigPolarForm {
-        check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
+        check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
         return BigPolarForm(abs(context.mathContext), argument(context))
     }
 

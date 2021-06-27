@@ -145,7 +145,7 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
     override fun toChar(): Char = real.toChar()
 
     /**
-     * Returns the [P]
+     * Returns this as polar form
      *
      * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1

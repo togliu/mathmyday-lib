@@ -212,7 +212,7 @@ public class BigComplex @JvmOverloads constructor(
     }
 
     override fun divide(divisor: BigComplex): BigComplex {
-        require(divisor.isUnit) { "expected divisor to be a unit but divisor = $divisor" }
+        require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
         val denominator = divisor.real.pow(2) + divisor.imaginary.pow(2)
         val newReal = (real * divisor.real + imaginary * divisor.imaginary) / denominator
         val newImaginary = (imaginary * divisor.real - real * divisor.imaginary) / denominator
@@ -226,7 +226,7 @@ public class BigComplex @JvmOverloads constructor(
      * @since 0.0.1
      */
     public fun divide(divisor: BigComplex, mathContext: MathContext): BigComplex {
-        require(divisor.isUnit) { "expected divisor to be a unit but divisor = $divisor" }
+        require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
         val denominator = divisor.real.pow(2, mathContext).add(divisor.imaginary.pow(2, mathContext), mathContext)
         val newReal =
             real.multiply(divisor.real, mathContext)
@@ -336,7 +336,7 @@ public class BigComplex @JvmOverloads constructor(
     }
 
     /**
-     * Returns the [BigPolarForm]
+     * Returns this as [BigPolarForm]
      *
      * @throws IllegalStateException if this is equal to 0 by comparing
      * @since 0.0.1

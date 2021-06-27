@@ -23,7 +23,7 @@ public abstract class AbstractPolarForm<N : Comparable<N>, T : AbstractPolarForm
     public open val angular: N
 ) : Serializable {
     /**
-     * Returns the [C]
+     * Returns this as complex number
      *
      * @since 0.0.1
      */
