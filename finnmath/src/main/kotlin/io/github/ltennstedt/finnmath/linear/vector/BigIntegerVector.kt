@@ -70,7 +70,7 @@ public class BigIntegerVector(
         .reduce { a, b -> a + b }
         .toBigDecimal(context.scale, context.mathContext)
 
-    override fun euclideanNormPow2(): BigInteger = dotProduct(this)
+    override fun euclideanNormPow2(): BigInteger = this * this
 
     override fun euclideanNorm(): BigDecimal = euclideanNormPow2().toBigDecimal().sqrt()
 

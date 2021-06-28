@@ -192,11 +192,10 @@ public class BigComplex @JvmOverloads constructor(
             imaginary.subtract(subtrahend.imaginary, mathContext)
         )
 
-    override fun multiply(factor: BigComplex): BigComplex {
-        val newReal = real * factor.real - imaginary * factor.imaginary
-        val newImaginary = real * factor.imaginary + imaginary * factor.real
-        return BigComplex(newReal, newImaginary)
-    }
+    override fun multiply(factor: BigComplex): BigComplex = BigComplex(
+        real * factor.real - imaginary * factor.imaginary,
+        real * factor.imaginary + imaginary * factor.real
+    )
 
     /**
      * Returns the product of this and the [factor] based on the [mathContext]
@@ -204,19 +203,20 @@ public class BigComplex @JvmOverloads constructor(
      * @since 0.0.1
      */
     public fun multiply(factor: BigComplex, mathContext: MathContext): BigComplex {
-        val newReal = real.multiply(factor.real, mathContext)
+        val re = real.multiply(factor.real, mathContext)
             .subtract(imaginary.multiply(factor.imaginary, mathContext), mathContext)
-        val newImaginary =
+        val im =
             real.multiply(factor.imaginary, mathContext).add(imaginary.multiply(factor.real, mathContext), mathContext)
-        return BigComplex(newReal, newImaginary)
+        return BigComplex(re, im)
     }
 
     override fun divide(divisor: BigComplex): BigComplex {
         require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
-        val denominator = divisor.real.pow(2) + divisor.imaginary.pow(2)
-        val newReal = (real * divisor.real + imaginary * divisor.imaginary) / denominator
-        val newImaginary = (imaginary * divisor.real - real * divisor.imaginary) / denominator
-        return BigComplex(newReal, newImaginary)
+        val den = divisor.real.pow(2) + divisor.imaginary.pow(2)
+        return BigComplex(
+            (real * divisor.real + imaginary * divisor.imaginary) / den,
+            (imaginary * divisor.real - real * divisor.imaginary) / den
+        )
     }
 
     /**
@@ -227,22 +227,20 @@ public class BigComplex @JvmOverloads constructor(
      */
     public fun divide(divisor: BigComplex, mathContext: MathContext): BigComplex {
         require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
-        val denominator = divisor.real.pow(2, mathContext).add(divisor.imaginary.pow(2, mathContext), mathContext)
-        val newReal =
-            real.multiply(divisor.real, mathContext)
-                .add(imaginary.multiply(divisor.imaginary, mathContext), mathContext)
-                .divide(denominator, mathContext)
-        val newImaginary =
-            imaginary.multiply(divisor.real, mathContext)
-                .subtract(real.multiply(divisor.imaginary, mathContext), mathContext)
-                .divide(denominator, mathContext)
-        return BigComplex(newReal, newImaginary)
+        val den = divisor.real.pow(2, mathContext).add(divisor.imaginary.pow(2, mathContext), mathContext)
+        val re = real.multiply(divisor.real, mathContext)
+            .add(imaginary.multiply(divisor.imaginary, mathContext), mathContext)
+            .divide(den, mathContext)
+        val im = imaginary.multiply(divisor.real, mathContext)
+            .subtract(real.multiply(divisor.imaginary, mathContext), mathContext)
+            .divide(den, mathContext)
+        return BigComplex(re, im)
     }
 
     override fun pow(exponent: Int): BigComplex = when {
-        exponent < 0 -> multiply(pow(-exponent - 1)).invert()
+        exponent < 0 -> (this * pow(-exponent - 1)).invert()
         exponent == 0 -> ONE
-        else -> multiply(pow(exponent - 1))
+        else -> this * pow(exponent - 1)
     }
 
     /**
@@ -268,7 +266,7 @@ public class BigComplex @JvmOverloads constructor(
 
     override fun invert(): BigComplex {
         check(isUnit) { "expected this to be a unit but this = $this" }
-        return ONE.divide(this)
+        return ONE / this
     }
 
     /**
@@ -312,7 +310,7 @@ public class BigComplex @JvmOverloads constructor(
 
     override fun argument(): BigDecimal {
         check(doesNotEqualByComparing(ZERO)) { "expected this != 0 but this = $this" }
-        val value = real.divide(abs())
+        val value = real / abs()
         val acos = BigDecimalMath.acos(value, MathContext.UNLIMITED)
         return if (imaginary < BigDecimal.ZERO) -acos else acos
     }

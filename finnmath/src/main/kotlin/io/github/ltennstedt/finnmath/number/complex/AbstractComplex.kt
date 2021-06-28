@@ -166,18 +166,42 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
      */
     public fun doesNotEqualByComparing(other: T): Boolean = !equalsByComparing(other)
 
-    /**
-     * Returns [real]
-     *
-     * @since 0.0.1
-     */
+    public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.plus(
+        summand: T
+    ): T = add(summand)
+
+    public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.minus(
+        subtrahend: T
+    ): T = subtract(subtrahend)
+
+    public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.times(
+        factor: T
+    ): T = multiply(factor)
+
+    public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.div(
+        divisor: T
+    ): Q = divide(divisor)
+
+    @Suppress("UNCHECKED_CAST")
+    public operator fun <
+        N : Number,
+        T : AbstractComplex<N, T, Q, A, P>,
+        Q,
+        A,
+        P
+        > AbstractComplex<N, T, Q, A, P>.unaryPlus(): T = this as T
+
+    @Suppress("UNCHECKED_CAST")
+    public operator fun <
+        N : Number,
+        T : AbstractComplex<N, T, Q, A, P>,
+        Q,
+        A,
+        P
+        > AbstractComplex<N, T, Q, A, P>.unaryMinus(): T = negate()
+
     public fun operator1(): N = real
 
-    /**
-     * Returns [imaginary]
-     *
-     * @since 0.0.1
-     */
     public fun operator2(): N = imaginary
 
     override fun hashCode(): Int = Objects.hash(real, imaginary)

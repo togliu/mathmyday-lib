@@ -73,5 +73,6 @@ public abstract class AbstractVectorBuilder<E : Number, V> {
     override fun toString(): String = MoreObjects.toStringHelper(this)
         .add("size", size)
         .add("entries", entries)
+        .add("computationOfAbsent", computationOfAbsent)
         .toString()
 }

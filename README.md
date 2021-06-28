@@ -134,8 +134,8 @@ class C {
         // classic builders for vectors and matrices with a fluent API        
         LongVector.builder(5)
                 .computationOfAbsent(i -> random.nextLong())
-                .put(2, 1L)
-                .put(4, 2L)
+                .set(2, 1L)
+                .set(4, 2L)
                 .build();
     }
 }

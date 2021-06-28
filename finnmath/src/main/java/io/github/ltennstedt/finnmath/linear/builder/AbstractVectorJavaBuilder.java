@@ -58,28 +58,11 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws NullPointerException if {@code computationOfAbsent == null}
      * @since 0.0.1
      */
+    @SuppressWarnings("java:S1192")
     protected AbstractVectorJavaBuilder(final int size, final @NotNull IntFunction<E> computationOfAbsent) {
         checkArgument(size > 0, "size > 0 expected but size = %s", size);
         this.size = size;
         this.computationOfAbsent = requireNonNull(computationOfAbsent, "computationOfAbsent");
-    }
-
-    /**
-     * Puts the element at the first free index and returns this
-     *
-     * @param element element
-     * @return this
-     * @throws NullPointerException if {@code element == null}
-     * @throws ArithmeticException if {@code size + 1} overflows
-     * @since 0.0.1
-     */
-    public @NotNull B put(final @NotNull E element) {
-        requireNonNull(element, "element");
-        final int index = Math.addExact(indexToElement.size(), 1);
-        checkArgument(0 < index && index <= size, "0 < index <= size expected but index=%s", index);
-        indexToElement.put(index, element);
-        @SuppressWarnings("unchecked") final B casted = (B) this;
-        return casted;
     }
 
     /**
@@ -91,7 +74,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws IllegalArgumentException if {@code indey < 1 || index > size}
      * @throws NullPointerException if {@code element == null}
      */
-    public @NotNull B put(final int index, final @NotNull E element) {
+    public @NotNull B set(final int index, final @NotNull E element) {
         checkArgument(0 < index && index <= size, "0 < index <= size expected but index = %s", index);
         requireNonNull(element, "element");
         indexToElement.put(index, element);
@@ -108,7 +91,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws IllegalArgumentException if {@code entry.index < 1 || entry.index > size}
      * @since 0.0.1
      */
-    public @NotNull B put(final @NotNull VectorEntry<E> entry) {
+    public @NotNull B set(final @NotNull VectorEntry<E> entry) {
         requireNonNull(entry, "entry");
         checkArgument(
             0 < entry.getIndex() && entry.getIndex() <= size,
@@ -172,6 +155,10 @@ public abstract class AbstractVectorJavaBuilder<
 
     @Override
     public @NotNull String toString() {
-        return MoreObjects.toStringHelper(this).add("size", size).add("indexToElement", indexToElement).toString();
+        return MoreObjects.toStringHelper(this)
+            .add("size", size)
+            .add("indexToElement", indexToElement)
+            .add("computationOfAbsent", computationOfAbsent)
+            .toString();
     }
 }

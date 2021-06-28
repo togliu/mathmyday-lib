@@ -79,31 +79,31 @@ public class Complex @JvmOverloads constructor(
         real - subtrahend.real, imaginary - subtrahend.imaginary
     )
 
-    override fun multiply(factor: Complex): Complex {
-        val newReal = real * factor.real - imaginary * factor.imaginary
-        val newImaginary = real * factor.imaginary + imaginary * factor.real
-        return Complex(newReal, newImaginary)
-    }
+    override fun multiply(factor: Complex): Complex = Complex(
+        real * factor.real - imaginary * factor.imaginary,
+        real * factor.imaginary + imaginary * factor.real
+    )
 
     override fun divide(divisor: Complex): Complex {
         require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
-        val denominator = divisor.real.pow(2) + divisor.imaginary.pow(2)
-        val newReal = (real * divisor.real + imaginary * divisor.imaginary) / denominator
-        val newImaginary = (imaginary * divisor.real - real * divisor.imaginary) / denominator
-        return Complex(newReal, newImaginary)
+        val den = divisor.real.pow(2) + divisor.imaginary.pow(2)
+        return Complex(
+            (real * divisor.real + imaginary * divisor.imaginary) / den,
+            (imaginary * divisor.real - real * divisor.imaginary) / den
+        )
     }
 
     override fun pow(exponent: Int): Complex = when {
-        exponent < 0 -> multiply(pow(-exponent - 1)).invert()
+        exponent < 0 -> (this * pow(-exponent - 1)).invert()
         exponent == 0 -> ONE
-        else -> multiply(pow(exponent - 1))
+        else -> this * pow(exponent - 1)
     }
 
     override fun negate(): Complex = Complex(-real, -imaginary)
 
     override fun invert(): Complex {
         check(isUnit) { "expected this to be a unit but this = $this" }
-        return ONE.divide(this)
+        return ONE / this
     }
 
     override fun absPow2(): Double = real.pow(2) + imaginary.pow(2)

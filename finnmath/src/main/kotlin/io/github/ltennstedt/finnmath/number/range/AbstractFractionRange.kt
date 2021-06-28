@@ -17,7 +17,6 @@
 package io.github.ltennstedt.finnmath.number.range
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
-import io.github.ltennstedt.finnmath.extension.minus
 import io.github.ltennstedt.finnmath.number.fraction.AbstractFraction
 import java.io.Serializable
 import org.apiguardian.api.API
@@ -44,7 +43,7 @@ public abstract class AbstractFractionRange<
      * @since 0.0.1
      */
     public val length: T
-        get() = (endInclusive - start).abs()
+        get() = (endInclusive.subtract(start)).abs()
 
     public companion object {
         private const val serialVersionUID = 1L

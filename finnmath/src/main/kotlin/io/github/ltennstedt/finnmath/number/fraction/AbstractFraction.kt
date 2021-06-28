@@ -305,18 +305,38 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
      */
     public abstract fun toBigDecimal(): BigDecimal
 
-    /**
-     * Returns [numerator]
-     *
-     * @since 0.0.1
-     */
+    public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.plus(
+        summand: T
+    ): T = add(summand)
+
+    public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.minus(
+        subtrahend: T
+    ): T = subtract(subtrahend)
+
+    public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.times(
+        factor: T
+    ): T = multiply(factor)
+
+    public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.div(
+        divisor: T
+    ): T = divide(divisor)
+
+    @Suppress("UNCHECKED_CAST")
+    public operator fun <
+        N : Number,
+        T : AbstractFraction<N, T, R>,
+        R : ClosedRange<T>
+        > AbstractFraction<N, T, R>.unaryPlus(): T = this as T
+
+    @Suppress("UNCHECKED_CAST")
+    public operator fun <
+        N : Number,
+        T : AbstractFraction<N, T, R>,
+        R : ClosedRange<T>
+        > AbstractFraction<N, T, R>.unaryMinus(): T = negate()
+
     public fun operator1(): N = numerator
 
-    /**
-     * Returns [denominator]
-     *
-     * @since 0.0.1
-     */
     public fun operator2(): N = denominator
 
     override fun hashCode(): Int = Objects.hash(numerator, denominator)

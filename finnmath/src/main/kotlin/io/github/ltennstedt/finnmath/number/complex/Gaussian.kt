@@ -61,31 +61,31 @@ public class Gaussian @JvmOverloads constructor(
         imaginary - subtrahend.imaginary
     )
 
-    override fun multiply(factor: Gaussian): Gaussian {
-        val newReal = real * factor.real - imaginary * factor.imaginary
-        val newImaginary = real * factor.imaginary + imaginary * factor.real
-        return Gaussian(newReal, newImaginary)
-    }
+    override fun multiply(factor: Gaussian): Gaussian = Gaussian(
+        real * factor.real - imaginary * factor.imaginary,
+        real * factor.imaginary + imaginary * factor.real
+    )
 
     override fun divide(divisor: Gaussian): Complex {
         require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
-        val d = divisor.real.toDouble().pow(2) + divisor.imaginary.toDouble().pow(2)
-        val r = (real * divisor.real + imaginary * divisor.imaginary).toDouble() / d
-        val i = (imaginary * divisor.real - real * divisor.imaginary).toDouble() / d
-        return Complex(r, i)
+        val den = divisor.real.toDouble().pow(2) + divisor.imaginary.toDouble().pow(2)
+        return Complex(
+            (real * divisor.real + imaginary * divisor.imaginary).toDouble() / den,
+            (imaginary * divisor.real - real * divisor.imaginary).toDouble() / den
+        )
     }
 
     override fun pow(exponent: Int): Complex = when {
-        exponent < 0 -> toComplex().multiply(pow(-exponent - 1)).invert()
+        exponent < 0 -> (toComplex() * pow(-exponent - 1)).invert()
         exponent == 0 -> Complex.ONE
-        else -> toComplex().multiply(pow(exponent - 1))
+        else -> toComplex() * pow(exponent - 1)
     }
 
     override fun negate(): Gaussian = Gaussian(-real, -imaginary)
 
     override fun invert(): Complex {
         check(isUnit) { "this expected to be a unit but this = $this" }
-        return ONE.divide(this)
+        return ONE / this
     }
 
     override fun absPow2(): Long = real * real + imaginary * imaginary

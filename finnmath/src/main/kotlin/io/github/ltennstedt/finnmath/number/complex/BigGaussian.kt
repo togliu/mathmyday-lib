@@ -73,18 +73,18 @@ public class BigGaussian @JvmOverloads constructor(
         imaginary - subtrahend.imaginary
     )
 
-    override fun multiply(factor: BigGaussian): BigGaussian {
-        val newReal = real * factor.real - imaginary * factor.imaginary
-        val newImaginary = real * factor.imaginary + imaginary * factor.real
-        return BigGaussian(newReal, newImaginary)
-    }
+    override fun multiply(factor: BigGaussian): BigGaussian = BigGaussian(
+        real * factor.real - imaginary * factor.imaginary,
+        real * factor.imaginary + imaginary * factor.real
+    )
 
     override fun divide(divisor: BigGaussian): BigComplex {
         require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
-        val d = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal()
-        val r = (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal() / d
-        val i = (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal() / d
-        return BigComplex(r, i)
+        val den = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal()
+        return BigComplex(
+            (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal() / den,
+            (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal() / den
+        )
     }
 
     /**
@@ -95,18 +95,18 @@ public class BigGaussian @JvmOverloads constructor(
      */
     public fun divide(divisor: BigGaussian, context: FinnmathContext): BigComplex {
         require(divisor.isUnit) { "divisor expected to be a unit but divisor = $divisor" }
-        val d = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal(context.scale, context.mathContext)
-        val r =
-            (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / d
-        val i =
-            (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / d
-        return BigComplex(r, i)
+        val den = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal(context.scale, context.mathContext)
+        val re =
+            (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / den
+        val im =
+            (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / den
+        return BigComplex(re, im)
     }
 
     override fun pow(exponent: Int): BigComplex = when {
-        exponent < 0 -> toBigComplex().multiply(pow(-exponent - 1)).invert()
+        exponent < 0 -> (toBigComplex() * pow(-exponent - 1)).invert()
         exponent == 0 -> BigComplex.ONE
-        else -> toBigComplex().multiply(pow(exponent - 1))
+        else -> toBigComplex() * pow(exponent - 1)
     }
 
     /**
@@ -124,7 +124,7 @@ public class BigGaussian @JvmOverloads constructor(
 
     override fun invert(): BigComplex {
         check(isUnit) { "this expected to be a unit but this = $this" }
-        return ONE.divide(this)
+        return ONE / this
     }
 
     /**
@@ -160,7 +160,7 @@ public class BigGaussian @JvmOverloads constructor(
 
     override fun argument(): BigDecimal {
         check(doesNotEqualByComparing(ZERO)) { "this != 0 expected but this = $this" }
-        val value = real.toBigDecimal().divide(abs())
+        val value = real.toBigDecimal() / abs()
         val acos = value.acos()
         return if (imaginary < BigInteger.ZERO) -acos else acos
     }

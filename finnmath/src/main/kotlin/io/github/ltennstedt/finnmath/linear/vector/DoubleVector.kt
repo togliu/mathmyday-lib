@@ -16,11 +16,11 @@
 
 package io.github.ltennstedt.finnmath.linear.vector
 
-import com.google.common.annotations.Beta
+import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import io.github.ltennstedt.finnmath.linear.builder.DoubleVectorJavaBuilder
-import org.apiguardian.api.API
 import kotlin.math.absoluteValue
 import kotlin.math.sqrt
+import org.apiguardian.api.API
 
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
@@ -59,7 +59,7 @@ public class DoubleVector(
         .reduce { a, b -> a + b }
         .toDouble()
 
-    override fun euclideanNormPow2(): Double = dotProduct(this)
+    override fun euclideanNormPow2(): Double = this * this
 
     override fun euclideanNorm(): Double = sqrt(euclideanNormPow2())
 

@@ -161,7 +161,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      */
     public fun euclideanDistance(other: V): N {
         require(size == other.size) { "Equal sizes expected but $size != ${other.size}" }
-        return subtract(other).euclideanNorm()
+        return (this - other).euclideanNorm()
     }
 
     /**
@@ -172,7 +172,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      */
     public fun maxDistance(other: V): N {
         require(size == other.size) { "Equal sizes expected but $size != ${other.size}" }
-        return subtract(other).maxNorm()
+        return (this - other).maxNorm()
     }
 
     /**
@@ -194,11 +194,35 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      */
     public fun entry(index: Int): VectorEntry<E> {
         require(index in 1..size) { "index in 1..$size expected but index = $index" }
-        @Suppress("UNCHECKED_CAST") return VectorEntry(index, indexToElement[index] as E)
+        @Suppress("UNCHECKED_CAST") return VectorEntry(index, this[index])
     }
 
+    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.plus(
+        summand: V
+    ): V = add(summand)
+
+    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.minus(
+        subtrahend: V
+    ): V = subtract(subtrahend)
+
+    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.times(
+        other: V
+    ): E = dotProduct(other)
+
+    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.times(
+        scalar: E
+    ): V = scalarMultiply(scalar)
+
+    @Suppress("UNCHECKED_CAST")
+    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.unaryPlus(): V =
+        this as V
+
+    @Suppress("UNCHECKED_CAST")
+    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.unaryMinus(): V =
+        negate()
+
     /**
-     * Returns if [element] is contained in [V]
+     * Returns if [element] is contained in this
      *
      * @since 0.0.1
      */
@@ -228,7 +252,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
         return indexToElement == other.indexToElement
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("map", indexToElement).toString()
+    override fun toString(): String = MoreObjects.toStringHelper(this).add("indexToElement", indexToElement).toString()
 
     public companion object {
         private const val serialVersionUID = 1L

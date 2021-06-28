@@ -59,7 +59,7 @@ public class LongVector(
         .reduce { a, b -> a + b }
         .toDouble()
 
-    override fun euclideanNormPow2(): Long = dotProduct(this)
+    override fun euclideanNormPow2(): Long = this * this
 
     override fun euclideanNorm(): Double = sqrt(euclideanNormPow2().toDouble())
 
