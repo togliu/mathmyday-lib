@@ -36,7 +36,7 @@ public class DoubleVector(
 
     override fun subtract(subtrahend: DoubleVector): DoubleVector {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return DoubleVector(indexToElement.map { (i, e) -> i to (e + subtrahend[i]) }.toMap())
+        return DoubleVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
     }
 
     override fun dotProduct(other: DoubleVector): Double {

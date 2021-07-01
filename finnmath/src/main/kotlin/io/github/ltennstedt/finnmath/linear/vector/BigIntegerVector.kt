@@ -38,7 +38,7 @@ public class BigIntegerVector(
 
     override fun subtract(subtrahend: BigIntegerVector): BigIntegerVector {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return BigIntegerVector(indexToElement.map { (i, e) -> i to (e + subtrahend[i]) }.toMap())
+        return BigIntegerVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
     }
 
     override fun dotProduct(other: BigIntegerVector): BigInteger {

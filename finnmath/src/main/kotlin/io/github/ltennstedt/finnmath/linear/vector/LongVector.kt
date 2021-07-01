@@ -36,7 +36,7 @@ public class LongVector(
 
     override fun subtract(subtrahend: LongVector): LongVector {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return LongVector(indexToElement.map { (i, e) -> i to (e + subtrahend[i]) }.toMap())
+        return LongVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
     }
 
     override fun dotProduct(other: LongVector): Long {
