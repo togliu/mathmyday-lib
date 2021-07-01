@@ -16,15 +16,15 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
-import ch.obermuhlner.math.big.BigDecimalMath // ktlint-disable import-ordering
+import ch.obermuhlner.math.big.BigDecimalMath
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
+import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
-import org.apiguardian.api.API
 
 /**
  * Immutable implementation of a complex number which uses [BigDecimal] as type for its real and imaginary part

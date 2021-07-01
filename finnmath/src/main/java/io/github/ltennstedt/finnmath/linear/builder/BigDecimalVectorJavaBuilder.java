@@ -46,7 +46,9 @@ public class BigDecimalVectorJavaBuilder extends
     @Override
     public @NotNull BigDecimalVector build() {
         for (int i = 1; i <= getSize(); i++) {
-            getIndexToElement().putIfAbsent(i, getComputationOfAbsent().apply(i));
+            if (get(i) == null) {
+                set(i, getComputationOfAbsent().apply(i));
+            }
         }
         return new BigDecimalVector(getIndexToElement());
     }

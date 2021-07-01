@@ -16,10 +16,10 @@
 
 package io.github.ltennstedt.finnmath.linear.vector
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
-import java.io.Serializable
 import org.apiguardian.api.API
+import java.io.Serializable
 
 /**
  * Immutable implementation of a vector entry

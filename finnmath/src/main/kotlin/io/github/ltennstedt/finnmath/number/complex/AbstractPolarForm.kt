@@ -1,8 +1,8 @@
 package io.github.ltennstedt.finnmath.number.complex
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
-import java.io.Serializable
+import com.google.common.annotations.Beta
 import org.apiguardian.api.API
+import java.io.Serializable
 
 /**
  * Base class for polar forms

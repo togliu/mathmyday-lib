@@ -16,13 +16,13 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
+import org.apiguardian.api.API
 import java.math.MathContext
 import kotlin.math.acos
 import kotlin.math.pow
 import kotlin.math.sqrt
-import org.apiguardian.api.API
 
 /**
  * Immutable implementation of a gaussian number which uses [Long] as type for its real and imaginary part

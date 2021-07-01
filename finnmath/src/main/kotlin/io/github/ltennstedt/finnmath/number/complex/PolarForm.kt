@@ -16,12 +16,12 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
+import org.apiguardian.api.API
 import java.math.MathContext
 import kotlin.math.cos
 import kotlin.math.sin
-import org.apiguardian.api.API
 
 /**
  * Immutable implementation of the polar form of a complex number number which uses [Double] as type for its

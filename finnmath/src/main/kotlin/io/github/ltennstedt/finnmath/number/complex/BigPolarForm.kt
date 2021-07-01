@@ -16,13 +16,13 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.cos
 import io.github.ltennstedt.finnmath.extension.sin
+import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.MathContext
-import org.apiguardian.api.API
 
 /**
  * Immutable implementation of the polar form of a complex number number which uses [BigDecimal] as type for its

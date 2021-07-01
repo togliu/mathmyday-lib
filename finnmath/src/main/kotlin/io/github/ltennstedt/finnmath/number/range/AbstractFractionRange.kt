@@ -16,10 +16,10 @@
 
 package io.github.ltennstedt.finnmath.number.range
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import io.github.ltennstedt.finnmath.number.fraction.AbstractFraction
-import java.io.Serializable
 import org.apiguardian.api.API
+import java.io.Serializable
 
 /**
  * Base class for ranges of fractions

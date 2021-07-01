@@ -44,7 +44,9 @@ public class DoubleVectorJavaBuilder extends AbstractVectorJavaBuilder<Double, D
     @Override
     public @NotNull DoubleVector build() {
         for (int i = 1; i <= getSize(); i++) {
-            getIndexToElement().putIfAbsent(i, getComputationOfAbsent().apply(i));
+            if (get(i) == null) {
+                set(i, getComputationOfAbsent().apply(i));
+            }
         }
         return new DoubleVector(getIndexToElement());
     }

@@ -16,14 +16,14 @@
 
 package io.github.ltennstedt.finnmath.linear.vector
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
 import io.github.ltennstedt.finnmath.linear.builder.BigIntegerVectorJavaBuilder
+import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.BigInteger
-import org.apiguardian.api.API
 
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta

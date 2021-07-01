@@ -16,16 +16,16 @@
 
 package io.github.ltennstedt.finnmath.number.fraction
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.common.math.LongMath
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.gcd
 import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
 import io.github.ltennstedt.finnmath.number.range.FractionRange
+import org.apiguardian.api.API
 import java.math.BigDecimal
 import kotlin.math.absoluteValue
 import kotlin.math.sign
-import org.apiguardian.api.API
 
 /**
  * Immutable implementation of a fraction which uses [Long] as type for its [numerator] and [denominator]

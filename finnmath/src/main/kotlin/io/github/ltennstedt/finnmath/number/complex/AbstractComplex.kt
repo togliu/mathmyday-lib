@@ -16,11 +16,11 @@
 
 package io.github.ltennstedt.finnmath.number.complex
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.common.base.MoreObjects
+import org.apiguardian.api.API
 import java.io.Serializable
 import java.util.Objects
-import org.apiguardian.api.API
 
 /**
  * Base class for complex numbers

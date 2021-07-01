@@ -16,10 +16,10 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
-import io.github.ltennstedt.finnmath.linear.vector.BigIntegerVector // ktlint-disable import-ordering
+import io.github.ltennstedt.finnmath.linear.vector.BigIntegerVector
 import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
-import java.math.BigInteger
 import pw.forst.katlib.whenNull
+import java.math.BigInteger
 
 /**
  * Provides BigIntegerVector block

@@ -44,7 +44,9 @@ public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongV
     @Override
     public @NotNull LongVector build() {
         for (int i = 1; i <= getSize(); i++) {
-            getIndexToElement().putIfAbsent(i, getComputationOfAbsent().apply(i));
+            if (get(i) == null) {
+                set(i, getComputationOfAbsent().apply(i));
+            }
         }
         return new LongVector(getIndexToElement());
     }

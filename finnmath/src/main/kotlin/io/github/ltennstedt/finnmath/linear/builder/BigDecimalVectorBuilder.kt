@@ -16,10 +16,10 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
-import io.github.ltennstedt.finnmath.linear.vector.BigDecimalVector // ktlint-disable import-ordering
-import io.github.ltennstedt.finnmath.linear.vector.VectorEntry // ktlint-disable import-ordering
-import java.math.BigDecimal
+import io.github.ltennstedt.finnmath.linear.vector.BigDecimalVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import pw.forst.katlib.whenNull
+import java.math.BigDecimal
 
 /**
  * Provides BigDecimalVector block

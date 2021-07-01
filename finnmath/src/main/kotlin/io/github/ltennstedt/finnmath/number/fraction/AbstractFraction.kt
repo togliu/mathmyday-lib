@@ -16,13 +16,13 @@
 
 package io.github.ltennstedt.finnmath.number.fraction
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.common.base.MoreObjects
+import org.apiguardian.api.API
 import java.io.Serializable
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.util.Objects
-import org.apiguardian.api.API
 
 /**
  * Base class for fractions

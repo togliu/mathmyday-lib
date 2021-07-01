@@ -16,11 +16,11 @@
 
 package io.github.ltennstedt.finnmath.number.range
 
-import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.number.fraction.BigFraction
-import java.math.BigInteger
 import org.apiguardian.api.API
+import java.math.BigInteger
 
 /**
  * Immutable implementation of a range for [BigFractions][BigFraction]

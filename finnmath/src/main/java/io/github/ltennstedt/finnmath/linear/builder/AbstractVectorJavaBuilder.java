@@ -21,6 +21,7 @@ import static java.util.Objects.requireNonNull;
 
 import com.google.common.annotations.Beta;
 import com.google.common.base.MoreObjects;
+import com.google.common.collect.ImmutableMap;
 import io.github.ltennstedt.finnmath.linear.vector.AbstractVector;
 import io.github.ltennstedt.finnmath.linear.vector.VectorEntry;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ import java.util.Map;
 import java.util.function.IntFunction;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Base class for Java-style vector builders
@@ -124,13 +126,35 @@ public abstract class AbstractVectorJavaBuilder<
     public abstract @NotNull V build();
 
     /**
-     * indexToElement
+     * Returns the element at given index
      *
-     * @return indexToElement
+     * @param index index
+     * @return element
+     * @throws IllegalArgumentException if {@code index < 1 || index > size}
      * @since 0.0.1
      */
-    protected @NotNull Map<Integer, E> getIndexToElement() {
-        return indexToElement;
+    protected @Nullable E get(final int index) {
+        checkArgument(0 < index && index <= size, "0 < entry.index <= size expected but index = %s", index);
+        return indexToElement.get(index);
+    }
+
+    @Override
+    public @NotNull String toString() {
+        return MoreObjects.toStringHelper(this)
+            .add("size", size)
+            .add("indexToElement", indexToElement)
+            .add("computationOfAbsent", computationOfAbsent)
+            .toString();
+    }
+
+    /**
+     * Index to element
+     *
+     * @return copy
+     * @since 0.0.1
+     */
+    protected Map<Integer, E> getIndexToElement() {
+        return ImmutableMap.copyOf(indexToElement);
     }
 
     /**
@@ -151,14 +175,5 @@ public abstract class AbstractVectorJavaBuilder<
      */
     protected @NotNull IntFunction<E> getComputationOfAbsent() {
         return computationOfAbsent;
-    }
-
-    @Override
-    public @NotNull String toString() {
-        return MoreObjects.toStringHelper(this)
-            .add("size", size)
-            .add("indexToElement", indexToElement)
-            .add("computationOfAbsent", computationOfAbsent)
-            .toString();
     }
 }

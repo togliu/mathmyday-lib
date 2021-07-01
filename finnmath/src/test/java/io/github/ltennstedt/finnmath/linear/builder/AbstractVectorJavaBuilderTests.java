@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class AbstractVectorJavaBuilderTests {
+    @SuppressWarnings("JUnitTestMethodWithNoAssertions")
     @Test
     void new_should_throw_an_exception_when_size_is_less_than_1() {
         assertThatThrownBy(() -> new LongVectorJavaBuilder(0))
