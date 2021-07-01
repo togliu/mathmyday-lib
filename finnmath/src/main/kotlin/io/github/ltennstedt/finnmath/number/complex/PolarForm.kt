@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.complex
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.errorprone.annotations.Immutable
 import java.math.MathContext
 import kotlin.math.cos
 import kotlin.math.sin
@@ -36,6 +37,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public data class PolarForm(
     override val radial: Double,
     override val angular: Double

@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.fraction
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
 import io.github.ltennstedt.finnmath.number.range.BigFractionRange
 import java.math.BigDecimal
@@ -39,6 +40,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public class BigFraction @JvmOverloads constructor(
     numerator: BigInteger,
     denominator: BigInteger = BigInteger.ONE

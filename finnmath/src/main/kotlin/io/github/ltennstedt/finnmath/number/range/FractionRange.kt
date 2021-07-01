@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.range
 
 import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.number.fraction.Fraction
 import org.apiguardian.api.API
 
@@ -31,6 +32,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public data class FractionRange(
     override val start: Fraction,
     override val endInclusive: Fraction

@@ -18,6 +18,7 @@ package io.github.ltennstedt.finnmath.number.complex
 
 import ch.obermuhlner.math.big.BigDecimalMath // ktlint-disable import-ordering
 import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
 import java.math.BigDecimal
@@ -36,6 +37,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public class BigComplex @JvmOverloads constructor(
     real: BigDecimal,
     imaginary: BigDecimal = BigDecimal.ZERO

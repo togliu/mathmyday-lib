@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.complex
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.acos
 import io.github.ltennstedt.finnmath.extension.sqrt
@@ -36,6 +37,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public class BigGaussian @JvmOverloads constructor(
     real: BigInteger,
     imaginary: BigInteger = BigInteger.ZERO

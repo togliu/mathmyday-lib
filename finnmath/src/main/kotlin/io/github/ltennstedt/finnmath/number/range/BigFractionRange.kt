@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.range
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.number.fraction.BigFraction
 import java.math.BigInteger
 import org.apiguardian.api.API
@@ -32,6 +33,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public data class BigFractionRange(
     override val start: BigFraction,
     override val endInclusive: BigFraction

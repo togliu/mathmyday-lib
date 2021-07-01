@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.sqrt
 import io.github.ltennstedt.finnmath.linear.builder.BigDecimalVectorJavaBuilder
 import java.math.BigDecimal
@@ -25,6 +26,7 @@ import org.apiguardian.api.API
 
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public class BigDecimalVector(
     indexToElement: Map<Int, BigDecimal>
 ) : AbstractVector<BigDecimal, BigDecimalVector, BigDecimal, BigDecimal>(

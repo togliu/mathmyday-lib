@@ -17,7 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.builder
 
 import io.github.ltennstedt.finnmath.linear.vector.BigDecimalVector // ktlint-disable import-ordering
-import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry // ktlint-disable import-ordering
 import java.math.BigDecimal
 import pw.forst.katlib.whenNull
 
@@ -26,7 +26,7 @@ import pw.forst.katlib.whenNull
  *
  * @since 0.0.1
  */
-public fun BigDecimalVector(init: BigDecimalVectorBuilder.() -> Unit): BigDecimalVector {
+public fun bigDecimalVector(init: BigDecimalVectorBuilder.() -> Unit): BigDecimalVector {
     val builder = BigDecimalVectorBuilder()
     builder.init()
     return builder.build()

@@ -178,6 +178,7 @@ dependencies {
     api("com.google.guava:guava:30.1.1-android")
     api("org.jetbrains:annotations:21.0.1")
     api("org.apiguardian:apiguardian-api:1.1.2")
+    api("com.google.errorprone:error_prone_annotations:2.7.1")
     implementation("ch.obermuhlner:big-math:2.3.0")
     implementation("com.marcinmoskala:DiscreteMathToolkit:1.0.3")
     implementation("pw.forst:katlib:2.0.2")

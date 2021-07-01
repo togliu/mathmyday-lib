@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.complex
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.cos
 import io.github.ltennstedt.finnmath.extension.sin
 import java.math.BigDecimal
@@ -37,6 +38,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public data class BigPolarForm(
     override val radial: BigDecimal,
     override val angular: BigDecimal

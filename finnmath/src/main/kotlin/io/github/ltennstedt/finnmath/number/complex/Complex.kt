@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.number.complex
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.errorprone.annotations.Immutable
 import java.math.MathContext
 import kotlin.math.acos
 import kotlin.math.pow
@@ -34,6 +35,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public class Complex @JvmOverloads constructor(
     real: Double,
     imaginary: Double = 0.0

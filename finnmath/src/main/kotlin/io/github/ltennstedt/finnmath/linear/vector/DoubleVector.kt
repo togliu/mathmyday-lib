@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.linear.builder.DoubleVectorJavaBuilder
 import kotlin.math.absoluteValue
 import kotlin.math.sqrt
@@ -24,6 +25,7 @@ import org.apiguardian.api.API
 
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public class DoubleVector(
     indexToElement: Map<Int, Double>
 ) : AbstractVector<Double, DoubleVector, Double, Double>(

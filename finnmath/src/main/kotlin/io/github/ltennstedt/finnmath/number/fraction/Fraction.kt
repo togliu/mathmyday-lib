@@ -18,6 +18,7 @@ package io.github.ltennstedt.finnmath.number.fraction
 
 import com.google.common.annotations.Beta // ktlint-disable import-ordering
 import com.google.common.math.LongMath
+import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.gcd
 import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
 import io.github.ltennstedt.finnmath.number.range.FractionRange
@@ -42,6 +43,7 @@ import org.apiguardian.api.API
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
+@Immutable
 public class Fraction @JvmOverloads constructor(
     numerator: Long,
     denominator: Long = 1L
