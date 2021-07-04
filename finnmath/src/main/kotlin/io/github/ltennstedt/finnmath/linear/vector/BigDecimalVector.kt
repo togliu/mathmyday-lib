@@ -122,7 +122,7 @@ public class BigDecimalVector(
             .compareTo(BigDecimal.ZERO) == 0
     }
 
-    override fun taxicabNorm(): BigDecimal = indexToElement.values.map { e -> e.abs() }.reduce { a, b -> a + b }
+    override fun taxicabNorm(): BigDecimal = elements.map { e -> e.abs() }.reduce { a, b -> a + b }
 
     /**
      * Returns the taxicab norm based on the [mathContext]
@@ -130,7 +130,7 @@ public class BigDecimalVector(
      * @since 0.0.1
      */
     public fun taxicabNorm(mathContext: MathContext): BigDecimal =
-        indexToElement.values.map { e -> e.abs(mathContext) }.reduce { a, b -> a.add(b, mathContext) }
+        elements.map { e -> e.abs(mathContext) }.reduce { a, b -> a.add(b, mathContext) }
 
     override fun euclideanNormPow2(): BigDecimal = this * this
 
@@ -150,7 +150,7 @@ public class BigDecimalVector(
      */
     public fun euclideanNorm(mathContext: MathContext): BigDecimal = euclideanNormPow2(mathContext).sqrt(mathContext)
 
-    override fun maxNorm(): BigDecimal = indexToElement.values.map { it.abs() }.maxOrNull() as BigDecimal
+    override fun maxNorm(): BigDecimal = elements.map { it.abs() }.maxOrNull() as BigDecimal
 
     /**
      * Returns the maximum norm based on the [mathContext]
@@ -158,7 +158,7 @@ public class BigDecimalVector(
      * @since 0.0.1
      */
     public fun maxNorm(mathContext: MathContext): BigDecimal =
-        indexToElement.values.map { it.abs(mathContext) }.maxOrNull() as BigDecimal
+        elements.map { it.abs(mathContext) }.maxOrNull() as BigDecimal
 
     override fun equalsByComparing(other: BigDecimalVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }

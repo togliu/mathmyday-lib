@@ -17,12 +17,10 @@
 package io.github.ltennstedt.finnmath.number.fraction
 
 import com.google.common.base.MoreObjects
-import io.kotest.assertions.throwables.shouldThrowExactly
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeSameInstanceAs
 import java.math.BigDecimal
-import java.math.BigInteger
 import java.util.Objects
 
 class AbstractFractionSpec : FunSpec({
@@ -144,19 +142,6 @@ class AbstractFractionSpec : FunSpec({
         }
         test("toDouble should return a Fraction as Double") {
             fraction.toDouble() shouldBe 1.0
-        }
-        test("toBigInteger should return a Fraction as BigInteger") {
-            fraction.toBigInteger() shouldBe fraction.toBigDecimal().toBigInteger()
-        }
-        context("toBigIntegerExact") {
-            test("should throw an Exception when a Fraction is not an exact BigInteger") {
-                shouldThrowExactly<ArithmeticException> {
-                    Fraction(1L, 2L).toBigIntegerExact()
-                }
-            }
-            test("should return a Fraction as exact BigInteger") {
-                fraction.toBigIntegerExact() shouldBe BigInteger.ONE
-            }
         }
         test("toBigDecimal should return a Fraction as BigDecimal") {
             fraction.toBigDecimal() shouldBe BigDecimal.ONE

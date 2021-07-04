@@ -66,15 +66,13 @@ public class LongVector(
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == 0L
     }
 
-    override fun taxicabNorm(): Double = indexToElement.values.map { e -> e.absoluteValue }
-        .reduce { a, b -> a + b }
-        .toDouble()
+    override fun taxicabNorm(): Double = elements.map { e -> e.absoluteValue }.reduce { a, b -> a + b }.toDouble()
 
     override fun euclideanNormPow2(): Long = this * this
 
     override fun euclideanNorm(): Double = sqrt(euclideanNormPow2().toDouble())
 
-    override fun maxNorm(): Double = indexToElement.values.map { it.absoluteValue.toDouble() }.maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map { it.absoluteValue.toDouble() }.maxOrNull() as Double
 
     /**
      * Returns this as [DoubleVector]

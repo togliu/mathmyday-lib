@@ -215,7 +215,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      *
      * @since 0.0.1
      */
-    public operator fun contains(element: E): Boolean = element in indexToElement.values
+    public operator fun contains(element: E): Boolean = element in elements
 
     /**
      * Returns if this is equal to [other] by comparing fields

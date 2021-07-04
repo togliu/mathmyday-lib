@@ -60,14 +60,13 @@ public class GaussianVector(
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == Gaussian.ZERO
     }
 
-    override fun taxicabNorm(): Double = indexToElement.values.map { it.abs() }.reduce { a, b -> a + b }
+    override fun taxicabNorm(): Double = elements.map { it.abs() }.reduce { a, b -> a + b }
 
     override fun euclideanNormPow2(): Gaussian = this * this
 
-    override fun euclideanNorm(): Double =
-        sqrt(indexToElement.values.map { it.abs().pow(2) }.reduce { a, b -> a + b })
+    override fun euclideanNorm(): Double = sqrt(elements.map { it.abs().pow(2) }.reduce { a, b -> a + b })
 
-    override fun maxNorm(): Double = indexToElement.values.map { it.abs() }.maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map { it.abs() }.maxOrNull() as Double
 
     /**
      * Returns this as [ComplexVector]
@@ -75,7 +74,7 @@ public class GaussianVector(
      * @since 0.0.1
      */
     public fun toComplexVector(): ComplexVector = complexVector {
-        computationOfAbsent = { i -> this@GaussianVector[i].toComplex() }
+        computationOfAbsent = { this@GaussianVector[it].toComplex() }
     }
 
     /**

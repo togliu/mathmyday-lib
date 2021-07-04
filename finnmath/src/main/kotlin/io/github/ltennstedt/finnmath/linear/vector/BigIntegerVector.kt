@@ -62,7 +62,7 @@ public class BigIntegerVector(
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == BigInteger.ZERO
     }
 
-    override fun taxicabNorm(): BigDecimal = indexToElement.values.map { e -> e.abs() }
+    override fun taxicabNorm(): BigDecimal = elements.map { e -> e.abs() }
         .reduce { a, b -> a + b }
         .toBigDecimal()
 
@@ -71,7 +71,7 @@ public class BigIntegerVector(
      *
      * @since 0.0.1
      */
-    public fun taxicabNorm(context: FinnmathContext): BigDecimal = indexToElement.values.map { e -> e.abs() }
+    public fun taxicabNorm(context: FinnmathContext): BigDecimal = elements.map { e -> e.abs() }
         .reduce { a, b -> a + b }
         .toBigDecimal(context.scale, context.mathContext)
 
@@ -87,14 +87,14 @@ public class BigIntegerVector(
     public fun euclideanNorm(context: FinnmathContext): BigDecimal =
         euclideanNormPow2().toBigDecimal(context.scale, context.mathContext).sqrt(context.mathContext)
 
-    override fun maxNorm(): BigDecimal = indexToElement.values.map { it.abs().toBigDecimal() }.maxOrNull() as BigDecimal
+    override fun maxNorm(): BigDecimal = elements.map { it.abs().toBigDecimal() }.maxOrNull() as BigDecimal
 
     /**
      * Returns the maximum norm based on the [context]
      *
      * @since 0.0.1
      */
-    public fun maxNorm(context: FinnmathContext): BigDecimal = indexToElement.values.map {
+    public fun maxNorm(context: FinnmathContext): BigDecimal = elements.map {
         it.abs().toBigDecimal(context.scale, context.mathContext)
     }.maxOrNull() as BigDecimal
 

@@ -61,7 +61,7 @@ public class DoubleVector(
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == 0.0
     }
 
-    override fun taxicabNorm(): Double = indexToElement.values.map { e -> e.absoluteValue }
+    override fun taxicabNorm(): Double = elements.map { e -> e.absoluteValue }
         .reduce { a, b -> a + b }
         .toDouble()
 
@@ -69,7 +69,7 @@ public class DoubleVector(
 
     override fun euclideanNorm(): Double = sqrt(euclideanNormPow2())
 
-    override fun maxNorm(): Double = indexToElement.values.map { it.absoluteValue }.maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map { it.absoluteValue }.maxOrNull() as Double
 
     /**
      * Returns this as [BigDecimalVector]

@@ -18,6 +18,7 @@ package io.github.ltennstedt.finnmath.linear.builder;
 
 import com.google.common.annotations.Beta;
 import io.github.ltennstedt.finnmath.linear.vector.GaussianVector;
+import io.github.ltennstedt.finnmath.number.complex.Gaussian;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 public class GaussianVectorJavaBuilder extends
-    AbstractVectorJavaBuilder<Long, GaussianVector, GaussianVectorJavaBuilder> {
+    AbstractVectorJavaBuilder<Gaussian, GaussianVector, GaussianVectorJavaBuilder> {
     /**
      * Constructor
      *
@@ -39,7 +40,7 @@ public class GaussianVectorJavaBuilder extends
      * @since 0.0.1
      */
     public GaussianVectorJavaBuilder(final int size) {
-        super(size, i -> 0L);
+        super(size, i -> Gaussian.ZERO);
     }
 
     @Override
