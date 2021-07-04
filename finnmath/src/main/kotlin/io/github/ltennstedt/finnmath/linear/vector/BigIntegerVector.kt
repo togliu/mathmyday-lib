@@ -20,8 +20,10 @@ import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
+import io.github.ltennstedt.finnmath.extension.toBigGaussian
 import io.github.ltennstedt.finnmath.linear.builder.BigIntegerVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
+import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -112,6 +114,15 @@ public class BigIntegerVector(
      */
     public fun toBigDecimalVector(context: FinnmathContext): BigDecimalVector = bigDecimalVector {
         computationOfAbsent = { this@BigIntegerVector[it].toBigDecimal(context.scale, context.mathContext) }
+    }
+
+    /**
+     * Returns this as [BigGaussianVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigGaussianVector(): BigGaussianVector = bigGaussianVector {
+        computationOfAbsent = { this@BigIntegerVector[it].toBigGaussian() }
     }
 
     override fun equalsByComparing(other: BigIntegerVector): Boolean {

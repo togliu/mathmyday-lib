@@ -19,6 +19,7 @@ package io.github.ltennstedt.finnmath.linear.vector
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.linear.builder.GaussianVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
 import io.github.ltennstedt.finnmath.number.complex.Gaussian
 import org.apiguardian.api.API
@@ -68,8 +69,22 @@ public class GaussianVector(
 
     override fun maxNorm(): Double = indexToElement.values.map { it.abs() }.maxOrNull() as Double
 
+    /**
+     * Returns this as [ComplexVector]
+     *
+     * @since 0.0.1
+     */
     public fun toComplexVector(): ComplexVector = complexVector {
         computationOfAbsent = { i -> this@GaussianVector[i].toComplex() }
+    }
+
+    /**
+     * Returns this as [BigGaussianVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigGaussianVector(): BigGaussianVector = bigGaussianVector {
+        computationOfAbsent = { this@GaussianVector[it].toBigGaussian() }
     }
 
     override fun equalsByComparing(other: GaussianVector): Boolean {

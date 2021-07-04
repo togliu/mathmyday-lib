@@ -18,6 +18,8 @@ package io.github.ltennstedt.finnmath.extension
 
 import com.google.common.math.BigIntegerMath
 import io.github.ltennstedt.finnmath.FinnmathContext
+import io.github.ltennstedt.finnmath.number.complex.BigComplex
+import io.github.ltennstedt.finnmath.number.complex.BigGaussian
 import io.github.ltennstedt.finnmath.number.fraction.BigFraction
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -112,3 +114,25 @@ public fun BigInteger.acos(context: FinnmathContext): BigDecimal =
  * @since 0.0.1
  */
 public fun BigInteger.toBigFraction(): BigFraction = BigFraction(this, BigInteger.ONE)
+
+/**
+ * Returns this as [BigGaussian]
+ *
+ * @since 0.0.1
+ */
+public fun BigInteger.toBigGaussian(): BigGaussian = BigGaussian(this)
+
+/**
+ * Returns this as [BigComplex]
+ *
+ * @since 0.0.1
+ */
+public fun BigInteger.toBigComplex(): BigComplex = BigComplex(this)
+
+/**
+ * Returns this as [BigComplex] based on the [context]
+ *
+ * @since 0.0.1
+ */
+public fun BigInteger.toBigComplex(context: FinnmathContext): BigComplex =
+    BigComplex(this, BigInteger.ZERO, context)

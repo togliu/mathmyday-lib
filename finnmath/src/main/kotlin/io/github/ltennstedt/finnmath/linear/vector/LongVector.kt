@@ -18,10 +18,12 @@ package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.extension.toBigGaussian
 import io.github.ltennstedt.finnmath.extension.toComplex
 import io.github.ltennstedt.finnmath.extension.toGaussian
 import io.github.ltennstedt.finnmath.linear.builder.LongVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
+import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
 import io.github.ltennstedt.finnmath.linear.builder.doubleVector
 import io.github.ltennstedt.finnmath.linear.builder.gaussianVector
@@ -125,6 +127,15 @@ public class LongVector(
      */
     public fun toComplexVector(): ComplexVector = complexVector {
         computationOfAbsent = { this@LongVector[it].toComplex() }
+    }
+
+    /**
+     * Returns this as [BigGaussianVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigGaussianVector(): BigGaussianVector = bigGaussianVector {
+        computationOfAbsent = { this@LongVector[it].toBigGaussian() }
     }
 
     override fun equalsByComparing(other: LongVector): Boolean {
