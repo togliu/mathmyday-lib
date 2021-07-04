@@ -21,7 +21,6 @@ import com.google.common.base.MoreObjects
 import org.apiguardian.api.API
 import java.io.Serializable
 import java.math.BigDecimal
-import java.math.BigInteger
 import java.util.Objects
 
 /**
@@ -284,56 +283,24 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
     override fun toChar(): Char = toBigDecimal().toChar()
 
     /**
-     * Returns this as [BigInteger]
-     *
-     * @since 0.0.1
-     */
-    public fun toBigInteger(): BigInteger = toBigDecimal().toBigInteger()
-
-    /**
-     * Returns this as exact [BigInteger]
-     *
-     * @throws ArithmeticException if this is not an exact [BigInteger]
-     * @since 0.0.1
-     */
-    public fun toBigIntegerExact(): BigInteger = toBigDecimal().toBigIntegerExact()
-
-    /**
      * Returns this as [BigDecimal]
      *
      * @since 0.0.1
      */
     public abstract fun toBigDecimal(): BigDecimal
 
-    public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.plus(
-        summand: T
-    ): T = add(summand)
+    public operator fun plus(summand: T): T = add(summand)
 
-    public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.minus(
-        subtrahend: T
-    ): T = subtract(subtrahend)
+    public operator fun minus(subtrahend: T): T = subtract(subtrahend)
 
-    public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.times(
-        factor: T
-    ): T = multiply(factor)
+    public operator fun times(factor: T): T = multiply(factor)
 
-    public operator fun <N : Number, T : AbstractFraction<N, T, R>, R : ClosedRange<T>> AbstractFraction<N, T, R>.div(
-        divisor: T
-    ): T = divide(divisor)
+    public operator fun div(divisor: T): T = divide(divisor)
 
     @Suppress("UNCHECKED_CAST")
-    public operator fun <
-        N : Number,
-        T : AbstractFraction<N, T, R>,
-        R : ClosedRange<T>
-        > AbstractFraction<N, T, R>.unaryPlus(): T = this as T
+    public operator fun unaryPlus(): T = this as T
 
-    @Suppress("UNCHECKED_CAST")
-    public operator fun <
-        N : Number,
-        T : AbstractFraction<N, T, R>,
-        R : ClosedRange<T>
-        > AbstractFraction<N, T, R>.unaryMinus(): T = negate()
+    public operator fun unaryMinus(): T = negate()
 
     public fun operator1(): N = numerator
 

@@ -166,39 +166,18 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
      */
     public fun doesNotEqualByComparing(other: T): Boolean = !equalsByComparing(other)
 
-    public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.plus(
-        summand: T
-    ): T = add(summand)
+    public operator fun plus(summand: T): T = add(summand)
 
-    public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.minus(
-        subtrahend: T
-    ): T = subtract(subtrahend)
+    public operator fun minus(subtrahend: T): T = subtract(subtrahend)
 
-    public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.times(
-        factor: T
-    ): T = multiply(factor)
+    public operator fun times(factor: T): T = multiply(factor)
 
-    public operator fun <N : Number, T : AbstractComplex<N, T, Q, A, P>, Q, A, P> AbstractComplex<N, T, Q, A, P>.div(
-        divisor: T
-    ): Q = divide(divisor)
+    public operator fun div(divisor: T): Q = divide(divisor)
 
     @Suppress("UNCHECKED_CAST")
-    public operator fun <
-        N : Number,
-        T : AbstractComplex<N, T, Q, A, P>,
-        Q,
-        A,
-        P
-        > AbstractComplex<N, T, Q, A, P>.unaryPlus(): T = this as T
+    public operator fun unaryPlus(): T = this as T
 
-    @Suppress("UNCHECKED_CAST")
-    public operator fun <
-        N : Number,
-        T : AbstractComplex<N, T, Q, A, P>,
-        Q,
-        A,
-        P
-        > AbstractComplex<N, T, Q, A, P>.unaryMinus(): T = negate()
+    public operator fun unaryMinus(): T = negate()
 
     public fun operator1(): N = real
 
