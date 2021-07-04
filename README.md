@@ -73,6 +73,7 @@ gradle default
 * Generics
 * Lambdas with receivers
 * Explicit API mode
+* Qualified this and implicit this expression
 
 ## Usage
 
