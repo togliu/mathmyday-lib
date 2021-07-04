@@ -18,8 +18,12 @@ package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.extension.toComplex
 import io.github.ltennstedt.finnmath.linear.builder.DoubleVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
+import io.github.ltennstedt.finnmath.linear.builder.complexVector
 import org.apiguardian.api.API
+import java.math.MathContext
 import kotlin.math.absoluteValue
 import kotlin.math.sqrt
 
@@ -66,6 +70,33 @@ public class DoubleVector(
     override fun euclideanNorm(): Double = sqrt(euclideanNormPow2())
 
     override fun maxNorm(): Double = indexToElement.values.map { it.absoluteValue }.maxOrNull() as Double
+
+    /**
+     * Returns this as [BigDecimalVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigDecimalVector(): BigDecimalVector = bigDecimalVector {
+        computationOfAbsent = { this@DoubleVector[it].toBigDecimal() }
+    }
+
+    /**
+     * Returns this as [BigDecimalVector] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigDecimalVector(mathContext: MathContext): BigDecimalVector = bigDecimalVector {
+        computationOfAbsent = { this@DoubleVector[it].toBigDecimal(mathContext) }
+    }
+
+    /**
+     * Returns this as [ComplexVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toComplexVector(): ComplexVector = complexVector {
+        computationOfAbsent = { this@DoubleVector[it].toComplex() }
+    }
 
     override fun equalsByComparing(other: DoubleVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }

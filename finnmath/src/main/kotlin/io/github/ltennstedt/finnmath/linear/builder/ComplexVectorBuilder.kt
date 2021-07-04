@@ -16,33 +16,33 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
-import io.github.ltennstedt.finnmath.linear.vector.GaussianVector
+import io.github.ltennstedt.finnmath.linear.vector.ComplexVector
 import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
-import io.github.ltennstedt.finnmath.number.complex.Gaussian
+import io.github.ltennstedt.finnmath.number.complex.Complex
 import pw.forst.katlib.whenNull
 
 /**
- * Provides GaussianVector block
+ * Provides ComplexVector block
  *
  * @since 0.0.1
  */
-public fun gaussianVector(init: GaussianVectorBuilder.() -> Unit): GaussianVector {
-    val builder = GaussianVectorBuilder()
+public fun complexVector(init: ComplexVectorBuilder.() -> Unit): ComplexVector {
+    val builder = ComplexVectorBuilder()
     builder.init()
     return builder.build()
 }
 
 /**
- * Builder for [GaussianVectors][GaussianVector]
+ * Builder for [ComplexVectors][ComplexVector]
  *
- * @constructor Constructs a GaussianVectorBuilder
+ * @constructor Constructs a ComplexVectorBuilder
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public class GaussianVectorBuilder : AbstractVectorBuilder<Gaussian, GaussianVector>() {
-    override var computationOfAbsent: (Int) -> Gaussian = { _ -> Gaussian.ZERO }
+public class ComplexVectorBuilder : AbstractVectorBuilder<Complex, ComplexVector>() {
+    override var computationOfAbsent: (Int) -> Complex = { _ -> Complex.ZERO }
 
-    override fun build(): GaussianVector {
+    override fun build(): ComplexVector {
         check(entries.isNotEmpty()) { "entries expected not to be empty but entries = $entries}" }
         val indices = entries.map { it.index }
         val maxIndex = indices.maxOrNull() as Int
@@ -56,6 +56,6 @@ public class GaussianVectorBuilder : AbstractVectorBuilder<Gaussian, GaussianVec
                 entries.add(VectorEntry(i, computationOfAbsent(i)))
             }
         }
-        return GaussianVector(entries.associate { (i, e) -> i to e })
+        return ComplexVector(entries.associate { (i, e) -> i to e })
     }
 }

@@ -107,7 +107,7 @@ public fun BigInteger.acos(context: FinnmathContext): BigDecimal =
     toBigDecimal(context.scale, context.mathContext).acos(context.mathContext)
 
 /**
- * Returns the [BigFraction]
+ * Returns this as [BigFraction]
  *
  * @since 0.0.1
  */

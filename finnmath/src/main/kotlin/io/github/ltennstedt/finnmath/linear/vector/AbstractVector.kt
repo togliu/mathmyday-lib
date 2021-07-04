@@ -197,29 +197,18 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
         @Suppress("UNCHECKED_CAST") return VectorEntry(index, this[index])
     }
 
-    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.plus(
-        summand: V
-    ): V = add(summand)
+    public operator fun plus(summand: V): V = add(summand)
 
-    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.minus(
-        subtrahend: V
-    ): V = subtract(subtrahend)
+    public operator fun minus(subtrahend: V): V = subtract(subtrahend)
 
-    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.times(
-        other: V
-    ): E = dotProduct(other)
+    public operator fun times(other: V): E = dotProduct(other)
 
-    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.times(
-        scalar: E
-    ): V = scalarMultiply(scalar)
+    public operator fun times(scalar: E): V = scalarMultiply(scalar)
 
     @Suppress("UNCHECKED_CAST")
-    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.unaryPlus(): V =
-        this as V
+    public operator fun unaryPlus(): V = this as V
 
-    @Suppress("UNCHECKED_CAST")
-    public operator fun <E : Number, V : AbstractVector<E, V, N, P>, N, P> AbstractVector<E, V, N, P>.unaryMinus(): V =
-        negate()
+    public operator fun unaryMinus(): V = negate()
 
     /**
      * Returns if [element] is contained in this

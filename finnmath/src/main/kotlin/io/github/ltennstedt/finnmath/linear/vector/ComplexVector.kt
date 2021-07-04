@@ -18,72 +18,68 @@ package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
-import io.github.ltennstedt.finnmath.linear.builder.GaussianVectorJavaBuilder
-import io.github.ltennstedt.finnmath.linear.builder.complexVector
-import io.github.ltennstedt.finnmath.number.complex.Gaussian
+import io.github.ltennstedt.finnmath.linear.builder.ComplexVectorJavaBuilder
+import io.github.ltennstedt.finnmath.number.complex.Complex
 import org.apiguardian.api.API
+import kotlin.math.absoluteValue
 import kotlin.math.pow
 import kotlin.math.sqrt
 
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
-public class GaussianVector(
-    indexToElement: Map<Int, Gaussian>
-) : AbstractVector<Gaussian, GaussianVector, Double, Gaussian>(
+public class ComplexVector(
+    indexToElement: Map<Int, Complex>
+) : AbstractVector<Complex, ComplexVector, Double, Complex>(
     indexToElement
 ) {
-    override fun add(summand: GaussianVector): GaussianVector {
+    override fun add(summand: ComplexVector): ComplexVector {
         require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return GaussianVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
+        return ComplexVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
     }
 
-    override fun subtract(subtrahend: GaussianVector): GaussianVector {
+    override fun subtract(subtrahend: ComplexVector): ComplexVector {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return GaussianVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
+        return ComplexVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
     }
 
-    override fun dotProduct(other: GaussianVector): Gaussian {
+    override fun dotProduct(other: ComplexVector): Complex {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
     }
 
-    override fun scalarMultiply(scalar: Gaussian): GaussianVector = GaussianVector(
+    override fun scalarMultiply(scalar: Complex): ComplexVector = ComplexVector(
         indexToElement.map { (i, e) -> i to (scalar * e) }.toMap()
     )
 
-    override fun negate(): GaussianVector = GaussianVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
+    override fun negate(): ComplexVector = ComplexVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
 
-    override fun orthogonalTo(other: GaussianVector): Boolean {
+    override fun orthogonalTo(other: ComplexVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == Gaussian.ZERO
+        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == Complex.ZERO
     }
 
     override fun taxicabNorm(): Double = indexToElement.values.map { it.abs() }.reduce { a, b -> a + b }
 
-    override fun euclideanNormPow2(): Gaussian = this * this
+    override fun euclideanNormPow2(): Complex = this * this
 
     override fun euclideanNorm(): Double =
         sqrt(indexToElement.values.map { it.abs().pow(2) }.reduce { a, b -> a + b })
 
     override fun maxNorm(): Double = indexToElement.values.map { it.abs() }.maxOrNull() as Double
 
-    public fun toComplexVector(): ComplexVector = complexVector {
-        computationOfAbsent = { i -> this@GaussianVector[i].toComplex() }
-    }
-
-    override fun equalsByComparing(other: GaussianVector): Boolean {
+    override fun equalsByComparing(other: ComplexVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.all { (i, e) -> e.equalsByComparing(other[i]) }
     }
 
     public companion object {
         /**
-         * Returns a [GaussianVectorJavaBuilder] of [size]
+         * Returns a [ComplexVectorJavaBuilder] of [size]
          *
          * @since 0.0.1
          */
         @JvmStatic
-        public fun builder(size: Int): GaussianVectorJavaBuilder = GaussianVectorJavaBuilder(size)
+        public fun builder(size: Int): ComplexVectorJavaBuilder = ComplexVectorJavaBuilder(size)
     }
 }

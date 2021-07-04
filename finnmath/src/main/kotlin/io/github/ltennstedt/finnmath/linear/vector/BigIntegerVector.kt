@@ -21,6 +21,7 @@ import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
 import io.github.ltennstedt.finnmath.linear.builder.BigIntegerVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
 import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -94,6 +95,24 @@ public class BigIntegerVector(
     public fun maxNorm(context: FinnmathContext): BigDecimal = indexToElement.values.map {
         it.abs().toBigDecimal(context.scale, context.mathContext)
     }.maxOrNull() as BigDecimal
+
+    /**
+     * Returns this as [BigDecimalVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigDecimalVector(): BigDecimalVector = bigDecimalVector {
+        computationOfAbsent = { this@BigIntegerVector[it].toBigDecimal() }
+    }
+
+    /**
+     * Returns this as [BigDecimalVector] based on the [context]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigDecimalVector(context: FinnmathContext): BigDecimalVector = bigDecimalVector {
+        computationOfAbsent = { this@BigIntegerVector[it].toBigDecimal(context.scale, context.mathContext) }
+    }
 
     override fun equalsByComparing(other: BigIntegerVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
