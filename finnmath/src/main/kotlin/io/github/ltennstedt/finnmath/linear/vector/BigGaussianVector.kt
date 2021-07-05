@@ -21,6 +21,7 @@ import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
 import io.github.ltennstedt.finnmath.linear.builder.BigGaussianVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.field.BigGaussianField
 import io.github.ltennstedt.finnmath.number.complex.BigComplex
 import io.github.ltennstedt.finnmath.number.complex.BigGaussian
@@ -37,12 +38,7 @@ public class BigGaussianVector(
     indexToElement,
     BigGaussianField
 ) {
-    override fun orthogonalTo(other: BigGaussianVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == BigGaussian.ZERO
-    }
-
-    override fun taxicabNorm(): BigDecimal = elements.map { it.abs() }.reduce { a, b -> a + b }
+    override fun taxicabNorm(): BigDecimal = elements.map(BigGaussian::abs).reduce(BigDecimal::add)
 
     /**
      * Returns the taxicab norm based on the [mathContext]
@@ -62,9 +58,7 @@ public class BigGaussianVector(
 
     override fun euclideanNormPow2(): BigGaussian = this * this
 
-    override fun euclideanNorm(): BigDecimal = elements.map { it.abs().pow(2) }
-        .reduce { a, b -> a + b }
-        .sqrt()
+    override fun euclideanNorm(): BigDecimal = elements.map { it.abs().pow(2) }.reduce(BigDecimal::add).sqrt()
 
     /**
      * Returns the euclidean norm based on the [mathContext]
@@ -84,7 +78,7 @@ public class BigGaussianVector(
         .reduce { a, b -> a.add(b, context.mathContext) }
         .sqrt(context.mathContext)
 
-    override fun maxNorm(): BigDecimal = elements.map { it.abs() }.maxOrNull() as BigDecimal
+    override fun maxNorm(): BigDecimal = elements.map(BigGaussian::abs).maxOrNull() as BigDecimal
 
     /**
      * Returns the maximum norm based on the [mathContext]
@@ -102,9 +96,22 @@ public class BigGaussianVector(
     public fun maxNorm(context: FinnmathContext): BigDecimal =
         elements.map { it.abs(context) }.maxOrNull() as BigDecimal
 
-    override fun equalsByComparing(other: BigGaussianVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.all { (i, e) -> e.equalsByComparing(other[i]) }
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@BigGaussianVector[it].toBigComplex() }
+    }
+
+    /**
+     * Returns this as [BigComplexVector] vased on the [context]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(context: FinnmathContext): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@BigGaussianVector[it].toBigComplex(context) }
     }
 
     public companion object {

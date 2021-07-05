@@ -35,10 +35,12 @@ public object LongField : Field<Long, Double, LongVector> {
         get() = { a, b -> a.toDouble() / b.toDouble() }
     override val negation: (e: Long) -> Long
         get() = { e -> -e }
+    override val equalityByComparing: (a: Long, b: Long) -> Boolean
+        get() = { a, b -> a.compareTo(b) == 0 }
     override val zero: Long
         get() = 0L
     override val one: Long
         get() = 1L
     override val vectorConstructor: (m: Map<Int, Long>) -> LongVector
-        get() = { m -> LongVector(m) }
+        get() = { LongVector(it) }
 }

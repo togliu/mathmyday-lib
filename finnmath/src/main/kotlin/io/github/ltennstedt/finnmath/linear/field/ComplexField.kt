@@ -27,19 +27,21 @@ import io.github.ltennstedt.finnmath.number.complex.Complex
  */
 public object ComplexField : Field<Complex, Complex, ComplexVector> {
     override val addition: (a: Complex, b: Complex) -> Complex
-        get() = { a, b -> a + b }
+        get() = Complex::add
     override val subtraction: (a: Complex, b: Complex) -> Complex
-        get() = { a, b -> a - b }
+        get() = Complex::subtract
     override val multiplication: (a: Complex, b: Complex) -> Complex
-        get() = { a, b -> a * b }
+        get() = Complex::multiply
     override val division: (a: Complex, b: Complex) -> Complex
-        get() = { a, b -> a / b }
+        get() = Complex::divide
     override val negation: (e: Complex) -> Complex
-        get() = { e -> -e }
+        get() = Complex::negate
+    override val equalityByComparing: (a: Complex, b: Complex) -> Boolean
+        get() = Complex::equalsByComparing
     override val zero: Complex
         get() = Complex.ZERO
     override val one: Complex
         get() = Complex.ONE
     override val vectorConstructor: (m: Map<Int, Complex>) -> ComplexVector
-        get() = { m -> ComplexVector(m) }
+        get() = { ComplexVector(it) }
 }

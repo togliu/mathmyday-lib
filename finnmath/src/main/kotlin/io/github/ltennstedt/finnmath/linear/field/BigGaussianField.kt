@@ -28,19 +28,21 @@ import io.github.ltennstedt.finnmath.number.complex.BigGaussian
  */
 public object BigGaussianField : Field<BigGaussian, BigComplex, BigGaussianVector> {
     override val addition: (a: BigGaussian, b: BigGaussian) -> BigGaussian
-        get() = { a, b -> a + b }
+        get() = BigGaussian::add
     override val subtraction: (a: BigGaussian, b: BigGaussian) -> BigGaussian
-        get() = { a, b -> a - b }
+        get() = BigGaussian::subtract
     override val multiplication: (a: BigGaussian, b: BigGaussian) -> BigGaussian
-        get() = { a, b -> a * b }
+        get() = BigGaussian::multiply
     override val division: (a: BigGaussian, b: BigGaussian) -> BigComplex
-        get() = { a, b -> a / b }
+        get() = BigGaussian::divide
     override val negation: (e: BigGaussian) -> BigGaussian
-        get() = { e -> -e }
+        get() = BigGaussian::negate
+    override val equalityByComparing: (a: BigGaussian, b: BigGaussian) -> Boolean
+        get() = BigGaussian::equalsByComparing
     override val zero: BigGaussian
         get() = BigGaussian.ZERO
     override val one: BigGaussian
         get() = BigGaussian.ONE
     override val vectorConstructor: (m: Map<Int, BigGaussian>) -> BigGaussianVector
-        get() = { m -> BigGaussianVector(m) }
+        get() = { BigGaussianVector(it) }
 }

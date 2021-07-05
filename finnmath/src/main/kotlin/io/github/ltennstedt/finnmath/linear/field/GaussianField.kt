@@ -28,19 +28,21 @@ import io.github.ltennstedt.finnmath.number.complex.Gaussian
  */
 public object GaussianField : Field<Gaussian, Complex, GaussianVector> {
     override val addition: (a: Gaussian, b: Gaussian) -> Gaussian
-        get() = { a, b -> a + b }
+        get() = Gaussian::add
     override val subtraction: (a: Gaussian, b: Gaussian) -> Gaussian
-        get() = { a, b -> a - b }
+        get() = Gaussian::subtract
     override val multiplication: (a: Gaussian, b: Gaussian) -> Gaussian
-        get() = { a, b -> a * b }
+        get() = Gaussian::multiply
     override val division: (a: Gaussian, b: Gaussian) -> Complex
-        get() = { a, b -> a / b }
+        get() = Gaussian::divide
     override val negation: (e: Gaussian) -> Gaussian
-        get() = { e -> -e }
+        get() = Gaussian::negate
+    override val equalityByComparing: (a: Gaussian, b: Gaussian) -> Boolean
+        get() = Gaussian::equalsByComparing
     override val zero: Gaussian
         get() = Gaussian.ZERO
     override val one: Gaussian
         get() = Gaussian.ONE
     override val vectorConstructor: (m: Map<Int, Gaussian>) -> GaussianVector
-        get() = { m -> GaussianVector(m) }
+        get() = { GaussianVector(it) }
 }

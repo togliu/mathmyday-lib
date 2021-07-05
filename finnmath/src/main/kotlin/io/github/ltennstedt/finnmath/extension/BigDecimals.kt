@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.extension
 
 import ch.obermuhlner.math.big.BigDecimalMath
+import io.github.ltennstedt.finnmath.number.complex.BigComplex
 import java.math.BigDecimal
 import java.math.MathContext
 
@@ -67,3 +68,10 @@ public fun BigDecimal.acos(mathContext: MathContext = MathContext.UNLIMITED): Bi
     this,
     mathContext
 )
+
+/**
+ * Returns this as [BigComplex]
+ *
+ * @since 0.0.1
+ */
+public fun BigDecimal.toBigComplex(): BigComplex = BigComplex(this)

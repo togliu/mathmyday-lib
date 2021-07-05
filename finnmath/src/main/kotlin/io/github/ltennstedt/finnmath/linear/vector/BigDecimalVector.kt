@@ -19,7 +19,9 @@ package io.github.ltennstedt.finnmath.linear.vector
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.sqrt
+import io.github.ltennstedt.finnmath.extension.toBigComplex
 import io.github.ltennstedt.finnmath.linear.builder.BigDecimalVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.field.BigDecimalField
 import org.apiguardian.api.API
 import java.math.BigDecimal
@@ -85,11 +87,6 @@ public class BigDecimalVector(
     public fun negate(mathContext: MathContext): BigDecimalVector =
         BigDecimalVector(indexToElement.map { (i, e) -> i to e.negate(mathContext) }.toMap())
 
-    override fun orthogonalTo(other: BigDecimalVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == BigDecimal.ZERO
-    }
-
     /**
      * Returns if this is orthogonal to [other] based on the [mathContext]
      *
@@ -103,7 +100,7 @@ public class BigDecimalVector(
             .compareTo(BigDecimal.ZERO) == 0
     }
 
-    override fun taxicabNorm(): BigDecimal = elements.map { e -> e.abs() }.reduce { a, b -> a + b }
+    override fun taxicabNorm(): BigDecimal = elements.map(BigDecimal::abs).reduce(BigDecimal::add)
 
     /**
      * Returns the taxicab norm based on the [mathContext]
@@ -131,7 +128,7 @@ public class BigDecimalVector(
      */
     public fun euclideanNorm(mathContext: MathContext): BigDecimal = euclideanNormPow2(mathContext).sqrt(mathContext)
 
-    override fun maxNorm(): BigDecimal = elements.map { it.abs() }.maxOrNull() as BigDecimal
+    override fun maxNorm(): BigDecimal = elements.map(BigDecimal::abs).maxOrNull() as BigDecimal
 
     /**
      * Returns the maximum norm based on the [mathContext]
@@ -141,9 +138,13 @@ public class BigDecimalVector(
     public fun maxNorm(mathContext: MathContext): BigDecimal =
         elements.map { it.abs(mathContext) }.maxOrNull() as BigDecimal
 
-    override fun equalsByComparing(other: BigDecimalVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.all { (i, e) -> e.compareTo(other[i]) == 0 }
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@BigDecimalVector[it].toBigComplex() }
     }
 
     public companion object {

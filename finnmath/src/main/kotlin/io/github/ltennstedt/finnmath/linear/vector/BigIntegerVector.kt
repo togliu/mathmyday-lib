@@ -20,8 +20,10 @@ import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
+import io.github.ltennstedt.finnmath.extension.toBigComplex
 import io.github.ltennstedt.finnmath.extension.toBigGaussian
 import io.github.ltennstedt.finnmath.linear.builder.BigIntegerVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
 import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.field.BigIntegerField
@@ -38,22 +40,15 @@ public class BigIntegerVector(
     indexToElement,
     BigIntegerField
 ) {
-    override fun orthogonalTo(other: BigIntegerVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == BigInteger.ZERO
-    }
-
-    override fun taxicabNorm(): BigDecimal = elements.map { e -> e.abs() }
-        .reduce { a, b -> a + b }
-        .toBigDecimal()
+    override fun taxicabNorm(): BigDecimal = elements.map(BigInteger::abs).reduce(BigInteger::add).toBigDecimal()
 
     /**
      * Returns the taxicab norm based on the [context]
      *
      * @since 0.0.1
      */
-    public fun taxicabNorm(context: FinnmathContext): BigDecimal = elements.map { e -> e.abs() }
-        .reduce { a, b -> a + b }
+    public fun taxicabNorm(context: FinnmathContext): BigDecimal = elements.map(BigInteger::abs)
+        .reduce(BigInteger::add)
         .toBigDecimal(context.scale, context.mathContext)
 
     override fun euclideanNormPow2(): BigInteger = this * this
@@ -106,9 +101,22 @@ public class BigIntegerVector(
         computationOfAbsent = { this@BigIntegerVector[it].toBigGaussian() }
     }
 
-    override fun equalsByComparing(other: BigIntegerVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.all { (i, e) -> e.compareTo(other[i]) == 0 }
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@BigIntegerVector[it].toBigComplex() }
+    }
+
+    /**
+     * Returns this as [BigComplexVector] vased on the [context]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(context: FinnmathContext): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@BigIntegerVector[it].toBigComplex(context) }
     }
 
     public companion object {

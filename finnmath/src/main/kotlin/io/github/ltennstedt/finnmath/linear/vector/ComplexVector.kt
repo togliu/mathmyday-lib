@@ -19,6 +19,7 @@ package io.github.ltennstedt.finnmath.linear.vector
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.linear.builder.ComplexVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.field.ComplexField
 import io.github.ltennstedt.finnmath.number.complex.Complex
 import org.apiguardian.api.API
@@ -34,22 +35,21 @@ public class ComplexVector(
     indexToElement,
     ComplexField
 ) {
-    override fun orthogonalTo(other: ComplexVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == Complex.ZERO
-    }
-
-    override fun taxicabNorm(): Double = elements.map { it.abs() }.reduce { a, b -> a + b }
+    override fun taxicabNorm(): Double = elements.map(Complex::abs).reduce { a, b -> a + b }
 
     override fun euclideanNormPow2(): Complex = this * this
 
     override fun euclideanNorm(): Double = sqrt(elements.map { it.abs().pow(2) }.reduce { a, b -> a + b })
 
-    override fun maxNorm(): Double = elements.map { it.abs() }.maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map(Complex::abs).maxOrNull() as Double
 
-    override fun equalsByComparing(other: ComplexVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.all { (i, e) -> e.equalsByComparing(other[i]) }
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@ComplexVector[it].toBigComplex() }
     }
 
     public companion object {

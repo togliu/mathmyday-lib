@@ -27,19 +27,21 @@ import java.math.BigDecimal
  */
 public object BigDecimalField : Field<BigDecimal, BigDecimal, BigDecimalVector> {
     override val addition: (a: BigDecimal, b: BigDecimal) -> BigDecimal
-        get() = { a, b -> a + b }
+        get() = BigDecimal::add
     override val subtraction: (a: BigDecimal, b: BigDecimal) -> BigDecimal
-        get() = { a, b -> a - b }
+        get() = BigDecimal::subtract
     override val multiplication: (a: BigDecimal, b: BigDecimal) -> BigDecimal
-        get() = { a, b -> a * b }
+        get() = BigDecimal::multiply
     override val division: (a: BigDecimal, b: BigDecimal) -> BigDecimal
-        get() = { a, b -> a / b }
+        get() = BigDecimal::divide
     override val negation: (e: BigDecimal) -> BigDecimal
-        get() = { e -> -e }
+        get() = BigDecimal::negate
+    override val equalityByComparing: (a: BigDecimal, b: BigDecimal) -> Boolean
+        get() = { a, b -> a.compareTo(b) == 0 }
     override val zero: BigDecimal
         get() = BigDecimal.ZERO
     override val one: BigDecimal
         get() = BigDecimal.ONE
     override val vectorConstructor: (m: Map<Int, BigDecimal>) -> BigDecimalVector
-        get() = { m -> BigDecimalVector(m) }
+        get() = { BigDecimalVector(it) }
 }

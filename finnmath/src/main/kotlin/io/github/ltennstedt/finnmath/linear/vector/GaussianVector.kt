@@ -19,6 +19,7 @@ package io.github.ltennstedt.finnmath.linear.vector
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.linear.builder.GaussianVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
 import io.github.ltennstedt.finnmath.linear.field.GaussianField
@@ -37,18 +38,13 @@ public class GaussianVector(
     indexToElement,
     GaussianField
 ) {
-    override fun orthogonalTo(other: GaussianVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == Gaussian.ZERO
-    }
-
-    override fun taxicabNorm(): Double = elements.map { it.abs() }.reduce { a, b -> a + b }
+    override fun taxicabNorm(): Double = elements.map(Gaussian::abs).reduce { a, b -> a + b }
 
     override fun euclideanNormPow2(): Gaussian = this * this
 
     override fun euclideanNorm(): Double = sqrt(elements.map { it.abs().pow(2) }.reduce { a, b -> a + b })
 
-    override fun maxNorm(): Double = elements.map { it.abs() }.maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map(Gaussian::abs).maxOrNull() as Double
 
     /**
      * Returns this as [ComplexVector]
@@ -68,9 +64,13 @@ public class GaussianVector(
         computationOfAbsent = { this@GaussianVector[it].toBigGaussian() }
     }
 
-    override fun equalsByComparing(other: GaussianVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.all { (i, e) -> e.equalsByComparing(other[i]) }
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@GaussianVector[it].toBigComplex() }
     }
 
     public companion object {

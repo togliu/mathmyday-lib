@@ -18,8 +18,10 @@ package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.extension.toBigComplex
 import io.github.ltennstedt.finnmath.extension.toComplex
 import io.github.ltennstedt.finnmath.linear.builder.DoubleVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
 import io.github.ltennstedt.finnmath.linear.field.DoubleField
@@ -37,20 +39,13 @@ public class DoubleVector(
     indexToElement,
     DoubleField
 ) {
-    override fun orthogonalTo(other: DoubleVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == 0.0
-    }
-
-    override fun taxicabNorm(): Double = elements.map { e -> e.absoluteValue }
-        .reduce { a, b -> a + b }
-        .toDouble()
+    override fun taxicabNorm(): Double = elements.map(Double::absoluteValue).reduce { a, b -> a + b }.toDouble()
 
     override fun euclideanNormPow2(): Double = this * this
 
     override fun euclideanNorm(): Double = sqrt(euclideanNormPow2())
 
-    override fun maxNorm(): Double = elements.map { it.absoluteValue }.maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map(Double::absoluteValue).maxOrNull() as Double
 
     /**
      * Returns this as [BigDecimalVector]
@@ -79,9 +74,13 @@ public class DoubleVector(
         computationOfAbsent = { this@DoubleVector[it].toComplex() }
     }
 
-    override fun equalsByComparing(other: DoubleVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.all { (i, e) -> e.compareTo(other[i]) == 0 }
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@DoubleVector[it].toBigComplex() }
     }
 
     public companion object {

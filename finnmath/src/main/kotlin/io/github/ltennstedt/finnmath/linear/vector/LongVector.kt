@@ -18,10 +18,12 @@ package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.extension.toBigComplex
 import io.github.ltennstedt.finnmath.extension.toBigGaussian
 import io.github.ltennstedt.finnmath.extension.toComplex
 import io.github.ltennstedt.finnmath.extension.toGaussian
 import io.github.ltennstedt.finnmath.linear.builder.LongVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
 import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
@@ -42,12 +44,7 @@ public class LongVector(
     indexToElement,
     LongField
 ) {
-    override fun orthogonalTo(other: LongVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == 0L
-    }
-
-    override fun taxicabNorm(): Double = elements.map { it.absoluteValue }.reduce { a, b -> a + b }.toDouble()
+    override fun taxicabNorm(): Double = elements.map(Long::absoluteValue).reduce { a, b -> a + b }.toDouble()
 
     override fun euclideanNormPow2(): Long = this * this
 
@@ -117,9 +114,13 @@ public class LongVector(
         computationOfAbsent = { this@LongVector[it].toBigGaussian() }
     }
 
-    override fun equalsByComparing(other: LongVector): Boolean {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.all { (i, e) -> e.compareTo(other[i]) == 0 }
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {
+        computationOfAbsent = { this@LongVector[it].toBigComplex() }
     }
 
     public companion object {

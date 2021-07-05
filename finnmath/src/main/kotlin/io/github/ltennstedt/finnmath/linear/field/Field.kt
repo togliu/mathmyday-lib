@@ -64,6 +64,13 @@ public interface Field<E : Number, Q : Number, V : AbstractVector<E, Q, V, *, *>
     public val negation: (e: E) -> E
 
     /**
+     * Equality by comparing
+     *
+     * @since 0.0.1
+     */
+    public val equalityByComparing: (a: E, b: E) -> Boolean
+
+    /**
      * 0
      *
      * @since 0.0.1

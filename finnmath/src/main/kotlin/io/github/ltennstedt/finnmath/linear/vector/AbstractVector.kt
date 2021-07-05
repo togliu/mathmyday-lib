@@ -85,7 +85,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     /**
      * Returns the sum of this and the [summand]
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
     public fun add(summand: V): V {
@@ -96,7 +96,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     /**
      * Returns the difference of this and the [subtrahend]
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
     public fun subtract(subtrahend: V): V {
@@ -109,7 +109,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     /**
      * Returns the dot product of this and the [other one][other]
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
     public fun dotProduct(other: V): E {
@@ -136,10 +136,13 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     /**
      * Returns if this is orthogonal to [other]
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
-    public abstract fun orthogonalTo(other: V): Boolean
+    public fun orthogonalTo(other: V): Boolean {
+        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
+        return field.equalityByComparing(this * other, field.zero)
+    }
 
     /**
      * Returns the taxicab norm
@@ -172,7 +175,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     /**
      * Returns the taxicab distance to [other]
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
     public fun taxicabDistance(other: V): N {
@@ -183,7 +186,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     /**
      * Returns the euclidean distance to [other]
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
     public fun euclideanDistance(other: V): N {
@@ -194,7 +197,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     /**
      * Returns the maximum distance to [other]
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
     public fun maxDistance(other: V): N {
@@ -247,15 +250,18 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     /**
      * Returns if this is equal to [other] by comparing fields
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
-    public abstract fun equalsByComparing(other: V): Boolean
+    public fun equalsByComparing(other: V): Boolean {
+        require(size == other.size) { "Equal sizes expected but $size != ${other.size}" }
+        return indexToElement.all { (i, e) -> field.equalityByComparing(e, other[i]) }
+    }
 
     /**
      * Returns if this is not equal to [other] by comparing fields
      *
-     * @throws IllegalArgumentException sizes are not equal
+     * @throws IllegalArgumentException if sizes are not equal
      * @since 0.0.1
      */
     public fun doesNotEqualByComparing(other: V): Boolean = !equalsByComparing(other)

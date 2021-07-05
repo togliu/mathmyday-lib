@@ -32,13 +32,15 @@ public object DoubleField : Field<Double, Double, DoubleVector> {
     override val multiplication: (a: Double, b: Double) -> Double
         get() = { a, b -> a * b }
     override val division: (a: Double, b: Double) -> Double
-        get() = { a, b -> a.toDouble() / b.toDouble() }
+        get() = { a, b -> a / b }
     override val negation: (e: Double) -> Double
         get() = { e -> -e }
+    override val equalityByComparing: (a: Double, b: Double) -> Boolean
+        get() = { a, b -> a.compareTo(b) == 0 }
     override val zero: Double
         get() = 0.0
     override val one: Double
         get() = 1.0
     override val vectorConstructor: (m: Map<Int, Double>) -> DoubleVector
-        get() = { m -> DoubleVector(m) }
+        get() = { DoubleVector(it) }
 }
