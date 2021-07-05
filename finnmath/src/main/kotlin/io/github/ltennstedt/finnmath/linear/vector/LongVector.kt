@@ -27,6 +27,7 @@ import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
 import io.github.ltennstedt.finnmath.linear.builder.doubleVector
 import io.github.ltennstedt.finnmath.linear.builder.gaussianVector
+import io.github.ltennstedt.finnmath.linear.field.LongField
 import org.apiguardian.api.API
 import java.math.MathContext
 import kotlin.math.absoluteValue
@@ -36,37 +37,17 @@ import kotlin.math.sqrt
 @Beta
 @Immutable
 public class LongVector(
-    indexToElement: Map<Int, Long>
-) : AbstractVector<Long, LongVector, Double, Long>(
-    indexToElement
+    indexToElement: Map<Int, Long>,
+) : AbstractVector<Long, Double, LongVector, Double, Long>(
+    indexToElement,
+    LongField
 ) {
-    override fun add(summand: LongVector): LongVector {
-        require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return LongVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
-    }
-
-    override fun subtract(subtrahend: LongVector): LongVector {
-        require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return LongVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
-    }
-
-    override fun dotProduct(other: LongVector): Long {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
-    }
-
-    override fun scalarMultiply(scalar: Long): LongVector = LongVector(
-        indexToElement.map { (i, e) -> i to (scalar * e) }.toMap()
-    )
-
-    override fun negate(): LongVector = LongVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
-
     override fun orthogonalTo(other: LongVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == 0L
     }
 
-    override fun taxicabNorm(): Double = elements.map { e -> e.absoluteValue }.reduce { a, b -> a + b }.toDouble()
+    override fun taxicabNorm(): Double = elements.map { it.absoluteValue }.reduce { a, b -> a + b }.toDouble()
 
     override fun euclideanNormPow2(): Long = this * this
 

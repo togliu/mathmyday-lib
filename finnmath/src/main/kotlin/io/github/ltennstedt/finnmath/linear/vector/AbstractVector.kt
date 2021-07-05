@@ -18,6 +18,7 @@ package io.github.ltennstedt.finnmath.linear.vector
 
 import com.google.common.annotations.Beta
 import com.google.common.base.MoreObjects
+import io.github.ltennstedt.finnmath.linear.field.Field
 import org.apiguardian.api.API
 import java.io.Serializable
 import java.util.Objects
@@ -25,10 +26,11 @@ import java.util.Objects
 /**
  * Base class for vectors
  *
- * @param E type of the elements of the vector
- * @param V type of the vector
- * @param N type of the taxicab and max norm of the vector
- * @param P type of the inner product
+ * @param E type of elements
+ * @param Q type of quotient of elements
+ * @param V type of vector
+ * @param N type of taxicab and max norm
+ * @param P type of inner product
  * @property indexToElement [Map]
  * @constructor Constructs an AbstractVector
  * @throws IllegalArgumentException if [indexToElement] is empty
@@ -38,15 +40,16 @@ import java.util.Objects
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>, N, P>(
-    protected val indexToElement: Map<Int, E>
+public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<E, Q, V, N, P>, N : Number, P>(
+    protected val indexToElement: Map<Int, E>,
+    private val field: Field<E, Q, V>
 ) : Serializable {
     /**
      * Indices
      *
      *  @since 0.0.1
      */
-    public val indices: Set<Int> by lazy { indexToElement.keys.sorted().toSet() }
+    public val indices: Set<Int> by lazy { indexToElement.keys.toSortedSet() }
 
     /**
      * Elements
@@ -61,7 +64,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @since 0.0.1
      */
     public val entries: Set<VectorEntry<E>> by lazy {
-        indexToElement.map { VectorEntry(it.key, it.value) }.sorted().toSet()
+        indexToElement.map { VectorEntry(it.key, it.value) }.toSortedSet()
     }
 
     /**
@@ -85,7 +88,10 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @throws IllegalArgumentException sizes are not equal
      * @since 0.0.1
      */
-    public abstract fun add(summand: V): V
+    public fun add(summand: V): V {
+        require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
+        return field.vectorConstructor(indexToElement.map { (i, e) -> i to field.addition(e, summand[i]) }.toMap())
+    }
 
     /**
      * Returns the difference of this and the [subtrahend]
@@ -93,7 +99,12 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @throws IllegalArgumentException sizes are not equal
      * @since 0.0.1
      */
-    public abstract fun subtract(subtrahend: V): V
+    public fun subtract(subtrahend: V): V {
+        require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
+        return field.vectorConstructor(
+            indexToElement.map { (i, e) -> i to field.subtraction(e, subtrahend[i]) }.toMap()
+        )
+    }
 
     /**
      * Returns the dot product of this and the [other one][other]
@@ -101,21 +112,26 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @throws IllegalArgumentException sizes are not equal
      * @since 0.0.1
      */
-    public abstract fun dotProduct(other: V): E
+    public fun dotProduct(other: V): E {
+        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
+        return indexToElement.map { (i, e) -> field.multiplication(e, other[i]) }.reduce(field.addition)
+    }
 
     /**
      * Returns the scalar product of this and the [scalar]
      *
      * @since 0.0.1
      */
-    public abstract fun scalarMultiply(scalar: E): V
+    public fun scalarMultiply(scalar: E): V {
+        return field.vectorConstructor(indexToElement.map { (i, e) -> i to field.multiplication(scalar, e) }.toMap())
+    }
 
     /**
      * Returns the negated [AbstractVector]
      *
      * @since 0.0.1
      */
-    public abstract fun negate(): V
+    public fun negate(): V = scalarMultiply(field.negation(field.one))
 
     /**
      * Returns if this is orthogonal to [other]
@@ -152,6 +168,17 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
      * @since 0.0.1
      */
     public abstract fun maxNorm(): N
+
+    /**
+     * Returns the taxicab distance to [other]
+     *
+     * @throws IllegalArgumentException sizes are not equal
+     * @since 0.0.1
+     */
+    public fun taxicabDistance(other: V): N {
+        require(size == other.size) { "Equal sizes expected but $size != ${other.size}" }
+        return (this - other).taxicabNorm()
+    }
 
     /**
      * Returns the euclidean distance to [other]
@@ -237,7 +264,7 @@ public abstract class AbstractVector<E : Number, V : AbstractVector<E, V, N, P>,
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is AbstractVector<*, *, *, *>) return false
+        if (other !is AbstractVector<*, *, *, *, *>) return false
         return indexToElement == other.indexToElement
     }
 

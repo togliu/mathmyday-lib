@@ -24,6 +24,7 @@ import io.github.ltennstedt.finnmath.extension.toBigGaussian
 import io.github.ltennstedt.finnmath.linear.builder.BigIntegerVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
 import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
+import io.github.ltennstedt.finnmath.linear.field.BigIntegerField
 import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.BigInteger
@@ -33,30 +34,10 @@ import java.math.BigInteger
 @Immutable
 public class BigIntegerVector(
     indexToElement: Map<Int, BigInteger>
-) : AbstractVector<BigInteger, BigIntegerVector, BigDecimal, BigInteger>(
-    indexToElement
+) : AbstractVector<BigInteger, BigDecimal, BigIntegerVector, BigDecimal, BigInteger>(
+    indexToElement,
+    BigIntegerField
 ) {
-    override fun add(summand: BigIntegerVector): BigIntegerVector {
-        require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return BigIntegerVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
-    }
-
-    override fun subtract(subtrahend: BigIntegerVector): BigIntegerVector {
-        require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return BigIntegerVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
-    }
-
-    override fun dotProduct(other: BigIntegerVector): BigInteger {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
-    }
-
-    override fun scalarMultiply(scalar: BigInteger): BigIntegerVector = BigIntegerVector(
-        indexToElement.map { (i, e) -> i to (scalar * e) }.toMap()
-    )
-
-    override fun negate(): BigIntegerVector = BigIntegerVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
-
     override fun orthogonalTo(other: BigIntegerVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == BigInteger.ZERO

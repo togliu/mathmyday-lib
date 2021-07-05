@@ -73,7 +73,7 @@ gradle default
 * Generics
 * Lambdas with receivers
 * Explicit API mode
-* Qualified this and implicit this expression
+* Qualified this and implicit this expressions
 
 ## Usage
 
@@ -120,7 +120,7 @@ longVector {
 ```java
 class C {
     void m() {
-        // arithmetic        
+        // arithmetic methods follow the naming scheme of BigInteger/BigDecimal
         Fraction(2L, 3L).add(Fraction(3L, 4L));
 
         // getting an element of a vector or matrix

@@ -18,6 +18,7 @@ package io.github.ltennstedt.finnmath.linear.builder;
 
 import com.google.common.annotations.Beta;
 import io.github.ltennstedt.finnmath.linear.vector.BigGaussianVector;
+import io.github.ltennstedt.finnmath.number.complex.BigComplex;
 import io.github.ltennstedt.finnmath.number.complex.BigGaussian;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +32,7 @@ import org.jetbrains.annotations.NotNull;
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 public class BigGaussianVectorJavaBuilder extends
-    AbstractVectorJavaBuilder<BigGaussian, BigGaussianVector, BigGaussianVectorJavaBuilder> {
+    AbstractVectorJavaBuilder<BigGaussian, BigComplex, BigGaussianVector, BigGaussianVectorJavaBuilder> {
     /**
      * Constructor
      *

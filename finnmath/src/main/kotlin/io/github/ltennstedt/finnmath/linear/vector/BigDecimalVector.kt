@@ -20,6 +20,7 @@ import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.sqrt
 import io.github.ltennstedt.finnmath.linear.builder.BigDecimalVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.field.BigDecimalField
 import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.MathContext
@@ -29,14 +30,10 @@ import java.math.MathContext
 @Immutable
 public class BigDecimalVector(
     indexToElement: Map<Int, BigDecimal>
-) : AbstractVector<BigDecimal, BigDecimalVector, BigDecimal, BigDecimal>(
-    indexToElement
+) : AbstractVector<BigDecimal, BigDecimal, BigDecimalVector, BigDecimal, BigDecimal>(
+    indexToElement,
+    BigDecimalField
 ) {
-    override fun add(summand: BigDecimalVector): BigDecimalVector {
-        require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return BigDecimalVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
-    }
-
     /**
      * Returns the sum of this and the [summand] based on the [mathContext]
      *
@@ -48,11 +45,6 @@ public class BigDecimalVector(
         return BigDecimalVector(indexToElement.map { (i, e) -> i to e.add(summand[i], mathContext) }.toMap())
     }
 
-    override fun subtract(subtrahend: BigDecimalVector): BigDecimalVector {
-        require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return BigDecimalVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
-    }
-
     /**
      * Returns the difference of this and the [subtrahend] based on the [mathContext]
      *
@@ -62,11 +54,6 @@ public class BigDecimalVector(
     public fun subtract(subtrahend: BigDecimalVector, mathContext: MathContext): BigDecimalVector {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
         return BigDecimalVector(indexToElement.map { (i, e) -> i to e.subtract(subtrahend[i], mathContext) }.toMap())
-    }
-
-    override fun dotProduct(other: BigDecimalVector): BigDecimal {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
     }
 
     /**
@@ -81,10 +68,6 @@ public class BigDecimalVector(
             .reduce { a, b -> a.add(b, mathContext) }
     }
 
-    override fun scalarMultiply(scalar: BigDecimal): BigDecimalVector = BigDecimalVector(
-        indexToElement.map { (i, e) -> i to (scalar * e) }.toMap()
-    )
-
     /**
      * Returns the scalar product of this and the [scalar] based on the [mathContext]
      *
@@ -93,8 +76,6 @@ public class BigDecimalVector(
     public fun scalarMultiply(scalar: BigDecimal, mathContext: MathContext): BigDecimalVector = BigDecimalVector(
         indexToElement.map { (i, e) -> i to scalar.multiply(e, mathContext) }.toMap()
     )
-
-    override fun negate(): BigDecimalVector = BigDecimalVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
 
     /**
      * Returns the negated [AbstractVector] based on the [mathContext]

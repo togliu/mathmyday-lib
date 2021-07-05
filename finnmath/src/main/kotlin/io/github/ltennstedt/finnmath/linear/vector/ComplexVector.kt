@@ -19,6 +19,7 @@ package io.github.ltennstedt.finnmath.linear.vector
 import com.google.common.annotations.Beta
 import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.linear.builder.ComplexVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.field.ComplexField
 import io.github.ltennstedt.finnmath.number.complex.Complex
 import org.apiguardian.api.API
 import kotlin.math.pow
@@ -29,30 +30,10 @@ import kotlin.math.sqrt
 @Immutable
 public class ComplexVector(
     indexToElement: Map<Int, Complex>
-) : AbstractVector<Complex, ComplexVector, Double, Complex>(
-    indexToElement
+) : AbstractVector<Complex, Complex, ComplexVector, Double, Complex>(
+    indexToElement,
+    ComplexField
 ) {
-    override fun add(summand: ComplexVector): ComplexVector {
-        require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return ComplexVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
-    }
-
-    override fun subtract(subtrahend: ComplexVector): ComplexVector {
-        require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return ComplexVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
-    }
-
-    override fun dotProduct(other: ComplexVector): Complex {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
-    }
-
-    override fun scalarMultiply(scalar: Complex): ComplexVector = ComplexVector(
-        indexToElement.map { (i, e) -> i to (scalar * e) }.toMap()
-    )
-
-    override fun negate(): ComplexVector = ComplexVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
-
     override fun orthogonalTo(other: ComplexVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == Complex.ZERO

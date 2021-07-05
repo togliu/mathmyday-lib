@@ -34,9 +34,10 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Base class for Java-style vector builders
  *
- * @param <E> type of the elements of the vector
- * @param <V> type of the vector
- * @param <B> type of the builder
+ * @param <E> type of elements
+ * @param <Q> type of quotient of elements
+ * @param <V> type of vector
+ * @param <B> type of builder
  * @author Lars Tennstedt
  * @since 0.0.1
  */
@@ -44,8 +45,9 @@ import org.jetbrains.annotations.Nullable;
 @Beta
 public abstract class AbstractVectorJavaBuilder<
     E extends Number,
-    V extends AbstractVector<E, V, ?, ?>,
-    B extends AbstractVectorJavaBuilder<E, V, B>
+    Q extends Number,
+    V extends AbstractVector<E, Q, V, ?, ?>,
+    B extends AbstractVectorJavaBuilder<E, Q, V, B>
     > {
     private final @NotNull Map<Integer, E> indexToElement = new HashMap<>();
     private final int size;

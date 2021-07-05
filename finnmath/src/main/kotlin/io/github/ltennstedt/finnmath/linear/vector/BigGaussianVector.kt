@@ -21,6 +21,8 @@ import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.FinnmathContext
 import io.github.ltennstedt.finnmath.extension.sqrt
 import io.github.ltennstedt.finnmath.linear.builder.BigGaussianVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.field.BigGaussianField
+import io.github.ltennstedt.finnmath.number.complex.BigComplex
 import io.github.ltennstedt.finnmath.number.complex.BigGaussian
 import org.apiguardian.api.API
 import java.math.BigDecimal
@@ -31,30 +33,10 @@ import java.math.MathContext
 @Immutable
 public class BigGaussianVector(
     indexToElement: Map<Int, BigGaussian>
-) : AbstractVector<BigGaussian, BigGaussianVector, BigDecimal, BigGaussian>(
-    indexToElement
+) : AbstractVector<BigGaussian, BigComplex, BigGaussianVector, BigDecimal, BigGaussian>(
+    indexToElement,
+    BigGaussianField
 ) {
-    override fun add(summand: BigGaussianVector): BigGaussianVector {
-        require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return BigGaussianVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
-    }
-
-    override fun subtract(subtrahend: BigGaussianVector): BigGaussianVector {
-        require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return BigGaussianVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
-    }
-
-    override fun dotProduct(other: BigGaussianVector): BigGaussian {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
-    }
-
-    override fun scalarMultiply(scalar: BigGaussian): BigGaussianVector = BigGaussianVector(
-        indexToElement.map { (i, e) -> i to (scalar * e) }.toMap()
-    )
-
-    override fun negate(): BigGaussianVector = BigGaussianVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
-
     override fun orthogonalTo(other: BigGaussianVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == BigGaussian.ZERO

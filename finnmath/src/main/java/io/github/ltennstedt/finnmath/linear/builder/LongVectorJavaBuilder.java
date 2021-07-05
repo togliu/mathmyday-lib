@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, LongVector, LongVectorJavaBuilder> {
+public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, Double, LongVector, LongVectorJavaBuilder> {
     /**
      * Constructor
      *

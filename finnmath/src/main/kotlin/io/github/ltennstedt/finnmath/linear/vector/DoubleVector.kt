@@ -22,6 +22,7 @@ import io.github.ltennstedt.finnmath.extension.toComplex
 import io.github.ltennstedt.finnmath.linear.builder.DoubleVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
+import io.github.ltennstedt.finnmath.linear.field.DoubleField
 import org.apiguardian.api.API
 import java.math.MathContext
 import kotlin.math.absoluteValue
@@ -32,30 +33,10 @@ import kotlin.math.sqrt
 @Immutable
 public class DoubleVector(
     indexToElement: Map<Int, Double>
-) : AbstractVector<Double, DoubleVector, Double, Double>(
-    indexToElement
+) : AbstractVector<Double, Double, DoubleVector, Double, Double>(
+    indexToElement,
+    DoubleField
 ) {
-    override fun add(summand: DoubleVector): DoubleVector {
-        require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return DoubleVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
-    }
-
-    override fun subtract(subtrahend: DoubleVector): DoubleVector {
-        require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return DoubleVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
-    }
-
-    override fun dotProduct(other: DoubleVector): Double {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
-    }
-
-    override fun scalarMultiply(scalar: Double): DoubleVector = DoubleVector(
-        indexToElement.map { (i, e) -> i to (scalar * e) }.toMap()
-    )
-
-    override fun negate(): DoubleVector = DoubleVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
-
     override fun orthogonalTo(other: DoubleVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == 0.0

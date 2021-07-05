@@ -21,6 +21,8 @@ import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.linear.builder.GaussianVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
+import io.github.ltennstedt.finnmath.linear.field.GaussianField
+import io.github.ltennstedt.finnmath.number.complex.Complex
 import io.github.ltennstedt.finnmath.number.complex.Gaussian
 import org.apiguardian.api.API
 import kotlin.math.pow
@@ -31,30 +33,10 @@ import kotlin.math.sqrt
 @Immutable
 public class GaussianVector(
     indexToElement: Map<Int, Gaussian>
-) : AbstractVector<Gaussian, GaussianVector, Double, Gaussian>(
-    indexToElement
+) : AbstractVector<Gaussian, Complex, GaussianVector, Double, Gaussian>(
+    indexToElement,
+    GaussianField
 ) {
-    override fun add(summand: GaussianVector): GaussianVector {
-        require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return GaussianVector(indexToElement.map { (i, e) -> i to (e + summand[i]) }.toMap())
-    }
-
-    override fun subtract(subtrahend: GaussianVector): GaussianVector {
-        require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return GaussianVector(indexToElement.map { (i, e) -> i to (e - subtrahend[i]) }.toMap())
-    }
-
-    override fun dotProduct(other: GaussianVector): Gaussian {
-        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b }
-    }
-
-    override fun scalarMultiply(scalar: Gaussian): GaussianVector = GaussianVector(
-        indexToElement.map { (i, e) -> i to (scalar * e) }.toMap()
-    )
-
-    override fun negate(): GaussianVector = GaussianVector(indexToElement.map { (i, e) -> i to (-e) }.toMap())
-
     override fun orthogonalTo(other: GaussianVector): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
         return indexToElement.map { (i, e) -> e * other[i] }.reduce { a, b -> a + b } == Gaussian.ZERO

@@ -29,7 +29,8 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class DoubleVectorJavaBuilder extends AbstractVectorJavaBuilder<Double, DoubleVector, DoubleVectorJavaBuilder> {
+public class DoubleVectorJavaBuilder extends
+    AbstractVectorJavaBuilder<Double, Double, DoubleVector, DoubleVectorJavaBuilder> {
     /**
      * Constructor
      *

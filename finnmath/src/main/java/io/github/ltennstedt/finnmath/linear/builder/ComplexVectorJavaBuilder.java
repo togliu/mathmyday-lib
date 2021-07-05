@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 public class ComplexVectorJavaBuilder extends
-    AbstractVectorJavaBuilder<Complex, ComplexVector, ComplexVectorJavaBuilder> {
+    AbstractVectorJavaBuilder<Complex, Complex, ComplexVector, ComplexVectorJavaBuilder> {
     /**
      * Constructor
      *
