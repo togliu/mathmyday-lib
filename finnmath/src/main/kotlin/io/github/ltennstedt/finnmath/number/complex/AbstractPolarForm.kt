@@ -1,8 +1,10 @@
 package io.github.ltennstedt.finnmath.number.complex
 
 import com.google.common.annotations.Beta
+import com.google.common.base.MoreObjects
 import org.apiguardian.api.API
 import java.io.Serializable
+import java.util.Objects
 
 /**
  * Base class for polar forms
@@ -19,8 +21,8 @@ import java.io.Serializable
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 public abstract class AbstractPolarForm<N : Comparable<N>, T : AbstractPolarForm<N, T, C>, C>(
-    public open val radial: N,
-    public open val angular: N
+    public val radial: N,
+    public val angular: N
 ) : Serializable {
     /**
      * Returns this as complex number
@@ -43,6 +45,17 @@ public abstract class AbstractPolarForm<N : Comparable<N>, T : AbstractPolarForm
      * @since 0.0.1
      */
     public fun doesNotequalsByComparing(other: T): Boolean = !equalsByComparing(other)
+
+    override fun hashCode(): Int = Objects.hash(radial, angular)
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is AbstractPolarForm<*, *, *>) return false
+        return radial == other.radial && angular == other.angular
+    }
+
+    override fun toString(): String =
+        MoreObjects.toStringHelper(this).add("radial", radial).add("angular", angular).toString()
 
     public companion object {
         private const val serialVersionUID = 1L

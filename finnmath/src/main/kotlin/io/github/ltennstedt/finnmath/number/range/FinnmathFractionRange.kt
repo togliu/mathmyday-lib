@@ -32,7 +32,7 @@ import java.io.Serializable
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public abstract class AbstractFractionRange<
+public interface FinnmathFractionRange<
     N : Number,
     T : AbstractFraction<N, T, R>,
     R : ClosedRange<T>
@@ -43,7 +43,7 @@ public abstract class AbstractFractionRange<
      * @since 0.0.1
      */
     public val length: T
-        get() = (endInclusive.subtract(start)).abs()
+        get() = (endInclusive - start).normalize().reduce()
 
     public companion object {
         private const val serialVersionUID = 1L

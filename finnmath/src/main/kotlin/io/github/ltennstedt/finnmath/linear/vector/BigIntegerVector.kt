@@ -27,19 +27,32 @@ import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
 import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.field.BigIntegerField
+import io.github.ltennstedt.finnmath.linear.field.Field
 import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.BigInteger
 
+/**
+ * Immutable implementation of a vector whose elements are of type [BigInteger]
+ *
+ * @property indexToElement [Map]
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
 public class BigIntegerVector(
     indexToElement: Map<Int, BigInteger>
 ) : AbstractVector<BigInteger, BigDecimal, BigIntegerVector, BigDecimal, BigInteger>(
-    indexToElement,
-    BigIntegerField
+    indexToElement
 ) {
+    override val field: Field<BigInteger, BigDecimal, BigIntegerVector>
+        get() = BigIntegerField
+
     override fun taxicabNorm(): BigDecimal = elements.map(BigInteger::abs).reduce(BigInteger::add).toBigDecimal()
 
     /**

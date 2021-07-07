@@ -23,19 +23,32 @@ import io.github.ltennstedt.finnmath.extension.toBigComplex
 import io.github.ltennstedt.finnmath.linear.builder.BigDecimalVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.field.BigDecimalField
+import io.github.ltennstedt.finnmath.linear.field.Field
 import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.MathContext
 
+/**
+ * Immutable implementation of a vector whose elements are of type [BigDecimal]
+ *
+ * @property indexToElement [Map]
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
 public class BigDecimalVector(
     indexToElement: Map<Int, BigDecimal>
 ) : AbstractVector<BigDecimal, BigDecimal, BigDecimalVector, BigDecimal, BigDecimal>(
-    indexToElement,
-    BigDecimalField
+    indexToElement
 ) {
+    override val field: Field<BigDecimal, BigDecimal, BigDecimalVector>
+        get() = BigDecimalField
+
     /**
      * Returns the sum of this and the [summand] based on the [mathContext]
      *

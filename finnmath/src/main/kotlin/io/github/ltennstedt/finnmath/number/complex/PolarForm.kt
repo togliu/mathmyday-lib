@@ -38,10 +38,13 @@ import kotlin.math.sin
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
-public data class PolarForm(
-    override val radial: Double,
-    override val angular: Double
-) : AbstractPolarForm<Double, PolarForm, Complex>(radial, angular) {
+public class PolarForm(
+    radial: Double,
+    angular: Double
+) : AbstractPolarForm<Double, PolarForm, Complex>(
+    radial,
+    angular
+) {
     /**
      * Returns the corresponding [Complex] of this
      *

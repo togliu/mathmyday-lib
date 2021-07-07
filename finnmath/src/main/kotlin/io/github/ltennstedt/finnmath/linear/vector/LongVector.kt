@@ -29,21 +29,34 @@ import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
 import io.github.ltennstedt.finnmath.linear.builder.doubleVector
 import io.github.ltennstedt.finnmath.linear.builder.gaussianVector
+import io.github.ltennstedt.finnmath.linear.field.Field
 import io.github.ltennstedt.finnmath.linear.field.LongField
 import org.apiguardian.api.API
 import java.math.MathContext
 import kotlin.math.absoluteValue
 import kotlin.math.sqrt
 
+/**
+ * Immutable implementation of a vector whose elements are of type [Long]
+ *
+ * @property indexToElement [Map]
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
 public class LongVector(
     indexToElement: Map<Int, Long>,
 ) : AbstractVector<Long, Double, LongVector, Double, Long>(
-    indexToElement,
-    LongField
+    indexToElement
 ) {
+    override val field: Field<Long, Double, LongVector>
+        get() = LongField
+
     override fun taxicabNorm(): Double = elements.map(Long::absoluteValue).reduce { a, b -> a + b }.toDouble()
 
     override fun euclideanNormPow2(): Long = this * this

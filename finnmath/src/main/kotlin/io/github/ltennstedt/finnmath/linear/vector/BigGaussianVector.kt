@@ -23,21 +23,34 @@ import io.github.ltennstedt.finnmath.extension.sqrt
 import io.github.ltennstedt.finnmath.linear.builder.BigGaussianVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.field.BigGaussianField
+import io.github.ltennstedt.finnmath.linear.field.Field
 import io.github.ltennstedt.finnmath.number.complex.BigComplex
 import io.github.ltennstedt.finnmath.number.complex.BigGaussian
 import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.MathContext
 
+/**
+ * Immutable implementation of a vector whose elements are of type [BigGaussian]
+ *
+ * @property indexToElement [Map]
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
 public class BigGaussianVector(
     indexToElement: Map<Int, BigGaussian>
 ) : AbstractVector<BigGaussian, BigComplex, BigGaussianVector, BigDecimal, BigGaussian>(
-    indexToElement,
-    BigGaussianField
+    indexToElement
 ) {
+    override val field: Field<BigGaussian, BigComplex, BigGaussianVector>
+        get() = BigGaussianField
+
     override fun taxicabNorm(): BigDecimal = elements.map(BigGaussian::abs).reduce(BigDecimal::add)
 
     /**

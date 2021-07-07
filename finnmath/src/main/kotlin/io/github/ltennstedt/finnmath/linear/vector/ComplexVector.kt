@@ -21,20 +21,33 @@ import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.linear.builder.ComplexVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.field.ComplexField
+import io.github.ltennstedt.finnmath.linear.field.Field
 import io.github.ltennstedt.finnmath.number.complex.Complex
 import org.apiguardian.api.API
 import kotlin.math.pow
 import kotlin.math.sqrt
 
+/**
+ * Immutable implementation of a vector whose elements are of type [Complex]
+ *
+ * @property indexToElement [Map]
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
 public class ComplexVector(
     indexToElement: Map<Int, Complex>
 ) : AbstractVector<Complex, Complex, ComplexVector, Double, Complex>(
-    indexToElement,
-    ComplexField
+    indexToElement
 ) {
+    override val field: Field<Complex, Complex, ComplexVector>
+        get() = ComplexField
+
     override fun taxicabNorm(): Double = elements.map(Complex::abs).reduce { a, b -> a + b }
 
     override fun euclideanNormPow2(): Complex = this * this

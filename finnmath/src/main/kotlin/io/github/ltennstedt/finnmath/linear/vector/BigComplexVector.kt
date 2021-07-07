@@ -21,20 +21,33 @@ import com.google.errorprone.annotations.Immutable
 import io.github.ltennstedt.finnmath.extension.sqrt
 import io.github.ltennstedt.finnmath.linear.builder.BigComplexVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.field.BigComplexField
+import io.github.ltennstedt.finnmath.linear.field.Field
 import io.github.ltennstedt.finnmath.number.complex.BigComplex
 import org.apiguardian.api.API
 import java.math.BigDecimal
 import java.math.MathContext
 
+/**
+ * Immutable implementation of a vector whose elements are of type [BigComplex]
+ *
+ * @property indexToElement [Map]
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
 public class BigComplexVector(
     indexToElement: Map<Int, BigComplex>
 ) : AbstractVector<BigComplex, BigComplex, BigComplexVector, BigDecimal, BigComplex>(
-    indexToElement,
-    BigComplexField
+    indexToElement
 ) {
+    override val field: Field<BigComplex, BigComplex, BigComplexVector>
+        get() = BigComplexField
+
     /**
      * Returns the sum of this and the [summand] based on the [mathContext]
      *

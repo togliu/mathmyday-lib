@@ -25,20 +25,33 @@ import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
 import io.github.ltennstedt.finnmath.linear.field.DoubleField
+import io.github.ltennstedt.finnmath.linear.field.Field
 import org.apiguardian.api.API
 import java.math.MathContext
 import kotlin.math.absoluteValue
 import kotlin.math.sqrt
 
+/**
+ * Immutable implementation of a vector whose elements are of type [Double]
+ *
+ * @property indexToElement [Map]
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
 public class DoubleVector(
     indexToElement: Map<Int, Double>
 ) : AbstractVector<Double, Double, DoubleVector, Double, Double>(
-    indexToElement,
-    DoubleField
+    indexToElement
 ) {
+    override val field: Field<Double, Double, DoubleVector>
+        get() = DoubleField
+
     override fun taxicabNorm(): Double = elements.map(Double::absoluteValue).reduce { a, b -> a + b }.toDouble()
 
     override fun euclideanNormPow2(): Double = this * this

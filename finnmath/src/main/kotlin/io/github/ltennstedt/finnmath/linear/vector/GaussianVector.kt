@@ -22,6 +22,7 @@ import io.github.ltennstedt.finnmath.linear.builder.GaussianVectorJavaBuilder
 import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
 import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
 import io.github.ltennstedt.finnmath.linear.builder.complexVector
+import io.github.ltennstedt.finnmath.linear.field.Field
 import io.github.ltennstedt.finnmath.linear.field.GaussianField
 import io.github.ltennstedt.finnmath.number.complex.Complex
 import io.github.ltennstedt.finnmath.number.complex.Gaussian
@@ -29,15 +30,27 @@ import org.apiguardian.api.API
 import kotlin.math.pow
 import kotlin.math.sqrt
 
+/**
+ * Immutable implementation of a vector whose elements are of type [Gaussian]
+ *
+ * @property indexToElement [Map]
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
 public class GaussianVector(
     indexToElement: Map<Int, Gaussian>
 ) : AbstractVector<Gaussian, Complex, GaussianVector, Double, Gaussian>(
-    indexToElement,
-    GaussianField
+    indexToElement
 ) {
+    override val field: Field<Gaussian, Complex, GaussianVector>
+        get() = GaussianField
+
     override fun taxicabNorm(): Double = elements.map(Gaussian::abs).reduce { a, b -> a + b }
 
     override fun euclideanNormPow2(): Gaussian = this * this

@@ -36,7 +36,7 @@ import org.apiguardian.api.API
 public data class FractionRange(
     override val start: Fraction,
     override val endInclusive: Fraction
-) : AbstractFractionRange<Long, Fraction, FractionRange>() {
+) : FinnmathFractionRange<Long, Fraction, FractionRange> {
     public companion object {
         /**
          * Empty BigFractionRange

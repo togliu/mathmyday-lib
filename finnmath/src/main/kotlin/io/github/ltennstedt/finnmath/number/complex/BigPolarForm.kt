@@ -39,10 +39,13 @@ import java.math.MathContext
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 @Immutable
-public data class BigPolarForm(
-    override val radial: BigDecimal,
-    override val angular: BigDecimal
-) : AbstractPolarForm<BigDecimal, BigPolarForm, BigComplex>(radial, angular) {
+public class BigPolarForm(
+    radial: BigDecimal,
+    angular: BigDecimal
+) : AbstractPolarForm<BigDecimal, BigPolarForm, BigComplex>(
+    radial,
+    angular
+) {
     /**
      * Constructs a BigPolarForm
      *

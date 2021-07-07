@@ -26,7 +26,7 @@ import java.util.Objects
  * Base class for complex numbers
  *
  * @param N type of [real] and [imaginary]
- * @param T type of [this][AbstractComplex]
+ * @param T type of this
  * @param Q type of the quotient
  * @param A type of the absolute value
  * @param P type of the polar form
@@ -191,10 +191,8 @@ public abstract class AbstractComplex<N : Number, T : AbstractComplex<N, T, Q, A
         return real == other.real && imaginary == other.imaginary
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this)
-        .add("real", real)
-        .add("imaginary", imaginary)
-        .toString()
+    override fun toString(): String =
+        MoreObjects.toStringHelper(this).add("real", real).add("imaginary", imaginary).toString()
 
     public companion object {
         private const val serialVersionUID = 1L

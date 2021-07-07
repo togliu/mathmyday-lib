@@ -41,8 +41,7 @@ import java.util.Objects
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<E, Q, V, N, P>, N : Number, P>(
-    protected val indexToElement: Map<Int, E>,
-    private val field: Field<E, Q, V>
+    public val indexToElement: Map<Int, E>,
 ) : Serializable {
     /**
      * Indices
@@ -73,6 +72,13 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
      * @since 0.0.1
      */
     public val size: Int get() = indexToElement.size
+
+    /**
+     * Field
+     *
+     * @since 0.0.1
+     */
+    protected abstract val field: Field<E, Q, V>
 
     init {
         require(indexToElement.isNotEmpty()) { "indexToElement expected not to be empty but map = $indexToElement" }

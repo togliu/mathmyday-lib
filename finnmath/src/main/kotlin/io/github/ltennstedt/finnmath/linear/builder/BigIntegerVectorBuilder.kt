@@ -17,8 +17,6 @@
 package io.github.ltennstedt.finnmath.linear.builder
 
 import io.github.ltennstedt.finnmath.linear.vector.BigIntegerVector
-import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
-import pw.forst.katlib.whenNull
 import java.math.BigInteger
 
 /**
@@ -41,21 +39,6 @@ public fun bigIntegerVector(init: BigIntegerVectorBuilder.() -> Unit): BigIntege
  */
 public class BigIntegerVectorBuilder : AbstractVectorBuilder<BigInteger, BigIntegerVector>() {
     override var computationOfAbsent: (Int) -> BigInteger = { _ -> BigInteger.ZERO }
-
-    override fun build(): BigIntegerVector {
-        check(entries.isNotEmpty()) { "entries expected not to be empty but entries = $entries}" }
-        val indices = entries.map { it.index }
-        val maxIndex = indices.maxOrNull() as Int
-        check(maxIndex <= size) { "maxIndex <= size expected but $maxIndex < $size" }
-        val distinctIndices = indices.distinct()
-        check(distinctIndices.size == indices.size) {
-            "indices.distinct().size == indices.size expected but ${distinctIndices.size} != ${indices.size}"
-        }
-        for (i in 1..size) {
-            entries.filter { it.index == i }.map { it.element }.singleOrNull().whenNull {
-                entries.add(VectorEntry(i, computationOfAbsent(i)))
-            }
-        }
-        return BigIntegerVector(entries.associate { (i, e) -> i to e })
-    }
+    override val vectorConstructor: (m: Map<Int, BigInteger>) -> BigIntegerVector
+        get() = { BigIntegerVector(it) }
 }

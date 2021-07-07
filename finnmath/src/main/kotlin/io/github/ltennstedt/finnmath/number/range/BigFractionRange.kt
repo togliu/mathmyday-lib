@@ -37,7 +37,7 @@ import java.math.BigInteger
 public data class BigFractionRange(
     override val start: BigFraction,
     override val endInclusive: BigFraction
-) : AbstractFractionRange<BigInteger, BigFraction, BigFractionRange>() {
+) : FinnmathFractionRange<BigInteger, BigFraction, BigFractionRange> {
     public companion object {
         /**
          * Empty BigFractionRange

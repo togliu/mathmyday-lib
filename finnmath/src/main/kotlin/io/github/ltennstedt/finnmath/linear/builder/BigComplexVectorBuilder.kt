@@ -17,9 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.builder
 
 import io.github.ltennstedt.finnmath.linear.vector.BigComplexVector
-import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import io.github.ltennstedt.finnmath.number.complex.BigComplex
-import pw.forst.katlib.whenNull
 
 /**
  * Provides BigComplexVector block
@@ -41,21 +39,6 @@ public fun bigComplexVector(init: BigComplexVectorBuilder.() -> Unit): BigComple
  */
 public class BigComplexVectorBuilder : AbstractVectorBuilder<BigComplex, BigComplexVector>() {
     override var computationOfAbsent: (Int) -> BigComplex = { _ -> BigComplex.ZERO }
-
-    override fun build(): BigComplexVector {
-        check(entries.isNotEmpty()) { "entries expected not to be empty but entries = $entries}" }
-        val indices = entries.map { it.index }
-        val maxIndex = indices.maxOrNull() as Int
-        check(maxIndex <= size) { "maxIndex <= size expected but $maxIndex < $size" }
-        val distinctIndices = indices.distinct()
-        check(distinctIndices.size == indices.size) {
-            "indices.distinct().size == indices.size expected but ${distinctIndices.size} != ${indices.size}"
-        }
-        for (i in 1..size) {
-            entries.filter { it.index == i }.map { it.element }.singleOrNull().whenNull {
-                entries.add(VectorEntry(i, computationOfAbsent(i)))
-            }
-        }
-        return BigComplexVector(entries.associate { (i, e) -> i to e })
-    }
+    override val vectorConstructor: (m: Map<Int, BigComplex>) -> BigComplexVector
+        get() = { BigComplexVector(it) }
 }

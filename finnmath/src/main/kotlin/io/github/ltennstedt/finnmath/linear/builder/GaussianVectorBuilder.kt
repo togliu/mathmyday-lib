@@ -17,9 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.builder
 
 import io.github.ltennstedt.finnmath.linear.vector.GaussianVector
-import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import io.github.ltennstedt.finnmath.number.complex.Gaussian
-import pw.forst.katlib.whenNull
 
 /**
  * Provides GaussianVector block
@@ -41,21 +39,6 @@ public fun gaussianVector(init: GaussianVectorBuilder.() -> Unit): GaussianVecto
  */
 public class GaussianVectorBuilder : AbstractVectorBuilder<Gaussian, GaussianVector>() {
     override var computationOfAbsent: (Int) -> Gaussian = { _ -> Gaussian.ZERO }
-
-    override fun build(): GaussianVector {
-        check(entries.isNotEmpty()) { "entries expected not to be empty but entries = $entries}" }
-        val indices = entries.map { it.index }
-        val maxIndex = indices.maxOrNull() as Int
-        check(maxIndex <= size) { "maxIndex <= size expected but $maxIndex < $size" }
-        val distinctIndices = indices.distinct()
-        check(distinctIndices.size == indices.size) {
-            "indices.distinct().size == indices.size expected but ${distinctIndices.size} != ${indices.size}"
-        }
-        for (i in 1..size) {
-            entries.filter { it.index == i }.map { it.element }.singleOrNull().whenNull {
-                entries.add(VectorEntry(i, computationOfAbsent(i)))
-            }
-        }
-        return GaussianVector(entries.associate { (i, e) -> i to e })
-    }
+    override val vectorConstructor: (m: Map<Int, Gaussian>) -> GaussianVector
+        get() = { GaussianVector(it) }
 }

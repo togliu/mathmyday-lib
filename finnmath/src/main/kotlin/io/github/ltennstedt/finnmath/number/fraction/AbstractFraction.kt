@@ -314,10 +314,8 @@ public abstract class AbstractFraction<N : Number, T : AbstractFraction<N, T, R>
         return numerator == other.numerator && denominator == other.denominator
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this)
-        .add("numerator", numerator)
-        .add("denominator", denominator)
-        .toString()
+    override fun toString(): String =
+        MoreObjects.toStringHelper(this).add("numerator", numerator).add("denominator", denominator).toString()
 
     public companion object {
         private const val serialVersionUID = 1L

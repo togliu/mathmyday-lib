@@ -24,6 +24,6 @@ class AbstractFractionRangeSpec : FunSpec({
     test("length should return length") {
         val a = Fraction(1L, 2L)
         val b = Fraction(3L, 2L)
-        FractionRange(a, b).length shouldBe Fraction(4L, 4L)
+        FractionRange(a, b).length shouldBe Fraction(1L, 1L)
     }
 })

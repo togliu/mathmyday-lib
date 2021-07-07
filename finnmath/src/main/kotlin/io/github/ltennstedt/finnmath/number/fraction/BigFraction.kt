@@ -44,7 +44,10 @@ import java.math.BigInteger
 public class BigFraction @JvmOverloads constructor(
     numerator: BigInteger,
     denominator: BigInteger = BigInteger.ONE
-) : AbstractFraction<BigInteger, BigFraction, BigFractionRange>(numerator, denominator) {
+) : AbstractFraction<BigInteger, BigFraction, BigFractionRange>(
+    numerator,
+    denominator
+) {
     init {
         require(denominator != BigInteger.ZERO) { "denominator != 0 expected but denominator = $denominator" }
     }
