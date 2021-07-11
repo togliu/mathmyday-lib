@@ -21,7 +21,7 @@ import static java.util.Objects.requireNonNull;
 
 import com.google.common.annotations.Beta;
 import com.google.common.base.MoreObjects;
-import com.google.common.collect.ImmutableMap;
+import io.github.ltennstedt.finnmath.linear.field.Field;
 import io.github.ltennstedt.finnmath.linear.vector.AbstractVector;
 import io.github.ltennstedt.finnmath.linear.vector.VectorEntry;
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public abstract class AbstractVectorJavaBuilder<
     > {
     private final @NotNull Map<Integer, E> indexToElement = new HashMap<>();
     private final int size;
-    private @NotNull IntFunction<E> computationOfAbsent = i -> getZero();
+    private @NotNull IntFunction<E> computationOfAbsent = i -> getField().getZero();
 
     /**
      * Constructor
@@ -122,7 +122,14 @@ public abstract class AbstractVectorJavaBuilder<
      * @return vector
      * @since 0.0.1
      */
-    public abstract @NotNull V build();
+    public final @NotNull V build() {
+        for (int i = 1; i <= size; i++) {
+            if (get(i) == null) {
+                set(i, computationOfAbsent.apply(i));
+            }
+        }
+        return getField().getVectorConstructor().invoke(indexToElement);
+    }
 
     /**
      * Returns the element at given index
@@ -138,42 +145,12 @@ public abstract class AbstractVectorJavaBuilder<
     }
 
     /**
-     * Index to element
+     * Field
      *
-     * @return copy
+     * @return field
      * @since 0.0.1
      */
-    protected final @NotNull Map<Integer, E> getIndexToElement() {
-        return ImmutableMap.copyOf(indexToElement);
-    }
-
-    /**
-     * Size
-     *
-     * @return size
-     * @since 0.0.1
-     */
-    protected final int getSize() {
-        return size;
-    }
-
-    /**
-     * Computation of absent
-     *
-     * @return computation of absent
-     * @since 0.0.1
-     */
-    protected final @NotNull IntFunction<E> getComputationOfAbsent() {
-        return computationOfAbsent;
-    }
-
-    /**
-     * 0
-     *
-     * @return 0
-     * @since 0.0.1
-     */
-    protected abstract @NotNull E getZero();
+    protected abstract @NotNull Field<E, Q, V> getField();
 
     @Override
     public final @NotNull String toString() {

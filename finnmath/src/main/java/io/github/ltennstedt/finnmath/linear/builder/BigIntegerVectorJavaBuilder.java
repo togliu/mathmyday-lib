@@ -17,6 +17,8 @@
 package io.github.ltennstedt.finnmath.linear.builder;
 
 import com.google.common.annotations.Beta;
+import io.github.ltennstedt.finnmath.linear.field.BigIntegerField;
+import io.github.ltennstedt.finnmath.linear.field.Field;
 import io.github.ltennstedt.finnmath.linear.vector.BigIntegerVector;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -45,18 +47,7 @@ public final class BigIntegerVectorJavaBuilder extends
     }
 
     @Override
-    protected @NotNull BigInteger getZero() {
-        return BigInteger.ZERO;
+    protected @NotNull Field<BigInteger, BigDecimal, BigIntegerVector> getField() {
+        return BigIntegerField.INSTANCE;
     }
-
-    @Override
-    public @NotNull BigIntegerVector build() {
-        for (int i = 1; i <= getSize(); i++) {
-            if (get(i) == null) {
-                set(i, getComputationOfAbsent().apply(i));
-            }
-        }
-        return new BigIntegerVector(getIndexToElement());
-    }
-
 }

@@ -17,6 +17,8 @@
 package io.github.ltennstedt.finnmath.linear.builder;
 
 import com.google.common.annotations.Beta;
+import io.github.ltennstedt.finnmath.linear.field.ComplexField;
+import io.github.ltennstedt.finnmath.linear.field.Field;
 import io.github.ltennstedt.finnmath.linear.vector.ComplexVector;
 import io.github.ltennstedt.finnmath.number.complex.Complex;
 import org.apiguardian.api.API;
@@ -44,17 +46,7 @@ public final class ComplexVectorJavaBuilder extends
     }
 
     @Override
-    protected @NotNull Complex getZero() {
-        return Complex.ZERO;
-    }
-
-    @Override
-    public @NotNull ComplexVector build() {
-        for (int i = 1; i <= getSize(); i++) {
-            if (get(i) == null) {
-                set(i, getComputationOfAbsent().apply(i));
-            }
-        }
-        return new ComplexVector(getIndexToElement());
+    protected @NotNull Field<Complex, Complex, ComplexVector> getField() {
+        return ComplexField.INSTANCE;
     }
 }

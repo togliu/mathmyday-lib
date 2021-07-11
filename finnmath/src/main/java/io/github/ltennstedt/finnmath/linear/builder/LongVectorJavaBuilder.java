@@ -17,6 +17,8 @@
 package io.github.ltennstedt.finnmath.linear.builder;
 
 import com.google.common.annotations.Beta;
+import io.github.ltennstedt.finnmath.linear.field.Field;
+import io.github.ltennstedt.finnmath.linear.field.LongField;
 import io.github.ltennstedt.finnmath.linear.vector.LongVector;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
@@ -43,17 +45,7 @@ public final class LongVectorJavaBuilder extends
     }
 
     @Override
-    protected @NotNull Long getZero() {
-        return 0L;
-    }
-
-    @Override
-    public @NotNull LongVector build() {
-        for (int i = 1; i <= getSize(); i++) {
-            if (get(i) == null) {
-                set(i, getComputationOfAbsent().apply(i));
-            }
-        }
-        return new LongVector(getIndexToElement());
+    protected @NotNull Field<Long, Double, LongVector> getField() {
+        return LongField.INSTANCE;
     }
 }
