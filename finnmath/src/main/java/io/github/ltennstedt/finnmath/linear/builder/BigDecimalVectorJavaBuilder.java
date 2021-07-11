@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class BigDecimalVectorJavaBuilder extends
+public final class BigDecimalVectorJavaBuilder extends
     AbstractVectorJavaBuilder<BigDecimal, BigDecimal, BigDecimalVector, BigDecimalVectorJavaBuilder> {
     /**
      * Constructor
@@ -40,7 +40,12 @@ public class BigDecimalVectorJavaBuilder extends
      * @since 0.0.1
      */
     public BigDecimalVectorJavaBuilder(final int size) {
-        super(size, i -> BigDecimal.ZERO);
+        super(size);
+    }
+
+    @Override
+    protected @NotNull BigDecimal getZero() {
+        return BigDecimal.ZERO;
     }
 
     @Override

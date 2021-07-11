@@ -29,7 +29,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class DoubleVectorJavaBuilder extends
+public final class DoubleVectorJavaBuilder extends
     AbstractVectorJavaBuilder<Double, Double, DoubleVector, DoubleVectorJavaBuilder> {
     /**
      * Constructor
@@ -39,7 +39,12 @@ public class DoubleVectorJavaBuilder extends
      * @since 0.0.1
      */
     public DoubleVectorJavaBuilder(final int size) {
-        super(size, i -> 0.0D);
+        super(size);
+    }
+
+    @Override
+    protected @NotNull Double getZero() {
+        return 0.0D;
     }
 
     @Override

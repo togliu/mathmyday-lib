@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class GaussianVectorJavaBuilder extends
+public final class GaussianVectorJavaBuilder extends
     AbstractVectorJavaBuilder<Gaussian, Complex, GaussianVector, GaussianVectorJavaBuilder> {
     /**
      * Constructor
@@ -41,7 +41,12 @@ public class GaussianVectorJavaBuilder extends
      * @since 0.0.1
      */
     public GaussianVectorJavaBuilder(final int size) {
-        super(size, i -> Gaussian.ZERO);
+        super(size);
+    }
+
+    @Override
+    protected @NotNull Gaussian getZero() {
+        return Gaussian.ZERO;
     }
 
     @Override

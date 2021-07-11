@@ -17,9 +17,9 @@
 package io.github.ltennstedt.finnmath.linear.builder;
 
 import com.google.common.annotations.Beta;
+import io.github.ltennstedt.finnmath.linear.vector.BigComplexVector;
 import io.github.ltennstedt.finnmath.linear.vector.BigGaussianVector;
 import io.github.ltennstedt.finnmath.number.complex.BigComplex;
-import io.github.ltennstedt.finnmath.number.complex.BigGaussian;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,8 +31,8 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class BigComplexVectorJavaBuilder extends
-    AbstractVectorJavaBuilder<BigGaussian, BigComplex, BigGaussianVector, BigComplexVectorJavaBuilder> {
+public final class BigComplexVectorJavaBuilder extends
+    AbstractVectorJavaBuilder<BigComplex, BigComplex, BigComplexVector, BigComplexVectorJavaBuilder> {
     /**
      * Constructor
      *
@@ -41,16 +41,21 @@ public class BigComplexVectorJavaBuilder extends
      * @since 0.0.1
      */
     public BigComplexVectorJavaBuilder(final int size) {
-        super(size, i -> BigGaussian.ZERO);
+        super(size);
     }
 
     @Override
-    public @NotNull BigGaussianVector build() {
+    protected @NotNull BigComplex getZero() {
+        return BigComplex.ZERO;
+    }
+
+    @Override
+    public @NotNull BigComplexVector build() {
         for (int i = 1; i <= getSize(); i++) {
             if (get(i) == null) {
                 set(i, getComputationOfAbsent().apply(i));
             }
         }
-        return new BigGaussianVector(getIndexToElement());
+        return new BigComplexVector(getIndexToElement());
     }
 }

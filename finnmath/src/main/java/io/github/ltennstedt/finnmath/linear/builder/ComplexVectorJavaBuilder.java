@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class ComplexVectorJavaBuilder extends
+public final class ComplexVectorJavaBuilder extends
     AbstractVectorJavaBuilder<Complex, Complex, ComplexVector, ComplexVectorJavaBuilder> {
     /**
      * Constructor
@@ -40,7 +40,12 @@ public class ComplexVectorJavaBuilder extends
      * @since 0.0.1
      */
     public ComplexVectorJavaBuilder(final int size) {
-        super(size, i -> Complex.ZERO);
+        super(size);
+    }
+
+    @Override
+    protected @NotNull Complex getZero() {
+        return Complex.ZERO;
     }
 
     @Override

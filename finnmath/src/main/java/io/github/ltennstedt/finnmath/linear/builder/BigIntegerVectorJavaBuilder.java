@@ -31,7 +31,7 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class BigIntegerVectorJavaBuilder extends
+public final class BigIntegerVectorJavaBuilder extends
     AbstractVectorJavaBuilder<BigInteger, BigDecimal, BigIntegerVector, BigIntegerVectorJavaBuilder> {
     /**
      * Constructor
@@ -41,7 +41,12 @@ public class BigIntegerVectorJavaBuilder extends
      * @since 0.0.1
      */
     public BigIntegerVectorJavaBuilder(final int size) {
-        super(size, i -> BigInteger.ZERO);
+        super(size);
+    }
+
+    @Override
+    protected @NotNull BigInteger getZero() {
+        return BigInteger.ZERO;
     }
 
     @Override
@@ -53,4 +58,5 @@ public class BigIntegerVectorJavaBuilder extends
         }
         return new BigIntegerVector(getIndexToElement());
     }
+
 }

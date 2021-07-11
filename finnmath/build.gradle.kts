@@ -86,9 +86,10 @@ tasks {
         gradleReleaseChannel = "current"
         outputFormatter = "html"
         rejectVersionIf {
-            candidate.version.endsWith("-RC") ||
-                candidate.version.endsWith("-M2") ||
+            candidate.version.endsWith("-M2") ||
                 candidate.version.endsWith("-M1") ||
+                candidate.version.endsWith("-RC") ||
+                candidate.version.endsWith("-RC1") ||
                 candidate.version.endsWith("-jre")
         }
     }

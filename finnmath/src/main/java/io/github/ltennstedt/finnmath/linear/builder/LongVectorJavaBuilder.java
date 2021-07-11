@@ -29,7 +29,8 @@ import org.jetbrains.annotations.NotNull;
  */
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
-public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, Double, LongVector, LongVectorJavaBuilder> {
+public final class LongVectorJavaBuilder extends
+    AbstractVectorJavaBuilder<Long, Double, LongVector, LongVectorJavaBuilder> {
     /**
      * Constructor
      *
@@ -38,7 +39,12 @@ public class LongVectorJavaBuilder extends AbstractVectorJavaBuilder<Long, Doubl
      * @since 0.0.1
      */
     public LongVectorJavaBuilder(final int size) {
-        super(size, i -> 0L);
+        super(size);
+    }
+
+    @Override
+    protected @NotNull Long getZero() {
+        return 0L;
     }
 
     @Override

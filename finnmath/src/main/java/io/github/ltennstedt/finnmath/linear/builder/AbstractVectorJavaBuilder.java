@@ -51,22 +51,19 @@ public abstract class AbstractVectorJavaBuilder<
     > {
     private final @NotNull Map<Integer, E> indexToElement = new HashMap<>();
     private final int size;
-    private @NotNull IntFunction<E> computationOfAbsent;
+    private @NotNull IntFunction<E> computationOfAbsent = i -> getZero();
 
     /**
      * Constructor
      *
      * @param size size
-     * @param computationOfAbsent computation of absent
      * @throws IllegalArgumentException if {@code size < 1}
-     * @throws NullPointerException if {@code computationOfAbsent == null}
      * @since 0.0.1
      */
     @SuppressWarnings("java:S1192")
-    protected AbstractVectorJavaBuilder(final int size, final @NotNull IntFunction<E> computationOfAbsent) {
+    protected AbstractVectorJavaBuilder(final int size) {
         checkArgument(size > 0, "size > 0 expected but size = %s", size);
         this.size = size;
-        this.computationOfAbsent = requireNonNull(computationOfAbsent, "computationOfAbsent");
     }
 
     /**
@@ -78,7 +75,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws IllegalArgumentException if {@code indey < 1 || index > size}
      * @throws NullPointerException if {@code element == null}
      */
-    public @NotNull B set(final int index, final @NotNull E element) {
+    public final @NotNull B set(final int index, final @NotNull E element) {
         checkArgument(0 < index && index <= size, "0 < index <= size expected but index = %s", index);
         requireNonNull(element, "element");
         indexToElement.put(index, element);
@@ -95,7 +92,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws IllegalArgumentException if {@code entry.index < 1 || entry.index > size}
      * @since 0.0.1
      */
-    public @NotNull B set(final @NotNull VectorEntry<E> entry) {
+    public final @NotNull B set(final @NotNull VectorEntry<E> entry) {
         requireNonNull(entry, "entry");
         checkArgument(
             0 < entry.getIndex() && entry.getIndex() <= size,
@@ -113,7 +110,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws NullPointerException if {@code function == null}
      * @since 0.0.1
      */
-    public @NotNull B computationOfAbsent(final @NotNull IntFunction<E> computationOfAbsent) {
+    public final @NotNull B computationOfAbsent(final @NotNull IntFunction<E> computationOfAbsent) {
         this.computationOfAbsent = requireNonNull(computationOfAbsent, "computationOfAbsent");
         @SuppressWarnings("unchecked") final B casted = (B) this;
         return casted;
@@ -135,18 +132,9 @@ public abstract class AbstractVectorJavaBuilder<
      * @throws IllegalArgumentException if {@code index < 1 || index > size}
      * @since 0.0.1
      */
-    protected @Nullable E get(final int index) {
+    protected final @Nullable E get(final int index) {
         checkArgument(0 < index && index <= size, "0 < entry.index <= size expected but index = %s", index);
         return indexToElement.get(index);
-    }
-
-    @Override
-    public @NotNull String toString() {
-        return MoreObjects.toStringHelper(this)
-            .add("size", size)
-            .add("indexToElement", indexToElement)
-            .add("computationOfAbsent", computationOfAbsent)
-            .toString();
     }
 
     /**
@@ -155,7 +143,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @return copy
      * @since 0.0.1
      */
-    protected Map<Integer, E> getIndexToElement() {
+    protected final @NotNull Map<Integer, E> getIndexToElement() {
         return ImmutableMap.copyOf(indexToElement);
     }
 
@@ -165,7 +153,7 @@ public abstract class AbstractVectorJavaBuilder<
      * @return size
      * @since 0.0.1
      */
-    protected int getSize() {
+    protected final int getSize() {
         return size;
     }
 
@@ -175,7 +163,24 @@ public abstract class AbstractVectorJavaBuilder<
      * @return computation of absent
      * @since 0.0.1
      */
-    protected @NotNull IntFunction<E> getComputationOfAbsent() {
+    protected final @NotNull IntFunction<E> getComputationOfAbsent() {
         return computationOfAbsent;
+    }
+
+    /**
+     * 0
+     *
+     * @return 0
+     * @since 0.0.1
+     */
+    protected abstract @NotNull E getZero();
+
+    @Override
+    public final @NotNull String toString() {
+        return MoreObjects.toStringHelper(this)
+            .add("size", size)
+            .add("indexToElement", indexToElement)
+            .add("computationOfAbsent", computationOfAbsent)
+            .toString();
     }
 }
