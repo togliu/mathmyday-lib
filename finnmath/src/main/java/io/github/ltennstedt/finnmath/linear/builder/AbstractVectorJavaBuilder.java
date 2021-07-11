@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.function.IntFunction;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Base class for Java-style vector builders
@@ -124,24 +123,9 @@ public abstract class AbstractVectorJavaBuilder<
      */
     public final @NotNull V build() {
         for (int i = 1; i <= size; i++) {
-            if (get(i) == null) {
-                set(i, computationOfAbsent.apply(i));
-            }
+            indexToElement.putIfAbsent(i, computationOfAbsent.apply(i));
         }
         return getField().getVectorConstructor().invoke(indexToElement);
-    }
-
-    /**
-     * Returns the element at given index
-     *
-     * @param index index
-     * @return element
-     * @throws IllegalArgumentException if {@code index < 1 || index > size}
-     * @since 0.0.1
-     */
-    protected final @Nullable E get(final int index) {
-        checkArgument(0 < index && index <= size, "0 < entry.index <= size expected but index = %s", index);
-        return indexToElement.get(index);
     }
 
     /**
