@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.field
 
 import io.github.ltennstedt.finnmath.linear.vector.LongVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 
 /**
  * Single implementation of a [Field] of [Longs][Long]
@@ -41,6 +42,6 @@ public object LongField : Field<Long, Double, LongVector> {
         get() = 0L
     override val one: Long
         get() = 1L
-    override val vectorConstructor: (m: Map<Int, Long>) -> LongVector
+    override val vectorConstructor: (s: Set<VectorEntry<Long>>) -> LongVector
         get() = { LongVector(it) }
 }

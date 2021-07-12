@@ -31,9 +31,9 @@ import java.util.Objects
  * @param V type of vector
  * @param N type of taxicab and max norm
  * @param P type of inner product
- * @property indexToElement [Map]
+ * @property entries entries
  * @constructor Constructs an AbstractVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -41,37 +41,29 @@ import java.util.Objects
 @API(status = API.Status.EXPERIMENTAL, since = "0.0.1")
 @Beta
 public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<E, Q, V, N, P>, N : Number, P>(
-    public val indexToElement: Map<Int, E>,
+    public val entries: Set<VectorEntry<E>>
 ) : Serializable {
     /**
      * Indices
      *
      *  @since 0.0.1
      */
-    public val indices: Set<Int> by lazy { indexToElement.keys.toSortedSet() }
+    public val indices: Set<Int> by lazy { entries.map { it.index }.toSortedSet() }
 
     /**
      * Elements
      *
      * @since 0.0.1
      */
-    public val elements: List<E> by lazy { indexToElement.toSortedMap().map { it.value } }
-
-    /**
-     * Entries
-     *
-     * @since 0.0.1
-     */
-    public val entries: Set<VectorEntry<E>> by lazy {
-        indexToElement.map { VectorEntry(it.key, it.value) }.toSortedSet()
-    }
+    public val elements: List<E> by lazy { entries.map { it.element } }
 
     /**
      * Size
      *
      * @since 0.0.1
      */
-    public val size: Int get() = indexToElement.size
+    public val size: Int
+        get() = entries.size
 
     /**
      * Field
@@ -81,7 +73,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     protected abstract val field: Field<E, Q, V>
 
     init {
-        require(indexToElement.isNotEmpty()) { "indexToElement expected not to be empty but map = $indexToElement" }
+        require(entries.isNotEmpty()) { "indexToElement expected not to be empty but map = $entries" }
         val expectedIndices = (1..size).toSet()
         require(indices == expectedIndices) {
             "expected indices == expectedIndices but $indices != $expectedIndices"
@@ -96,7 +88,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
      */
     public fun add(summand: V): V {
         require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return field.vectorConstructor(indexToElement.map { (i, e) -> i to field.addition(e, summand[i]) }.toMap())
+        return field.vectorConstructor(entries.map { (i, e) -> VectorEntry(i, field.addition(e, summand[i])) }.toSet())
     }
 
     /**
@@ -108,7 +100,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
     public fun subtract(subtrahend: V): V {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
         return field.vectorConstructor(
-            indexToElement.map { (i, e) -> i to field.subtraction(e, subtrahend[i]) }.toMap()
+            entries.map { (i, e) -> VectorEntry(i, field.subtraction(e, subtrahend[i])) }.toSet()
         )
     }
 
@@ -120,7 +112,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
      */
     public fun dotProduct(other: V): E {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> field.multiplication(e, other[i]) }.reduce(field.addition)
+        return entries.map { (i, e) -> field.multiplication(e, other[i]) }.reduce(field.addition)
     }
 
     /**
@@ -128,9 +120,8 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
      *
      * @since 0.0.1
      */
-    public fun scalarMultiply(scalar: E): V {
-        return field.vectorConstructor(indexToElement.map { (i, e) -> i to field.multiplication(scalar, e) }.toMap())
-    }
+    public fun scalarMultiply(scalar: E): V =
+        field.vectorConstructor(entries.map { (i, e) -> VectorEntry(i, field.multiplication(scalar, e)) }.toSet())
 
     /**
      * Returns the negated [AbstractVector]
@@ -219,7 +210,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
      */
     public operator fun get(index: Int): E {
         require(index in 1..size) { "index in 1..$size expected but index = $index" }
-        @Suppress("UNCHECKED_CAST") return indexToElement[index] as E
+        return entry(index).element
     }
 
     /**
@@ -230,7 +221,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
      */
     public fun entry(index: Int): VectorEntry<E> {
         require(index in 1..size) { "index in 1..$size expected but index = $index" }
-        @Suppress("UNCHECKED_CAST") return VectorEntry(index, this[index])
+        return entries.single { it.index == index }
     }
 
     public operator fun plus(summand: V): V = add(summand)
@@ -261,7 +252,7 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
      */
     public fun equalsByComparing(other: V): Boolean {
         require(size == other.size) { "Equal sizes expected but $size != ${other.size}" }
-        return indexToElement.all { (i, e) -> field.equalityByComparing(e, other[i]) }
+        return entries.all { (i, e) -> field.equalityByComparing(e, other[i]) }
     }
 
     /**
@@ -272,15 +263,15 @@ public abstract class AbstractVector<E : Number, Q : Number, V : AbstractVector<
      */
     public fun doesNotEqualByComparing(other: V): Boolean = !equalsByComparing(other)
 
-    override fun hashCode(): Int = Objects.hash(indexToElement)
+    override fun hashCode(): Int = Objects.hash(entries)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is AbstractVector<*, *, *, *, *>) return false
-        return indexToElement == other.indexToElement
+        return entries == other.entries
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this).add("indexToElement", indexToElement).toString()
+    override fun toString(): String = MoreObjects.toStringHelper(this).add("entries", entries).toString()
 
     public companion object {
         private const val serialVersionUID = 1L

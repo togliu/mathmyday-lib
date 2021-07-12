@@ -39,9 +39,9 @@ import kotlin.math.sqrt
 /**
  * Immutable implementation of a vector whose elements are of type [Long]
  *
- * @property indexToElement [Map]
+ * @property entries entries
  * @constructor Constructs an BigComplexVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -50,14 +50,14 @@ import kotlin.math.sqrt
 @Beta
 @Immutable
 public class LongVector(
-    indexToElement: Map<Int, Long>,
+    entries: Set<VectorEntry<Long>>
 ) : AbstractVector<Long, Double, LongVector, Double, Long>(
-    indexToElement
+    entries
 ) {
     override val field: Field<Long, Double, LongVector>
         get() = LongField
 
-    override fun taxicabNorm(): Double = elements.map(Long::absoluteValue).reduce { a, b -> a + b }.toDouble()
+    override fun taxicabNorm(): Double = elements.map { it.absoluteValue }.reduce { a, b -> a + b }.toDouble()
 
     override fun euclideanNormPow2(): Long = this * this
 
@@ -80,7 +80,7 @@ public class LongVector(
      * @since 0.0.1
      */
     public fun toBigIntegerVector(): BigIntegerVector =
-        BigIntegerVector(indexToElement.map { (i, e) -> i to e.toBigInteger() }.toMap())
+        BigIntegerVector(entries.map { (i, e) -> VectorEntry(i, e.toBigInteger()) }.toSet())
 
     /**
      * Returns this as [BigDecimalVector]

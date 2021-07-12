@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.field
 
 import io.github.ltennstedt.finnmath.linear.vector.AbstractVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 
 /**
  * Interface for fields
@@ -89,5 +90,5 @@ public interface Field<E : Number, Q : Number, V : AbstractVector<E, Q, V, *, *>
      *
      * @since 0.0.1
      */
-    public val vectorConstructor: (m: Map<Int, E>) -> V
+    public val vectorConstructor: (s: Set<VectorEntry<E>>) -> V
 }

@@ -33,9 +33,9 @@ import java.math.MathContext
 /**
  * Immutable implementation of a vector whose elements are of type [BigGaussian]
  *
- * @property indexToElement [Map]
+ * @property entries entries
  * @constructor Constructs an BigComplexVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -44,9 +44,9 @@ import java.math.MathContext
 @Beta
 @Immutable
 public class BigGaussianVector(
-    indexToElement: Map<Int, BigGaussian>
+    entries: Set<VectorEntry<BigGaussian>>
 ) : AbstractVector<BigGaussian, BigComplex, BigGaussianVector, BigDecimal, BigGaussian>(
-    indexToElement
+    entries
 ) {
     override val field: Field<BigGaussian, BigComplex, BigGaussianVector>
         get() = BigGaussianField
@@ -71,7 +71,8 @@ public class BigGaussianVector(
 
     override fun euclideanNormPow2(): BigGaussian = this * this
 
-    override fun euclideanNorm(): BigDecimal = elements.map { it.abs().pow(2) }.reduce(BigDecimal::add).sqrt()
+    override fun euclideanNorm(): BigDecimal =
+        elements.map { it.abs().pow(2) }.reduce { a, b -> a + b }.sqrt()
 
     /**
      * Returns the euclidean norm based on the [mathContext]

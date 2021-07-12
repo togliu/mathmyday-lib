@@ -30,9 +30,9 @@ import kotlin.math.sqrt
 /**
  * Immutable implementation of a vector whose elements are of type [Complex]
  *
- * @property indexToElement [Map]
+ * @property entries entries
  * @constructor Constructs an BigComplexVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -41,20 +41,20 @@ import kotlin.math.sqrt
 @Beta
 @Immutable
 public class ComplexVector(
-    indexToElement: Map<Int, Complex>
+    entries: Set<VectorEntry<Complex>>
 ) : AbstractVector<Complex, Complex, ComplexVector, Double, Complex>(
-    indexToElement
+    entries
 ) {
     override val field: Field<Complex, Complex, ComplexVector>
         get() = ComplexField
 
-    override fun taxicabNorm(): Double = elements.map(Complex::abs).reduce { a, b -> a + b }
+    override fun taxicabNorm(): Double = elements.map { it.abs() }.reduce { a, b -> a + b }
 
     override fun euclideanNormPow2(): Complex = this * this
 
     override fun euclideanNorm(): Double = sqrt(elements.map { it.abs().pow(2) }.reduce { a, b -> a + b })
 
-    override fun maxNorm(): Double = elements.map(Complex::abs).maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map { it.abs() }.maxOrNull() as Double
 
     /**
      * Returns this as [BigComplexVector]

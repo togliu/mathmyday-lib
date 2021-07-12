@@ -34,9 +34,9 @@ import kotlin.math.sqrt
 /**
  * Immutable implementation of a vector whose elements are of type [Double]
  *
- * @property indexToElement [Map]
+ * @property entries entries
  * @constructor Constructs an BigComplexVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -45,20 +45,20 @@ import kotlin.math.sqrt
 @Beta
 @Immutable
 public class DoubleVector(
-    indexToElement: Map<Int, Double>
+    entries: Set<VectorEntry<Double>>
 ) : AbstractVector<Double, Double, DoubleVector, Double, Double>(
-    indexToElement
+    entries
 ) {
     override val field: Field<Double, Double, DoubleVector>
         get() = DoubleField
 
-    override fun taxicabNorm(): Double = elements.map(Double::absoluteValue).reduce { a, b -> a + b }.toDouble()
+    override fun taxicabNorm(): Double = elements.map { it.absoluteValue }.reduce { a, b -> a + b }.toDouble()
 
     override fun euclideanNormPow2(): Double = this * this
 
     override fun euclideanNorm(): Double = sqrt(euclideanNormPow2())
 
-    override fun maxNorm(): Double = elements.map(Double::absoluteValue).maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map { it.absoluteValue }.maxOrNull() as Double
 
     /**
      * Returns this as [BigDecimalVector]

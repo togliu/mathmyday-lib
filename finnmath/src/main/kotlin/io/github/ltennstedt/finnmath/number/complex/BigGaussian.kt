@@ -247,7 +247,7 @@ public class BigGaussian @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val MINUS_ONE: BigGaussian = ONE.negate()
+        public val MINUS_ONE: BigGaussian = -ONE
 
         /**
          * `-i` as BigGaussian
@@ -255,7 +255,7 @@ public class BigGaussian @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val MINUS_IMAGINARY: BigGaussian = IMAGINARY.negate()
+        public val MINUS_IMAGINARY: BigGaussian = -IMAGINARY
 
         /**
          * Units

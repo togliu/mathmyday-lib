@@ -185,7 +185,7 @@ public class Gaussian @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val MINUS_ONE: Gaussian = ONE.negate()
+        public val MINUS_ONE: Gaussian = -ONE
 
         /**
          * `-i` as Gaussian
@@ -193,7 +193,7 @@ public class Gaussian @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val MINUS_IMAGINARY: Gaussian = IMAGINARY.negate()
+        public val MINUS_IMAGINARY: Gaussian = -IMAGINARY
 
         /**
          * Units

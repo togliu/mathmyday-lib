@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.field
 
 import io.github.ltennstedt.finnmath.linear.vector.ComplexVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import io.github.ltennstedt.finnmath.number.complex.Complex
 
 /**
@@ -42,6 +43,6 @@ public object ComplexField : Field<Complex, Complex, ComplexVector> {
         get() = Complex.ZERO
     override val one: Complex
         get() = Complex.ONE
-    override val vectorConstructor: (m: Map<Int, Complex>) -> ComplexVector
+    override val vectorConstructor: (s: Set<VectorEntry<Complex>>) -> ComplexVector
         get() = { ComplexVector(it) }
 }

@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.field
 
 import io.github.ltennstedt.finnmath.linear.vector.GaussianVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import io.github.ltennstedt.finnmath.number.complex.Complex
 import io.github.ltennstedt.finnmath.number.complex.Gaussian
 
@@ -43,6 +44,6 @@ public object GaussianField : Field<Gaussian, Complex, GaussianVector> {
         get() = Gaussian.ZERO
     override val one: Gaussian
         get() = Gaussian.ONE
-    override val vectorConstructor: (m: Map<Int, Gaussian>) -> GaussianVector
+    override val vectorConstructor: (s: Set<VectorEntry<Gaussian>>) -> GaussianVector
         get() = { GaussianVector(it) }
 }

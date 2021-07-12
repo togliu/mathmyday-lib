@@ -16,7 +16,9 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
+import io.github.ltennstedt.finnmath.linear.field.DoubleField
 import io.github.ltennstedt.finnmath.linear.vector.DoubleVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 
 /**
  * Provides DoubleVector block
@@ -38,6 +40,6 @@ public fun doubleVector(init: DoubleVectorBuilder.() -> Unit): DoubleVector {
  */
 public class DoubleVectorBuilder : AbstractVectorBuilder<Double, DoubleVector>() {
     override var computationOfAbsent: (Int) -> Double = { _ -> 0.0 }
-    override val vectorConstructor: (m: Map<Int, Double>) -> DoubleVector
-        get() = { DoubleVector(it) }
+    override val vectorConstructor: (s: Set<VectorEntry<Double>>) -> DoubleVector
+        get() = DoubleField.vectorConstructor
 }

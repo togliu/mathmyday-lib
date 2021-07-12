@@ -31,9 +31,9 @@ import java.math.MathContext
 /**
  * Immutable implementation of a vector whose elements are of type [BigDecimal]
  *
- * @property indexToElement [Map]
- * @constructor Constructs an BigComplexVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @property entries entries
+ * @constructor Constructs an BigDecimalVector
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -42,9 +42,9 @@ import java.math.MathContext
 @Beta
 @Immutable
 public class BigDecimalVector(
-    indexToElement: Map<Int, BigDecimal>
+    entries: Set<VectorEntry<BigDecimal>>
 ) : AbstractVector<BigDecimal, BigDecimal, BigDecimalVector, BigDecimal, BigDecimal>(
-    indexToElement
+    entries
 ) {
     override val field: Field<BigDecimal, BigDecimal, BigDecimalVector>
         get() = BigDecimalField
@@ -57,7 +57,9 @@ public class BigDecimalVector(
      */
     public fun add(summand: BigDecimalVector, mathContext: MathContext): BigDecimalVector {
         require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return BigDecimalVector(indexToElement.map { (i, e) -> i to e.add(summand[i], mathContext) }.toMap())
+        return BigDecimalVector(
+            entries.sorted().map { (i, e) -> VectorEntry(i, e.add(summand[i], mathContext)) }.toSet()
+        )
     }
 
     /**
@@ -68,7 +70,9 @@ public class BigDecimalVector(
      */
     public fun subtract(subtrahend: BigDecimalVector, mathContext: MathContext): BigDecimalVector {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return BigDecimalVector(indexToElement.map { (i, e) -> i to e.subtract(subtrahend[i], mathContext) }.toMap())
+        return BigDecimalVector(
+            entries.sorted().map { (i, e) -> VectorEntry(i, e.subtract(subtrahend[i], mathContext)) }.toSet()
+        )
     }
 
     /**
@@ -79,7 +83,9 @@ public class BigDecimalVector(
      */
     public fun dotProduct(other: BigDecimalVector, mathContext: MathContext): BigDecimal {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e.multiply(other[i], mathContext) }
+        return entries.sorted()
+            .map { (i, e) -> VectorEntry(i, e.multiply(other[i], mathContext)) }
+            .map { it.element }
             .reduce { a, b -> a.add(b, mathContext) }
     }
 
@@ -89,7 +95,7 @@ public class BigDecimalVector(
      * @since 0.0.1
      */
     public fun scalarMultiply(scalar: BigDecimal, mathContext: MathContext): BigDecimalVector = BigDecimalVector(
-        indexToElement.map { (i, e) -> i to scalar.multiply(e, mathContext) }.toMap()
+        entries.sorted().map { (i, e) -> VectorEntry(i, scalar.multiply(e, mathContext)) }.toSet()
     )
 
     /**
@@ -98,7 +104,7 @@ public class BigDecimalVector(
      * @since 0.0.1
      */
     public fun negate(mathContext: MathContext): BigDecimalVector =
-        BigDecimalVector(indexToElement.map { (i, e) -> i to e.negate(mathContext) }.toMap())
+        scalarMultiply(BigDecimal.ONE.negate(mathContext), mathContext)
 
     /**
      * Returns if this is orthogonal to [other] based on the [mathContext]
@@ -108,12 +114,12 @@ public class BigDecimalVector(
      */
     public fun orthogonalTo(other: BigDecimalVector, mathContext: MathContext): Boolean {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e.multiply(other[i], mathContext) }
+        return entries.map { (i, e) -> e.multiply(other[i], mathContext) }
             .reduce { a, b -> a.add(b, mathContext) }
             .compareTo(BigDecimal.ZERO) == 0
     }
 
-    override fun taxicabNorm(): BigDecimal = elements.map(BigDecimal::abs).reduce(BigDecimal::add)
+    override fun taxicabNorm(): BigDecimal = elements.map { it.abs() }.reduce { a, b -> a + b }
 
     /**
      * Returns the taxicab norm based on the [mathContext]
@@ -141,7 +147,7 @@ public class BigDecimalVector(
      */
     public fun euclideanNorm(mathContext: MathContext): BigDecimal = euclideanNormPow2(mathContext).sqrt(mathContext)
 
-    override fun maxNorm(): BigDecimal = elements.map(BigDecimal::abs).maxOrNull() as BigDecimal
+    override fun maxNorm(): BigDecimal = elements.map { it.abs() }.maxOrNull() as BigDecimal
 
     /**
      * Returns the maximum norm based on the [mathContext]
@@ -152,11 +158,11 @@ public class BigDecimalVector(
         elements.map { it.abs(mathContext) }.maxOrNull() as BigDecimal
 
     /**
-     * Returns this as [BigComplexVector]
+     * Returns this as [BigDecimalVector]
      *
      * @since 0.0.1
      */
-    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {
+    public fun toBigDecimalVector(): BigComplexVector = bigComplexVector {
         computationOfAbsent = { this@BigDecimalVector[it].toBigComplex() }
     }
 

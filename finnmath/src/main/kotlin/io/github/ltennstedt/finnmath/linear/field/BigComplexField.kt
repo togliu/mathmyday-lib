@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.field
 
 import io.github.ltennstedt.finnmath.linear.vector.BigComplexVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import io.github.ltennstedt.finnmath.number.complex.BigComplex
 
 /**
@@ -42,6 +43,6 @@ public object BigComplexField : Field<BigComplex, BigComplex, BigComplexVector> 
         get() = BigComplex.ZERO
     override val one: BigComplex
         get() = BigComplex.ONE
-    override val vectorConstructor: (m: Map<Int, BigComplex>) -> BigComplexVector
+    override val vectorConstructor: (s: Set<VectorEntry<BigComplex>>) -> BigComplexVector
         get() = { BigComplexVector(it) }
 }

@@ -35,9 +35,9 @@ import java.math.BigInteger
 /**
  * Immutable implementation of a vector whose elements are of type [BigInteger]
  *
- * @property indexToElement [Map]
+ * @property entries entries
  * @constructor Constructs an BigComplexVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -46,23 +46,22 @@ import java.math.BigInteger
 @Beta
 @Immutable
 public class BigIntegerVector(
-    indexToElement: Map<Int, BigInteger>
+    entries: Set<VectorEntry<BigInteger>>
 ) : AbstractVector<BigInteger, BigDecimal, BigIntegerVector, BigDecimal, BigInteger>(
-    indexToElement
+    entries
 ) {
     override val field: Field<BigInteger, BigDecimal, BigIntegerVector>
         get() = BigIntegerField
 
-    override fun taxicabNorm(): BigDecimal = elements.map(BigInteger::abs).reduce(BigInteger::add).toBigDecimal()
+    override fun taxicabNorm(): BigDecimal = elements.map { it.abs() }.reduce { a, b -> a + b }.toBigDecimal()
 
     /**
      * Returns the taxicab norm based on the [context]
      *
      * @since 0.0.1
      */
-    public fun taxicabNorm(context: FinnmathContext): BigDecimal = elements.map(BigInteger::abs)
-        .reduce(BigInteger::add)
-        .toBigDecimal(context.scale, context.mathContext)
+    public fun taxicabNorm(context: FinnmathContext): BigDecimal =
+        elements.map { it.abs() }.reduce { a, b -> a + b }.toBigDecimal(context.scale, context.mathContext)
 
     override fun euclideanNormPow2(): BigInteger = this * this
 

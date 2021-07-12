@@ -380,7 +380,7 @@ public class BigComplex @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val MINUS_ONE: BigComplex = ONE.negate()
+        public val MINUS_ONE: BigComplex = -ONE
 
         /**
          * `-i` as BigComplex
@@ -388,7 +388,7 @@ public class BigComplex @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val MINUS_IMAGINARY: BigComplex = IMAGINARY.negate()
+        public val MINUS_IMAGINARY: BigComplex = -IMAGINARY
 
         /**
          * Units

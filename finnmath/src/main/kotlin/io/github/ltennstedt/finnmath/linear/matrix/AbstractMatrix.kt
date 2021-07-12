@@ -17,8 +17,6 @@
 package io.github.ltennstedt.finnmath.linear.matrix
 
 import com.google.common.base.MoreObjects
-import com.google.common.collect.ImmutableTable
-import io.github.ltennstedt.finnmath.extension.isNotEmpty
 import io.github.ltennstedt.finnmath.linear.field.Field
 import io.github.ltennstedt.finnmath.linear.vector.AbstractVector
 import java.math.BigDecimal
@@ -34,17 +32,24 @@ import java.util.Objects
  * @param M type of the matrix
  * @param N type of the maximum absolute column sum norm, maximum absolute row sum norm and the maximum norm
  * @param B type of the square of the norms
- * @property immutableTable [ImmutableTable]
+ * @property entries entries
  * @constructor Constructs an [AbstractMatrix]
- * @throws IllegalArgumentException if [immutableTable] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [rowIndices] `!= expectedRowIndices`
  * @throws IllegalArgumentException if [columnIndices] `!= expectedColumnIndices`
- * @throws IllegalArgumentException if one value of [immutableTable] is null
+ * @throws IllegalArgumentException if one value of [entries] is null
  * @author Lars Tennstedt
  * @since 0.0.1
  */
-public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<E, Q, V, *, *>, M, N, B>(
-    public val immutableTable: ImmutableTable<Int, Int, E>
+public abstract class AbstractMatrix<
+    E : Number,
+    Q : Number,
+    V : AbstractVector<E, Q, V, *, *>,
+    M : AbstractMatrix<E, Q, V, M, N, B>,
+    N,
+    B
+    >(
+    public val entries: Set<MatrixEntry<E>>
 ) {
     /**
      * Indicates if this is square
@@ -103,8 +108,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      *
      * @since 0.0.1
      */
-    public val isInvertible: Boolean
-        get() = isSquare && !this.field.equalityByComparing(determinant(), this.field.zero)
+    public abstract val isInvertible: Boolean
 
     /**
      * Indicates if this is symmetric
@@ -125,36 +129,29 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      *
      * @since 0.0.1
      */
-    public val rowIndices: Set<Int> by lazy { immutableTable.rowKeySet().toSortedSet() }
+    public val rowIndices: Set<Int> by lazy { entries.map { it.rowIndex }.sorted().toSet() }
 
     /**
      * Column indices
      *
      * @since 0.0.1
      */
-    public val columnIndices: Set<Int> by lazy { immutableTable.columnKeySet().toSortedSet() }
+    public val columnIndices: Set<Int> by lazy { entries.map { it.columnIndex }.sorted().toSet() }
 
     /**
      * Elements
      *
      * @since 0.0.1
      */
-    public val elements: List<E> by lazy { immutableTable.values().toList() }
+    public val elements: List<E> by lazy { entries.sorted().map { it.element }.toList() }
 
     /**
      * Diagonal elements
      *
      * @since 0.0.1
      */
-    public val diagonalElements: List<E> by lazy { entries.filter { (r, c, _) -> r == c }.map(MatrixEntry<E>::element) }
-
-    /**
-     * [MatrixEntries][MatrixEntry]
-     *
-     * @since 0.0.1
-     */
-    public val entries: Set<MatrixEntry<E>> by lazy {
-        immutableTable.cellSet().map { entry(it.rowKey as Int, it.columnKey as Int) }.toSortedSet()
+    public val diagonalElements: List<E> by lazy {
+        entries.filter { (r, c, _) -> r == c }.map(MatrixEntry<E>::element)
     }
 
     /**
@@ -162,7 +159,9 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      *
      * @since 0.0.1
      */
-    public val diagonalEntries: Set<MatrixEntry<E>> by lazy { entries.filter { (r, c, _) -> r == c }.toSet() }
+    public val diagonalEntries: Set<MatrixEntry<E>> by lazy {
+        entries.sorted().filter { (r, c, _) -> r == c }.toSet()
+    }
 
     /**
      * Row size
@@ -170,7 +169,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      * @since 0.0.1
      */
     public val rowSize: Int
-        get() = immutableTable.rowKeySet().size
+        get() = rowIndices.size
 
     /**
      * Column size
@@ -178,7 +177,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      * @since 0.0.1
      */
     public val columnSize: Int
-        get() = immutableTable.columnKeySet().size
+        get() = columnIndices.size
 
     /**
      * Field
@@ -188,9 +187,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
     protected abstract val field: Field<E, Q, V>
 
     init {
-        require(immutableTable.isNotEmpty) {
-            "expected immutableTable.isNotEmpty but immutableTable.isNotEmpty = ${immutableTable.isNotEmpty}"
-        }
+        require(entries.isNotEmpty()) { "expected entries not be empty but entries = $entries" }
         val expectedRowIndices = (1..rowSize).toSet()
         require(rowIndices == expectedRowIndices) {
             "expected rowIndices == expectedRowIndices but $rowIndices != $expectedRowIndices"
@@ -334,7 +331,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
         require(columnIndex in 1..columnSize) {
             "expected columnIndex in 1..$columnSize but columnIndex = $columnIndex"
         }
-        @Suppress("UNCHECKED_CAST") return immutableTable.get(rowIndex, columnIndex) as E
+        return entry(rowIndex, columnIndex).element
     }
 
     /**
@@ -349,9 +346,8 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
         require(columnIndex in 1..columnSize) {
             "expected columnIndex in 1..$columnSize but columnIndex = $columnIndex"
         }
-        @Suppress("UNCHECKED_CAST") return MatrixEntry(
-            rowIndex, columnIndex, immutableTable[rowIndex, columnIndex] as E
-        )
+        @Suppress("UNCHECKED_CAST")
+        return entries.single { (r, c, _) -> r == rowIndex && c == columnIndex }
     }
 
     /**
@@ -362,7 +358,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      */
     public fun row(rowIndex: Int): Map<Int, E> {
         require(rowIndex in 1..rowSize) { "expected rowIndex in 1..$rowSize but rowIndex = $rowIndex" }
-        return immutableTable.row(rowIndex)
+        return entries.sorted().filter { it.rowIndex == rowIndex }.associate { (_, c, e) -> c to e }
     }
 
     /**
@@ -375,7 +371,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
         require(columnIndex in 1..columnSize) {
             "expected columnIndex in 1..$columnSize but columnIndex = $columnIndex"
         }
-        return immutableTable.column(columnIndex)
+        return entries.sorted().filter { it.columnIndex == columnIndex }.associate { (r, _, e) -> r to e }
     }
 
     /**
@@ -399,7 +395,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      *
      * @since 0.0.1
      */
-    public operator fun contains(element: E): Boolean = element in immutableTable.values()
+    public operator fun contains(element: E): Boolean = element in elements
 
     /**
      * Returns if this is equal to [other] by comparing elements
@@ -408,7 +404,8 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      * @throws IllegalArgumentException if [columnSize] != `other.columnSize`
      * @since 0.0.1
      */
-    public abstract fun equalsByComparing(other: M): Boolean
+    public fun equalsByComparing(other: M): Boolean =
+        entries.all { (r, c, e) -> field.equalityByComparing(e, other[r, c]) }
 
     /**
      * Returns if this is not equal to [other] by comparing elements
@@ -424,7 +421,7 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      *
      * @since 0.0.1
      */
-    protected abstract fun addDiagonalElements(): E
+    protected fun addDiagonalElements(): E = elements.reduce { a, b -> field.addition(a, b) }
 
     /**
      * Leibniz formula
@@ -450,17 +447,15 @@ public abstract class AbstractMatrix<E : Number, Q : Number, V : AbstractVector<
      */
     protected abstract fun determinantOf2x2Matrix(): E
 
-    override fun hashCode(): Int = Objects.hash(immutableTable)
+    override fun hashCode(): Int = Objects.hash(entries)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is AbstractMatrix<*, *, *, *, *, *>) return false
-        return immutableTable == other.immutableTable
+        return entries == other.entries
     }
 
-    override fun toString(): String = MoreObjects.toStringHelper(this)
-        .add("immutableTable", immutableTable)
-        .toString()
+    override fun toString(): String = MoreObjects.toStringHelper(this).add("entries", entries).toString()
 
     public companion object
 }

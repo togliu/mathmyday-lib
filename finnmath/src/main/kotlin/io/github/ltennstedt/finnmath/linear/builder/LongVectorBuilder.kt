@@ -16,7 +16,9 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
+import io.github.ltennstedt.finnmath.linear.field.LongField
 import io.github.ltennstedt.finnmath.linear.vector.LongVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 
 /**
  * Provides longVector block
@@ -38,6 +40,6 @@ public fun longVector(init: LongVectorBuilder.() -> Unit): LongVector {
  */
 public class LongVectorBuilder : AbstractVectorBuilder<Long, LongVector>() {
     override var computationOfAbsent: (Int) -> Long = { _ -> 0L }
-    override val vectorConstructor: (m: Map<Int, Long>) -> LongVector
-        get() = { LongVector(it) }
+    override val vectorConstructor: (s: Set<VectorEntry<Long>>) -> LongVector
+        get() = LongField.vectorConstructor
 }

@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.field
 
 import io.github.ltennstedt.finnmath.linear.vector.BigGaussianVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import io.github.ltennstedt.finnmath.number.complex.BigComplex
 import io.github.ltennstedt.finnmath.number.complex.BigGaussian
 
@@ -43,6 +44,6 @@ public object BigGaussianField : Field<BigGaussian, BigComplex, BigGaussianVecto
         get() = BigGaussian.ZERO
     override val one: BigGaussian
         get() = BigGaussian.ONE
-    override val vectorConstructor: (m: Map<Int, BigGaussian>) -> BigGaussianVector
+    override val vectorConstructor: (s: Set<VectorEntry<BigGaussian>>) -> BigGaussianVector
         get() = { BigGaussianVector(it) }
 }

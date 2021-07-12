@@ -24,9 +24,10 @@ import com.google.common.base.MoreObjects;
 import io.github.ltennstedt.finnmath.linear.field.Field;
 import io.github.ltennstedt.finnmath.linear.vector.AbstractVector;
 import io.github.ltennstedt.finnmath.linear.vector.VectorEntry;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.IntFunction;
+import java.util.stream.IntStream;
 import org.apiguardian.api.API;
 import org.jetbrains.annotations.NotNull;
 
@@ -48,7 +49,7 @@ public abstract class AbstractVectorJavaBuilder<
     V extends AbstractVector<E, Q, V, ?, ?>,
     B extends AbstractVectorJavaBuilder<E, Q, V, B>
     > {
-    private final @NotNull Map<Integer, E> indexToElement = new HashMap<>();
+    private final @NotNull Set<VectorEntry<E>> entries = new HashSet<>();
     private final int size;
     private @NotNull IntFunction<E> computationOfAbsent = i -> getField().getZero();
 
@@ -77,7 +78,7 @@ public abstract class AbstractVectorJavaBuilder<
     public final @NotNull B set(final int index, final @NotNull E element) {
         checkArgument(0 < index && index <= size, "0 < index <= size expected but index = %s", index);
         requireNonNull(element, "element");
-        indexToElement.put(index, element);
+        entries.add(new VectorEntry<>(index, element));
         @SuppressWarnings("unchecked") final B casted = (B) this;
         return casted;
     }
@@ -96,7 +97,7 @@ public abstract class AbstractVectorJavaBuilder<
         checkArgument(
             0 < entry.getIndex() && entry.getIndex() <= size,
             "0 < entry.index <= size expected but index = %s", entry.getIndex());
-        indexToElement.put(entry.getIndex(), entry.getElement());
+        entries.add(entry);
         @SuppressWarnings("unchecked") final B casted = (B) this;
         return casted;
     }
@@ -122,10 +123,12 @@ public abstract class AbstractVectorJavaBuilder<
      * @since 0.0.1
      */
     public final @NotNull V build() {
-        for (int i = 1; i <= size; i++) {
-            indexToElement.putIfAbsent(i, computationOfAbsent.apply(i));
-        }
-        return getField().getVectorConstructor().invoke(indexToElement);
+        IntStream.rangeClosed(1, size).forEach(i -> {
+            if (entries.stream().noneMatch(e -> e.getIndex() == i)) {
+                entries.add(new VectorEntry<>(i, computationOfAbsent.apply(i)));
+            }
+        });
+        return getField().getVectorConstructor().invoke(entries);
     }
 
     /**
@@ -140,7 +143,7 @@ public abstract class AbstractVectorJavaBuilder<
     public final @NotNull String toString() {
         return MoreObjects.toStringHelper(this)
             .add("size", size)
-            .add("indexToElement", indexToElement)
+            .add("entries", entries)
             .add("computationOfAbsent", computationOfAbsent)
             .toString();
     }

@@ -30,9 +30,9 @@ import java.math.MathContext
 /**
  * Immutable implementation of a vector whose elements are of type [BigComplex]
  *
- * @property indexToElement [Map]
+ * @property entries entries
  * @constructor Constructs an BigComplexVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -41,9 +41,9 @@ import java.math.MathContext
 @Beta
 @Immutable
 public class BigComplexVector(
-    indexToElement: Map<Int, BigComplex>
+    entries: Set<VectorEntry<BigComplex>>
 ) : AbstractVector<BigComplex, BigComplex, BigComplexVector, BigDecimal, BigComplex>(
-    indexToElement
+    entries
 ) {
     override val field: Field<BigComplex, BigComplex, BigComplexVector>
         get() = BigComplexField
@@ -56,7 +56,9 @@ public class BigComplexVector(
      */
     public fun add(summand: BigComplexVector, mathContext: MathContext): BigComplexVector {
         require(size == summand.size) { "Equal sizes expected but $size!=${summand.size}" }
-        return BigComplexVector(indexToElement.map { (i, e) -> i to e.add(summand[i], mathContext) }.toMap())
+        return BigComplexVector(
+            entries.sorted().map { (i, e) -> VectorEntry(i, e.add(summand[i], mathContext)) }.toSet()
+        )
     }
 
     /**
@@ -67,7 +69,9 @@ public class BigComplexVector(
      */
     public fun subtract(subtrahend: BigComplexVector, mathContext: MathContext): BigComplexVector {
         require(size == subtrahend.size) { "Equal sizes expected but $size!=${subtrahend.size}" }
-        return BigComplexVector(indexToElement.map { (i, e) -> i to e.subtract(subtrahend[i], mathContext) }.toMap())
+        return BigComplexVector(
+            entries.sorted().map { (i, e) -> VectorEntry(i, e.subtract(subtrahend[i], mathContext)) }.toSet()
+        )
     }
 
     /**
@@ -78,7 +82,9 @@ public class BigComplexVector(
      */
     public fun dotProduct(other: BigComplexVector, mathContext: MathContext): BigComplex {
         require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
-        return indexToElement.map { (i, e) -> e.multiply(other[i], mathContext) }
+        return entries.sorted()
+            .map { (i, e) -> VectorEntry(i, e.multiply(other[i], mathContext)) }
+            .map { it.element }
             .reduce { a, b -> a.add(b, mathContext) }
     }
 
@@ -88,7 +94,7 @@ public class BigComplexVector(
      * @since 0.0.1
      */
     public fun scalarMultiply(scalar: BigComplex, mathContext: MathContext): BigComplexVector = BigComplexVector(
-        indexToElement.map { (i, e) -> i to scalar.multiply(e, mathContext) }.toMap()
+        entries.sorted().map { (i, e) -> VectorEntry(i, scalar.multiply(e, mathContext)) }.toSet()
     )
 
     /**
@@ -96,8 +102,20 @@ public class BigComplexVector(
      *
      * @since 0.0.1
      */
-    public fun negate(mathContext: MathContext): BigComplexVector =
-        BigComplexVector(indexToElement.map { (i, e) -> i to e.negate(mathContext) }.toMap())
+    public fun negate(mathContext: MathContext): BigComplexVector = scalarMultiply(BigComplex.MINUS_ONE, mathContext)
+
+    /**
+     * Returns if this is orthogonal to [other] based on the [mathContext]
+     *
+     * @throws IllegalArgumentException sizes are not equal
+     * @since 0.0.1
+     */
+    public fun orthogonalTo(other: BigComplexVector, mathContext: MathContext): Boolean {
+        require(size == other.size) { "Equal sizes expected but $size!=${other.size}" }
+        return entries.map { (i, e) -> e.multiply(other[i], mathContext) }
+            .reduce { a, b -> a.add(b, mathContext) }
+            .equalsByComparing(BigComplex.ZERO)
+    }
 
     override fun taxicabNorm(): BigDecimal = elements.map(BigComplex::abs).reduce(BigDecimal::add)
 
@@ -122,7 +140,7 @@ public class BigComplexVector(
         .reduce { a, b -> a.add(b, mathContext) }
         .sqrt(mathContext)
 
-    override fun maxNorm(): BigDecimal = elements.map(BigComplex::abs).maxOrNull() as BigDecimal
+    override fun maxNorm(): BigDecimal = elements.map { it.abs() }.maxOrNull() as BigDecimal
 
     /**
      * Returns the maximum norm based on the [mathContext]

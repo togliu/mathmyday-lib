@@ -17,6 +17,7 @@
 package io.github.ltennstedt.finnmath.linear.field
 
 import io.github.ltennstedt.finnmath.linear.vector.DoubleVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 
 /**
  * Single implementation of a [Field] of [Doubles][Double]
@@ -41,6 +42,6 @@ public object DoubleField : Field<Double, Double, DoubleVector> {
         get() = 0.0
     override val one: Double
         get() = 1.0
-    override val vectorConstructor: (m: Map<Int, Double>) -> DoubleVector
+    override val vectorConstructor: (s: Set<VectorEntry<Double>>) -> DoubleVector
         get() = { DoubleVector(it) }
 }

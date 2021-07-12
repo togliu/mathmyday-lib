@@ -33,9 +33,9 @@ import kotlin.math.sqrt
 /**
  * Immutable implementation of a vector whose elements are of type [Gaussian]
  *
- * @property indexToElement [Map]
+ * @property entries entries
  * @constructor Constructs an BigComplexVector
- * @throws IllegalArgumentException if [indexToElement] is empty
+ * @throws IllegalArgumentException if [entries] is empty
  * @throws IllegalArgumentException if [indices] `!= expectedIndices`
  * @author Lars Tennstedt
  * @since 0.0.1
@@ -44,20 +44,20 @@ import kotlin.math.sqrt
 @Beta
 @Immutable
 public class GaussianVector(
-    indexToElement: Map<Int, Gaussian>
+    entries: Set<VectorEntry<Gaussian>>
 ) : AbstractVector<Gaussian, Complex, GaussianVector, Double, Gaussian>(
-    indexToElement
+    entries
 ) {
     override val field: Field<Gaussian, Complex, GaussianVector>
         get() = GaussianField
 
-    override fun taxicabNorm(): Double = elements.map(Gaussian::abs).reduce { a, b -> a + b }
+    override fun taxicabNorm(): Double = elements.map { it.abs() }.reduce { a, b -> a + b }
 
     override fun euclideanNormPow2(): Gaussian = this * this
 
     override fun euclideanNorm(): Double = sqrt(elements.map { it.abs().pow(2) }.reduce { a, b -> a + b })
 
-    override fun maxNorm(): Double = elements.map(Gaussian::abs).maxOrNull() as Double
+    override fun maxNorm(): Double = elements.map { it.abs() }.maxOrNull() as Double
 
     /**
      * Returns this as [ComplexVector]

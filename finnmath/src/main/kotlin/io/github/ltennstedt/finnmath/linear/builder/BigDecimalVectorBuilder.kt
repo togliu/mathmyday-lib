@@ -16,7 +16,9 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
+import io.github.ltennstedt.finnmath.linear.field.BigDecimalField
 import io.github.ltennstedt.finnmath.linear.vector.BigDecimalVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import java.math.BigDecimal
 
 /**
@@ -39,6 +41,6 @@ public fun bigDecimalVector(init: BigDecimalVectorBuilder.() -> Unit): BigDecima
  */
 public class BigDecimalVectorBuilder : AbstractVectorBuilder<BigDecimal, BigDecimalVector>() {
     override var computationOfAbsent: (Int) -> BigDecimal = { _ -> BigDecimal.ZERO }
-    override val vectorConstructor: (m: Map<Int, BigDecimal>) -> BigDecimalVector
-        get() = { BigDecimalVector(it) }
+    override val vectorConstructor: (s: Set<VectorEntry<BigDecimal>>) -> BigDecimalVector
+        get() = BigDecimalField.vectorConstructor
 }

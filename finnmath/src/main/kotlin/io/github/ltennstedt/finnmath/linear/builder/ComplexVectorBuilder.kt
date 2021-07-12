@@ -16,7 +16,9 @@
 
 package io.github.ltennstedt.finnmath.linear.builder
 
+import io.github.ltennstedt.finnmath.linear.field.ComplexField
 import io.github.ltennstedt.finnmath.linear.vector.ComplexVector
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
 import io.github.ltennstedt.finnmath.number.complex.Complex
 
 /**
@@ -39,6 +41,6 @@ public fun complexVector(init: ComplexVectorBuilder.() -> Unit): ComplexVector {
  */
 public class ComplexVectorBuilder : AbstractVectorBuilder<Complex, ComplexVector>() {
     override var computationOfAbsent: (Int) -> Complex = { _ -> Complex.ZERO }
-    override val vectorConstructor: (m: Map<Int, Complex>) -> ComplexVector
-        get() = { ComplexVector(it) }
+    override val vectorConstructor: (s: Set<VectorEntry<Complex>>) -> ComplexVector
+        get() = ComplexField.vectorConstructor
 }

@@ -194,7 +194,7 @@ public class Complex @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val MINUS_ONE: Complex = ONE.negate()
+        public val MINUS_ONE: Complex = -ONE
 
         /**
          * `-i` as Complex
@@ -202,7 +202,7 @@ public class Complex @JvmOverloads constructor(
          * @since 0.0.1
          */
         @JvmField
-        public val MINUS_IMAGINARY: Complex = IMAGINARY.negate()
+        public val MINUS_IMAGINARY: Complex = -IMAGINARY
 
         /**
          * Units
