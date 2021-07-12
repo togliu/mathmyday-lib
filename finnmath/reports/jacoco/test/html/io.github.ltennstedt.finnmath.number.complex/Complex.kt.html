@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Complex.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.complex</a> &gt; <span class="el_source">Complex.kt</span></div><h1>Complex.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.number.complex
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import org.apiguardian.api.API
+import java.math.MathContext
+import kotlin.math.acos
+import kotlin.math.pow
+import kotlin.math.sqrt
+
+/**
+ * Immutable implementation of a complex number which uses [Double] as type for its real and imaginary part
+ *
+ * @property real real part
+ * @property imaginary imaginary part
+ * @constructor Constructs a Complex
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L39">public class Complex @JvmOverloads constructor(</span>
+    real: Double,
+<span class="nc" id="L41">    imaginary: Double = 0.0</span>
+<span class="nc" id="L42">) : AbstractComplex&lt;Double, Complex, Complex, Double, PolarForm&gt;(</span>
+<span class="nc" id="L43">    real,</span>
+<span class="nc" id="L44">    imaginary</span>
+) {
+<span class="nc" id="L46">    override val isUnit: Boolean by lazy { doesNotEqualByComparing(ZERO) }</span>
+
+    /**
+     * Constructs a Complex from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L56">    public constructor(real: Int, imaginary: Int = 0) : this(real.toDouble(), imaginary.toDouble())</span>
+
+    /**
+     * Constructs a Complex from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L66">    public constructor(real: Long, imaginary: Long = 0L) : this(real.toDouble(), imaginary.toDouble())</span>
+
+    /**
+     * Constructs a Complex from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0.0F`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L76">    public constructor(real: Float, imaginary: Float = 0.0F) : this(real.toDouble(), imaginary.toDouble())</span>
+
+<span class="nc" id="L78">    override fun add(summand: Complex): Complex = Complex(real + summand.real, imaginary + summand.imaginary)</span>
+
+<span class="nc" id="L80">    override fun subtract(subtrahend: Complex): Complex = Complex(</span>
+<span class="nc" id="L81">        real - subtrahend.real, imaginary - subtrahend.imaginary</span>
+<span class="nc" id="L82">    )</span>
+
+<span class="nc" id="L84">    override fun multiply(factor: Complex): Complex = Complex(</span>
+<span class="nc" id="L85">        real * factor.real - imaginary * factor.imaginary,</span>
+<span class="nc" id="L86">        real * factor.imaginary + imaginary * factor.real</span>
+<span class="nc" id="L87">    )</span>
+
+    override fun divide(divisor: Complex): Complex {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        require(divisor.isUnit) { &quot;divisor expected to be a unit but divisor = $divisor&quot; }</span>
+<span class="nc" id="L91">        val den = divisor.real.pow(2) + divisor.imaginary.pow(2)</span>
+<span class="nc" id="L92">        return Complex(</span>
+<span class="nc" id="L93">            (real * divisor.real + imaginary * divisor.imaginary) / den,</span>
+<span class="nc" id="L94">            (imaginary * divisor.real - real * divisor.imaginary) / den</span>
+        )
+    }
+
+<span class="nc" id="L98">    override fun pow(exponent: Int): Complex = when {</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        exponent &lt; 0 -&gt; (this * pow(-exponent - 1)).invert()</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        exponent == 0 -&gt; ONE</span>
+<span class="nc" id="L101">        else -&gt; this * pow(exponent - 1)</span>
+<span class="nc" id="L102">    }</span>
+
+<span class="nc" id="L104">    override fun negate(): Complex = Complex(-real, -imaginary)</span>
+
+    override fun invert(): Complex {
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        check(isUnit) { &quot;expected this to be a unit but this = $this&quot; }</span>
+<span class="nc" id="L108">        return ONE / this</span>
+    }
+
+<span class="nc" id="L111">    override fun absPow2(): Double = real.pow(2) + imaginary.pow(2)</span>
+
+<span class="nc" id="L113">    override fun abs(): Double = sqrt(absPow2())</span>
+
+<span class="nc" id="L115">    override fun conjugate(): Complex = Complex(real, -imaginary)</span>
+
+    override fun argument(): Double {
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L119">        val value = real / abs()</span>
+<span class="nc" id="L120">        val acos = acos(value)</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        return if (imaginary &lt; 0.0) -acos else acos</span>
+    }
+
+    override fun toPolarForm(): PolarForm {
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L126">        return PolarForm(abs(), argument())</span>
+    }
+
+    /**
+     * Returns this as [BigPolarForm]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigPolarForm(): BigPolarForm {
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L136">        return BigPolarForm(abs(), argument())</span>
+    }
+
+    /**
+     * Returns this as [BigPolarForm] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun toBigPolarForm(mathContext: MathContext): BigPolarForm {
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L146">        return BigPolarForm(abs(), argument(), mathContext)</span>
+    }
+
+    /**
+     * Returns this as [BigComplex]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L154">    public fun toBigComplex(): BigComplex = BigComplex(real, imaginary)</span>
+
+    /**
+     * Returns this as [BigComplex] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L161">    public fun toBigComplex(mathContext: MathContext): BigComplex = BigComplex(real, imaginary, mathContext)</span>
+
+    override fun equalsByComparing(other: Complex): Boolean =
+<span class="nc bnc" id="L164" title="All 4 branches missed.">        real.compareTo(other.real) == 0 &amp;&amp; imaginary.compareTo(other.imaginary) == 0</span>
+
+    public companion object {
+        /**
+         * `0` as Complex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L173">        public val ZERO: Complex = Complex(0.0)</span>
+
+        /**
+         * `1` as Complex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L181">        public val ONE: Complex = Complex(1.0)</span>
+
+        /**
+         * `i` as Complex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L189">        public val IMAGINARY: Complex = Complex(0.0, 1.0)</span>
+
+        /**
+         * `-1` as Complex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L197">        public val MINUS_ONE: Complex = -ONE</span>
+
+        /**
+         * `-i` as Complex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L205">        public val MINUS_IMAGINARY: Complex = -IMAGINARY</span>
+
+        /**
+         * Units
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L213">        public val UNITS: Set&lt;Complex&gt; = setOf(ONE, IMAGINARY, MINUS_ONE, MINUS_IMAGINARY)</span>
+    }
+<span class="nc" id="L215">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

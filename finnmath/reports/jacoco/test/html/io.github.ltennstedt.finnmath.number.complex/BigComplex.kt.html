@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BigComplex.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.complex</a> &gt; <span class="el_source">BigComplex.kt</span></div><h1>BigComplex.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2017 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.number.complex
+
+import ch.obermuhlner.math.big.BigDecimalMath
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.FinnmathContext
+import io.github.ltennstedt.finnmath.extension.sqrt
+import org.apiguardian.api.API
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+
+/**
+ * Immutable implementation of a complex number which uses [BigDecimal] as type for its real and imaginary part
+ *
+ * @property real real part
+ * @property imaginary imaginary part
+ * @constructor Constructs a BigComplex
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L41">public class BigComplex @JvmOverloads constructor(</span>
+    real: BigDecimal,
+<span class="nc" id="L43">    imaginary: BigDecimal = BigDecimal.ZERO</span>
+<span class="nc" id="L44">) : AbstractComplex&lt;BigDecimal, BigComplex, BigComplex, BigDecimal, BigPolarForm&gt;(</span>
+<span class="nc" id="L45">    real,</span>
+<span class="nc" id="L46">    imaginary</span>
+) {
+<span class="nc" id="L48">    override val isUnit: Boolean by lazy { doesNotEqualByComparing(ZERO) }</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L58">    public constructor(real: Int, imaginary: Int = 0) : this(real.toBigDecimal(), imaginary.toBigDecimal())</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L68">    public constructor(real: Int, imaginary: Int = 0, mathContext: MathContext) : this(</span>
+<span class="nc" id="L69">        real.toBigDecimal(mathContext),</span>
+<span class="nc" id="L70">        imaginary.toBigDecimal(mathContext)</span>
+<span class="nc" id="L71">    )</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L81">    public constructor(real: Long, imaginary: Long = 0L) : this(real.toBigDecimal(), imaginary.toBigDecimal())</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L91">    public constructor(real: Long, imaginary: Long = 0, mathContext: MathContext) : this(</span>
+<span class="nc" id="L92">        real.toBigDecimal(mathContext),</span>
+<span class="nc" id="L93">        imaginary.toBigDecimal(mathContext)</span>
+<span class="nc" id="L94">    )</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0.0F`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L104">    public constructor(real: Float, imaginary: Float = 0.0F) : this(real.toBigDecimal(), imaginary.toBigDecimal())</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L112">    public constructor(real: Float, imaginary: Float = 0.0F, mathContext: MathContext) : this(</span>
+<span class="nc" id="L113">        real.toBigDecimal(mathContext),</span>
+<span class="nc" id="L114">        imaginary.toBigDecimal(mathContext)</span>
+<span class="nc" id="L115">    )</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0.0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L125">    public constructor(real: Double, imaginary: Double = 0.0) : this(real.toBigDecimal(), imaginary.toBigDecimal())</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L133">    public constructor(real: Double, imaginary: Double = 0.0, mathContext: MathContext) : this(</span>
+<span class="nc" id="L134">        real.toBigDecimal(mathContext),</span>
+<span class="nc" id="L135">        imaginary.toBigDecimal(mathContext)</span>
+<span class="nc" id="L136">    )</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is [BigInteger.ZERO]
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L146">    public constructor(real: BigInteger, imaginary: BigInteger = BigInteger.ZERO) : this(</span>
+<span class="nc" id="L147">        real.toBigDecimal(),</span>
+<span class="nc" id="L148">        imaginary.toBigDecimal()</span>
+<span class="nc" id="L149">    )</span>
+
+    /**
+     * Constructs a BigComplex from [real] and [imaginary] based on the [context]
+     *
+     * Default argument for [imaginary] is [BigInteger.ZERO]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L158">    public constructor(</span>
+        real: BigInteger,
+<span class="nc" id="L160">        imaginary: BigInteger = BigInteger.ZERO,</span>
+        context: FinnmathContext
+<span class="nc" id="L162">    ) : this(</span>
+<span class="nc" id="L163">        real.toBigDecimal(context.scale, context.mathContext),</span>
+<span class="nc" id="L164">        imaginary.toBigDecimal(context.scale, context.mathContext)</span>
+<span class="nc" id="L165">    )</span>
+
+<span class="nc" id="L167">    override fun add(summand: BigComplex): BigComplex = BigComplex(real + summand.real, imaginary + summand.imaginary)</span>
+
+    /**
+     * Returns the sum of this and the [summand] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L174">    public fun add(summand: BigComplex, mathContext: MathContext): BigComplex = BigComplex(</span>
+<span class="nc" id="L175">        real.add(summand.real, mathContext),</span>
+<span class="nc" id="L176">        imaginary.add(summand.imaginary, mathContext)</span>
+<span class="nc" id="L177">    )</span>
+
+<span class="nc" id="L179">    override fun subtract(subtrahend: BigComplex): BigComplex = BigComplex(</span>
+<span class="nc" id="L180">        real - subtrahend.real,</span>
+<span class="nc" id="L181">        imaginary - subtrahend.imaginary</span>
+<span class="nc" id="L182">    )</span>
+
+    /**
+     * Returns the difference of this and the [subtrahend] based on the [mathContext]
+     *
+     * Default argument for [mathContext] is [MathContext.UNLIMITED]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L191">    public fun subtract(subtrahend: BigComplex, mathContext: MathContext = MathContext.UNLIMITED): BigComplex =</span>
+<span class="nc" id="L192">        BigComplex(</span>
+<span class="nc" id="L193">            real.subtract(subtrahend.real, mathContext),</span>
+<span class="nc" id="L194">            imaginary.subtract(subtrahend.imaginary, mathContext)</span>
+<span class="nc" id="L195">        )</span>
+
+<span class="nc" id="L197">    override fun multiply(factor: BigComplex): BigComplex = BigComplex(</span>
+<span class="nc" id="L198">        real * factor.real - imaginary * factor.imaginary,</span>
+<span class="nc" id="L199">        real * factor.imaginary + imaginary * factor.real</span>
+<span class="nc" id="L200">    )</span>
+
+    /**
+     * Returns the product of this and the [factor] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun multiply(factor: BigComplex, mathContext: MathContext): BigComplex {
+<span class="nc" id="L208">        val re = real.multiply(factor.real, mathContext)</span>
+<span class="nc" id="L209">            .subtract(imaginary.multiply(factor.imaginary, mathContext), mathContext)</span>
+<span class="nc" id="L210">        val im =</span>
+<span class="nc" id="L211">            real.multiply(factor.imaginary, mathContext).add(imaginary.multiply(factor.real, mathContext), mathContext)</span>
+<span class="nc" id="L212">        return BigComplex(re, im)</span>
+    }
+
+    override fun divide(divisor: BigComplex): BigComplex {
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        require(divisor.isUnit) { &quot;divisor expected to be a unit but divisor = $divisor&quot; }</span>
+<span class="nc" id="L217">        val den = divisor.real.pow(2) + divisor.imaginary.pow(2)</span>
+<span class="nc" id="L218">        return BigComplex(</span>
+<span class="nc" id="L219">            (real * divisor.real + imaginary * divisor.imaginary) / den,</span>
+<span class="nc" id="L220">            (imaginary * divisor.real - real * divisor.imaginary) / den</span>
+        )
+    }
+
+    /**
+     * Returns the quotient of this and the [divisor] based on the [mathContext]
+     *
+     * @throws IllegalArgumentException if [divisor] is not a unit
+     * @since 0.0.1
+     */
+    public fun divide(divisor: BigComplex, mathContext: MathContext): BigComplex {
+<span class="nc bnc" id="L231" title="All 2 branches missed.">        require(divisor.isUnit) { &quot;divisor expected to be a unit but divisor = $divisor&quot; }</span>
+<span class="nc" id="L232">        val den = divisor.real.pow(2, mathContext).add(divisor.imaginary.pow(2, mathContext), mathContext)</span>
+<span class="nc" id="L233">        val re = real.multiply(divisor.real, mathContext)</span>
+<span class="nc" id="L234">            .add(imaginary.multiply(divisor.imaginary, mathContext), mathContext)</span>
+<span class="nc" id="L235">            .divide(den, mathContext)</span>
+<span class="nc" id="L236">        val im = imaginary.multiply(divisor.real, mathContext)</span>
+<span class="nc" id="L237">            .subtract(real.multiply(divisor.imaginary, mathContext), mathContext)</span>
+<span class="nc" id="L238">            .divide(den, mathContext)</span>
+<span class="nc" id="L239">        return BigComplex(re, im)</span>
+    }
+
+<span class="nc" id="L242">    override fun pow(exponent: Int): BigComplex = when {</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">        exponent &lt; 0 -&gt; (this * pow(-exponent - 1)).invert()</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">        exponent == 0 -&gt; ONE</span>
+<span class="nc" id="L245">        else -&gt; this * pow(exponent - 1)</span>
+<span class="nc" id="L246">    }</span>
+
+    /**
+     * Returns the power of this raised by the [exponent] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L253">    public fun pow(exponent: Int, mathContext: MathContext): BigComplex = when {</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        exponent &lt; 0 -&gt; multiply(pow(-exponent - 1, mathContext), mathContext).invert(mathContext)</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        exponent == 0 -&gt; ONE</span>
+<span class="nc" id="L256">        else -&gt; multiply(pow(exponent - 1, mathContext), mathContext)</span>
+<span class="nc" id="L257">    }</span>
+
+<span class="nc" id="L259">    override fun negate(): BigComplex = BigComplex(-real, -imaginary)</span>
+
+    /**
+     * Returns the negated BigComplex based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun negate(mathContext: MathContext): BigComplex =
+<span class="nc" id="L267">        BigComplex(real.negate(mathContext), imaginary.negate(mathContext))</span>
+
+    override fun invert(): BigComplex {
+<span class="nc bnc" id="L270" title="All 2 branches missed.">        check(isUnit) { &quot;expected this to be a unit but this = $this&quot; }</span>
+<span class="nc" id="L271">        return ONE / this</span>
+    }
+
+    /**
+     * Returns the inverted BigComplex based on the [mathContext]
+     *
+     *@throws IllegalStateException if this is not a unit
+     * @since 0.0.1
+     */
+    public fun invert(mathContext: MathContext): BigComplex {
+<span class="nc bnc" id="L281" title="All 2 branches missed.">        check(isUnit) { &quot;expected this to be a unit but this = $this&quot; }</span>
+<span class="nc" id="L282">        return ONE.divide(this, mathContext)</span>
+    }
+
+<span class="nc" id="L285">    override fun absPow2(): BigDecimal = real.pow(2) + imaginary.pow(2)</span>
+
+    /**
+     * Returns the square of the absolute value based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun absPow2(mathContext: MathContext): BigDecimal =
+<span class="nc" id="L293">        real.pow(2, mathContext).add(imaginary.pow(2, mathContext), mathContext)</span>
+
+<span class="nc" id="L295">    override fun abs(): BigDecimal = absPow2().sqrt()</span>
+
+    /**
+     * Returns the absolute value based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L302">    public fun abs(mathContext: MathContext): BigDecimal = absPow2(mathContext).sqrt(mathContext)</span>
+
+<span class="nc" id="L304">    override fun conjugate(): BigComplex = BigComplex(real, -imaginary)</span>
+
+    /**
+     * Returns the conjugated BigComplex based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L311">    public fun conjugate(mathContext: MathContext): BigComplex = BigComplex(real, imaginary.negate(mathContext))</span>
+
+    override fun argument(): BigDecimal {
+<span class="nc bnc" id="L314" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;expected this != 0 but this = $this&quot; }</span>
+<span class="nc" id="L315">        val value = real / abs()</span>
+<span class="nc" id="L316">        val acos = BigDecimalMath.acos(value, MathContext.UNLIMITED)</span>
+<span class="nc bnc" id="L317" title="All 2 branches missed.">        return if (imaginary &lt; BigDecimal.ZERO) -acos else acos</span>
+    }
+
+    /**
+     * Returns the argument based on the [mathContext]
+     *
+     * @throws IllegalStateException if this is equal to 0 by comparing
+     * @since 0.0.1
+     */
+    public fun argument(mathContext: MathContext): BigDecimal {
+<span class="nc bnc" id="L327" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;expected this != 0 but this = $this&quot; }</span>
+<span class="nc" id="L328">        val value = real.divide(abs(mathContext), mathContext)</span>
+<span class="nc" id="L329">        val acos = BigDecimalMath.acos(value, mathContext)</span>
+<span class="nc bnc" id="L330" title="All 2 branches missed.">        return if (imaginary &lt; BigDecimal.ZERO) acos.negate(mathContext) else acos</span>
+    }
+
+    override fun toPolarForm(): BigPolarForm {
+<span class="nc bnc" id="L334" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;expected this != 0 but this = $this&quot; }</span>
+<span class="nc" id="L335">        return BigPolarForm(abs(), argument())</span>
+    }
+
+    /**
+     * Returns this as [BigPolarForm]
+     *
+     * @throws IllegalStateException if this is equal to 0 by comparing
+     * @since 0.0.1
+     */
+    public fun toPolarForm(mathContext: MathContext): BigPolarForm {
+<span class="nc bnc" id="L345" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;expected this != 0 but this = $this&quot; }</span>
+<span class="nc" id="L346">        return BigPolarForm(abs(mathContext), argument(mathContext))</span>
+    }
+
+    override fun equalsByComparing(other: BigComplex): Boolean =
+<span class="nc bnc" id="L350" title="All 4 branches missed.">        real.compareTo(other.real) == 0 &amp;&amp; imaginary.compareTo(other.imaginary) == 0</span>
+
+    public companion object {
+        /**
+         * `0` as BigComplex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L359">        public val ZERO: BigComplex = BigComplex(BigDecimal.ZERO)</span>
+
+        /**
+         * `1` as BigComplex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L367">        public val ONE: BigComplex = BigComplex(BigDecimal.ONE)</span>
+
+        /**
+         * `i` as BigComplex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L375">        public val IMAGINARY: BigComplex = BigComplex(BigDecimal.ZERO, BigDecimal.ONE)</span>
+
+        /**
+         * `-1` as BigComplex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L383">        public val MINUS_ONE: BigComplex = -ONE</span>
+
+        /**
+         * `-i` as BigComplex
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L391">        public val MINUS_IMAGINARY: BigComplex = -IMAGINARY</span>
+
+        /**
+         * Units
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L399">        public val UNITS: Set&lt;BigComplex&gt; = setOf(ONE, IMAGINARY, MINUS_ONE, MINUS_IMAGINARY)</span>
+    }
+<span class="nc" id="L401">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

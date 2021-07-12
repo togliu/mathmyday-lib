@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GaussianVectorJavaBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.builder</a> &gt; <span class="el_source">GaussianVectorJavaBuilder.java</span></div><h1>GaussianVectorJavaBuilder.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.builder;
+
+import com.google.common.annotations.Beta;
+import io.github.ltennstedt.finnmath.linear.field.Field;
+import io.github.ltennstedt.finnmath.linear.field.GaussianField;
+import io.github.ltennstedt.finnmath.linear.vector.GaussianVector;
+import io.github.ltennstedt.finnmath.number.complex.Complex;
+import io.github.ltennstedt.finnmath.number.complex.Gaussian;
+import org.apiguardian.api.API;
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Java-style builder for {@link GaussianVector GaussianVectors}
+ *
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+public final class GaussianVectorJavaBuilder extends
+    AbstractVectorJavaBuilder&lt;Gaussian, Complex, GaussianVector, GaussianVectorJavaBuilder&gt; {
+    /**
+     * Constructor
+     *
+     * @param size size
+     * @throws IllegalArgumentException if {@code size &lt; 1}
+     * @since 0.0.1
+     */
+    public GaussianVectorJavaBuilder(final int size) {
+<span class="nc" id="L46">        super(size);</span>
+<span class="nc" id="L47">    }</span>
+
+    @Override
+    protected @NotNull Field&lt;Gaussian, Complex, GaussianVector&gt; getField() {
+<span class="nc" id="L51">        return GaussianField.INSTANCE;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

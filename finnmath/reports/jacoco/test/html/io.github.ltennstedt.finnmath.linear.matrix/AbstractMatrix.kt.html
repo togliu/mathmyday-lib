@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractMatrix.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.matrix</a> &gt; <span class="el_source">AbstractMatrix.kt</span></div><h1>AbstractMatrix.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2017 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.matrix
+
+import com.google.common.base.MoreObjects
+import io.github.ltennstedt.finnmath.linear.field.Field
+import io.github.ltennstedt.finnmath.linear.vector.AbstractVector
+import java.math.BigDecimal
+import java.math.MathContext
+import java.util.Objects
+
+/**
+ * Base class for matrices
+ *
+ * @param E type of elements
+ * @param Q type of the quotient
+ * @param V type of the vector
+ * @param M type of the matrix
+ * @param N type of the maximum absolute column sum norm, maximum absolute row sum norm and the maximum norm
+ * @param B type of the square of the norms
+ * @property entries entries
+ * @constructor Constructs an [AbstractMatrix]
+ * @throws IllegalArgumentException if [entries] is empty
+ * @throws IllegalArgumentException if [rowIndices] `!= expectedRowIndices`
+ * @throws IllegalArgumentException if [columnIndices] `!= expectedColumnIndices`
+ * @throws IllegalArgumentException if one value of [entries] is null
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+<span class="nc" id="L44">public abstract class AbstractMatrix&lt;</span>
+    E : Number,
+    Q : Number,
+    V : AbstractVector&lt;E, Q, V, *, *&gt;,
+    M : AbstractMatrix&lt;E, Q, V, M, N, B&gt;,
+    N,
+    B
+    &gt;(
+<span class="nc" id="L52">    public val entries: Set&lt;MatrixEntry&lt;E&gt;&gt;</span>
+) {
+    /**
+     * Indicates if this is square
+     *
+     * @since 0.0.1
+     */
+    public val isSquare: Boolean
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        get() = rowSize == columnSize</span>
+
+    /**
+     * Indicates if this is triangular
+     *
+     * @since 0.0.1
+     */
+    public val isTriangular: Boolean
+<span class="nc bnc" id="L68" title="All 4 branches missed.">        get() = isUpperTriangular || isLowerTriangular</span>
+
+    /**
+     * Indicates if this is upper triangular
+     *
+     * @since 0.0.1
+     */
+    public val isUpperTriangular: Boolean
+<span class="nc bnc" id="L76" title="All 4 branches missed.">        get() = entries.filter { (r, c, _) -&gt; r &gt; c }</span>
+<span class="nc" id="L77">            .map(MatrixEntry&lt;E&gt;::element)</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            .all { this.field.equalityByComparing(it, this.field.zero) }</span>
+
+    /**
+     * Indicates if this is lower triangular
+     *
+     * @since 0.0.1
+     */
+    public val isLowerTriangular: Boolean
+<span class="nc bnc" id="L86" title="All 4 branches missed.">        get() = entries.filter { (r, c, _) -&gt; r &lt; c }</span>
+<span class="nc" id="L87">            .map(MatrixEntry&lt;E&gt;::element)</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            .all { this.field.equalityByComparing(it, this.field.zero) }</span>
+
+    /**
+     * Indicates if this is diagonal
+     *
+     * @since 0.0.1
+     */
+    public val isDiagonal: Boolean
+<span class="nc bnc" id="L96" title="All 4 branches missed.">        get() = isUpperTriangular &amp;&amp; isLowerTriangular</span>
+
+    /**
+     * Indicates if this is the identity one
+     *
+     * @since 0.0.1
+     */
+    public val isIdentity: Boolean
+<span class="nc bnc" id="L104" title="All 4 branches missed.">        get() = isDiagonal &amp;&amp; diagonalElements.all { this.field.equalityByComparing(it, this.field.zero) }</span>
+
+    /**
+     * Indicates if this is invertible
+     *
+     * @since 0.0.1
+     */
+    public abstract val isInvertible: Boolean
+
+    /**
+     * Indicates if this is symmetric
+     *
+     * @since 0.0.1
+     */
+<span class="nc bnc" id="L118" title="All 4 branches missed.">    public val isSymmetric: Boolean by lazy { isSquare &amp;&amp; equalsByComparing(transpose()) }</span>
+
+    /**
+     * Indicates if this is skew symmetric
+     *
+     * @since 0.0.1
+     */
+<span class="nc bnc" id="L125" title="All 4 branches missed.">    public val isSkewSymmetric: Boolean by lazy { isSquare &amp;&amp; transpose() == negate() }</span>
+
+    /**
+     * Row indices
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L132">    public val rowIndices: Set&lt;Int&gt; by lazy { entries.map { it.rowIndex }.sorted().toSet() }</span>
+
+    /**
+     * Column indices
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L139">    public val columnIndices: Set&lt;Int&gt; by lazy { entries.map { it.columnIndex }.sorted().toSet() }</span>
+
+    /**
+     * Elements
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L146">    public val elements: List&lt;E&gt; by lazy { entries.sorted().map { it.element }.toList() }</span>
+
+    /**
+     * Diagonal elements
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L153">    public val diagonalElements: List&lt;E&gt; by lazy {</span>
+<span class="nc bnc" id="L154" title="All 4 branches missed.">        entries.filter { (r, c, _) -&gt; r == c }.map(MatrixEntry&lt;E&gt;::element)</span>
+    }
+
+    /**
+     * Diagonal [MatrixEntries][MatrixEntry]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L162">    public val diagonalEntries: Set&lt;MatrixEntry&lt;E&gt;&gt; by lazy {</span>
+<span class="nc bnc" id="L163" title="All 4 branches missed.">        entries.sorted().filter { (r, c, _) -&gt; r == c }.toSet()</span>
+    }
+
+    /**
+     * Row size
+     *
+     * @since 0.0.1
+     */
+    public val rowSize: Int
+<span class="nc" id="L172">        get() = rowIndices.size</span>
+
+    /**
+     * Column size
+     *
+     * @since 0.0.1
+     */
+    public val columnSize: Int
+<span class="nc" id="L180">        get() = columnIndices.size</span>
+
+    /**
+     * Field
+     *
+     * @since 0.0.1
+     */
+    protected abstract val field: Field&lt;E, Q, V&gt;
+
+<span class="nc" id="L189">    init {</span>
+<span class="nc bnc" id="L190" title="All 4 branches missed.">        require(entries.isNotEmpty()) { &quot;expected entries not be empty but entries = $entries&quot; }</span>
+<span class="nc" id="L191">        val expectedRowIndices = (1..rowSize).toSet()</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        require(rowIndices == expectedRowIndices) {</span>
+<span class="nc" id="L193">            &quot;expected rowIndices == expectedRowIndices but $rowIndices != $expectedRowIndices&quot;</span>
+        }
+<span class="nc" id="L195">        val expectedColumnIndices = (1..columnSize).toSet()</span>
+<span class="nc bnc" id="L196" title="All 2 branches missed.">        require(columnIndices == expectedColumnIndices) {</span>
+<span class="nc" id="L197">            &quot;expected columnIndices == expectedColumnIndices but $columnIndices != $expectedColumnIndices&quot;</span>
+        }
+<span class="nc" id="L199">    }</span>
+
+    /**
+     * Returns the sum of this and the [summand]
+     *
+     * @throws IllegalArgumentException if [rowSize] != `summand.rowSize`
+     * @throws IllegalArgumentException if [columnSize] != `summand.columnSize`
+     * @since 0.0.1
+     */
+    public abstract fun add(summand: M): M
+
+    /**
+     * Returns the difference of this and the [subtrahend]
+     *
+     * @throws IllegalArgumentException if [rowSize] != `subtrahend.rowSize`
+     * @throws IllegalArgumentException if [columnSize] != `subtrahend.columnSize`
+     * @since 0.0.1
+     */
+    public abstract fun subtract(subtrahend: M): M
+
+    /**
+     * Returns the product of this and the [factor]
+     *
+     * @throws IllegalArgumentException if [columnSize] != `factor.rowSize`
+     * @since 0.0.1
+     */
+    public abstract fun multiply(factor: M): M
+
+    /**
+     * Returns the product of this and the [vector]
+     *
+     * @throws IllegalArgumentException if [columnSize] != `vector.size`
+     * @since 0.0.1
+     */
+    public abstract fun multiplyVector(vector: V): V
+
+    /**
+     * Returns the scalar product of this and the [scalar]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun scalarMultiply(scalar: E): M
+
+    /**
+     * Returns the negated [AbstractMatrix] and this
+     *
+     * @since 0.0.1
+     */
+    public abstract fun negate(): M
+
+    /**
+     * Returns the trace
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L254">    public fun trace(): E = addDiagonalElements()</span>
+
+    /**
+     * Returns the determinant
+     *
+     * @since 0.0.1
+     */
+    public fun determinant(): E {
+<span class="nc bnc" id="L262" title="All 2 branches missed.">        check(isSquare) { &quot;expected square matrix but $rowSize != $columnSize&quot; }</span>
+<span class="nc" id="L263">        return when {</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            isTriangular -&gt; addDiagonalElements()</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">            rowSize &gt; 3 -&gt; leibnizFormula()</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">            rowSize == 3 -&gt; ruleOfSarrus()</span>
+<span class="nc" id="L267">            else -&gt; determinantOf2x2Matrix()</span>
+        }
+    }
+
+    /**
+     * Returns the transpose
+     *
+     * @since 0.0.1
+     */
+    public abstract fun transpose(): M
+
+    /**
+     * Returns the minor dependent on the [rowIndex] and [columnIndex]
+     *
+     * @throws IllegalArgumentException if [rowIndex] !in 1..[rowSize]
+     * @throws IllegalArgumentException if [columnIndex] !in 1..[columnSize]
+     * @since 0.0.1
+     */
+    public abstract fun minor(rowIndex: Int, columnIndex: Int): M
+
+    /**
+     * Returns the maximum absolute column sum norm
+     *
+     * @since 0.0.1
+     */
+    public abstract fun maxAbsColumnSumNorm(): N
+
+    /**
+     * Returns the maximum absolute row sum norm
+     *
+     * @since 0.0.1
+     */
+    public abstract fun maxAbsRowSumNorm(): N
+
+    /**
+     * Returns the square of the frobenius norm
+     *
+     * @since 0.0.1
+     */
+    public abstract fun frobeniusNormPow2(): B
+
+    /**
+     * Returns the frobenius norm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun frobeniusNorm(mathContext: MathContext): BigDecimal
+
+    /**
+     * Returns the maximum norm
+     *
+     * @since 0.0.1
+     */
+    public abstract fun maxNorm(): N
+
+    /**
+     * Returns the element at the [rowIndex] and [columnIndex]
+     *
+     * @throws IllegalArgumentException if [rowIndex] !in 1..[rowSize]
+     * @throws IllegalArgumentException if [columnIndex] !in 1..[columnSize]
+     * @since 0.0.1
+     */
+    public operator fun get(rowIndex: Int, columnIndex: Int): E {
+<span class="nc bnc" id="L330" title="All 6 branches missed.">        require(rowIndex in 1..rowSize) { &quot;expected rowIndex in 1..$rowSize but rowIndex = $rowIndex&quot; }</span>
+<span class="nc bnc" id="L331" title="All 6 branches missed.">        require(columnIndex in 1..columnSize) {</span>
+<span class="nc" id="L332">            &quot;expected columnIndex in 1..$columnSize but columnIndex = $columnIndex&quot;</span>
+        }
+<span class="nc" id="L334">        return entry(rowIndex, columnIndex).element</span>
+    }
+
+    /**
+     * Returns the [MatrixEntry] at the [rowIndex] and [columnIndex]
+     *
+     * @throws IllegalArgumentException if [rowIndex] !in 1..[rowSize]
+     * @throws IllegalArgumentException if [columnIndex] !in 1..[columnSize]
+     * @since 0.0.1
+     */
+    public fun entry(rowIndex: Int, columnIndex: Int): MatrixEntry&lt;E&gt; {
+<span class="nc bnc" id="L345" title="All 6 branches missed.">        require(rowIndex in 1..rowSize) { &quot;expected rowIndex in 1..$rowSize but rowIndex = $rowIndex&quot; }</span>
+<span class="nc bnc" id="L346" title="All 6 branches missed.">        require(columnIndex in 1..columnSize) {</span>
+<span class="nc" id="L347">            &quot;expected columnIndex in 1..$columnSize but columnIndex = $columnIndex&quot;</span>
+        }
+        @Suppress(&quot;UNCHECKED_CAST&quot;)
+<span class="nc bnc" id="L350" title="All 6 branches missed.">        return entries.single { (r, c, _) -&gt; r == rowIndex &amp;&amp; c == columnIndex }</span>
+    }
+
+    /**
+     * Returns the row at the [rowIndex]
+     *
+     * @throws IllegalArgumentException if [rowIndex] !in 1..[rowSize]
+     * @since 0.0.1
+     */
+    public fun row(rowIndex: Int): Map&lt;Int, E&gt; {
+<span class="nc bnc" id="L360" title="All 6 branches missed.">        require(rowIndex in 1..rowSize) { &quot;expected rowIndex in 1..$rowSize but rowIndex = $rowIndex&quot; }</span>
+<span class="nc bnc" id="L361" title="All 4 branches missed.">        return entries.sorted().filter { it.rowIndex == rowIndex }.associate { (_, c, e) -&gt; c to e }</span>
+    }
+
+    /**
+     * Returns the column at the [columnIndex]
+     *
+     * @throws IllegalArgumentException if [columnIndex] !in 1..[columnSize]
+     * @since 0.0.1
+     */
+    public fun column(columnIndex: Int): Map&lt;Int, E&gt; {
+<span class="nc bnc" id="L371" title="All 6 branches missed.">        require(columnIndex in 1..columnSize) {</span>
+<span class="nc" id="L372">            &quot;expected columnIndex in 1..$columnSize but columnIndex = $columnIndex&quot;</span>
+        }
+<span class="nc bnc" id="L374" title="All 4 branches missed.">        return entries.sorted().filter { it.columnIndex == columnIndex }.associate { (r, _, e) -&gt; r to e }</span>
+    }
+
+    /**
+     * Returns the row vector at the [rowIndex]
+     *
+     * @throws IllegalArgumentException if [rowIndex] !in 1..[rowSize]
+     * @since 0.0.1
+     */
+    public abstract fun rowVector(rowIndex: Int): V
+
+    /**
+     * Returns the column vector at the [columnIndex]
+     *
+     * @throws IllegalArgumentException if [columnIndex] !in 1..[columnSize]
+     * @since 0.0.1
+     */
+    public abstract fun columnVector(columnIndex: Int): V
+
+    /**
+     * Returns if [element] is contained in [V]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L398">    public operator fun contains(element: E): Boolean = element in elements</span>
+
+    /**
+     * Returns if this is equal to [other] by comparing elements
+     *
+     * @throws IllegalArgumentException if [rowSize] != `other.rowSize`
+     * @throws IllegalArgumentException if [columnSize] != `other.columnSize`
+     * @since 0.0.1
+     */
+    public fun equalsByComparing(other: M): Boolean =
+<span class="nc bnc" id="L408" title="All 2 branches missed.">        entries.all { (r, c, e) -&gt; field.equalityByComparing(e, other[r, c]) }</span>
+
+    /**
+     * Returns if this is not equal to [other] by comparing elements
+     *
+     * @throws IllegalArgumentException if [rowSize] != `other.rowSize`
+     * @throws IllegalArgumentException if [columnSize] != `other.columnSize`
+     * @since 0.0.1
+     */
+<span class="nc bnc" id="L417" title="All 2 branches missed.">    public fun doesNotEqualByComparing(other: M): Boolean = !equalsByComparing(other)</span>
+
+    /**
+     * Add all [diagonalElements] and returns the sum
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L424">    protected fun addDiagonalElements(): E = elements.reduce { a, b -&gt; field.addition(a, b) }</span>
+
+    /**
+     * Leibniz formula
+     *
+     * @return determinant
+     * @since 0.0.1
+     */
+    protected abstract fun leibnizFormula(): E
+
+    /**
+     * Rule of Sarrus
+     *
+     * @return determinant
+     * @since 0.0.1
+     */
+    protected abstract fun ruleOfSarrus(): E
+
+    /**
+     * Calculate determinant of a 2x2 matrix
+     *
+     * @return determinant
+     * @since 0.0.1
+     */
+    protected abstract fun determinantOf2x2Matrix(): E
+
+<span class="nc" id="L450">    override fun hashCode(): Int = Objects.hash(entries)</span>
+
+    override fun equals(other: Any?): Boolean {
+<span class="nc bnc" id="L453" title="All 2 branches missed.">        if (this === other) return true</span>
+<span class="nc bnc" id="L454" title="All 2 branches missed.">        if (other !is AbstractMatrix&lt;*, *, *, *, *, *&gt;) return false</span>
+<span class="nc" id="L455">        return entries == other.entries</span>
+    }
+
+<span class="nc" id="L458">    override fun toString(): String = MoreObjects.toStringHelper(this).add(&quot;entries&quot;, entries).toString()</span>
+
+    public companion object
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

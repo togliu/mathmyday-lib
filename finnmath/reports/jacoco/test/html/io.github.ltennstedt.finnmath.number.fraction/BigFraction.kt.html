@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BigFraction.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.fraction</a> &gt; <span class="el_source">BigFraction.kt</span></div><h1>BigFraction.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2017 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.number.fraction
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
+import io.github.ltennstedt.finnmath.number.range.BigFractionRange
+import org.apiguardian.api.API
+import java.math.BigDecimal
+import java.math.BigInteger
+
+/**
+ * Immutable implementation of a fraction which uses [BigInteger] as type for its [numerator] and [denominator]
+ *
+ * The returned BigFractions of most methods are neither normalized nor reduced
+ *
+ * @property numerator numerator
+ * @property denominator denominator; default argument is [BigInteger.ONE]
+ * @constructor Constructs a BigFraction
+ * @throws IllegalArgumentException `if [denominator] == 0`
+ * @see .normalize
+ * @see .reduce
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="fc" id="L44">public class BigFraction @JvmOverloads constructor(</span>
+    numerator: BigInteger,
+<span class="fc" id="L46">    denominator: BigInteger = BigInteger.ONE</span>
+<span class="fc" id="L47">) : AbstractFraction&lt;BigInteger, BigFraction, BigFractionRange&gt;(</span>
+<span class="fc" id="L48">    numerator,</span>
+<span class="fc" id="L49">    denominator</span>
+) {
+<span class="fc" id="L51">    init {</span>
+<span class="fc bfc" id="L52" title="All 4 branches covered.">        require(denominator != BigInteger.ZERO) { &quot;denominator != 0 expected but denominator = $denominator&quot; }</span>
+<span class="fc" id="L53">    }</span>
+
+    override val isInvertible: Boolean
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        get() = numerator != BigInteger.ZERO</span>
+
+    override val isUnit: Boolean
+<span class="fc" id="L59">        get() = numerator == BigInteger.ONE</span>
+
+<span class="fc" id="L61">    override val isDyadic: Boolean by lazy { denominator.isPowerOfTwo() }</span>
+
+<span class="pc" id="L63">    override val isIrreducible: Boolean by lazy { numerator.gcd(denominator) == BigInteger.ONE }</span>
+
+<span class="pc" id="L65">    override val isProper: Boolean by lazy { abs().lessThan(ONE) }</span>
+
+    override val signum: Int
+<span class="nc" id="L68">        get() = numerator.signum() * denominator.signum()</span>
+
+    /**
+     * Constructs a BigFraction from the [numerator] and [denominator]
+     *
+     * Default argument for [denominator] is `1`.
+     *
+     * @throws IllegalArgumentException if `denominator == 0`
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L79">    public constructor(numerator: Int, denominator: Int = 1) : this(</span>
+<span class="nc" id="L80">        numerator.toBigInteger(),</span>
+<span class="nc" id="L81">        denominator.toBigInteger()</span>
+<span class="nc" id="L82">    )</span>
+
+    /**
+     * Constructs a BigFraction from the [numerator] and [denominator]
+     *
+     * Default argument for [denominator] is `1`.
+     *
+     * @throws IllegalArgumentException if [denominator] == 0
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L93">    public constructor(numerator: Long, denominator: Long = 1L) : this(</span>
+<span class="nc" id="L94">        numerator.toBigInteger(),</span>
+<span class="nc" id="L95">        denominator.toBigInteger()</span>
+<span class="nc" id="L96">    )</span>
+
+    override fun add(summand: BigFraction): BigFraction {
+<span class="nc" id="L99">        val newNumerator = summand.denominator * numerator + denominator * summand.numerator</span>
+<span class="nc" id="L100">        val newDenominator = denominator * summand.denominator</span>
+<span class="nc" id="L101">        return BigFraction(newNumerator, newDenominator)</span>
+    }
+
+    override fun subtract(subtrahend: BigFraction): BigFraction {
+<span class="nc" id="L105">        val newNumerator = subtrahend.denominator * numerator - denominator * subtrahend.numerator</span>
+<span class="nc" id="L106">        val newDenominator = denominator * subtrahend.denominator</span>
+<span class="nc" id="L107">        return BigFraction(newNumerator, newDenominator)</span>
+    }
+
+    override fun multiply(factor: BigFraction): BigFraction =
+<span class="nc" id="L111">        BigFraction(numerator * factor.numerator, denominator * factor.denominator)</span>
+
+    override fun divide(divisor: BigFraction): BigFraction {
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        require(divisor.isInvertible) { &quot;divisor expected to be invertible but divisor = $divisor&quot; }</span>
+<span class="nc" id="L115">        return multiply(divisor.invert())</span>
+    }
+
+<span class="nc" id="L118">    override fun pow(exponent: Int): BigFraction = when {</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        exponent &gt; 0 -&gt; multiply(pow(exponent - 1))</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        exponent &lt; 0 -&gt; multiply(pow(-exponent - 1)).invert()</span>
+<span class="nc" id="L121">        else -&gt; ONE</span>
+<span class="nc" id="L122">    }</span>
+
+<span class="nc" id="L124">    override fun negate(): BigFraction = BigFraction(-numerator, denominator)</span>
+
+    override fun invert(): BigFraction {
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        check(isInvertible) { &quot;this expected to be invertible but this = $this&quot; }</span>
+<span class="nc" id="L128">        return BigFraction(denominator, numerator)</span>
+    }
+
+<span class="nc" id="L131">    override fun abs(): BigFraction = BigFraction(numerator.abs(), denominator.abs())</span>
+
+    override fun lessThanOrEqualTo(other: BigFraction): Boolean {
+<span class="nc" id="L134">        val normalized = normalize()</span>
+<span class="nc" id="L135">        val normalizedOther = other.normalize()</span>
+<span class="nc" id="L136">        val left = normalizedOther.denominator * normalized.numerator</span>
+<span class="nc" id="L137">        val right = normalized.denominator * normalizedOther.numerator</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        return left &lt;= right</span>
+    }
+
+<span class="nc" id="L141">    override fun inc(): BigFraction = add(ONE)</span>
+
+<span class="nc" id="L143">    override fun dec(): BigFraction = subtract(ONE)</span>
+
+<span class="nc" id="L145">    override fun normalize(): BigFraction = when {</span>
+<span class="nc bnc" id="L146" title="All 4 branches missed.">        signum &lt; 0 &amp;&amp; numerator.signum() &gt; 0 -&gt; BigFraction(-numerator, denominator.abs())</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        signum &lt; 0 -&gt; this</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        signum == 0 -&gt; ZERO</span>
+<span class="nc" id="L149">        else -&gt; abs()</span>
+<span class="nc" id="L150">    }</span>
+
+    override fun reduce(): BigFraction {
+<span class="nc" id="L153">        val gcd = numerator.gcd(denominator)</span>
+<span class="nc" id="L154">        return BigFraction(numerator / gcd, denominator / gcd)</span>
+    }
+
+<span class="nc" id="L157">    override fun expand(number: BigInteger): BigFraction = BigFraction(number * numerator, number * denominator)</span>
+
+    /**
+     * Returns this..[other]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L164">    public operator fun rangeTo(other: BigFraction): BigFractionRange = BigFractionRange(this, other)</span>
+
+<span class="nc" id="L166">    override fun compareTo(other: BigFraction): Int = COMPARATOR.compare(this, other)</span>
+
+<span class="nc" id="L168">    override fun toBigDecimal(): BigDecimal = numerator.toBigDecimal().divide(denominator.toBigDecimal())</span>
+
+    public companion object {
+        /**
+         * `0` as BigFraction
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="fc" id="L177">        public val ZERO: BigFraction = BigFraction(BigInteger.ZERO)</span>
+
+        /**
+         * `1` as BigFraction
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="fc" id="L185">        public val ONE: BigFraction = BigFraction(BigInteger.ONE)</span>
+
+        /**
+         * Units
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+        public val UNITS: Sequence&lt;BigFraction&gt; =
+<span class="pc" id="L194">            generateSequence(ONE) { BigFraction(BigInteger.ONE, it.denominator.inc()) }</span>
+
+        /**
+         * [Comparator]
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="fc" id="L202">        public val COMPARATOR: Comparator&lt;BigFraction&gt; = Comparator { a: BigFraction, b: BigFraction -&gt;</span>
+<span class="nc" id="L203">            when {</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">                a.lessThan(b) -&gt; -1</span>
+<span class="nc bnc" id="L205" title="All 2 branches missed.">                a.greaterThan(b) -&gt; 1</span>
+<span class="nc" id="L206">                else -&gt; 0</span>
+            }
+        }
+    }
+<span class="fc" id="L210">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

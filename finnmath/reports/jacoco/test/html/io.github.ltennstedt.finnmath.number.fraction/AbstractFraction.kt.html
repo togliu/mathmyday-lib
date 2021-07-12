@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractFraction.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.fraction</a> &gt; <span class="el_source">AbstractFraction.kt</span></div><h1>AbstractFraction.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.number.fraction
+
+import com.google.common.annotations.Beta
+import com.google.common.base.MoreObjects
+import org.apiguardian.api.API
+import java.io.Serializable
+import java.math.BigDecimal
+import java.util.Objects
+
+/**
+ * Base class for fractions
+ *
+ * @param N type of the [Number]
+ * @param T type of this
+ * @param R type of the [ClosedRange]
+ * @property numerator numerator
+ * @property denominator denominator
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+<span class="fc" id="L39">public abstract class AbstractFraction&lt;N : Number, T : AbstractFraction&lt;N, T, R&gt;, R : ClosedRange&lt;T&gt;&gt;(</span>
+<span class="fc" id="L40">    public val numerator: N,</span>
+<span class="fc" id="L41">    public val denominator: N</span>
+<span class="fc" id="L42">) : Number(), Comparable&lt;T&gt;, Serializable {</span>
+    /**
+     * Indicates if this is invertible
+     *
+     * @since 0.0.1
+     */
+    public abstract val isInvertible: Boolean
+
+    /**
+     * Indicates if this is not invertible
+     *
+     * @since 0.0.1
+     */
+    public val isNotInvertible: Boolean
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        get() = !isInvertible</span>
+
+    /**
+     * Indicates if this is a unit
+     *
+     * @since 0.0.1
+     */
+    public abstract val isUnit: Boolean
+
+    /**
+     * Indicates if this is not a unit
+     *
+     * @since 0.0.1
+     */
+    public val isNotUnit: Boolean
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        get() = !isUnit</span>
+
+    /**
+     * Indicates if this is dyadic
+     *
+     * @since 0.0.1
+     */
+    public abstract val isDyadic: Boolean
+
+    /**
+     * Indicates if this is not dyadic
+     *
+     * @since 0.0.1
+     */
+    public val isNotDyadic: Boolean
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        get() = !isDyadic</span>
+
+    /**
+     * Indicates if this is irreducible
+     *
+     * @since 0.0.1
+     */
+    public abstract val isIrreducible: Boolean
+
+    /**
+     * Indicates if this is reducible
+     *
+     * @since 0.0.1
+     */
+    public val isReducible: Boolean
+<span class="fc bfc" id="L101" title="All 2 branches covered.">        get() = !isIrreducible</span>
+
+    /**
+     * Indicates if this is proper
+     *
+     * @since 0.0.1
+     */
+    public abstract val isProper: Boolean
+
+    /**
+     * Indicates if this is improper
+     *
+     * @since 0.0.1
+     */
+    public val isImproper: Boolean
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        get() = !isProper</span>
+
+    /**
+     * Signum
+     *
+     * @since 0.0.1
+     */
+    public abstract val signum: Int
+
+    /**
+     * Returns the sum of this and the [summand]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun add(summand: T): T
+
+    /**
+     * Returns the difference of this and the [subtrahend]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun subtract(subtrahend: T): T
+
+    /**
+     * Returns the product of this and the [factor]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun multiply(factor: T): T
+
+    /**
+     * Return the quotient of this and the [divisor]
+     *
+     * @throws IllegalArgumentException if `!divisor.isInvertible`
+     * @since 0.0.1
+     * @see .isInvertible
+     */
+    public abstract fun divide(divisor: T): T
+
+    /**
+     * Returns the power of this raised by the [exponent]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun pow(exponent: Int): T
+
+    /**
+     * Returns the negated [AbstractFraction]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun negate(): T
+
+    /**
+     * Returns the inverted [AbstractFraction]
+     *
+     * @throws IllegalStateException if `!isInvertible`
+     *
+     * @since 0.0.1
+     */
+    public abstract fun invert(): T
+
+    /**
+     * Returns the absolute value
+     *
+     * @since 0.0.1
+     */
+    public abstract fun abs(): T
+
+    /**
+     * Returns if this is less than or equal to [other]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun lessThanOrEqualTo(other: T): Boolean
+
+    /**
+     * Returns if this is greater than or equal to [other]
+     *
+     * @since 0.0.1
+     */
+<span class="fc bfc" id="L197" title="All 4 branches covered.">    public fun greaterThanOrEqualTo(other: T): Boolean = !lessThanOrEqualTo(other) || equivalent(other)</span>
+
+    /**
+     * Returns if this is strictly less than [other]
+     *
+     * @since 0.0.1
+     */
+<span class="fc bfc" id="L204" title="All 2 branches covered.">    public fun lessThan(other: T): Boolean = !greaterThanOrEqualTo(other)</span>
+
+    /**
+     * Returns if this is strictly greater than [other]
+     *
+     * @since 0.0.1
+     */
+<span class="fc bfc" id="L211" title="All 2 branches covered.">    public fun greaterThan(other: T): Boolean = !lessThanOrEqualTo(other)</span>
+
+    /**
+     * Returns the minimum of this and [other]
+     *
+     * @since 0.0.1
+     */
+    @Suppress(&quot;UNCHECKED_CAST&quot;)
+<span class="fc bfc" id="L219" title="All 2 branches covered.">    public infix fun min(other: T): T = if (greaterThan(other)) other else this as T</span>
+
+    /**
+     * Returns the maximum of this and [other]
+     *
+     * @since 0.0.1
+     */
+    @Suppress(&quot;UNCHECKED_CAST&quot;)
+<span class="fc bfc" id="L227" title="All 2 branches covered.">    public infix fun max(other: T): T = if (lessThan(other)) other else this as T</span>
+
+    /**
+     * Returns the [AbstractFraction] incremented by 1
+     *
+     * @since 0.0.1
+     */
+    public abstract fun inc(): T
+
+    /**
+     * Returns the [AbstractFraction] decremented by 1
+     *
+     * @since 0.0.1
+     */
+    public abstract fun dec(): T
+
+    /**
+     * Returns the normalized [AbstractFraction]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun normalize(): T
+
+    /**
+     * Returns the reduced [AbstractFraction]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun reduce(): T
+
+    /**
+     * Returns the [AbstractFraction] expanded by [number]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun expand(number: N): T
+
+    /**
+     * Returns if this is equivalent to [other]
+     *
+     * @since 0.0.1
+     */
+<span class="fc" id="L269">    public infix fun equivalent(other: T): Boolean = normalize().reduce() == other.normalize().reduce()</span>
+
+<span class="fc" id="L271">    override fun toByte(): Byte = toBigDecimal().toByte()</span>
+
+<span class="fc" id="L273">    override fun toShort(): Short = toBigDecimal().toShort()</span>
+
+<span class="fc" id="L275">    override fun toInt(): Int = toBigDecimal().toInt()</span>
+
+<span class="fc" id="L277">    override fun toLong(): Long = toBigDecimal().toLong()</span>
+
+<span class="fc" id="L279">    override fun toFloat(): Float = toBigDecimal().toFloat()</span>
+
+<span class="fc" id="L281">    override fun toDouble(): Double = toBigDecimal().toDouble()</span>
+
+<span class="nc" id="L283">    override fun toChar(): Char = toBigDecimal().toChar()</span>
+
+    /**
+     * Returns this as [BigDecimal]
+     *
+     * @since 0.0.1
+     */
+    public abstract fun toBigDecimal(): BigDecimal
+
+<span class="nc" id="L292">    public operator fun plus(summand: T): T = add(summand)</span>
+
+<span class="fc" id="L294">    public operator fun minus(subtrahend: T): T = subtract(subtrahend)</span>
+
+<span class="nc" id="L296">    public operator fun times(factor: T): T = multiply(factor)</span>
+
+<span class="nc" id="L298">    public operator fun div(divisor: T): T = divide(divisor)</span>
+
+    @Suppress(&quot;UNCHECKED_CAST&quot;)
+<span class="nc" id="L301">    public operator fun unaryPlus(): T = this as T</span>
+
+<span class="nc" id="L303">    public operator fun unaryMinus(): T = negate()</span>
+
+<span class="fc" id="L305">    public fun operator1(): N = numerator</span>
+
+<span class="fc" id="L307">    public fun operator2(): N = denominator</span>
+
+<span class="fc" id="L309">    override fun hashCode(): Int = Objects.hash(numerator, denominator)</span>
+
+    override fun equals(other: Any?): Boolean {
+<span class="fc bfc" id="L312" title="All 2 branches covered.">        if (this === other) return true</span>
+<span class="fc bfc" id="L313" title="All 2 branches covered.">        if (other !is AbstractFraction&lt;*, *, *&gt;) return false</span>
+<span class="fc bfc" id="L314" title="All 4 branches covered.">        return numerator == other.numerator &amp;&amp; denominator == other.denominator</span>
+    }
+
+    override fun toString(): String =
+<span class="fc" id="L318">        MoreObjects.toStringHelper(this).add(&quot;numerator&quot;, numerator).add(&quot;denominator&quot;, denominator).toString()</span>
+
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

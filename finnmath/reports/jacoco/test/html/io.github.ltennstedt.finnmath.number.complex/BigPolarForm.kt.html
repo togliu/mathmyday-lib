@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BigPolarForm.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.complex</a> &gt; <span class="el_source">BigPolarForm.kt</span></div><h1>BigPolarForm.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2017 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.number.complex
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.extension.cos
+import io.github.ltennstedt.finnmath.extension.sin
+import org.apiguardian.api.API
+import java.math.BigDecimal
+import java.math.MathContext
+
+/**
+ * Immutable implementation of the polar form of a complex number number which uses [BigDecimal] as type for its
+ * coordinates
+ *
+ * complexNumber = r * (cos(phi) + i * sin(phi))
+ *
+ * @property radial radial
+ * @property angular angular
+ * @constructor Constructs a BigPolarForm
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L42">public class BigPolarForm(</span>
+    radial: BigDecimal,
+    angular: BigDecimal
+<span class="nc" id="L45">) : AbstractPolarForm&lt;BigDecimal, BigPolarForm, BigComplex&gt;(</span>
+<span class="nc" id="L46">    radial,</span>
+<span class="nc" id="L47">    angular</span>
+) {
+    /**
+     * Constructs a BigPolarForm
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L54">    public constructor(angular: Double, radial: Double) : this(radial.toBigDecimal(), angular.toBigDecimal())</span>
+
+    /**
+     * Constructs a BigPolarForm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public constructor(
+        angular: Double,
+        radial: Double,
+        mathContext: MathContext
+<span class="nc" id="L65">    ) : this(</span>
+<span class="nc" id="L66">        radial.toBigDecimal(mathContext),</span>
+<span class="nc" id="L67">        angular.toBigDecimal(mathContext)</span>
+<span class="nc" id="L68">    )</span>
+
+    override fun toComplexNumber(): BigComplex {
+<span class="nc" id="L71">        val real = radial.multiply(angular.cos(MathContext.UNLIMITED), MathContext.UNLIMITED)</span>
+<span class="nc" id="L72">        val imaginary = radial.multiply(angular.sin(MathContext.UNLIMITED), MathContext.UNLIMITED)</span>
+<span class="nc" id="L73">        return BigComplex(real, imaginary)</span>
+    }
+
+    /**
+     * Returns this as [BigComplex] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun toComplexNumber(mathContext: MathContext): BigComplex {
+<span class="nc" id="L82">        val real = radial.multiply(angular.cos(mathContext), mathContext)</span>
+<span class="nc" id="L83">        val imaginary = radial.multiply(angular.sin(mathContext), mathContext)</span>
+<span class="nc" id="L84">        return BigComplex(real, imaginary)</span>
+    }
+
+    public companion object
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

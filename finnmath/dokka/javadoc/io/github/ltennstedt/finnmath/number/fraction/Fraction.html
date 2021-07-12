@@ -1,0 +1,1182 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>Fraction 0.0.1-SNAPSHOT API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <h2 title="Class Fraction" class="title">Class Fraction</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                            <code>java.io.Serializable</code>
+                            
+                            ,
+                            
+                            
+                            <code>kotlin.Comparable</code>
+                            
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+@API(status = API.Status.EXPERIMENTAL, since = 0.0.1)@Beta()@Immutable() 
+public final class <span class="typeNameLabel"><a href=Fraction.html>Fraction</a></span>
+extends <a href=AbstractFraction.html>AbstractFraction</a>&lt;Long, <a href=Fraction.html>Fraction</a>, <a href=../range/FractionRange.html>FractionRange</a>&gt;
+                    </pre>
+                    <div class="block"><p>Immutable implementation of a fraction which uses Long as type for its <a href=Fraction.html#numerator>numerator</a> and <a href=Fraction.html#denominator>denominator</a></p><p>The returned Fractions of most methods are neither normalized nor reduced</p></div>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public class</code></td>
+                                            <th class="colSecond" scope="row"><code><a href="Fraction.Companion.html">Fraction.Companion</a></span></code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isInvertible>isInvertible</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isUnit>isUnit</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isDyadic>isDyadic</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isIrreducible>isIrreducible</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isProper>isProper</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Integer</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#signum>signum</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isNotInvertible>isNotInvertible</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isNotUnit>isNotUnit</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isNotDyadic>isNotDyadic</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isReducible>isReducible</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#isImproper>isImproper</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Long</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#numerator>numerator</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Long</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#denominator>denominator</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#Fraction(Integer,Integer)">Fraction</a></span>(Integer numerator, Integer denominator)</code></th>
+                                                <td class="colLast">Constructs a Fraction from the numerator and denominatorDefault argument for denominator is <code>1</code>.</td>
+                                            </tr>
+                                        
+                                            <tr class="rowColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#Fraction(Integer)">Fraction</a></span>(Integer numerator)</code></th>
+                                                <td class="colLast">Constructs a Fraction from the numerator and denominatorDefault argument for denominator is <code>1</code>.</td>
+                                            </tr>
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#Fraction(Long,Long)">Fraction</a></span>(Long numerator, Long denominator)</code></th>
+                                                <td class="colLast">Constructs a Fraction</td>
+                                            </tr>
+                                        
+                                            <tr class="rowColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#Fraction(Long)">Fraction</a></span>(Long numerator)</code></th>
+                                                <td class="colLast">Constructs a Fraction</td>
+                                            </tr>
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsInvertible()>getIsInvertible</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsUnit()>getIsUnit</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsDyadic()>getIsDyadic</a>() </code>
+                                            </th>
+                                            <td class="colLast">Indicates if this is dyadic</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsIrreducible()>getIsIrreducible</a>() </code>
+                                            </th>
+                                            <td class="colLast">Indicates if this is irreducible</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsProper()>getIsProper</a>() </code>
+                                            </th>
+                                            <td class="colLast">Indicates if this is proper</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>Integer</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getSignum()>getSignum</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsNotInvertible()>getIsNotInvertible</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsNotUnit()>getIsNotUnit</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsNotDyadic()>getIsNotDyadic</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsReducible()>getIsReducible</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getIsImproper()>getIsImproper</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>final Long</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getNumerator()>getNumerator</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>final Long</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#getDenominator()>getDenominator</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#add(Fraction)>add</a>(<a href=Fraction.html>Fraction</a> summand) </code>
+                                            </th>
+                                            <td class="colLast">Returns the sum of this and the <a href=Fraction.html#add(Fraction)>summand</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#subtract(Fraction)>subtract</a>(<a href=Fraction.html>Fraction</a> subtrahend) </code>
+                                            </th>
+                                            <td class="colLast">Returns the difference of this and the <a href=Fraction.html#subtract(Fraction)>subtrahend</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#multiply(Fraction)>multiply</a>(<a href=Fraction.html>Fraction</a> factor) </code>
+                                            </th>
+                                            <td class="colLast">Returns the product of this and the <a href=Fraction.html#multiply(Fraction)>factor</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#divide(Fraction)>divide</a>(<a href=Fraction.html>Fraction</a> divisor) </code>
+                                            </th>
+                                            <td class="colLast">Return the quotient of this and the <a href=Fraction.html#divide(Fraction)>divisor</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#pow(Integer)>pow</a>(Integer exponent) </code>
+                                            </th>
+                                            <td class="colLast">Returns the power of this raised by the <a href=Fraction.html#pow(Integer)>exponent</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#negate()>negate</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the negated <a href=AbstractFraction.html>AbstractFraction</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#invert()>invert</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the inverted <a href=AbstractFraction.html>AbstractFraction</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#abs()>abs</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the absolute value</td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#lessThanOrEqualTo(Fraction)>lessThanOrEqualTo</a>(<a href=Fraction.html>Fraction</a> other) </code>
+                                            </th>
+                                            <td class="colLast">Returns if this is less than or equal to <a href=Fraction.html#lessThanOrEqualTo(Fraction)>other</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#inc()>inc</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the <a href=AbstractFraction.html>AbstractFraction</a> incremented by 1</td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#dec()>dec</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the <a href=AbstractFraction.html>AbstractFraction</a> decremented by 1</td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#normalize()>normalize</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the normalized <a href=AbstractFraction.html>AbstractFraction</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i25" class="rowColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#reduce()>reduce</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the reduced <a href=AbstractFraction.html>AbstractFraction</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i26" class="altColor">
+                                            <td class="colFirst"><code><a href=Fraction.html>Fraction</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#expand(Long)>expand</a>(Long number) </code>
+                                            </th>
+                                            <td class="colLast">Returns the <a href=AbstractFraction.html>AbstractFraction</a> expanded by <a href=Fraction.html#expand(Long)>number</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i27" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=../range/FractionRange.html>FractionRange</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#rangeTo(Fraction)>rangeTo</a>(<a href=Fraction.html>Fraction</a> other) </code>
+                                            </th>
+                                            <td class="colLast">Returns this..</td>
+                                        </tr>
+                                        
+                                        <tr id="i28" class="altColor">
+                                            <td class="colFirst"><code>Integer</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#compareTo(Fraction)>compareTo</a>(<a href=Fraction.html>Fraction</a> other) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i29" class="rowColor">
+                                            <td class="colFirst"><code>BigDecimal</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=Fraction.html#toBigDecimal()>toBigDecimal</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns this as BigDecimal</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.io.github.ltennstedt.finnmath.number.fraction.Fraction">
+                                            <!--   -->
+                                        </a>
+                                            <h3>Methods inherited from class&nbsp;io.github.ltennstedt.finnmath.number.fraction.Fraction</h3>
+                                            <code>div, equals, equivalent, greaterThan, greaterThanOrEqualTo, hashCode, lessThan, max, min, minus, operator1, operator2, plus, times, toByte, toChar, toDouble, toFloat, toInt, toLong, toShort, toString, unaryMinus, unaryPlus</code></li>
+                                 
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                                <a name="Fraction(Integer,Integer)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>Fraction</h4>
+                                        <pre>Fraction(Integer numerator, Integer denominator)</pre>
+                                        <div class="block">Constructs a Fraction from the numerator and denominatorDefault argument for denominator is <code>1</code>.</div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                                <a name="Fraction(Integer)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>Fraction</h4>
+                                        <pre>Fraction(Integer numerator)</pre>
+                                        <div class="block">Constructs a Fraction from the numerator and denominatorDefault argument for denominator is <code>1</code>.</div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                                <a name="Fraction(Long,Long)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>Fraction</h4>
+                                        <pre>Fraction(Long numerator, Long denominator)</pre>
+                                        <div class="block">Constructs a Fraction</div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                                <a name="Fraction(Long)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>Fraction</h4>
+                                        <pre>Fraction(Long numerator)</pre>
+                                        <div class="block">Constructs a Fraction</div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="getIsInvertible()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsInvertible</h4>
+                                        <pre class="methodSignature"> Boolean <a href=Fraction.html#getIsInvertible()>getIsInvertible</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsUnit()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsUnit</h4>
+                                        <pre class="methodSignature"> Boolean <a href=Fraction.html#getIsUnit()>getIsUnit</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsDyadic()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsDyadic</h4>
+                                        <pre class="methodSignature"> Boolean <a href=Fraction.html#getIsDyadic()>getIsDyadic</a>()</pre>
+                                        <div class="block"><p>Indicates if this is dyadic</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsIrreducible()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsIrreducible</h4>
+                                        <pre class="methodSignature"> Boolean <a href=Fraction.html#getIsIrreducible()>getIsIrreducible</a>()</pre>
+                                        <div class="block"><p>Indicates if this is irreducible</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsProper()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsProper</h4>
+                                        <pre class="methodSignature"> Boolean <a href=Fraction.html#getIsProper()>getIsProper</a>()</pre>
+                                        <div class="block"><p>Indicates if this is proper</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getSignum()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getSignum</h4>
+                                        <pre class="methodSignature"> Integer <a href=Fraction.html#getSignum()>getSignum</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsNotInvertible()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsNotInvertible</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=Fraction.html#getIsNotInvertible()>getIsNotInvertible</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsNotUnit()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsNotUnit</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=Fraction.html#getIsNotUnit()>getIsNotUnit</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsNotDyadic()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsNotDyadic</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=Fraction.html#getIsNotDyadic()>getIsNotDyadic</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsReducible()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsReducible</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=Fraction.html#getIsReducible()>getIsReducible</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsImproper()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsImproper</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=Fraction.html#getIsImproper()>getIsImproper</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getNumerator()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getNumerator</h4>
+                                        <pre class="methodSignature"> final Long <a href=Fraction.html#getNumerator()>getNumerator</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getDenominator()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getDenominator</h4>
+                                        <pre class="methodSignature"> final Long <a href=Fraction.html#getDenominator()>getDenominator</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="add(Fraction)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>add</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#add(Fraction)>add</a>(<a href=Fraction.html>Fraction</a> summand)</pre>
+                                        <div class="block"><p>Returns the sum of this and the <a href=Fraction.html#add(Fraction)>summand</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="subtract(Fraction)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>subtract</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#subtract(Fraction)>subtract</a>(<a href=Fraction.html>Fraction</a> subtrahend)</pre>
+                                        <div class="block"><p>Returns the difference of this and the <a href=Fraction.html#subtract(Fraction)>subtrahend</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="multiply(Fraction)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>multiply</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#multiply(Fraction)>multiply</a>(<a href=Fraction.html>Fraction</a> factor)</pre>
+                                        <div class="block"><p>Returns the product of this and the <a href=Fraction.html#multiply(Fraction)>factor</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="divide(Fraction)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>divide</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#divide(Fraction)>divide</a>(<a href=Fraction.html>Fraction</a> divisor)</pre>
+                                        <div class="block"><p>Return the quotient of this and the <a href=Fraction.html#divide(Fraction)>divisor</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="pow(Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pow</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#pow(Integer)>pow</a>(Integer exponent)</pre>
+                                        <div class="block"><p>Returns the power of this raised by the <a href=Fraction.html#pow(Integer)>exponent</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="negate()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>negate</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#negate()>negate</a>()</pre>
+                                        <div class="block"><p>Returns the negated <a href=AbstractFraction.html>AbstractFraction</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="invert()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>invert</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#invert()>invert</a>()</pre>
+                                        <div class="block"><p>Returns the inverted <a href=AbstractFraction.html>AbstractFraction</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="abs()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>abs</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#abs()>abs</a>()</pre>
+                                        <div class="block"><p>Returns the absolute value</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="lessThanOrEqualTo(Fraction)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>lessThanOrEqualTo</h4>
+                                        <pre class="methodSignature"> Boolean <a href=Fraction.html#lessThanOrEqualTo(Fraction)>lessThanOrEqualTo</a>(<a href=Fraction.html>Fraction</a> other)</pre>
+                                        <div class="block"><p>Returns if this is less than or equal to <a href=Fraction.html#lessThanOrEqualTo(Fraction)>other</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="inc()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>inc</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#inc()>inc</a>()</pre>
+                                        <div class="block"><p>Returns the <a href=AbstractFraction.html>AbstractFraction</a> incremented by 1</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="dec()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>dec</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#dec()>dec</a>()</pre>
+                                        <div class="block"><p>Returns the <a href=AbstractFraction.html>AbstractFraction</a> decremented by 1</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="normalize()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>normalize</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#normalize()>normalize</a>()</pre>
+                                        <div class="block"><p>Returns the normalized <a href=AbstractFraction.html>AbstractFraction</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="reduce()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>reduce</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#reduce()>reduce</a>()</pre>
+                                        <div class="block"><p>Returns the reduced <a href=AbstractFraction.html>AbstractFraction</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="expand(Long)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>expand</h4>
+                                        <pre class="methodSignature"> <a href=Fraction.html>Fraction</a> <a href=Fraction.html#expand(Long)>expand</a>(Long number)</pre>
+                                        <div class="block"><p>Returns the <a href=AbstractFraction.html>AbstractFraction</a> expanded by <a href=Fraction.html#expand(Long)>number</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="rangeTo(Fraction)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>rangeTo</h4>
+                                        <pre class="methodSignature"> final <a href=../range/FractionRange.html>FractionRange</a> <a href=Fraction.html#rangeTo(Fraction)>rangeTo</a>(<a href=Fraction.html>Fraction</a> other)</pre>
+                                        <div class="block"><p>Returns this..<a href=Fraction.html#rangeTo(Fraction)>other</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="compareTo(Fraction)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>compareTo</h4>
+                                        <pre class="methodSignature"> Integer <a href=Fraction.html#compareTo(Fraction)>compareTo</a>(<a href=Fraction.html>Fraction</a> other)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="toBigDecimal()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>toBigDecimal</h4>
+                                        <pre class="methodSignature"> BigDecimal <a href=Fraction.html#toBigDecimal()>toBigDecimal</a>()</pre>
+                                        <div class="block"><p>Returns this as BigDecimal</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

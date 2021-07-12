@@ -1,0 +1,1 @@
+var typeSearchIndex = [{"p":"io.github.ltennstedt.finnmath.kotest.number","l":"FractionMatchersKt","url":"io/github/ltennstedt/finnmath/kotest/number/FractionMatchersKt.html"}, {"l":"All classes","url":"allclasses.html"}]

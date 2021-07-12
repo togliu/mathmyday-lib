@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BigIntegerVector.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.vector</a> &gt; <span class="el_source">BigIntegerVector.kt</span></div><h1>BigIntegerVector.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.vector
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.FinnmathContext
+import io.github.ltennstedt.finnmath.extension.sqrt
+import io.github.ltennstedt.finnmath.extension.toBigComplex
+import io.github.ltennstedt.finnmath.extension.toBigGaussian
+import io.github.ltennstedt.finnmath.linear.builder.BigIntegerVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
+import io.github.ltennstedt.finnmath.linear.builder.bigDecimalVector
+import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
+import io.github.ltennstedt.finnmath.linear.field.BigIntegerField
+import io.github.ltennstedt.finnmath.linear.field.Field
+import org.apiguardian.api.API
+import java.math.BigDecimal
+import java.math.BigInteger
+
+/**
+ * Immutable implementation of a vector whose elements are of type [BigInteger]
+ *
+ * @property entries entries
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [entries] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L48">public class BigIntegerVector(</span>
+    entries: Set&lt;VectorEntry&lt;BigInteger&gt;&gt;
+<span class="nc" id="L50">) : AbstractVector&lt;BigInteger, BigDecimal, BigIntegerVector, BigDecimal, BigInteger&gt;(</span>
+<span class="nc" id="L51">    entries</span>
+) {
+    override val field: Field&lt;BigInteger, BigDecimal, BigIntegerVector&gt;
+<span class="nc" id="L54">        get() = BigIntegerField</span>
+
+<span class="nc" id="L56">    override fun taxicabNorm(): BigDecimal = elements.map { it.abs() }.reduce { a, b -&gt; a + b }.toBigDecimal()</span>
+
+    /**
+     * Returns the taxicab norm based on the [context]
+     *
+     * @since 0.0.1
+     */
+    public fun taxicabNorm(context: FinnmathContext): BigDecimal =
+<span class="nc" id="L64">        elements.map { it.abs() }.reduce { a, b -&gt; a + b }.toBigDecimal(context.scale, context.mathContext)</span>
+
+<span class="nc" id="L66">    override fun euclideanNormPow2(): BigInteger = this * this</span>
+
+<span class="nc" id="L68">    override fun euclideanNorm(): BigDecimal = euclideanNormPow2().toBigDecimal().sqrt()</span>
+
+    /**
+     * Returns the euclidean norm based on the [context]
+     *
+     * @since 0.0.1
+     */
+    public fun euclideanNorm(context: FinnmathContext): BigDecimal =
+<span class="nc" id="L76">        euclideanNormPow2().toBigDecimal(context.scale, context.mathContext).sqrt(context.mathContext)</span>
+
+<span class="nc" id="L78">    override fun maxNorm(): BigDecimal = elements.map { it.abs().toBigDecimal() }.maxOrNull() as BigDecimal</span>
+
+    /**
+     * Returns the maximum norm based on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L85">    public fun maxNorm(context: FinnmathContext): BigDecimal = elements.map {</span>
+<span class="nc" id="L86">        it.abs().toBigDecimal(context.scale, context.mathContext)</span>
+<span class="nc" id="L87">    }.maxOrNull() as BigDecimal</span>
+
+    /**
+     * Returns this as [BigDecimalVector]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L94">    public fun toBigDecimalVector(): BigDecimalVector = bigDecimalVector {</span>
+<span class="nc" id="L95">        computationOfAbsent = { this@BigIntegerVector[it].toBigDecimal() }</span>
+<span class="nc" id="L96">    }</span>
+
+    /**
+     * Returns this as [BigDecimalVector] based on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L103">    public fun toBigDecimalVector(context: FinnmathContext): BigDecimalVector = bigDecimalVector {</span>
+<span class="nc" id="L104">        computationOfAbsent = { this@BigIntegerVector[it].toBigDecimal(context.scale, context.mathContext) }</span>
+<span class="nc" id="L105">    }</span>
+
+    /**
+     * Returns this as [BigGaussianVector]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L112">    public fun toBigGaussianVector(): BigGaussianVector = bigGaussianVector {</span>
+<span class="nc" id="L113">        computationOfAbsent = { this@BigIntegerVector[it].toBigGaussian() }</span>
+<span class="nc" id="L114">    }</span>
+
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L121">    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {</span>
+<span class="nc" id="L122">        computationOfAbsent = { this@BigIntegerVector[it].toBigComplex() }</span>
+<span class="nc" id="L123">    }</span>
+
+    /**
+     * Returns this as [BigComplexVector] vased on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L130">    public fun toBigComplexVector(context: FinnmathContext): BigComplexVector = bigComplexVector {</span>
+<span class="nc" id="L131">        computationOfAbsent = { this@BigIntegerVector[it].toBigComplex(context) }</span>
+<span class="nc" id="L132">    }</span>
+
+    public companion object {
+        /**
+         * Returns a [BigIntegerVectorJavaBuilder] of [size]
+         *
+         * @since 0.0.1
+         */
+        @JvmStatic
+<span class="nc" id="L141">        public fun builder(size: Int): BigIntegerVectorJavaBuilder = BigIntegerVectorJavaBuilder(size)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractVectorBuilder.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.builder</a> &gt; <span class="el_source">AbstractVectorBuilder.kt</span></div><h1>AbstractVectorBuilder.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2020 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.builder
+
+import com.google.common.base.MoreObjects
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry
+import pw.forst.katlib.whenTrue
+
+/**
+ * Base class for vector builders
+ *
+ * @param E type of the element
+ * @param V type of the vector
+ * @constructor Constructs an [AbstractVectorBuilder]
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+<span class="fc" id="L32">public abstract class AbstractVectorBuilder&lt;E : Number, V&gt; {</span>
+    /**
+     * Size
+     *
+     * @since 0.0.1
+     */
+<span class="pc" id="L38">    public var size: Int = 0</span>
+
+    /**
+     * Computation for absent [VectorEntry]
+     *
+     * @since 0.0.1
+     */
+    public abstract var computationOfAbsent: (Int) -&gt; E
+
+    /**
+     * Entries
+     *
+     * @since 0.0.1
+     */
+<span class="fc" id="L52">    protected val entries: MutableList&lt;VectorEntry&lt;E&gt;&gt; = mutableListOf()</span>
+
+    /**
+     * Vector constructor
+     *
+     * @since 0.0.1
+     */
+    protected abstract val vectorConstructor: (m: Set&lt;VectorEntry&lt;E&gt;&gt;) -&gt; V
+
+    /**
+     * Provides an entry block
+     *
+     * @since 0.0.1
+     */
+    public fun entry(init: MutableVectorEntry&lt;E&gt;.() -&gt; Unit): VectorEntry&lt;E&gt; {
+<span class="fc" id="L67">        val mutableEntry = MutableVectorEntry&lt;E&gt;()</span>
+<span class="fc" id="L68">        mutableEntry.init()</span>
+<span class="fc" id="L69">        val entry = mutableEntry.toVectorEntry()</span>
+<span class="fc" id="L70">        entries.add(entry)</span>
+<span class="fc" id="L71">        return entry</span>
+    }
+
+    /**
+     * Builds a vector
+     *
+     * @throws IllegalStateException if entries is empty
+     * @throws IllegalStateException if maxIndex &gt; size
+     * @throws IllegalStateException if indices are not distinct
+     * @since 0.0.1
+     */
+    public fun build(): V {
+<span class="pc bpc" id="L83" title="2 of 4 branches missed.">        check(entries.isNotEmpty()) { &quot;entries expected not to be empty but entries = $entries}&quot; }</span>
+<span class="fc" id="L84">        val indices = entries.map { it.index }</span>
+<span class="fc" id="L85">        val maxIndex = indices.maxOrNull() as Int</span>
+<span class="pc bpc" id="L86" title="2 of 4 branches missed.">        check(maxIndex &lt;= size) { &quot;maxIndex &lt;= size expected but $maxIndex &lt; $size&quot; }</span>
+<span class="fc" id="L87">        val distinctIndices = indices.distinct()</span>
+<span class="pc bpc" id="L88" title="2 of 4 branches missed.">        check(distinctIndices.size == indices.size) {</span>
+<span class="nc" id="L89">            &quot;indices.distinct().size == indices.size expected but ${distinctIndices.size} != ${indices.size}&quot;</span>
+        }
+<span class="pc bpc" id="L91" title="1 of 4 branches missed.">        for (i in 1..size) {</span>
+<span class="fc bfc" id="L92" title="All 4 branches covered.">            entries.none { it.index == i }.whenTrue { entries.add(VectorEntry(i, computationOfAbsent(i))) }</span>
+        }
+<span class="fc" id="L94">        entries.sort()</span>
+<span class="fc" id="L95">        return vectorConstructor(entries.toSet())</span>
+    }
+
+<span class="nc" id="L98">    override fun toString(): String = MoreObjects.toStringHelper(this)</span>
+<span class="nc" id="L99">        .add(&quot;size&quot;, size)</span>
+<span class="nc" id="L100">        .add(&quot;entries&quot;, entries)</span>
+<span class="nc" id="L101">        .add(&quot;computationOfAbsent&quot;, computationOfAbsent)</span>
+<span class="nc" id="L102">        .add(&quot;vectorConstructor&quot;, vectorConstructor)</span>
+<span class="nc" id="L103">        .toString()</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

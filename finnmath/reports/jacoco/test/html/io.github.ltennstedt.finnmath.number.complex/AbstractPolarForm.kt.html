@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractPolarForm.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.complex</a> &gt; <span class="el_source">AbstractPolarForm.kt</span></div><h1>AbstractPolarForm.kt</h1><pre class="source lang-java linenums">package io.github.ltennstedt.finnmath.number.complex
+
+import com.google.common.annotations.Beta
+import com.google.common.base.MoreObjects
+import org.apiguardian.api.API
+import java.io.Serializable
+import java.util.Objects
+
+/**
+ * Base class for polar forms
+ *
+ * @param N type of the comparable number
+ * @param T type of the polar form
+ * @param C type of the complex number
+ * @property radial radial
+ * @property angular angular
+ * @constructor Constructs a AbstractPolarForm
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+<span class="nc" id="L21">@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)</span>
+@Beta
+<span class="nc" id="L23">public abstract class AbstractPolarForm&lt;N : Comparable&lt;N&gt;, T : AbstractPolarForm&lt;N, T, C&gt;, C&gt;(</span>
+<span class="nc" id="L24">    public val radial: N,</span>
+<span class="nc" id="L25">    public val angular: N</span>
+) : Serializable {
+    /**
+     * Returns this as complex number
+     *
+     * @since 0.0.1
+     */
+    public abstract fun toComplexNumber(): C
+
+    /**
+     * Returns if this is equal to the [other one][other] by comparing coordinates
+     *
+     * @since 0.0.1
+     */
+    public fun equalsByComparing(other: T): Boolean =
+<span class="nc bnc" id="L40" title="All 4 branches missed.">        radial.compareTo(other.radial) == 0 &amp;&amp; angular.compareTo(other.angular) == 0</span>
+
+    /**
+     * Returns if this is not equal to the [other one][other] by comparing coordinates
+     *
+     * @since 0.0.1
+     */
+<span class="nc bnc" id="L47" title="All 2 branches missed.">    public fun doesNotequalsByComparing(other: T): Boolean = !equalsByComparing(other)</span>
+
+<span class="nc" id="L49">    override fun hashCode(): Int = Objects.hash(radial, angular)</span>
+
+    override fun equals(other: Any?): Boolean {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (this === other) return true</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (other !is AbstractPolarForm&lt;*, *, *&gt;) return false</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">        return radial == other.radial &amp;&amp; angular == other.angular</span>
+    }
+
+    override fun toString(): String =
+<span class="nc" id="L58">        MoreObjects.toStringHelper(this).add(&quot;radial&quot;, radial).add(&quot;angular&quot;, angular).toString()</span>
+
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

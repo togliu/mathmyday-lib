@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Fraction.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.fraction</a> &gt; <span class="el_source">Fraction.kt</span></div><h1>Fraction.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2017 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.number.fraction
+
+import com.google.common.annotations.Beta
+import com.google.common.math.LongMath
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.extension.gcd
+import io.github.ltennstedt.finnmath.extension.isPowerOfTwo
+import io.github.ltennstedt.finnmath.number.range.FractionRange
+import org.apiguardian.api.API
+import java.math.BigDecimal
+import kotlin.math.absoluteValue
+import kotlin.math.sign
+
+/**
+ * Immutable implementation of a fraction which uses [Long] as type for its [numerator] and [denominator]
+ *
+ * The returned Fractions of most methods are neither normalized nor reduced
+ *
+ * @property numerator numerator
+ * @property denominator denominator; default argument is 1
+ * @constructor Constructs a Fraction
+ * @throws IllegalArgumentException `if [denominator] == 0`
+ * @see .normalize
+ * @see .reduce
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="fc" id="L47">public class Fraction @JvmOverloads constructor(</span>
+    numerator: Long,
+<span class="fc" id="L49">    denominator: Long = 1L</span>
+<span class="fc" id="L50">) : AbstractFraction&lt;Long, Fraction, FractionRange&gt;(</span>
+<span class="fc" id="L51">    numerator,</span>
+<span class="fc" id="L52">    denominator</span>
+) {
+<span class="fc" id="L54">    init {</span>
+<span class="pc bpc" id="L55" title="2 of 4 branches missed.">        require(denominator != 0L) { &quot;denominator != 0 expected but denominator = $denominator&quot; }</span>
+<span class="fc" id="L56">    }</span>
+
+    override val isInvertible: Boolean
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        get() = numerator != 0L</span>
+
+    override val isUnit: Boolean
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        get() = numerator == 1L</span>
+
+<span class="fc" id="L64">    override val isDyadic: Boolean by lazy { denominator.isPowerOfTwo() }</span>
+
+<span class="fc bfc" id="L66" title="All 2 branches covered.">    override val isIrreducible: Boolean by lazy { numerator.gcd(denominator) == 1L }</span>
+
+<span class="fc" id="L68">    override val isProper: Boolean by lazy { abs().lessThan(ONE) }</span>
+
+    override val signum: Int
+<span class="fc" id="L71">        get() = numerator.sign * denominator.sign</span>
+
+    /**
+     * Constructs a Fraction from the [numerator] and [denominator]
+     *
+     * Default argument for [denominator] is `1`.
+     *
+     * @throws IllegalArgumentException if `denominator == 0`
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L82">    public constructor(numerator: Int, denominator: Int = 1) : this(</span>
+<span class="nc" id="L83">        numerator.toLong(),</span>
+<span class="nc" id="L84">        denominator.toLong()</span>
+<span class="nc" id="L85">    )</span>
+
+    override fun add(summand: Fraction): Fraction {
+<span class="nc" id="L88">        val newNumerator = summand.denominator * numerator + denominator * summand.numerator</span>
+<span class="nc" id="L89">        val newDenominator = denominator * summand.denominator</span>
+<span class="nc" id="L90">        return Fraction(newNumerator, newDenominator)</span>
+    }
+
+    override fun subtract(subtrahend: Fraction): Fraction {
+<span class="fc" id="L94">        val newNumerator = subtrahend.denominator * numerator - denominator * subtrahend.numerator</span>
+<span class="fc" id="L95">        val newDenominator = denominator * subtrahend.denominator</span>
+<span class="fc" id="L96">        return Fraction(newNumerator, newDenominator)</span>
+    }
+
+    override fun multiply(factor: Fraction): Fraction =
+<span class="nc" id="L100">        Fraction(numerator * factor.numerator, denominator * factor.denominator)</span>
+
+    override fun divide(divisor: Fraction): Fraction {
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        require(divisor.isInvertible) { &quot;divisor expected to be invertible but divisor = $divisor&quot; }</span>
+<span class="nc" id="L104">        return multiply(divisor.invert())</span>
+    }
+
+<span class="nc" id="L107">    override fun pow(exponent: Int): Fraction = when {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        exponent &gt; 0 -&gt; multiply(pow(exponent - 1))</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        exponent &lt; 0 -&gt; multiply(pow(-exponent - 1)).invert()</span>
+<span class="nc" id="L110">        else -&gt; ONE</span>
+<span class="nc" id="L111">    }</span>
+
+<span class="nc" id="L113">    override fun negate(): Fraction = Fraction(-numerator, denominator)</span>
+
+    override fun invert(): Fraction {
+<span class="nc bnc" id="L116" title="All 2 branches missed.">        check(isInvertible) { &quot;this expected to be invertible but this = $this&quot; }</span>
+<span class="nc" id="L117">        return Fraction(denominator, numerator)</span>
+    }
+
+<span class="fc" id="L120">    override fun abs(): Fraction = Fraction(numerator.absoluteValue, denominator.absoluteValue)</span>
+
+    override fun lessThanOrEqualTo(other: Fraction): Boolean {
+<span class="fc" id="L123">        val normalized = normalize()</span>
+<span class="fc" id="L124">        val normalizedOther = other.normalize()</span>
+<span class="fc" id="L125">        val left = normalizedOther.denominator * normalized.numerator</span>
+<span class="fc" id="L126">        val right = normalized.denominator * normalizedOther.numerator</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        return left &lt;= right</span>
+    }
+
+<span class="nc" id="L130">    override fun inc(): Fraction = add(ONE)</span>
+
+<span class="nc" id="L132">    override fun dec(): Fraction = subtract(ONE)</span>
+
+<span class="fc" id="L134">    override fun normalize(): Fraction = when {</span>
+<span class="pc bpc" id="L135" title="3 of 4 branches missed.">        signum &lt; 0 &amp;&amp; numerator.sign &gt; 0 -&gt; Fraction(-numerator, denominator.absoluteValue)</span>
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">        signum &lt; 0 -&gt; this</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        signum == 0 -&gt; ZERO</span>
+<span class="fc" id="L138">        else -&gt; abs()</span>
+<span class="fc" id="L139">    }</span>
+
+    override fun reduce(): Fraction {
+<span class="fc" id="L142">        val gcd = LongMath.gcd(numerator, denominator)</span>
+<span class="fc" id="L143">        return Fraction(numerator / gcd, denominator / gcd)</span>
+    }
+
+<span class="nc" id="L146">    override fun expand(number: Long): Fraction = Fraction(number * numerator, number * denominator)</span>
+
+    /**
+     * Returns this..[other]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L153">    public operator fun rangeTo(other: Fraction): FractionRange = FractionRange(this, other)</span>
+
+<span class="fc" id="L155">    override fun compareTo(other: Fraction): Int = COMPARATOR.compare(this, other)</span>
+
+<span class="fc" id="L157">    override fun toBigDecimal(): BigDecimal = numerator.toBigDecimal().divide(denominator.toBigDecimal())</span>
+
+    public companion object {
+        /**
+         * `0` as Fraction
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="fc" id="L166">        public val ZERO: Fraction = Fraction(0L)</span>
+
+        /**
+         * `1` as Fraction
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="fc" id="L174">        public val ONE: Fraction = Fraction(1L)</span>
+
+        /**
+         * Units
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="pc" id="L182">        public val UNITS: Sequence&lt;Fraction&gt; = generateSequence(ONE) { Fraction(1L, it.denominator.inc()) }</span>
+
+        /**
+         * [Comparator]
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="fc" id="L190">        public val COMPARATOR: Comparator&lt;Fraction&gt; = Comparator { a: Fraction, b: Fraction -&gt;</span>
+<span class="fc" id="L191">            when {</span>
+<span class="fc bfc" id="L192" title="All 2 branches covered.">                a.lessThan(b) -&gt; -1</span>
+<span class="pc bpc" id="L193" title="1 of 2 branches missed.">                a.greaterThan(b) -&gt; 1</span>
+<span class="nc" id="L194">                else -&gt; 0</span>
+            }
+        }
+    }
+<span class="fc" id="L198">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

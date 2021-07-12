@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BigGaussian.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.complex</a> &gt; <span class="el_source">BigGaussian.kt</span></div><h1>BigGaussian.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2017 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.number.complex
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.FinnmathContext
+import io.github.ltennstedt.finnmath.extension.acos
+import io.github.ltennstedt.finnmath.extension.sqrt
+import org.apiguardian.api.API
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.math.MathContext
+
+/**
+ * Immutable implementation of a gaussian number which uses [BigInteger] as type for its real and imaginary part
+ *
+ * @property real real part
+ * @property imaginary imaginary part
+ * @constructor Constructs a BigGaussian
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L41">public class BigGaussian @JvmOverloads constructor(</span>
+    real: BigInteger,
+<span class="nc" id="L43">    imaginary: BigInteger = BigInteger.ZERO</span>
+<span class="nc" id="L44">) : AbstractComplex&lt;BigInteger, BigGaussian, BigComplex, BigDecimal, BigPolarForm&gt;(</span>
+<span class="nc" id="L45">    real,</span>
+<span class="nc" id="L46">    imaginary</span>
+) {
+<span class="nc" id="L48">    override val isUnit: Boolean by lazy { doesNotEqualByComparing(ZERO) }</span>
+
+    /**
+     * Constructs a BigGaussian from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L58">    public constructor(real: Int, imaginary: Int = 0) : this(real.toBigInteger(), imaginary.toBigInteger())</span>
+
+    /**
+     * Constructs a BigGaussian from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L68">    public constructor(real: Long, imaginary: Long = 0L) : this(real.toBigInteger(), imaginary.toBigInteger())</span>
+
+    override fun add(summand: BigGaussian): BigGaussian =
+<span class="nc" id="L71">        BigGaussian(real + summand.real, imaginary + summand.imaginary)</span>
+
+<span class="nc" id="L73">    override fun subtract(subtrahend: BigGaussian): BigGaussian = BigGaussian(</span>
+<span class="nc" id="L74">        real - subtrahend.real,</span>
+<span class="nc" id="L75">        imaginary - subtrahend.imaginary</span>
+<span class="nc" id="L76">    )</span>
+
+<span class="nc" id="L78">    override fun multiply(factor: BigGaussian): BigGaussian = BigGaussian(</span>
+<span class="nc" id="L79">        real * factor.real - imaginary * factor.imaginary,</span>
+<span class="nc" id="L80">        real * factor.imaginary + imaginary * factor.real</span>
+<span class="nc" id="L81">    )</span>
+
+    override fun divide(divisor: BigGaussian): BigComplex {
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        require(divisor.isUnit) { &quot;divisor expected to be a unit but divisor = $divisor&quot; }</span>
+<span class="nc" id="L85">        val den = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal()</span>
+<span class="nc" id="L86">        return BigComplex(</span>
+<span class="nc" id="L87">            (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal() / den,</span>
+<span class="nc" id="L88">            (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal() / den</span>
+        )
+    }
+
+    /**
+     * Returns the quotient of this and the [divisor] based on the [context]
+     *
+     * @throws IllegalArgumentException if [divisor] is not a unit
+     * @since 0.0.1
+     */
+    public fun divide(divisor: BigGaussian, context: FinnmathContext): BigComplex {
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        require(divisor.isUnit) { &quot;divisor expected to be a unit but divisor = $divisor&quot; }</span>
+<span class="nc" id="L100">        val den = (divisor.real.pow(2) + divisor.imaginary.pow(2)).toBigDecimal(context.scale, context.mathContext)</span>
+<span class="nc" id="L101">        val re =</span>
+<span class="nc" id="L102">            (real * divisor.real + imaginary * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / den</span>
+<span class="nc" id="L103">        val im =</span>
+<span class="nc" id="L104">            (imaginary * divisor.real - real * divisor.imaginary).toBigDecimal(context.scale, context.mathContext) / den</span>
+<span class="nc" id="L105">        return BigComplex(re, im)</span>
+    }
+
+<span class="nc" id="L108">    override fun pow(exponent: Int): BigComplex = when {</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        exponent &lt; 0 -&gt; (toBigComplex() * pow(-exponent - 1)).invert()</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        exponent == 0 -&gt; BigComplex.ONE</span>
+<span class="nc" id="L111">        else -&gt; toBigComplex() * pow(exponent - 1)</span>
+<span class="nc" id="L112">    }</span>
+
+    /**
+     * Returns the power of this raised by the [exponent] based on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L119">    public fun pow(exponent: Int, context: FinnmathContext): BigComplex = when {</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        exponent &lt; 0 -&gt; toBigComplex(context).multiply(pow(-exponent - 1, context)).invert(context.mathContext)</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">        exponent == 0 -&gt; BigComplex.ONE</span>
+<span class="nc" id="L122">        else -&gt; toBigComplex(context).multiply(pow(exponent - 1, context))</span>
+<span class="nc" id="L123">    }</span>
+
+<span class="nc" id="L125">    override fun negate(): BigGaussian = BigGaussian(-real, -imaginary)</span>
+
+    override fun invert(): BigComplex {
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        check(isUnit) { &quot;this expected to be a unit but this = $this&quot; }</span>
+<span class="nc" id="L129">        return ONE / this</span>
+    }
+
+    /**
+     * Returns the inverted BigGaussian based on the [context]
+     *
+     *@throws IllegalStateException if this is not a unit
+     * @since 0.0.1
+     */
+    public fun invert(context: FinnmathContext): BigComplex {
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        check(isUnit) { &quot;this expected to be a unit but this = $this&quot; }</span>
+<span class="nc" id="L140">        return ONE.divide(this, context)</span>
+    }
+
+<span class="nc" id="L143">    override fun absPow2(): BigInteger = real.pow(2) + imaginary.pow(2)</span>
+
+<span class="nc" id="L145">    override fun abs(): BigDecimal = absPow2().sqrt()</span>
+
+    /**
+     * Returns the absolute value based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L152">    public fun abs(mathContext: MathContext): BigDecimal = absPow2().sqrt(mathContext)</span>
+
+    /**
+     * Returns the absolute value based on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L159">    public fun abs(context: FinnmathContext): BigDecimal = absPow2().sqrt(context)</span>
+
+<span class="nc" id="L161">    override fun conjugate(): BigGaussian = BigGaussian(real, -imaginary)</span>
+
+    override fun argument(): BigDecimal {
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L165">        val value = real.toBigDecimal() / abs()</span>
+<span class="nc" id="L166">        val acos = value.acos()</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">        return if (imaginary &lt; BigInteger.ZERO) -acos else acos</span>
+    }
+
+    /**
+     * Returns the argument based on the [context]
+     *
+     * @throws IllegalStateException if this is equal to 0 by comparing
+     * @since 0.0.1
+     */
+    public fun argument(context: FinnmathContext): BigDecimal {
+<span class="nc bnc" id="L177" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L178">        val value = real.toBigDecimal(context.scale, context.mathContext).divide(abs(context.mathContext))</span>
+<span class="nc" id="L179">        val acos = value.acos(context.mathContext)</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        return if (imaginary &lt; BigInteger.ZERO) -acos else acos</span>
+    }
+
+    override fun toPolarForm(): BigPolarForm {
+<span class="nc bnc" id="L184" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L185">        return BigPolarForm(abs(), argument())</span>
+    }
+
+    /**
+     * Returns the [BigPolarForm] based on the [context]
+     *
+     * @throws IllegalStateException if this is equal to 0 by comparing
+     * @since 0.0.1
+     */
+    public fun toPolarForm(context: FinnmathContext): BigPolarForm {
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L196">        return BigPolarForm(abs(context.mathContext), argument(context))</span>
+    }
+
+    /**
+     * Returns this as [BigComplex]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L204">    public fun toBigComplex(): BigComplex = BigComplex(real.toBigDecimal(), imaginary.toBigDecimal())</span>
+
+    /**
+     * Returns this as [BigComplex] based on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L211">    public fun toBigComplex(context: FinnmathContext): BigComplex = BigComplex(</span>
+<span class="nc" id="L212">        real.toBigDecimal(context.scale, context.mathContext),</span>
+<span class="nc" id="L213">        imaginary.toBigDecimal(context.scale, context.mathContext)</span>
+<span class="nc" id="L214">    )</span>
+
+    override fun equalsByComparing(other: BigGaussian): Boolean =
+<span class="nc bnc" id="L217" title="All 4 branches missed.">        real.compareTo(other.real) == 0 &amp;&amp; imaginary.compareTo(other.imaginary) == 0</span>
+
+    public companion object {
+        /**
+         * `0` as BigGaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L226">        public val ZERO: BigGaussian = BigGaussian(BigInteger.ZERO)</span>
+
+        /**
+         * `1` as BigGaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L234">        public val ONE: BigGaussian = BigGaussian(BigInteger.ONE)</span>
+
+        /**
+         * `i` as BigGaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L242">        public val IMAGINARY: BigGaussian = BigGaussian(BigInteger.ZERO, BigInteger.ONE)</span>
+
+        /**
+         * `-1` as BigGaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L250">        public val MINUS_ONE: BigGaussian = -ONE</span>
+
+        /**
+         * `-i` as BigGaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L258">        public val MINUS_IMAGINARY: BigGaussian = -IMAGINARY</span>
+
+        /**
+         * Units
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L266">        public val UNITS: Set&lt;BigGaussian&gt; = setOf(ONE, IMAGINARY, MINUS_ONE, MINUS_IMAGINARY)</span>
+    }
+<span class="nc" id="L268">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

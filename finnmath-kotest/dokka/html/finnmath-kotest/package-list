@@ -1,0 +1,7 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:io.github.ltennstedt.finnmath.kotest.number////PointingToDeclaration/finnmath-kotest/io.github.ltennstedt.finnmath.kotest.number/index.html
+$dokka.location:io.github.ltennstedt.finnmath.kotest.number//invertible/#/PointingToDeclaration/finnmath-kotest/io.github.ltennstedt.finnmath.kotest.number/invertible.html
+$dokka.location:io.github.ltennstedt.finnmath.kotest.number//shouldBeInvertible/io.github.ltennstedt.finnmath.number.fraction.Fraction#/PointingToDeclaration/finnmath-kotest/io.github.ltennstedt.finnmath.kotest.number/should-be-invertible.html
+io.github.ltennstedt.finnmath.kotest.number
+

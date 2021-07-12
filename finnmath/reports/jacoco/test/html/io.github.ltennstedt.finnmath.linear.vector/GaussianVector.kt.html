@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GaussianVector.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.vector</a> &gt; <span class="el_source">GaussianVector.kt</span></div><h1>GaussianVector.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.vector
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.linear.builder.GaussianVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
+import io.github.ltennstedt.finnmath.linear.builder.bigGaussianVector
+import io.github.ltennstedt.finnmath.linear.builder.complexVector
+import io.github.ltennstedt.finnmath.linear.field.Field
+import io.github.ltennstedt.finnmath.linear.field.GaussianField
+import io.github.ltennstedt.finnmath.number.complex.Complex
+import io.github.ltennstedt.finnmath.number.complex.Gaussian
+import org.apiguardian.api.API
+import kotlin.math.pow
+import kotlin.math.sqrt
+
+/**
+ * Immutable implementation of a vector whose elements are of type [Gaussian]
+ *
+ * @property entries entries
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [entries] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L46">public class GaussianVector(</span>
+    entries: Set&lt;VectorEntry&lt;Gaussian&gt;&gt;
+<span class="nc" id="L48">) : AbstractVector&lt;Gaussian, Complex, GaussianVector, Double, Gaussian&gt;(</span>
+<span class="nc" id="L49">    entries</span>
+) {
+    override val field: Field&lt;Gaussian, Complex, GaussianVector&gt;
+<span class="nc" id="L52">        get() = GaussianField</span>
+
+<span class="nc" id="L54">    override fun taxicabNorm(): Double = elements.map { it.abs() }.reduce { a, b -&gt; a + b }</span>
+
+<span class="nc" id="L56">    override fun euclideanNormPow2(): Gaussian = this * this</span>
+
+<span class="nc" id="L58">    override fun euclideanNorm(): Double = sqrt(elements.map { it.abs().pow(2) }.reduce { a, b -&gt; a + b })</span>
+
+<span class="nc" id="L60">    override fun maxNorm(): Double = elements.map { it.abs() }.maxOrNull() as Double</span>
+
+    /**
+     * Returns this as [ComplexVector]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L67">    public fun toComplexVector(): ComplexVector = complexVector {</span>
+<span class="nc" id="L68">        computationOfAbsent = { this@GaussianVector[it].toComplex() }</span>
+<span class="nc" id="L69">    }</span>
+
+    /**
+     * Returns this as [BigGaussianVector]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L76">    public fun toBigGaussianVector(): BigGaussianVector = bigGaussianVector {</span>
+<span class="nc" id="L77">        computationOfAbsent = { this@GaussianVector[it].toBigGaussian() }</span>
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L85">    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {</span>
+<span class="nc" id="L86">        computationOfAbsent = { this@GaussianVector[it].toBigComplex() }</span>
+<span class="nc" id="L87">    }</span>
+
+    public companion object {
+        /**
+         * Returns a [GaussianVectorJavaBuilder] of [size]
+         *
+         * @since 0.0.1
+         */
+        @JvmStatic
+<span class="nc" id="L96">        public fun builder(size: Int): GaussianVectorJavaBuilder = GaussianVectorJavaBuilder(size)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

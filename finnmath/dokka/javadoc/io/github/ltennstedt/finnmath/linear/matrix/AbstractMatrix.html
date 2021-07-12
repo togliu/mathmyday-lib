@@ -1,0 +1,1459 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>AbstractMatrix 0.0.1-SNAPSHOT API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <h2 title="Class AbstractMatrix" class="title">Class AbstractMatrix</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public abstract class <span class="typeNameLabel"><a href=AbstractMatrix.html>AbstractMatrix</a>&lt;E extends Number, Q extends Number, V extends <a href=../vector/AbstractVector.html>AbstractVector</a>&lt;<a href=AbstractMatrix.html>E</a>, <a href=AbstractMatrix.html>Q</a>, <a href=AbstractMatrix.html>V</a>, ?, ?&gt;, M extends <a href=AbstractMatrix.html>AbstractMatrix</a>&lt;<a href=AbstractMatrix.html>E</a>, <a href=AbstractMatrix.html>Q</a>, <a href=AbstractMatrix.html>V</a>, <a href=AbstractMatrix.html>M</a>, <a href=AbstractMatrix.html>N</a>, <a href=AbstractMatrix.html>B</a>&gt;, N extends Object, B extends Object&gt;</span>
+
+                    </pre>
+                    <div class="block"><p>Base class for matrices</p></div>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public class</code></td>
+                                            <th class="colSecond" scope="row"><code><a href="AbstractMatrix.Companion.html">AbstractMatrix.Companion</a></span></code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isSquare>isSquare</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isTriangular>isTriangular</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isUpperTriangular>isUpperTriangular</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isLowerTriangular>isLowerTriangular</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isDiagonal>isDiagonal</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isIdentity>isIdentity</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isInvertible>isInvertible</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isSymmetric>isSymmetric</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#isSkewSymmetric>isSkewSymmetric</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Set&lt;Integer&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#rowIndices>rowIndices</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Set&lt;Integer&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#columnIndices>columnIndices</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final List&lt;<a href=AbstractMatrix.html>E</a>&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#elements>elements</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final List&lt;<a href=AbstractMatrix.html>E</a>&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#diagonalElements>diagonalElements</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Set&lt;<a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#diagonalEntries>diagonalEntries</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Integer</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#rowSize>rowSize</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final Integer</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#columnSize>columnSize</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Set&lt;<a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;&gt;</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#entries>entries</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#AbstractMatrix(Set)">AbstractMatrix</a></span>(Set&lt;<a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;&gt; entries)</code></th>
+                                                <td class="colLast">Constructs an <a href=AbstractMatrix.html>AbstractMatrix</a></td>
+                                            </tr>
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsSquare()>getIsSquare</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsTriangular()>getIsTriangular</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsUpperTriangular()>getIsUpperTriangular</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsLowerTriangular()>getIsLowerTriangular</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsDiagonal()>getIsDiagonal</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsIdentity()>getIsIdentity</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code>abstract Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsInvertible()>getIsInvertible</a>() </code>
+                                            </th>
+                                            <td class="colLast">Indicates if this is invertible</td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsSymmetric()>getIsSymmetric</a>() </code>
+                                            </th>
+                                            <td class="colLast">Indicates if this is symmetric</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getIsSkewSymmetric()>getIsSkewSymmetric</a>() </code>
+                                            </th>
+                                            <td class="colLast">Indicates if this is skew symmetric</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>final Set&lt;Integer&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getRowIndices()>getRowIndices</a>() </code>
+                                            </th>
+                                            <td class="colLast">Row indices</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code>final Set&lt;Integer&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getColumnIndices()>getColumnIndices</a>() </code>
+                                            </th>
+                                            <td class="colLast">Column indices</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>final List&lt;<a href=AbstractMatrix.html>E</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getElements()>getElements</a>() </code>
+                                            </th>
+                                            <td class="colLast">Elements</td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>final List&lt;<a href=AbstractMatrix.html>E</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getDiagonalElements()>getDiagonalElements</a>() </code>
+                                            </th>
+                                            <td class="colLast">Diagonal elements</td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>final Set&lt;<a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getDiagonalEntries()>getDiagonalEntries</a>() </code>
+                                            </th>
+                                            <td class="colLast">Diagonal <a href=MatrixEntry.html>MatrixEntries</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>final Integer</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getRowSize()>getRowSize</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code>final Integer</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getColumnSize()>getColumnSize</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code>final Set&lt;<a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#getEntries()>getEntries</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>M</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#add(M)>add</a>(<a href=AbstractMatrix.html>M</a> summand) </code>
+                                            </th>
+                                            <td class="colLast">Returns the sum of this and the <a href=AbstractMatrix.html#add(M)>summand</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>M</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#subtract(M)>subtract</a>(<a href=AbstractMatrix.html>M</a> subtrahend) </code>
+                                            </th>
+                                            <td class="colLast">Returns the difference of this and the <a href=AbstractMatrix.html#subtract(M)>subtrahend</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>M</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#multiply(M)>multiply</a>(<a href=AbstractMatrix.html>M</a> factor) </code>
+                                            </th>
+                                            <td class="colLast">Returns the product of this and the <a href=AbstractMatrix.html#multiply(M)>factor</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>V</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#multiplyVector(V)>multiplyVector</a>(<a href=AbstractMatrix.html>V</a> vector) </code>
+                                            </th>
+                                            <td class="colLast">Returns the product of this and the <a href=AbstractMatrix.html#multiplyVector(V)>vector</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>M</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#scalarMultiply(E)>scalarMultiply</a>(<a href=AbstractMatrix.html>E</a> scalar) </code>
+                                            </th>
+                                            <td class="colLast">Returns the scalar product of this and the <a href=AbstractMatrix.html#scalarMultiply(E)>scalar</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>M</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#negate()>negate</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the negated <a href=AbstractMatrix.html>AbstractMatrix</a> and this</td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=AbstractMatrix.html>E</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#trace()>trace</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the trace</td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code>final <a href=AbstractMatrix.html>E</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#determinant()>determinant</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the determinant</td>
+                                        </tr>
+                                        
+                                        <tr id="i25" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>M</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#transpose()>transpose</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the transpose</td>
+                                        </tr>
+                                        
+                                        <tr id="i26" class="altColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>M</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#minor(Integer,Integer)>minor</a>(Integer rowIndex, Integer columnIndex) </code>
+                                            </th>
+                                            <td class="colLast">Returns the minor dependent on the <a href=AbstractMatrix.html#minor(Integer,Integer)>rowIndex</a> and <a href=AbstractMatrix.html#minor(Integer,Integer)>columnIndex</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i27" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>N</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#maxAbsColumnSumNorm()>maxAbsColumnSumNorm</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the maximum absolute column sum norm</td>
+                                        </tr>
+                                        
+                                        <tr id="i28" class="altColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>N</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#maxAbsRowSumNorm()>maxAbsRowSumNorm</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the maximum absolute row sum norm</td>
+                                        </tr>
+                                        
+                                        <tr id="i29" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>B</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#frobeniusNormPow2()>frobeniusNormPow2</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the square of the frobenius norm</td>
+                                        </tr>
+                                        
+                                        <tr id="i30" class="altColor">
+                                            <td class="colFirst"><code>abstract BigDecimal</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#frobeniusNorm(MathContext)>frobeniusNorm</a>(MathContext mathContext) </code>
+                                            </th>
+                                            <td class="colLast">Returns the frobenius norm based on the <a href=AbstractMatrix.html#frobeniusNorm(MathContext)>mathContext</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i31" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>N</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#maxNorm()>maxNorm</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the maximum norm</td>
+                                        </tr>
+                                        
+                                        <tr id="i32" class="altColor">
+                                            <td class="colFirst"><code>final <a href=AbstractMatrix.html>E</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#get(Integer,Integer)>get</a>(Integer rowIndex, Integer columnIndex) </code>
+                                            </th>
+                                            <td class="colLast">Returns the element at the <a href=AbstractMatrix.html#get(Integer,Integer)>rowIndex</a> and <a href=AbstractMatrix.html#get(Integer,Integer)>columnIndex</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i33" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#entry(Integer,Integer)>entry</a>(Integer rowIndex, Integer columnIndex) </code>
+                                            </th>
+                                            <td class="colLast">Returns the <a href=MatrixEntry.html>MatrixEntry</a> at the <a href=AbstractMatrix.html#entry(Integer,Integer)>rowIndex</a> and <a href=AbstractMatrix.html#entry(Integer,Integer)>columnIndex</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i34" class="altColor">
+                                            <td class="colFirst"><code>final Map&lt;Integer, <a href=AbstractMatrix.html>E</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#row(Integer)>row</a>(Integer rowIndex) </code>
+                                            </th>
+                                            <td class="colLast">Returns the row at the <a href=AbstractMatrix.html#row(Integer)>rowIndex</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i35" class="rowColor">
+                                            <td class="colFirst"><code>final Map&lt;Integer, <a href=AbstractMatrix.html>E</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#column(Integer)>column</a>(Integer columnIndex) </code>
+                                            </th>
+                                            <td class="colLast">Returns the column at the <a href=AbstractMatrix.html#column(Integer)>columnIndex</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i36" class="altColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>V</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#rowVector(Integer)>rowVector</a>(Integer rowIndex) </code>
+                                            </th>
+                                            <td class="colLast">Returns the row vector at the <a href=AbstractMatrix.html#rowVector(Integer)>rowIndex</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i37" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=AbstractMatrix.html>V</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#columnVector(Integer)>columnVector</a>(Integer columnIndex) </code>
+                                            </th>
+                                            <td class="colLast">Returns the column vector at the <a href=AbstractMatrix.html#columnVector(Integer)>columnIndex</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i38" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#contains(E)>contains</a>(<a href=AbstractMatrix.html>E</a> element) </code>
+                                            </th>
+                                            <td class="colLast">Returns if <a href=AbstractMatrix.html#contains(E)>element</a> is contained in <a href=AbstractMatrix.html>V</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i39" class="rowColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#equalsByComparing(M)>equalsByComparing</a>(<a href=AbstractMatrix.html>M</a> other) </code>
+                                            </th>
+                                            <td class="colLast">Returns if this is equal to <a href=AbstractMatrix.html#equalsByComparing(M)>other</a> by comparing elements</td>
+                                        </tr>
+                                        
+                                        <tr id="i40" class="altColor">
+                                            <td class="colFirst"><code>final Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#doesNotEqualByComparing(M)>doesNotEqualByComparing</a>(<a href=AbstractMatrix.html>M</a> other) </code>
+                                            </th>
+                                            <td class="colLast">Returns if this is not equal to <a href=AbstractMatrix.html#doesNotEqualByComparing(M)>other</a> by comparing elements</td>
+                                        </tr>
+                                        
+                                        <tr id="i41" class="rowColor">
+                                            <td class="colFirst"><code>Integer</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#hashCode()>hashCode</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i42" class="altColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#equals(Object)>equals</a>(Object other) </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i43" class="rowColor">
+                                            <td class="colFirst"><code>String</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=AbstractMatrix.html#toString()>toString</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                                <a name="AbstractMatrix(Set)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>AbstractMatrix</h4>
+                                        <pre>AbstractMatrix(Set&lt;<a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;&gt; entries)</pre>
+                                        <div class="block">Constructs an <a href=AbstractMatrix.html>AbstractMatrix</a></div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="getIsSquare()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsSquare</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#getIsSquare()>getIsSquare</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsTriangular()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsTriangular</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#getIsTriangular()>getIsTriangular</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsUpperTriangular()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsUpperTriangular</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#getIsUpperTriangular()>getIsUpperTriangular</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsLowerTriangular()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsLowerTriangular</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#getIsLowerTriangular()>getIsLowerTriangular</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsDiagonal()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsDiagonal</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#getIsDiagonal()>getIsDiagonal</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsIdentity()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsIdentity</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#getIsIdentity()>getIsIdentity</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsInvertible()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsInvertible</h4>
+                                        <pre class="methodSignature"> abstract Boolean <a href=AbstractMatrix.html#getIsInvertible()>getIsInvertible</a>()</pre>
+                                        <div class="block"><p>Indicates if this is invertible</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsSymmetric()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsSymmetric</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#getIsSymmetric()>getIsSymmetric</a>()</pre>
+                                        <div class="block"><p>Indicates if this is symmetric</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getIsSkewSymmetric()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsSkewSymmetric</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#getIsSkewSymmetric()>getIsSkewSymmetric</a>()</pre>
+                                        <div class="block"><p>Indicates if this is skew symmetric</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getRowIndices()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getRowIndices</h4>
+                                        <pre class="methodSignature"> final Set&lt;Integer&gt; <a href=AbstractMatrix.html#getRowIndices()>getRowIndices</a>()</pre>
+                                        <div class="block"><p>Row indices</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getColumnIndices()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getColumnIndices</h4>
+                                        <pre class="methodSignature"> final Set&lt;Integer&gt; <a href=AbstractMatrix.html#getColumnIndices()>getColumnIndices</a>()</pre>
+                                        <div class="block"><p>Column indices</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getElements()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getElements</h4>
+                                        <pre class="methodSignature"> final List&lt;<a href=AbstractMatrix.html>E</a>&gt; <a href=AbstractMatrix.html#getElements()>getElements</a>()</pre>
+                                        <div class="block"><p>Elements</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getDiagonalElements()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getDiagonalElements</h4>
+                                        <pre class="methodSignature"> final List&lt;<a href=AbstractMatrix.html>E</a>&gt; <a href=AbstractMatrix.html#getDiagonalElements()>getDiagonalElements</a>()</pre>
+                                        <div class="block"><p>Diagonal elements</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getDiagonalEntries()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getDiagonalEntries</h4>
+                                        <pre class="methodSignature"> final Set&lt;<a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;&gt; <a href=AbstractMatrix.html#getDiagonalEntries()>getDiagonalEntries</a>()</pre>
+                                        <div class="block"><p>Diagonal <a href=MatrixEntry.html>MatrixEntries</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getRowSize()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getRowSize</h4>
+                                        <pre class="methodSignature"> final Integer <a href=AbstractMatrix.html#getRowSize()>getRowSize</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getColumnSize()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getColumnSize</h4>
+                                        <pre class="methodSignature"> final Integer <a href=AbstractMatrix.html#getColumnSize()>getColumnSize</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getEntries()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getEntries</h4>
+                                        <pre class="methodSignature"> final Set&lt;<a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt;&gt; <a href=AbstractMatrix.html#getEntries()>getEntries</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="add(M)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>add</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>M</a> <a href=AbstractMatrix.html#add(M)>add</a>(<a href=AbstractMatrix.html>M</a> summand)</pre>
+                                        <div class="block"><p>Returns the sum of this and the <a href=AbstractMatrix.html#add(M)>summand</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="subtract(M)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>subtract</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>M</a> <a href=AbstractMatrix.html#subtract(M)>subtract</a>(<a href=AbstractMatrix.html>M</a> subtrahend)</pre>
+                                        <div class="block"><p>Returns the difference of this and the <a href=AbstractMatrix.html#subtract(M)>subtrahend</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="multiply(M)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>multiply</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>M</a> <a href=AbstractMatrix.html#multiply(M)>multiply</a>(<a href=AbstractMatrix.html>M</a> factor)</pre>
+                                        <div class="block"><p>Returns the product of this and the <a href=AbstractMatrix.html#multiply(M)>factor</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="multiplyVector(V)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>multiplyVector</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>V</a> <a href=AbstractMatrix.html#multiplyVector(V)>multiplyVector</a>(<a href=AbstractMatrix.html>V</a> vector)</pre>
+                                        <div class="block"><p>Returns the product of this and the <a href=AbstractMatrix.html#multiplyVector(V)>vector</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="scalarMultiply(E)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>scalarMultiply</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>M</a> <a href=AbstractMatrix.html#scalarMultiply(E)>scalarMultiply</a>(<a href=AbstractMatrix.html>E</a> scalar)</pre>
+                                        <div class="block"><p>Returns the scalar product of this and the <a href=AbstractMatrix.html#scalarMultiply(E)>scalar</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="negate()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>negate</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>M</a> <a href=AbstractMatrix.html#negate()>negate</a>()</pre>
+                                        <div class="block"><p>Returns the negated <a href=AbstractMatrix.html>AbstractMatrix</a> and this</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="trace()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>trace</h4>
+                                        <pre class="methodSignature"> final <a href=AbstractMatrix.html>E</a> <a href=AbstractMatrix.html#trace()>trace</a>()</pre>
+                                        <div class="block"><p>Returns the trace</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="determinant()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>determinant</h4>
+                                        <pre class="methodSignature"> final <a href=AbstractMatrix.html>E</a> <a href=AbstractMatrix.html#determinant()>determinant</a>()</pre>
+                                        <div class="block"><p>Returns the determinant</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="transpose()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>transpose</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>M</a> <a href=AbstractMatrix.html#transpose()>transpose</a>()</pre>
+                                        <div class="block"><p>Returns the transpose</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="minor(Integer,Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>minor</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>M</a> <a href=AbstractMatrix.html#minor(Integer,Integer)>minor</a>(Integer rowIndex, Integer columnIndex)</pre>
+                                        <div class="block"><p>Returns the minor dependent on the <a href=AbstractMatrix.html#minor(Integer,Integer)>rowIndex</a> and <a href=AbstractMatrix.html#minor(Integer,Integer)>columnIndex</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="maxAbsColumnSumNorm()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>maxAbsColumnSumNorm</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>N</a> <a href=AbstractMatrix.html#maxAbsColumnSumNorm()>maxAbsColumnSumNorm</a>()</pre>
+                                        <div class="block"><p>Returns the maximum absolute column sum norm</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="maxAbsRowSumNorm()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>maxAbsRowSumNorm</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>N</a> <a href=AbstractMatrix.html#maxAbsRowSumNorm()>maxAbsRowSumNorm</a>()</pre>
+                                        <div class="block"><p>Returns the maximum absolute row sum norm</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="frobeniusNormPow2()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>frobeniusNormPow2</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>B</a> <a href=AbstractMatrix.html#frobeniusNormPow2()>frobeniusNormPow2</a>()</pre>
+                                        <div class="block"><p>Returns the square of the frobenius norm</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="frobeniusNorm(MathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>frobeniusNorm</h4>
+                                        <pre class="methodSignature"> abstract BigDecimal <a href=AbstractMatrix.html#frobeniusNorm(MathContext)>frobeniusNorm</a>(MathContext mathContext)</pre>
+                                        <div class="block"><p>Returns the frobenius norm based on the <a href=AbstractMatrix.html#frobeniusNorm(MathContext)>mathContext</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="maxNorm()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>maxNorm</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>N</a> <a href=AbstractMatrix.html#maxNorm()>maxNorm</a>()</pre>
+                                        <div class="block"><p>Returns the maximum norm</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="get(Integer,Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>get</h4>
+                                        <pre class="methodSignature"> final <a href=AbstractMatrix.html>E</a> <a href=AbstractMatrix.html#get(Integer,Integer)>get</a>(Integer rowIndex, Integer columnIndex)</pre>
+                                        <div class="block"><p>Returns the element at the <a href=AbstractMatrix.html#get(Integer,Integer)>rowIndex</a> and <a href=AbstractMatrix.html#get(Integer,Integer)>columnIndex</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="entry(Integer,Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>entry</h4>
+                                        <pre class="methodSignature"> final <a href=MatrixEntry.html>MatrixEntry</a>&lt;<a href=AbstractMatrix.html>E</a>&gt; <a href=AbstractMatrix.html#entry(Integer,Integer)>entry</a>(Integer rowIndex, Integer columnIndex)</pre>
+                                        <div class="block"><p>Returns the <a href=MatrixEntry.html>MatrixEntry</a> at the <a href=AbstractMatrix.html#entry(Integer,Integer)>rowIndex</a> and <a href=AbstractMatrix.html#entry(Integer,Integer)>columnIndex</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="row(Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>row</h4>
+                                        <pre class="methodSignature"> final Map&lt;Integer, <a href=AbstractMatrix.html>E</a>&gt; <a href=AbstractMatrix.html#row(Integer)>row</a>(Integer rowIndex)</pre>
+                                        <div class="block"><p>Returns the row at the <a href=AbstractMatrix.html#row(Integer)>rowIndex</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="column(Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>column</h4>
+                                        <pre class="methodSignature"> final Map&lt;Integer, <a href=AbstractMatrix.html>E</a>&gt; <a href=AbstractMatrix.html#column(Integer)>column</a>(Integer columnIndex)</pre>
+                                        <div class="block"><p>Returns the column at the <a href=AbstractMatrix.html#column(Integer)>columnIndex</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="rowVector(Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>rowVector</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>V</a> <a href=AbstractMatrix.html#rowVector(Integer)>rowVector</a>(Integer rowIndex)</pre>
+                                        <div class="block"><p>Returns the row vector at the <a href=AbstractMatrix.html#rowVector(Integer)>rowIndex</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="columnVector(Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>columnVector</h4>
+                                        <pre class="methodSignature"> abstract <a href=AbstractMatrix.html>V</a> <a href=AbstractMatrix.html#columnVector(Integer)>columnVector</a>(Integer columnIndex)</pre>
+                                        <div class="block"><p>Returns the column vector at the <a href=AbstractMatrix.html#columnVector(Integer)>columnIndex</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="contains(E)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>contains</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#contains(E)>contains</a>(<a href=AbstractMatrix.html>E</a> element)</pre>
+                                        <div class="block"><p>Returns if <a href=AbstractMatrix.html#contains(E)>element</a> is contained in <a href=AbstractMatrix.html>V</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="equalsByComparing(M)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>equalsByComparing</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#equalsByComparing(M)>equalsByComparing</a>(<a href=AbstractMatrix.html>M</a> other)</pre>
+                                        <div class="block"><p>Returns if this is equal to <a href=AbstractMatrix.html#equalsByComparing(M)>other</a> by comparing elements</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="doesNotEqualByComparing(M)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>doesNotEqualByComparing</h4>
+                                        <pre class="methodSignature"> final Boolean <a href=AbstractMatrix.html#doesNotEqualByComparing(M)>doesNotEqualByComparing</a>(<a href=AbstractMatrix.html>M</a> other)</pre>
+                                        <div class="block"><p>Returns if this is not equal to <a href=AbstractMatrix.html#doesNotEqualByComparing(M)>other</a> by comparing elements</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="hashCode()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>hashCode</h4>
+                                        <pre class="methodSignature"> Integer <a href=AbstractMatrix.html#hashCode()>hashCode</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="equals(Object)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>equals</h4>
+                                        <pre class="methodSignature"> Boolean <a href=AbstractMatrix.html#equals(Object)>equals</a>(Object other)</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="toString()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>toString</h4>
+                                        <pre class="methodSignature"> String <a href=AbstractMatrix.html#toString()>toString</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

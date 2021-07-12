@@ -1,0 +1,1034 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>BigGaussian 0.0.1-SNAPSHOT API </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../../../../jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-migrate-3.0.1.js"></script>
+    <script type="text/javascript" src="../../../../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../../../../search.js"></script>
+    <script async type="text/javascript" src="../../../../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html"></a></div>
+        <h2 title="Class BigGaussian" class="title">Class BigGaussian</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                            <code>java.io.Serializable</code>
+                            
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+@API(status = API.Status.EXPERIMENTAL, since = 0.0.1)@Beta()@Immutable() 
+public final class <span class="typeNameLabel"><a href=BigGaussian.html>BigGaussian</a></span>
+extends <a href=AbstractComplex.html>AbstractComplex</a>&lt;BigInteger, <a href=BigGaussian.html>BigGaussian</a>, <a href=BigComplex.html>BigComplex</a>, BigDecimal, <a href=BigPolarForm.html>BigPolarForm</a>&gt;
+                    </pre>
+                    <div class="block"><p>Immutable implementation of a gaussian number which uses BigInteger as type for its real and imaginary part</p></div>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>public class</code></td>
+                                            <th class="colSecond" scope="row"><code><a href="BigGaussian.Companion.html">BigGaussian.Companion</a></span></code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final Boolean</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#isUnit>isUnit</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="rowColor">
+                                            <td class="colFirst"><code>private final BigInteger</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#real>real</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr class="altColor">
+                                            <td class="colFirst"><code>private final BigInteger</code></td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#imaginary>imaginary</a></code></th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#BigGaussian(Integer,Integer)">BigGaussian</a></span>(Integer real, Integer imaginary)</code></th>
+                                                <td class="colLast">Constructs a BigGaussian from real and imaginaryDefault argument for imaginary is <code>0</code></td>
+                                            </tr>
+                                        
+                                            <tr class="rowColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#BigGaussian(Integer)">BigGaussian</a></span>(Integer real)</code></th>
+                                                <td class="colLast">Constructs a BigGaussian from real and imaginaryDefault argument for imaginary is <code>0</code></td>
+                                            </tr>
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#BigGaussian(Long,Long)">BigGaussian</a></span>(Long real, Long imaginary)</code></th>
+                                                <td class="colLast">Constructs a BigGaussian from real and imaginaryDefault argument for imaginary is <code>0</code></td>
+                                            </tr>
+                                        
+                                            <tr class="rowColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#BigGaussian(Long)">BigGaussian</a></span>(Long real)</code></th>
+                                                <td class="colLast">Constructs a BigGaussian from real and imaginaryDefault argument for imaginary is <code>0</code></td>
+                                            </tr>
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#BigGaussian(BigInteger,BigInteger)">BigGaussian</a></span>(BigInteger real, BigInteger imaginary)</code></th>
+                                                <td class="colLast">Constructs a BigGaussian</td>
+                                            </tr>
+                                        
+                                            <tr class="rowColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#BigGaussian(BigInteger)">BigGaussian</a></span>(BigInteger real)</code></th>
+                                                <td class="colLast">Constructs a BigGaussian</td>
+                                            </tr>
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#getIsUnit()>getIsUnit</a>() </code>
+                                            </th>
+                                            <td class="colLast">Indicates if this is a unit</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>final BigInteger</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#getReal()>getReal</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code>final BigInteger</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#getImaginary()>getImaginary</a>() </code>
+                                            </th>
+                                            <td class="colLast"></td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code><a href=BigGaussian.html>BigGaussian</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#add(BigGaussian)>add</a>(<a href=BigGaussian.html>BigGaussian</a> summand) </code>
+                                            </th>
+                                            <td class="colLast">Returns the sum of this and the <a href=BigGaussian.html#add(BigGaussian)>summand</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code><a href=BigGaussian.html>BigGaussian</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#subtract(BigGaussian)>subtract</a>(<a href=BigGaussian.html>BigGaussian</a> subtrahend) </code>
+                                            </th>
+                                            <td class="colLast">Returns the difference of this and the <a href=BigGaussian.html#subtract(BigGaussian)>subtrahend</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code><a href=BigGaussian.html>BigGaussian</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#multiply(BigGaussian)>multiply</a>(<a href=BigGaussian.html>BigGaussian</a> factor) </code>
+                                            </th>
+                                            <td class="colLast">Returns the product of this and the <a href=BigGaussian.html#multiply(BigGaussian)>factor</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code><a href=BigComplex.html>BigComplex</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#divide(BigGaussian)>divide</a>(<a href=BigGaussian.html>BigGaussian</a> divisor) </code>
+                                            </th>
+                                            <td class="colLast">Returns the quotient of this and the <a href=BigGaussian.html#divide(BigGaussian)>divisor</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=BigComplex.html>BigComplex</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#divide(BigGaussian,FinnmathContext)>divide</a>(<a href=BigGaussian.html>BigGaussian</a> divisor, <a href=../../FinnmathContext.html>FinnmathContext</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Returns the quotient of this and the <a href=BigGaussian.html#divide(BigGaussian,FinnmathContext)>divisor</a> based on the <a href=BigGaussian.html#divide(BigGaussian,FinnmathContext)>context</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code><a href=BigComplex.html>BigComplex</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#pow(Integer)>pow</a>(Integer exponent) </code>
+                                            </th>
+                                            <td class="colLast">Returns the power of this raised by the <a href=BigGaussian.html#pow(Integer)>exponent</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=BigComplex.html>BigComplex</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#pow(Integer,FinnmathContext)>pow</a>(Integer exponent, <a href=../../FinnmathContext.html>FinnmathContext</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Returns the power of this raised by the <a href=BigGaussian.html#pow(Integer,FinnmathContext)>exponent</a> based on the <a href=BigGaussian.html#pow(Integer,FinnmathContext)>context</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code><a href=BigGaussian.html>BigGaussian</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#negate()>negate</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the negated T</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code><a href=BigComplex.html>BigComplex</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#invert()>invert</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the inverted T</td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code>final <a href=BigComplex.html>BigComplex</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#invert(FinnmathContext)>invert</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Returns the inverted BigGaussian based on the <a href=BigGaussian.html#invert(FinnmathContext)>context</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code>BigInteger</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#absPow2()>absPow2</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the square of the absolute value</td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>BigDecimal</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#abs()>abs</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the absolute value</td>
+                                        </tr>
+                                        
+                                        <tr id="i15" class="rowColor">
+                                            <td class="colFirst"><code>final BigDecimal</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#abs(MathContext)>abs</a>(MathContext mathContext) </code>
+                                            </th>
+                                            <td class="colLast">Returns the absolute value based on the <a href=BigGaussian.html#abs(MathContext)>mathContext</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i16" class="altColor">
+                                            <td class="colFirst"><code>final BigDecimal</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#abs(FinnmathContext)>abs</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Returns the absolute value based on the <a href=BigGaussian.html#abs(FinnmathContext)>context</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i17" class="rowColor">
+                                            <td class="colFirst"><code><a href=BigGaussian.html>BigGaussian</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#conjugate()>conjugate</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the conjugated T</td>
+                                        </tr>
+                                        
+                                        <tr id="i18" class="altColor">
+                                            <td class="colFirst"><code>BigDecimal</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#argument()>argument</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns the argument</td>
+                                        </tr>
+                                        
+                                        <tr id="i19" class="rowColor">
+                                            <td class="colFirst"><code>final BigDecimal</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#argument(FinnmathContext)>argument</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Returns the argument based on the <a href=BigGaussian.html#argument(FinnmathContext)>context</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i20" class="altColor">
+                                            <td class="colFirst"><code><a href=BigPolarForm.html>BigPolarForm</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#toPolarForm()>toPolarForm</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns this as polar form</td>
+                                        </tr>
+                                        
+                                        <tr id="i21" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=BigPolarForm.html>BigPolarForm</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#toPolarForm(FinnmathContext)>toPolarForm</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Returns the <a href=BigPolarForm.html>BigPolarForm</a> based on the <a href=BigGaussian.html#toPolarForm(FinnmathContext)>context</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i22" class="altColor">
+                                            <td class="colFirst"><code>final <a href=BigComplex.html>BigComplex</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#toBigComplex()>toBigComplex</a>() </code>
+                                            </th>
+                                            <td class="colLast">Returns this as <a href=BigComplex.html>BigComplex</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i23" class="rowColor">
+                                            <td class="colFirst"><code>final <a href=BigComplex.html>BigComplex</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#toBigComplex(FinnmathContext)>toBigComplex</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context) </code>
+                                            </th>
+                                            <td class="colLast">Returns this as <a href=BigComplex.html>BigComplex</a> based on the <a href=BigGaussian.html#toBigComplex(FinnmathContext)>context</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i24" class="altColor">
+                                            <td class="colFirst"><code>Boolean</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=BigGaussian.html#equalsByComparing(BigGaussian)>equalsByComparing</a>(<a href=BigGaussian.html>BigGaussian</a> other) </code>
+                                            </th>
+                                            <td class="colLast">Returns if this is equal to <a href=BigGaussian.html#equalsByComparing(BigGaussian)>other</a> by comparing</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.io.github.ltennstedt.finnmath.number.complex.BigGaussian">
+                                            <!--   -->
+                                        </a>
+                                            <h3>Methods inherited from class&nbsp;io.github.ltennstedt.finnmath.number.complex.BigGaussian</h3>
+                                            <code>div, doesNotEqualByComparing, equals, hashCode, minus, operator1, operator2, plus, times, toByte, toChar, toDouble, toFloat, toInt, toLong, toShort, toString, unaryMinus, unaryPlus</code></li>
+                                 
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                                <a name="BigGaussian(Integer,Integer)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>BigGaussian</h4>
+                                        <pre>BigGaussian(Integer real, Integer imaginary)</pre>
+                                        <div class="block">Constructs a BigGaussian from real and imaginaryDefault argument for imaginary is <code>0</code></div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                                <a name="BigGaussian(Integer)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>BigGaussian</h4>
+                                        <pre>BigGaussian(Integer real)</pre>
+                                        <div class="block">Constructs a BigGaussian from real and imaginaryDefault argument for imaginary is <code>0</code></div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                                <a name="BigGaussian(Long,Long)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>BigGaussian</h4>
+                                        <pre>BigGaussian(Long real, Long imaginary)</pre>
+                                        <div class="block">Constructs a BigGaussian from real and imaginaryDefault argument for imaginary is <code>0</code></div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                                <a name="BigGaussian(Long)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>BigGaussian</h4>
+                                        <pre>BigGaussian(Long real)</pre>
+                                        <div class="block">Constructs a BigGaussian from real and imaginaryDefault argument for imaginary is <code>0</code></div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                                <a name="BigGaussian(BigInteger,BigInteger)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>BigGaussian</h4>
+                                        <pre>BigGaussian(BigInteger real, BigInteger imaginary)</pre>
+                                        <div class="block">Constructs a BigGaussian</div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                                <a name="BigGaussian(BigInteger)"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>BigGaussian</h4>
+                                        <pre>BigGaussian(BigInteger real)</pre>
+                                        <div class="block">Constructs a BigGaussian</div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="getIsUnit()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getIsUnit</h4>
+                                        <pre class="methodSignature"> Boolean <a href=BigGaussian.html#getIsUnit()>getIsUnit</a>()</pre>
+                                        <div class="block"><p>Indicates if this is a unit</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getReal()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getReal</h4>
+                                        <pre class="methodSignature"> final BigInteger <a href=BigGaussian.html#getReal()>getReal</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="getImaginary()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>getImaginary</h4>
+                                        <pre class="methodSignature"> final BigInteger <a href=BigGaussian.html#getImaginary()>getImaginary</a>()</pre>
+                                        <div class="block"></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="add(BigGaussian)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>add</h4>
+                                        <pre class="methodSignature"> <a href=BigGaussian.html>BigGaussian</a> <a href=BigGaussian.html#add(BigGaussian)>add</a>(<a href=BigGaussian.html>BigGaussian</a> summand)</pre>
+                                        <div class="block"><p>Returns the sum of this and the <a href=BigGaussian.html#add(BigGaussian)>summand</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="subtract(BigGaussian)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>subtract</h4>
+                                        <pre class="methodSignature"> <a href=BigGaussian.html>BigGaussian</a> <a href=BigGaussian.html#subtract(BigGaussian)>subtract</a>(<a href=BigGaussian.html>BigGaussian</a> subtrahend)</pre>
+                                        <div class="block"><p>Returns the difference of this and the <a href=BigGaussian.html#subtract(BigGaussian)>subtrahend</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="multiply(BigGaussian)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>multiply</h4>
+                                        <pre class="methodSignature"> <a href=BigGaussian.html>BigGaussian</a> <a href=BigGaussian.html#multiply(BigGaussian)>multiply</a>(<a href=BigGaussian.html>BigGaussian</a> factor)</pre>
+                                        <div class="block"><p>Returns the product of this and the <a href=BigGaussian.html#multiply(BigGaussian)>factor</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="divide(BigGaussian)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>divide</h4>
+                                        <pre class="methodSignature"> <a href=BigComplex.html>BigComplex</a> <a href=BigGaussian.html#divide(BigGaussian)>divide</a>(<a href=BigGaussian.html>BigGaussian</a> divisor)</pre>
+                                        <div class="block"><p>Returns the quotient of this and the <a href=BigGaussian.html#divide(BigGaussian)>divisor</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="divide(BigGaussian,FinnmathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>divide</h4>
+                                        <pre class="methodSignature"> final <a href=BigComplex.html>BigComplex</a> <a href=BigGaussian.html#divide(BigGaussian,FinnmathContext)>divide</a>(<a href=BigGaussian.html>BigGaussian</a> divisor, <a href=../../FinnmathContext.html>FinnmathContext</a> context)</pre>
+                                        <div class="block"><p>Returns the quotient of this and the <a href=BigGaussian.html#divide(BigGaussian,FinnmathContext)>divisor</a> based on the <a href=BigGaussian.html#divide(BigGaussian,FinnmathContext)>context</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="pow(Integer)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pow</h4>
+                                        <pre class="methodSignature"> <a href=BigComplex.html>BigComplex</a> <a href=BigGaussian.html#pow(Integer)>pow</a>(Integer exponent)</pre>
+                                        <div class="block"><p>Returns the power of this raised by the <a href=BigGaussian.html#pow(Integer)>exponent</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="pow(Integer,FinnmathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>pow</h4>
+                                        <pre class="methodSignature"> final <a href=BigComplex.html>BigComplex</a> <a href=BigGaussian.html#pow(Integer,FinnmathContext)>pow</a>(Integer exponent, <a href=../../FinnmathContext.html>FinnmathContext</a> context)</pre>
+                                        <div class="block"><p>Returns the power of this raised by the <a href=BigGaussian.html#pow(Integer,FinnmathContext)>exponent</a> based on the <a href=BigGaussian.html#pow(Integer,FinnmathContext)>context</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="negate()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>negate</h4>
+                                        <pre class="methodSignature"> <a href=BigGaussian.html>BigGaussian</a> <a href=BigGaussian.html#negate()>negate</a>()</pre>
+                                        <div class="block"><p>Returns the negated T</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="invert()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>invert</h4>
+                                        <pre class="methodSignature"> <a href=BigComplex.html>BigComplex</a> <a href=BigGaussian.html#invert()>invert</a>()</pre>
+                                        <div class="block"><p>Returns the inverted T</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="invert(FinnmathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>invert</h4>
+                                        <pre class="methodSignature"> final <a href=BigComplex.html>BigComplex</a> <a href=BigGaussian.html#invert(FinnmathContext)>invert</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context)</pre>
+                                        <div class="block"><p>Returns the inverted BigGaussian based on the <a href=BigGaussian.html#invert(FinnmathContext)>context</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="absPow2()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>absPow2</h4>
+                                        <pre class="methodSignature"> BigInteger <a href=BigGaussian.html#absPow2()>absPow2</a>()</pre>
+                                        <div class="block"><p>Returns the square of the absolute value</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="abs()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>abs</h4>
+                                        <pre class="methodSignature"> BigDecimal <a href=BigGaussian.html#abs()>abs</a>()</pre>
+                                        <div class="block"><p>Returns the absolute value</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="abs(MathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>abs</h4>
+                                        <pre class="methodSignature"> final BigDecimal <a href=BigGaussian.html#abs(MathContext)>abs</a>(MathContext mathContext)</pre>
+                                        <div class="block"><p>Returns the absolute value based on the <a href=BigGaussian.html#abs(MathContext)>mathContext</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="abs(FinnmathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>abs</h4>
+                                        <pre class="methodSignature"> final BigDecimal <a href=BigGaussian.html#abs(FinnmathContext)>abs</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context)</pre>
+                                        <div class="block"><p>Returns the absolute value based on the <a href=BigGaussian.html#abs(FinnmathContext)>context</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="conjugate()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>conjugate</h4>
+                                        <pre class="methodSignature"> <a href=BigGaussian.html>BigGaussian</a> <a href=BigGaussian.html#conjugate()>conjugate</a>()</pre>
+                                        <div class="block"><p>Returns the conjugated T</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="argument()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>argument</h4>
+                                        <pre class="methodSignature"> BigDecimal <a href=BigGaussian.html#argument()>argument</a>()</pre>
+                                        <div class="block"><p>Returns the argument</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="argument(FinnmathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>argument</h4>
+                                        <pre class="methodSignature"> final BigDecimal <a href=BigGaussian.html#argument(FinnmathContext)>argument</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context)</pre>
+                                        <div class="block"><p>Returns the argument based on the <a href=BigGaussian.html#argument(FinnmathContext)>context</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="toPolarForm()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>toPolarForm</h4>
+                                        <pre class="methodSignature"> <a href=BigPolarForm.html>BigPolarForm</a> <a href=BigGaussian.html#toPolarForm()>toPolarForm</a>()</pre>
+                                        <div class="block"><p>Returns this as polar form</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="toPolarForm(FinnmathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>toPolarForm</h4>
+                                        <pre class="methodSignature"> final <a href=BigPolarForm.html>BigPolarForm</a> <a href=BigGaussian.html#toPolarForm(FinnmathContext)>toPolarForm</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context)</pre>
+                                        <div class="block"><p>Returns the <a href=BigPolarForm.html>BigPolarForm</a> based on the <a href=BigGaussian.html#toPolarForm(FinnmathContext)>context</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="toBigComplex()">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>toBigComplex</h4>
+                                        <pre class="methodSignature"> final <a href=BigComplex.html>BigComplex</a> <a href=BigGaussian.html#toBigComplex()>toBigComplex</a>()</pre>
+                                        <div class="block"><p>Returns this as <a href=BigComplex.html>BigComplex</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="toBigComplex(FinnmathContext)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>toBigComplex</h4>
+                                        <pre class="methodSignature"> final <a href=BigComplex.html>BigComplex</a> <a href=BigGaussian.html#toBigComplex(FinnmathContext)>toBigComplex</a>(<a href=../../FinnmathContext.html>FinnmathContext</a> context)</pre>
+                                        <div class="block"><p>Returns this as <a href=BigComplex.html>BigComplex</a> based on the <a href=BigGaussian.html#toBigComplex(FinnmathContext)>context</a></p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                                <a id="equalsByComparing(BigGaussian)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>equalsByComparing</h4>
+                                        <pre class="methodSignature"> Boolean <a href=BigGaussian.html#equalsByComparing(BigGaussian)>equalsByComparing</a>(<a href=BigGaussian.html>BigGaussian</a> other)</pre>
+                                        <div class="block"><p>Returns if this is equal to <a href=BigGaussian.html#equalsByComparing(BigGaussian)>other</a> by comparing</p></div>
+                                        
+                                        <!-- TODO missing return annotation -->
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+    <!DOCTYPE html>
+    <HEAD><TITLE>Project Dependency Updates Report</TITLE></HEAD>
+    <style type="text/css">
+       .body {
+        font:100% verdana, arial, sans-serif;
+        background-color:#fff
+        }
+       .currentInfo {
+           border-collapse: collapse;
+       }
+       .currentInfo header {
+           cursor:pointer;
+           padding: 12px 15px;
+       }
+       .currentInfo td {
+           border: 1px solid black;
+           padding: 12px 15px;
+           border-collapse: collapse;
+       }
+       .currentInfo tr:nth-child(even) {
+           background-color: #E4FFB7;
+           padding: 12px 15px;
+           border-collapse: collapse;
+       }
+       .currentInfo tr:nth-child(odd) {
+            background-color: #EFFFD2;
+           padding: 12px 15px;
+           border-collapse: collapse;
+       }
+
+       .warningInfo {
+           border-collapse: collapse;
+       }
+       .warningInfo header {
+           cursor:pointer;
+           padding: 12px 15px;
+       }
+       .warningInfo td {
+           border: 1px solid black;
+           padding: 12px 15px;
+           border-collapse: collapse;
+       }
+       .warningInfo tr:nth-child(even) {
+           background-color: #FFFF66;
+           padding: 12px 15px;
+           border-collapse: collapse;
+       }
+       .warningInfo tr:nth-child(odd) {
+            background-color: #FFFFCC;
+           padding: 12px 15px;
+           border-collapse: collapse;
+       }
+
+
+   </style>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   <script type="text/javascript">
+   $(document).ready(function(){
+    /* set current to collapsed initially */
+    $('#currentId').nextUntil('tr.header').slideToggle(100, function(){});
+    /* click callback to toggle tables */
+    $('tr.header').click(function(){
+        $(this).find('span').text(function(_, value){return value=='(Click to collapse)'?'(Click to expand)':'(Click to collapse)'});
+        $(this).nextUntil('tr.header').slideToggle(100, function(){
+        });
+    });
+});
+   </script>
+   
+<H2>Current dependencies</H2>
+<p>The following dependencies are using the latest release version:<p>
+<table class="currentInfo">
+<tr class="header" id = "currentId" ><th colspan="4"><b>Current dependencies<span>(Click to expand)</span></b></th></tr>
+<tr><td><b>Name</b></td><td><b>Group</b></td><td><b>URL</b></td><td><b>Current Version</b></td><td><b>Reason</b></td></tr>
+<tr><td>big-math</td><td>ch.obermuhlner</td><td><a target="_blank" href="https://github.com/eobermuhlner/big-math">https://github.com/eobermuhlner/big-math</a></td><td>2.3.0 <a target="_blank" href="https://search.maven.org/artifact/ch.obermuhlner/big-math/2.3.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/ch.obermuhlner%3Abig-math/2.3.0">Bintray</a></td><td></td></tr>
+<tr><td>error_prone_annotations</td><td>com.google.errorprone</td><td></td><td>2.7.1 <a target="_blank" href="https://search.maven.org/artifact/com.google.errorprone/error_prone_annotations/2.7.1/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/com.google.errorprone%3Aerror_prone_annotations/2.7.1">Bintray</a></td><td></td></tr>
+<tr><td>guava</td><td>com.google.guava</td><td><a target="_blank" href="https://github.com/google/guava">https://github.com/google/guava</a></td><td>30.1.1-android <a target="_blank" href="https://search.maven.org/artifact/com.google.guava/guava/30.1.1-android/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/com.google.guava%3Aguava/30.1.1-android">Bintray</a></td><td></td></tr>
+<tr><td>DiscreteMathToolkit</td><td>com.marcinmoskala</td><td><a target="_blank" href="https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit">https://github.com/MarcinMoskala/KotlinDiscreteMathToolkit</a></td><td>1.0.3 <a target="_blank" href="https://search.maven.org/artifact/com.marcinmoskala/DiscreteMathToolkit/1.0.3/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/com.marcinmoskala%3ADiscreteMathToolkit/1.0.3">Bintray</a></td><td></td></tr>
+<tr><td>ktlint</td><td>com.pinterest</td><td><a target="_blank" href="https://github.com/pinterest/ktlint">https://github.com/pinterest/ktlint</a></td><td>0.41.0 <a target="_blank" href="https://search.maven.org/artifact/com.pinterest/ktlint/0.41.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/com.pinterest%3Aktlint/0.41.0">Bintray</a></td><td></td></tr>
+<tr><td>ktlint-reporter-baseline</td><td>com.pinterest.ktlint</td><td><a target="_blank" href="https://github.com/pinterest/ktlint">https://github.com/pinterest/ktlint</a></td><td>0.41.0 <a target="_blank" href="https://search.maven.org/artifact/com.pinterest.ktlint/ktlint-reporter-baseline/0.41.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/com.pinterest.ktlint%3Aktlint-reporter-baseline/0.41.0">Bintray</a></td><td></td></tr>
+<tr><td>detekt-cli</td><td>io.gitlab.arturbosch.detekt</td><td><a target="_blank" href="https://detekt.github.io/detekt">https://detekt.github.io/detekt</a></td><td>1.17.1 <a target="_blank" href="https://search.maven.org/artifact/io.gitlab.arturbosch.detekt/detekt-cli/1.17.1/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/io.gitlab.arturbosch.detekt%3Adetekt-cli/1.17.1">Bintray</a></td><td></td></tr>
+<tr><td>kotest-assertions-core-jvm</td><td>io.kotest</td><td><a target="_blank" href="http://www.github.com/kotest/kotest">http://www.github.com/kotest/kotest</a></td><td>4.6.0 <a target="_blank" href="https://search.maven.org/artifact/io.kotest/kotest-assertions-core-jvm/4.6.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/io.kotest%3Akotest-assertions-core-jvm/4.6.0">Bintray</a></td><td></td></tr>
+<tr><td>kotest-property-jvm</td><td>io.kotest</td><td><a target="_blank" href="http://www.github.com/kotest/kotest">http://www.github.com/kotest/kotest</a></td><td>4.6.0 <a target="_blank" href="https://search.maven.org/artifact/io.kotest/kotest-property-jvm/4.6.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/io.kotest%3Akotest-property-jvm/4.6.0">Bintray</a></td><td></td></tr>
+<tr><td>kotest-runner-junit5-jvm</td><td>io.kotest</td><td><a target="_blank" href="http://www.github.com/kotest/kotest">http://www.github.com/kotest/kotest</a></td><td>4.6.0 <a target="_blank" href="https://search.maven.org/artifact/io.kotest/kotest-runner-junit5-jvm/4.6.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/io.kotest%3Akotest-runner-junit5-jvm/4.6.0">Bintray</a></td><td></td></tr>
+<tr><td>apiguardian-api</td><td>org.apiguardian</td><td><a target="_blank" href="https://github.com/apiguardian-team/apiguardian">https://github.com/apiguardian-team/apiguardian</a></td><td>1.1.2 <a target="_blank" href="https://search.maven.org/artifact/org.apiguardian/apiguardian-api/1.1.2/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.apiguardian%3Aapiguardian-api/1.1.2">Bintray</a></td><td></td></tr>
+<tr><td>assertj-core</td><td>org.assertj</td><td><a target="_blank" href="https://assertj.github.io/doc/">https://assertj.github.io/doc/</a></td><td>3.20.2 <a target="_blank" href="https://search.maven.org/artifact/org.assertj/assertj-core/3.20.2/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.assertj%3Aassertj-core/3.20.2">Bintray</a></td><td></td></tr>
+<tr><td>org.jacoco.agent</td><td>org.jacoco</td><td><a target="_blank" href="http://jacoco.org">http://jacoco.org</a></td><td>0.8.7 <a target="_blank" href="https://search.maven.org/artifact/org.jacoco/org.jacoco.agent/0.8.7/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jacoco%3Aorg.jacoco.agent/0.8.7">Bintray</a></td><td></td></tr>
+<tr><td>org.jacoco.ant</td><td>org.jacoco</td><td><a target="_blank" href="http://jacoco.org">http://jacoco.org</a></td><td>0.8.7 <a target="_blank" href="https://search.maven.org/artifact/org.jacoco/org.jacoco.ant/0.8.7/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jacoco%3Aorg.jacoco.ant/0.8.7">Bintray</a></td><td></td></tr>
+<tr><td>annotations</td><td>org.jetbrains</td><td><a target="_blank" href="https://github.com/JetBrains/java-annotations">https://github.com/JetBrains/java-annotations</a></td><td>21.0.1 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains/annotations/21.0.1/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains%3Aannotations/21.0.1">Bintray</a></td><td></td></tr>
+<tr><td>dokka-base</td><td>org.jetbrains.dokka</td><td><a target="_blank" href="https://github.com/Kotlin/dokka">https://github.com/Kotlin/dokka</a></td><td>1.5.0 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.dokka/dokka-base/1.5.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.dokka%3Adokka-base/1.5.0">Bintray</a></td><td></td></tr>
+<tr><td>dokka-core</td><td>org.jetbrains.dokka</td><td><a target="_blank" href="https://github.com/Kotlin/dokka">https://github.com/Kotlin/dokka</a></td><td>1.5.0 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.dokka/dokka-core/1.5.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.dokka%3Adokka-core/1.5.0">Bintray</a></td><td></td></tr>
+<tr><td>gfm-plugin</td><td>org.jetbrains.dokka</td><td><a target="_blank" href="https://github.com/Kotlin/dokka">https://github.com/Kotlin/dokka</a></td><td>1.5.0 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.dokka/gfm-plugin/1.5.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.dokka%3Agfm-plugin/1.5.0">Bintray</a></td><td></td></tr>
+<tr><td>javadoc-plugin</td><td>org.jetbrains.dokka</td><td><a target="_blank" href="https://github.com/Kotlin/dokka">https://github.com/Kotlin/dokka</a></td><td>1.5.0 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.dokka/javadoc-plugin/1.5.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.dokka%3Ajavadoc-plugin/1.5.0">Bintray</a></td><td></td></tr>
+<tr><td>jekyll-plugin</td><td>org.jetbrains.dokka</td><td><a target="_blank" href="https://github.com/Kotlin/dokka">https://github.com/Kotlin/dokka</a></td><td>1.5.0 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.dokka/jekyll-plugin/1.5.0/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.dokka%3Ajekyll-plugin/1.5.0">Bintray</a></td><td></td></tr>
+<tr><td>kotlin-compiler-embeddable</td><td>org.jetbrains.kotlin</td><td><a target="_blank" href="https://kotlinlang.org/">https://kotlinlang.org/</a></td><td>1.5.20 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.kotlin/kotlin-compiler-embeddable/1.5.20/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.kotlin%3Akotlin-compiler-embeddable/1.5.20">Bintray</a></td><td></td></tr>
+<tr><td>kotlin-klib-commonizer-embeddable</td><td>org.jetbrains.kotlin</td><td><a target="_blank" href="https://kotlinlang.org/">https://kotlinlang.org/</a></td><td>1.5.20 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.kotlin/kotlin-klib-commonizer-embeddable/1.5.20/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.kotlin%3Akotlin-klib-commonizer-embeddable/1.5.20">Bintray</a></td><td></td></tr>
+<tr><td>kotlin-reflect</td><td>org.jetbrains.kotlin</td><td><a target="_blank" href="https://kotlinlang.org/">https://kotlinlang.org/</a></td><td>1.5.20 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.kotlin/kotlin-reflect/1.5.20/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.kotlin%3Akotlin-reflect/1.5.20">Bintray</a></td><td></td></tr>
+<tr><td>kotlin-scripting-compiler-embeddable</td><td>org.jetbrains.kotlin</td><td><a target="_blank" href="https://kotlinlang.org/">https://kotlinlang.org/</a></td><td>1.5.20 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.kotlin/kotlin-scripting-compiler-embeddable/1.5.20/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.kotlin%3Akotlin-scripting-compiler-embeddable/1.5.20">Bintray</a></td><td></td></tr>
+<tr><td>kotlin-stdlib-jdk8</td><td>org.jetbrains.kotlin</td><td><a target="_blank" href="https://kotlinlang.org/">https://kotlinlang.org/</a></td><td>1.5.20 <a target="_blank" href="https://search.maven.org/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.5.20/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.jetbrains.kotlin%3Akotlin-stdlib-jdk8/1.5.20">Bintray</a></td><td></td></tr>
+<tr><td>junit-jupiter-api</td><td>org.junit.jupiter</td><td><a target="_blank" href="https://junit.org/junit5/">https://junit.org/junit5/</a></td><td>5.7.2 <a target="_blank" href="https://search.maven.org/artifact/org.junit.jupiter/junit-jupiter-api/5.7.2/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.junit.jupiter%3Ajunit-jupiter-api/5.7.2">Bintray</a></td><td></td></tr>
+<tr><td>junit-jupiter-engine</td><td>org.junit.jupiter</td><td><a target="_blank" href="https://junit.org/junit5/">https://junit.org/junit5/</a></td><td>5.7.2 <a target="_blank" href="https://search.maven.org/artifact/org.junit.jupiter/junit-jupiter-engine/5.7.2/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.junit.jupiter%3Ajunit-jupiter-engine/5.7.2">Bintray</a></td><td></td></tr>
+<tr><td>junit-platform-engine</td><td>org.junit.platform</td><td><a target="_blank" href="https://junit.org/junit5/">https://junit.org/junit5/</a></td><td>1.7.2 <a target="_blank" href="https://search.maven.org/artifact/org.junit.platform/junit-platform-engine/1.7.2/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.junit.platform%3Ajunit-platform-engine/1.7.2">Bintray</a></td><td></td></tr>
+<tr><td>junit-platform-launcher</td><td>org.junit.platform</td><td><a target="_blank" href="https://junit.org/junit5/">https://junit.org/junit5/</a></td><td>1.7.2 <a target="_blank" href="https://search.maven.org/artifact/org.junit.platform/junit-platform-launcher/1.7.2/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.junit.platform%3Ajunit-platform-launcher/1.7.2">Bintray</a></td><td></td></tr>
+<tr><td>junit-platform-runner</td><td>org.junit.platform</td><td><a target="_blank" href="https://junit.org/junit5/">https://junit.org/junit5/</a></td><td>1.7.2 <a target="_blank" href="https://search.maven.org/artifact/org.junit.platform/junit-platform-runner/1.7.2/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/org.junit.platform%3Ajunit-platform-runner/1.7.2">Bintray</a></td><td></td></tr>
+<tr><td>katlib</td><td>pw.forst</td><td><a target="_blank" href="https://katlib.forst.pw">https://katlib.forst.pw</a></td><td>2.0.2 <a target="_blank" href="https://search.maven.org/artifact/pw.forst/katlib/2.0.2/bundle">Sonatype</a> <a target="_blank" href="https://bintray.com/bintray/jcenter/pw.forst%3Akatlib/2.0.2">Bintray</a></td><td></td></tr>
+</table>
+<br>
+<H2>Gradle current updates</H2>
+Gradle current updates:
+<P>Gradle: [<a target="_blank" href="https://docs.gradle.org/7.1/release-notes.html">7.1</a> -> <a target="_blank" href="https://docs.gradle.org/7.1.1/release-notes.html">7.1.1</a>]<P>
+<P>For information about Gradle releases click <a target="_blank" href="https://gradle.org/releases/">here</a>.

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BigComplexVector.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.vector</a> &gt; <span class="el_source">BigComplexVector.kt</span></div><h1>BigComplexVector.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.vector
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.extension.sqrt
+import io.github.ltennstedt.finnmath.linear.builder.BigComplexVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.field.BigComplexField
+import io.github.ltennstedt.finnmath.linear.field.Field
+import io.github.ltennstedt.finnmath.number.complex.BigComplex
+import org.apiguardian.api.API
+import java.math.BigDecimal
+import java.math.MathContext
+
+/**
+ * Immutable implementation of a vector whose elements are of type [BigComplex]
+ *
+ * @property entries entries
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [entries] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L43">public class BigComplexVector(</span>
+    entries: Set&lt;VectorEntry&lt;BigComplex&gt;&gt;
+<span class="nc" id="L45">) : AbstractVector&lt;BigComplex, BigComplex, BigComplexVector, BigDecimal, BigComplex&gt;(</span>
+<span class="nc" id="L46">    entries</span>
+) {
+    override val field: Field&lt;BigComplex, BigComplex, BigComplexVector&gt;
+<span class="nc" id="L49">        get() = BigComplexField</span>
+
+    /**
+     * Returns the sum of this and the [summand] based on the [mathContext]
+     *
+     * @throws IllegalArgumentException sizes are not equal
+     * @since 0.0.1
+     */
+    public fun add(summand: BigComplexVector, mathContext: MathContext): BigComplexVector {
+<span class="nc bnc" id="L58" title="All 4 branches missed.">        require(size == summand.size) { &quot;Equal sizes expected but $size!=${summand.size}&quot; }</span>
+<span class="nc" id="L59">        return BigComplexVector(</span>
+<span class="nc" id="L60">            entries.sorted().map { (i, e) -&gt; VectorEntry(i, e.add(summand[i], mathContext)) }.toSet()</span>
+        )
+    }
+
+    /**
+     * Returns the difference of this and the [subtrahend] based on the [mathContext]
+     *
+     * @throws IllegalArgumentException sizes are not equal
+     * @since 0.0.1
+     */
+    public fun subtract(subtrahend: BigComplexVector, mathContext: MathContext): BigComplexVector {
+<span class="nc bnc" id="L71" title="All 4 branches missed.">        require(size == subtrahend.size) { &quot;Equal sizes expected but $size!=${subtrahend.size}&quot; }</span>
+<span class="nc" id="L72">        return BigComplexVector(</span>
+<span class="nc" id="L73">            entries.sorted().map { (i, e) -&gt; VectorEntry(i, e.subtract(subtrahend[i], mathContext)) }.toSet()</span>
+        )
+    }
+
+    /**
+     * Returns the dot product of this and the [other one][other] based on the [mathContext]
+     *
+     * @throws IllegalArgumentException sizes are not equal
+     * @since 0.0.1
+     */
+    public fun dotProduct(other: BigComplexVector, mathContext: MathContext): BigComplex {
+<span class="nc bnc" id="L84" title="All 4 branches missed.">        require(size == other.size) { &quot;Equal sizes expected but $size!=${other.size}&quot; }</span>
+<span class="nc" id="L85">        return entries.sorted()</span>
+<span class="nc" id="L86">            .map { (i, e) -&gt; VectorEntry(i, e.multiply(other[i], mathContext)) }</span>
+<span class="nc" id="L87">            .map { it.element }</span>
+<span class="nc" id="L88">            .reduce { a, b -&gt; a.add(b, mathContext) }</span>
+    }
+
+    /**
+     * Returns the scalar product of this and the [scalar] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L96">    public fun scalarMultiply(scalar: BigComplex, mathContext: MathContext): BigComplexVector = BigComplexVector(</span>
+<span class="nc" id="L97">        entries.sorted().map { (i, e) -&gt; VectorEntry(i, scalar.multiply(e, mathContext)) }.toSet()</span>
+<span class="nc" id="L98">    )</span>
+
+    /**
+     * Returns the negated [AbstractVector] based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L105">    public fun negate(mathContext: MathContext): BigComplexVector = scalarMultiply(BigComplex.MINUS_ONE, mathContext)</span>
+
+    /**
+     * Returns if this is orthogonal to [other] based on the [mathContext]
+     *
+     * @throws IllegalArgumentException sizes are not equal
+     * @since 0.0.1
+     */
+    public fun orthogonalTo(other: BigComplexVector, mathContext: MathContext): Boolean {
+<span class="nc bnc" id="L114" title="All 4 branches missed.">        require(size == other.size) { &quot;Equal sizes expected but $size!=${other.size}&quot; }</span>
+<span class="nc" id="L115">        return entries.map { (i, e) -&gt; e.multiply(other[i], mathContext) }</span>
+<span class="nc" id="L116">            .reduce { a, b -&gt; a.add(b, mathContext) }</span>
+<span class="nc" id="L117">            .equalsByComparing(BigComplex.ZERO)</span>
+    }
+
+<span class="nc" id="L120">    override fun taxicabNorm(): BigDecimal = elements.map { it.abs() }.reduce { a, b -&gt; a + b }</span>
+
+    /**
+     * Returns the taxicab norm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L127">    public fun taxicabNorm(mathContext: MathContext): BigDecimal = elements.map { it.abs(mathContext) }</span>
+<span class="nc" id="L128">        .reduce { a, b -&gt; a.add(b, mathContext) }</span>
+
+<span class="nc" id="L130">    override fun euclideanNormPow2(): BigComplex = this * this</span>
+
+<span class="nc" id="L132">    override fun euclideanNorm(): BigDecimal = elements.map { it.abs().pow(2) }.reduce { a, b -&gt; a + b }.sqrt()</span>
+
+    /**
+     * Returns the euclidean norm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L139">    public fun euclideanNorm(mathContext: MathContext): BigDecimal = elements.map { it.abs(mathContext).pow(2) }</span>
+<span class="nc" id="L140">        .reduce { a, b -&gt; a.add(b, mathContext) }</span>
+<span class="nc" id="L141">        .sqrt(mathContext)</span>
+
+<span class="nc" id="L143">    override fun maxNorm(): BigDecimal = elements.map { it.abs() }.maxOrNull() as BigDecimal</span>
+
+    /**
+     * Returns the maximum norm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun maxNorm(mathContext: MathContext): BigDecimal =
+<span class="nc" id="L151">        elements.map { it.abs(mathContext) }.maxOrNull() as BigDecimal</span>
+
+    public companion object {
+        /**
+         * Returns a [BigComplexVectorJavaBuilder] of [size]
+         *
+         * @since 0.0.1
+         */
+        @JvmStatic
+<span class="nc" id="L160">        public fun builder(size: Int): BigComplexVectorJavaBuilder = BigComplexVectorJavaBuilder(size)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

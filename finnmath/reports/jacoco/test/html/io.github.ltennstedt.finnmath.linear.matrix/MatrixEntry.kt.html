@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MatrixEntry.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.matrix</a> &gt; <span class="el_source">MatrixEntry.kt</span></div><h1>MatrixEntry.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2019 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package io.github.ltennstedt.finnmath.linear.matrix
+
+/**
+ * Immutable implementation of a matrix entry
+ *
+ * @param E type of the element
+ * @property rowIndex row index
+ * @property columnIndex column index
+ * @property element element
+ * @constructor Constructs a [MatrixEntry]
+ * @throws IllegalArgumentException if [rowIndex] &lt; 1
+ * @throws IllegalArgumentException if [columnIndex] &lt; 1
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+<span class="nc" id="L31">public data class MatrixEntry&lt;E : Number&gt;(</span>
+<span class="nc" id="L32">    val rowIndex: Int,</span>
+<span class="nc" id="L33">    val columnIndex: Int,</span>
+<span class="nc" id="L34">    val element: E</span>
+) : Comparable&lt;MatrixEntry&lt;E&gt;&gt; {
+<span class="nc" id="L36">    init {</span>
+<span class="nc bnc" id="L37" title="All 4 branches missed.">        require(rowIndex &gt; 0) { &quot;expected rowIndex &gt; 0 but rowIndex = $rowIndex&quot; }</span>
+<span class="nc bnc" id="L38" title="All 4 branches missed.">        require(columnIndex &gt; 0) { &quot;expected columnIndex &gt; 0 but columnIndex = $columnIndex&quot; }</span>
+<span class="nc" id="L39">    }</span>
+
+<span class="nc" id="L41">    override fun compareTo(other: MatrixEntry&lt;E&gt;): Int = COMPARATOR.compare(this, other)</span>
+
+    public companion object {
+        /**
+         * [Comparator]
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+        public val COMPARATOR: Comparator&lt;MatrixEntry&lt;*&gt;&gt; =
+<span class="nc" id="L51">            compareBy(MatrixEntry&lt;*&gt;::rowIndex, MatrixEntry&lt;*&gt;::columnIndex)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

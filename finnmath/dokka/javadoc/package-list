@@ -1,0 +1,39 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:io.github.ltennstedt.finnmath.linear.matrix/AbstractMatrix.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/matrix/AbstractMatrix.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.matrix/MatrixEntry.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/matrix/MatrixEntry.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/AbstractVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/AbstractVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/BigComplexVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/BigComplexVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/BigDecimalVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/BigDecimalVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/BigGaussianVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/BigGaussianVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/BigIntegerVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/BigIntegerVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/ComplexVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/ComplexVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/DoubleVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/DoubleVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/GaussianVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/GaussianVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/LongVector.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/LongVector.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.linear.vector/VectorEntry.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/linear/vector/VectorEntry.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.complex/AbstractComplex.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/complex/AbstractComplex.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.complex/AbstractPolarForm.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/complex/AbstractPolarForm.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.complex/BigComplex.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/complex/BigComplex.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.complex/BigGaussian.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/complex/BigGaussian.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.complex/BigPolarForm.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/complex/BigPolarForm.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.complex/Complex.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/complex/Complex.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.complex/Gaussian.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/complex/Gaussian.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.complex/PolarForm.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/complex/PolarForm.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.fraction/AbstractFraction.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/fraction/AbstractFraction.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.fraction/BigFraction.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/fraction/BigFraction.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.fraction/Fraction.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/fraction/Fraction.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.range/BigFractionRange.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/range/BigFractionRange.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.range/FinnmathFractionRange.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/range/FinnmathFractionRange.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath.number.range/FractionRange.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/number/range/FractionRange.Companion.html
+$dokka.location:io.github.ltennstedt.finnmath/FinnmathContext.Companion///PointingToDeclaration/io/github/ltennstedt/finnmath/FinnmathContext.Companion.html
+io.github.ltennstedt.finnmath
+io.github.ltennstedt.finnmath.extension
+io.github.ltennstedt.finnmath.linear.builder
+io.github.ltennstedt.finnmath.linear.field
+io.github.ltennstedt.finnmath.linear.matrix
+io.github.ltennstedt.finnmath.linear.vector
+io.github.ltennstedt.finnmath.number.complex
+io.github.ltennstedt.finnmath.number.fraction
+io.github.ltennstedt.finnmath.number.range
+

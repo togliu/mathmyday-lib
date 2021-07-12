@@ -1,0 +1,411 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Gradle project information</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        color: #02303A;
+        padding-top: 20px;
+        padding-bottom: 40px;
+      }
+
+      .container-narrow {
+        margin: 0 auto;
+        max-width: 800px;
+      }
+      .container-narrow > hr {
+        margin: 30px 0;
+      }
+
+      .jumbotron {
+        margin: 20px 0;
+        text-align: center;
+      }
+      
+      h2, h3 {
+        font-size: 24px;
+        color: #1DA2BD;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container-narrow">
+
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+                    <li><a href="https://github.com/ltennstedt/finnmath" id="website-link">Website</a></li>
+          <li><a href="https://github.com/ltennstedt/finnmath.git" id="code-link">Code</a></li>
+          <li><img src="img/elephant-corner.png" height="35" width="35"></li>
+        </ul>
+        <h1>finnmath</h1>
+      </div>
+
+      <hr>
+
+      <div class="jumbotron">
+        <p class="lead">
+        Mathematical library for the JVM and Android written in Kotlin
+        </p>
+      </div>
+
+      <hr>
+      
+      <div>
+          <h2>Project information</h2>
+          <table class="table table-striped">
+              <tr>
+                  <th>Property</th>
+                  <th>Value</th>
+              </tr>
+              <tr>
+                  <td>Group</td>
+                  <td>io.github.ltennstedt.finnmath</td>
+              </tr>
+              <tr>
+                  <td>Version</td>
+                  <td>0.0.1-SNAPSHOT</td>
+              </tr>
+              <tr>
+                  <td>Java source compatibility</td>
+                  <td id="java-source-compatibility">1.8</td>
+              </tr>
+              <tr>
+                  <td>Java target compatibility</td>
+                  <td id="java-target-compatibility">1.8</td>
+              </tr>
+              <tr>
+                  <td>Gradle version</td>
+                  <td>7.1</td>
+              </tr>
+          </table>
+      </div>
+
+      <hr>
+
+      <div>
+          <h2>Plugins</h2>
+          <table class="table table-striped">
+              <tr>
+                  <th>Implementation Class</th>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.plugins.HelpTasksPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.buildinit.plugins.BuildInitPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.buildinit.plugins.WrapperPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.language.base.plugins.LifecycleBasePlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.plugins.BasePlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.plugins.JvmEcosystemPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.plugins.ReportingBasePlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.plugins.JavaBasePlugin$Inject</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.plugins.JavaPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.jetbrains.kotlin.gradle.scripting.internal.ScriptingKotlinGradleSubplugin</td>
+              </tr>
+              <tr>
+                  <td>org.jetbrains.kotlin.gradle.scripting.internal.ScriptingGradleSubplugin</td>
+              </tr>
+              <tr>
+                  <td>org.jetbrains.kotlin.gradle.plugin.KotlinPluginWrapper</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.plugins.JavaLibraryPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.jlleitschuh.gradle.ktlint.KtlintBasePlugin</td>
+              </tr>
+              <tr>
+                  <td>org.jlleitschuh.gradle.ktlint.KtlintIdeaPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.jlleitschuh.gradle.ktlint.KtlintPlugin</td>
+              </tr>
+              <tr>
+                  <td>io.gitlab.arturbosch.detekt.DetektPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.testing.jacoco.plugins.JacocoPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.jetbrains.dokka.gradle.DokkaPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.publish.plugins.PublishingPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.publish.maven.plugins.MavenPublishPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.plugins.ProjectReportsPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.api.reporting.plugins.BuildDashboardPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.plugins.site.SitePlugin</td>
+              </tr>
+              <tr>
+                  <td>com.github.benmanes.gradle.versions.VersionsPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.plugins.ide.idea.IdeaPlugin</td>
+              </tr>
+              <tr>
+                  <td>org.gradle.kotlin.dsl.provider.plugins.KotlinScriptBasePlugin</td>
+              </tr>
+          </table>
+      </div>
+
+      <hr>
+
+      <div>
+          <h2>Tasks</h2>
+          <table class="table table-striped">
+              <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+              </tr>
+              <tr>
+                  <td>assemble</td>
+                  <td>Assembles the outputs of this project.</td>
+              </tr>
+              <tr>
+                  <td>build</td>
+                  <td>Assembles and tests this project.</td>
+              </tr>
+              <tr>
+                  <td>buildDashboard</td>
+                  <td>Generates a dashboard of all the reports produced by this build.</td>
+              </tr>
+              <tr>
+                  <td>buildDependents</td>
+                  <td>Assembles and tests this project and all projects that depend on it.</td>
+              </tr>
+              <tr>
+                  <td>buildEnvironment</td>
+                  <td>Displays all buildscript dependencies declared in project ':finnmath'.</td>
+              </tr>
+              <tr>
+                  <td>buildNeeded</td>
+                  <td>Assembles and tests this project and all projects it depends on.</td>
+              </tr>
+              <tr>
+                  <td>check</td>
+                  <td>Runs all checks.</td>
+              </tr>
+              <tr>
+                  <td>classes</td>
+                  <td>Assembles main classes.</td>
+              </tr>
+              <tr>
+                  <td>clean</td>
+                  <td>Deletes the build directory.</td>
+              </tr>
+              <tr>
+                  <td>cleanIdea</td>
+                  <td>Cleans IDEA project files (IML, IPR)</td>
+              </tr>
+              <tr>
+                  <td>dependencies</td>
+                  <td>Displays all dependencies declared in project ':finnmath'.</td>
+              </tr>
+              <tr>
+                  <td>dependencyInsight</td>
+                  <td>Displays the insight into a specific dependency in project ':finnmath'.</td>
+              </tr>
+              <tr>
+                  <td>dependencyUpdates</td>
+                  <td>Displays the dependency updates for the project.</td>
+              </tr>
+              <tr>
+                  <td>detekt</td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td>detektBaseline</td>
+                  <td>Creates a detekt baseline on the given --baseline path.</td>
+              </tr>
+              <tr>
+                  <td>detektBaselineMain</td>
+                  <td>EXPERIMENTAL: Creates detekt baseline for main classes with type resolution</td>
+              </tr>
+              <tr>
+                  <td>detektBaselineTest</td>
+                  <td>EXPERIMENTAL: Creates detekt baseline for test classes with type resolution</td>
+              </tr>
+              <tr>
+                  <td>detektGenerateConfig</td>
+                  <td>Generate a detekt configuration file inside your project.</td>
+              </tr>
+              <tr>
+                  <td>detektMain</td>
+                  <td>EXPERIMENTAL: Run detekt analysis for main classes with type resolution</td>
+              </tr>
+              <tr>
+                  <td>detektTest</td>
+                  <td>EXPERIMENTAL: Run detekt analysis for test classes with type resolution</td>
+              </tr>
+              <tr>
+                  <td>dokkaGfm</td>
+                  <td>Generates documentation in GitHub flavored markdown format</td>
+              </tr>
+              <tr>
+                  <td>dokkaGfmPartial</td>
+                  <td>Generates documentation in GitHub flavored markdown format</td>
+              </tr>
+              <tr>
+                  <td>dokkaHtml</td>
+                  <td>Generates documentation in 'html' format</td>
+              </tr>
+              <tr>
+                  <td>dokkaHtmlPartial</td>
+                  <td>Generates documentation in 'html' format</td>
+              </tr>
+              <tr>
+                  <td>dokkaJavadoc</td>
+                  <td>Generates documentation in 'javadoc' format</td>
+              </tr>
+              <tr>
+                  <td>dokkaJavadocPartial</td>
+                  <td>Generates documentation in 'javadoc' format</td>
+              </tr>
+              <tr>
+                  <td>dokkaJekyll</td>
+                  <td>Generates documentation in Jekyll flavored markdown format</td>
+              </tr>
+              <tr>
+                  <td>dokkaJekyllPartial</td>
+                  <td>Generates documentation in Jekyll flavored markdown format</td>
+              </tr>
+              <tr>
+                  <td>generateMetadataFileForDefaultPublication</td>
+                  <td>Generates the Gradle metadata file for publication 'default'.</td>
+              </tr>
+              <tr>
+                  <td>generatePomFileForDefaultPublication</td>
+                  <td>Generates the Maven POM file for publication 'default'.</td>
+              </tr>
+              <tr>
+                  <td>generateSiteHtml</td>
+                  <td>Generates a web page containing information about the project.</td>
+              </tr>
+              <tr>
+                  <td>help</td>
+                  <td>Displays a help message.</td>
+              </tr>
+              <tr>
+                  <td>idea</td>
+                  <td>Generates IDEA project files (IML, IPR, IWS)</td>
+              </tr>
+              <tr>
+                  <td>jacocoTestCoverageVerification</td>
+                  <td>Verifies code coverage metrics based on specified rules for the test task.</td>
+              </tr>
+              <tr>
+                  <td>jacocoTestReport</td>
+                  <td>Generates code coverage report for the test task.</td>
+              </tr>
+              <tr>
+                  <td>jar</td>
+                  <td>Assembles a jar archive containing the main classes.</td>
+              </tr>
+              <tr>
+                  <td>javaToolchains</td>
+                  <td>Displays the detected java toolchains.</td>
+              </tr>
+              <tr>
+                  <td>javadoc</td>
+                  <td>Generates Javadoc API documentation for the main source code.</td>
+              </tr>
+              <tr>
+                  <td>kotlinDslAccessorsReport</td>
+                  <td>Prints the Kotlin code for accessing the currently available project extensions and conventions.</td>
+              </tr>
+              <tr>
+                  <td>ktlintCheck</td>
+                  <td>Runs ktlint on all kotlin sources in this project.</td>
+              </tr>
+              <tr>
+                  <td>ktlintFormat</td>
+                  <td>Runs the ktlint formatter on all kotlin sources in this project.</td>
+              </tr>
+              <tr>
+                  <td>ktlintGenerateBaseline</td>
+                  <td>Generates KtLint baseline file</td>
+              </tr>
+              <tr>
+                  <td>outgoingVariants</td>
+                  <td>Displays the outgoing variants of project ':finnmath'.</td>
+              </tr>
+              <tr>
+                  <td>projectReport</td>
+                  <td>Generates a report about your project.</td>
+              </tr>
+              <tr>
+                  <td>projects</td>
+                  <td>Displays the sub-projects of project ':finnmath'.</td>
+              </tr>
+              <tr>
+                  <td>properties</td>
+                  <td>Displays the properties of project ':finnmath'.</td>
+              </tr>
+              <tr>
+                  <td>publish</td>
+                  <td>Publishes all publications produced by this project.</td>
+              </tr>
+              <tr>
+                  <td>publishDefaultPublicationToMavenLocal</td>
+                  <td>Publishes Maven publication 'default' to the local Maven repository.</td>
+              </tr>
+              <tr>
+                  <td>publishToMavenLocal</td>
+                  <td>Publishes all Maven publications produced by this project to the local Maven cache.</td>
+              </tr>
+              <tr>
+                  <td>tasks</td>
+                  <td>Displays the tasks runnable from project ':finnmath'.</td>
+              </tr>
+              <tr>
+                  <td>test</td>
+                  <td>Runs the unit tests.</td>
+              </tr>
+              <tr>
+                  <td>testClasses</td>
+                  <td>Assembles test classes.</td>
+              </tr>
+          </table>
+      </div>
+      
+      <hr>
+
+      <div class="footer">
+        <div class="pull-right">Generated: 2021-07-12 16:03:01</div>
+      </div>
+    </div>
+
+  </body>
+</html>

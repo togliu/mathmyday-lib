@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BigGaussianVector.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.vector</a> &gt; <span class="el_source">BigGaussianVector.kt</span></div><h1>BigGaussianVector.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.vector
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import io.github.ltennstedt.finnmath.FinnmathContext
+import io.github.ltennstedt.finnmath.extension.sqrt
+import io.github.ltennstedt.finnmath.linear.builder.BigGaussianVectorJavaBuilder
+import io.github.ltennstedt.finnmath.linear.builder.bigComplexVector
+import io.github.ltennstedt.finnmath.linear.field.BigGaussianField
+import io.github.ltennstedt.finnmath.linear.field.Field
+import io.github.ltennstedt.finnmath.number.complex.BigComplex
+import io.github.ltennstedt.finnmath.number.complex.BigGaussian
+import org.apiguardian.api.API
+import java.math.BigDecimal
+import java.math.MathContext
+
+/**
+ * Immutable implementation of a vector whose elements are of type [BigGaussian]
+ *
+ * @property entries entries
+ * @constructor Constructs an BigComplexVector
+ * @throws IllegalArgumentException if [entries] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L46">public class BigGaussianVector(</span>
+    entries: Set&lt;VectorEntry&lt;BigGaussian&gt;&gt;
+<span class="nc" id="L48">) : AbstractVector&lt;BigGaussian, BigComplex, BigGaussianVector, BigDecimal, BigGaussian&gt;(</span>
+<span class="nc" id="L49">    entries</span>
+) {
+    override val field: Field&lt;BigGaussian, BigComplex, BigGaussianVector&gt;
+<span class="nc" id="L52">        get() = BigGaussianField</span>
+
+<span class="nc" id="L54">    override fun taxicabNorm(): BigDecimal = elements.map(BigGaussian::abs).reduce(BigDecimal::add)</span>
+
+    /**
+     * Returns the taxicab norm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L61">    public fun taxicabNorm(mathContext: MathContext): BigDecimal = elements.map { it.abs(mathContext) }</span>
+<span class="nc" id="L62">        .reduce { a, b -&gt; a.add(b, mathContext) }</span>
+
+    /**
+     * Returns the taxicab norm based on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L69">    public fun taxicabNorm(context: FinnmathContext): BigDecimal = elements.map { it.abs(context) }</span>
+<span class="nc" id="L70">        .reduce { a, b -&gt; a.add(b, context.mathContext) }</span>
+
+<span class="nc" id="L72">    override fun euclideanNormPow2(): BigGaussian = this * this</span>
+
+    override fun euclideanNorm(): BigDecimal =
+<span class="nc" id="L75">        elements.map { it.abs().pow(2) }.reduce { a, b -&gt; a + b }.sqrt()</span>
+
+    /**
+     * Returns the euclidean norm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L82">    public fun euclideanNorm(mathContext: MathContext): BigDecimal = elements.map { it.abs(mathContext).pow(2) }</span>
+<span class="nc" id="L83">        .reduce { a, b -&gt; a.add(b, mathContext) }</span>
+<span class="nc" id="L84">        .sqrt(mathContext)</span>
+
+    /**
+     * Returns the euclidean norm based on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L91">    public fun euclideanNorm(context: FinnmathContext): BigDecimal = elements.map { it.abs(context).pow(2) }</span>
+<span class="nc" id="L92">        .reduce { a, b -&gt; a.add(b, context.mathContext) }</span>
+<span class="nc" id="L93">        .sqrt(context.mathContext)</span>
+
+<span class="nc" id="L95">    override fun maxNorm(): BigDecimal = elements.map(BigGaussian::abs).maxOrNull() as BigDecimal</span>
+
+    /**
+     * Returns the maximum norm based on the [mathContext]
+     *
+     * @since 0.0.1
+     */
+    public fun maxNorm(mathContext: MathContext): BigDecimal =
+<span class="nc" id="L103">        elements.map { it.abs(mathContext) }.maxOrNull() as BigDecimal</span>
+
+    /**
+     * Returns the maximum norm based on the [context]
+     *
+     * @since 0.0.1
+     */
+    public fun maxNorm(context: FinnmathContext): BigDecimal =
+<span class="nc" id="L111">        elements.map { it.abs(context) }.maxOrNull() as BigDecimal</span>
+
+    /**
+     * Returns this as [BigComplexVector]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L118">    public fun toBigComplexVector(): BigComplexVector = bigComplexVector {</span>
+<span class="nc" id="L119">        computationOfAbsent = { this@BigGaussianVector[it].toBigComplex() }</span>
+<span class="nc" id="L120">    }</span>
+
+    /**
+     * Returns this as [BigComplexVector] vased on the [context]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L127">    public fun toBigComplexVector(context: FinnmathContext): BigComplexVector = bigComplexVector {</span>
+<span class="nc" id="L128">        computationOfAbsent = { this@BigGaussianVector[it].toBigComplex(context) }</span>
+<span class="nc" id="L129">    }</span>
+
+    public companion object {
+        /**
+         * Returns a [BigGaussianVectorJavaBuilder] of [size]
+         *
+         * @since 0.0.1
+         */
+        @JvmStatic
+<span class="nc" id="L138">        public fun builder(size: Int): BigGaussianVectorJavaBuilder = BigGaussianVectorJavaBuilder(size)</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

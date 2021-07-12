@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractVector.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.vector</a> &gt; <span class="el_source">AbstractVector.kt</span></div><h1>AbstractVector.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2017 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.vector
+
+import com.google.common.annotations.Beta
+import com.google.common.base.MoreObjects
+import io.github.ltennstedt.finnmath.linear.field.Field
+import org.apiguardian.api.API
+import java.io.Serializable
+import java.util.Objects
+
+/**
+ * Base class for vectors
+ *
+ * @param E type of elements
+ * @param Q type of quotient of elements
+ * @param V type of vector
+ * @param N type of taxicab and max norm
+ * @param P type of inner product
+ * @property entries entries
+ * @constructor Constructs an AbstractVector
+ * @throws IllegalArgumentException if [entries] is empty
+ * @throws IllegalArgumentException if [indices] `!= expectedIndices`
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+<span class="fc" id="L41">@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)</span>
+@Beta
+<span class="fc" id="L43">public abstract class AbstractVector&lt;E : Number, Q : Number, V : AbstractVector&lt;E, Q, V, N, P&gt;, N : Number, P&gt;(</span>
+<span class="fc" id="L44">    public val entries: Set&lt;VectorEntry&lt;E&gt;&gt;</span>
+) : Serializable {
+    /**
+     * Indices
+     *
+     *  @since 0.0.1
+     */
+<span class="fc" id="L51">    public val indices: Set&lt;Int&gt; by lazy { entries.map { it.index }.toSortedSet() }</span>
+
+    /**
+     * Elements
+     *
+     * @since 0.0.1
+     */
+<span class="pc" id="L58">    public val elements: List&lt;E&gt; by lazy { entries.map { it.element } }</span>
+
+    /**
+     * Size
+     *
+     * @since 0.0.1
+     */
+    public val size: Int
+<span class="fc" id="L66">        get() = entries.size</span>
+
+    /**
+     * Field
+     *
+     * @since 0.0.1
+     */
+    protected abstract val field: Field&lt;E, Q, V&gt;
+
+<span class="fc" id="L75">    init {</span>
+<span class="pc bpc" id="L76" title="2 of 4 branches missed.">        require(entries.isNotEmpty()) { &quot;indexToElement expected not to be empty but map = $entries&quot; }</span>
+<span class="fc" id="L77">        val expectedIndices = (1..size).toSet()</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        require(indices == expectedIndices) {</span>
+<span class="nc" id="L79">            &quot;expected indices == expectedIndices but $indices != $expectedIndices&quot;</span>
+        }
+<span class="fc" id="L81">    }</span>
+
+    /**
+     * Returns the sum of this and the [summand]
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+    public fun add(summand: V): V {
+<span class="nc bnc" id="L90" title="All 4 branches missed.">        require(size == summand.size) { &quot;Equal sizes expected but $size!=${summand.size}&quot; }</span>
+<span class="nc" id="L91">        return field.vectorConstructor(entries.map { (i, e) -&gt; VectorEntry(i, field.addition(e, summand[i])) }.toSet())</span>
+    }
+
+    /**
+     * Returns the difference of this and the [subtrahend]
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+    public fun subtract(subtrahend: V): V {
+<span class="nc bnc" id="L101" title="All 4 branches missed.">        require(size == subtrahend.size) { &quot;Equal sizes expected but $size!=${subtrahend.size}&quot; }</span>
+<span class="nc" id="L102">        return field.vectorConstructor(</span>
+<span class="nc" id="L103">            entries.map { (i, e) -&gt; VectorEntry(i, field.subtraction(e, subtrahend[i])) }.toSet()</span>
+        )
+    }
+
+    /**
+     * Returns the dot product of this and the [other one][other]
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+    public fun dotProduct(other: V): E {
+<span class="nc bnc" id="L114" title="All 4 branches missed.">        require(size == other.size) { &quot;Equal sizes expected but $size!=${other.size}&quot; }</span>
+<span class="nc" id="L115">        return entries.map { (i, e) -&gt; field.multiplication(e, other[i]) }.reduce(field.addition)</span>
+    }
+
+    /**
+     * Returns the scalar product of this and the [scalar]
+     *
+     * @since 0.0.1
+     */
+    public fun scalarMultiply(scalar: E): V =
+<span class="nc" id="L124">        field.vectorConstructor(entries.map { (i, e) -&gt; VectorEntry(i, field.multiplication(scalar, e)) }.toSet())</span>
+
+    /**
+     * Returns the negated [AbstractVector]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L131">    public fun negate(): V = scalarMultiply(field.negation(field.one))</span>
+
+    /**
+     * Returns if this is orthogonal to [other]
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+    public fun orthogonalTo(other: V): Boolean {
+<span class="nc bnc" id="L140" title="All 4 branches missed.">        require(size == other.size) { &quot;Equal sizes expected but $size!=${other.size}&quot; }</span>
+<span class="nc" id="L141">        return field.equalityByComparing(this * other, field.zero)</span>
+    }
+
+    /**
+     * Returns the taxicab norm
+     *
+     * @since 0.0.1
+     */
+    public abstract fun taxicabNorm(): N
+
+    /**
+     * Returns the square of the euclidean norm
+     *
+     * @since 0.0.1
+     */
+    public abstract fun euclideanNormPow2(): P
+
+    /**
+     * Returns the euclidean norm
+     *
+     * @since 0.0.1
+     */
+    public abstract fun euclideanNorm(): N
+
+    /**
+     * Returns the maximum norm
+     *
+     * @since 0.0.1
+     */
+    public abstract fun maxNorm(): N
+
+    /**
+     * Returns the taxicab distance to [other]
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+    public fun taxicabDistance(other: V): N {
+<span class="nc bnc" id="L179" title="All 4 branches missed.">        require(size == other.size) { &quot;Equal sizes expected but $size != ${other.size}&quot; }</span>
+<span class="nc" id="L180">        return (this - other).taxicabNorm()</span>
+    }
+
+    /**
+     * Returns the euclidean distance to [other]
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+    public fun euclideanDistance(other: V): N {
+<span class="nc bnc" id="L190" title="All 4 branches missed.">        require(size == other.size) { &quot;Equal sizes expected but $size != ${other.size}&quot; }</span>
+<span class="nc" id="L191">        return (this - other).euclideanNorm()</span>
+    }
+
+    /**
+     * Returns the maximum distance to [other]
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+    public fun maxDistance(other: V): N {
+<span class="nc bnc" id="L201" title="All 4 branches missed.">        require(size == other.size) { &quot;Equal sizes expected but $size != ${other.size}&quot; }</span>
+<span class="nc" id="L202">        return (this - other).maxNorm()</span>
+    }
+
+    /**
+     * Returns the element at the [index]
+     *
+     * @throws IllegalArgumentException if [index] !in 1..[size]
+     * @since 0.0.1
+     */
+    public operator fun get(index: Int): E {
+<span class="pc bpc" id="L212" title="3 of 6 branches missed.">        require(index in 1..size) { &quot;index in 1..$size expected but index = $index&quot; }</span>
+<span class="fc" id="L213">        return entry(index).element</span>
+    }
+
+    /**
+     * Returns the [VectorEntry] at the [index]
+     *
+     * @throws IllegalArgumentException if [index] !in 1..[size]
+     * @since 0.0.1
+     */
+    public fun entry(index: Int): VectorEntry&lt;E&gt; {
+<span class="pc bpc" id="L223" title="3 of 6 branches missed.">        require(index in 1..size) { &quot;index in 1..$size expected but index = $index&quot; }</span>
+<span class="fc bfc" id="L224" title="All 4 branches covered.">        return entries.single { it.index == index }</span>
+    }
+
+<span class="nc" id="L227">    public operator fun plus(summand: V): V = add(summand)</span>
+
+<span class="nc" id="L229">    public operator fun minus(subtrahend: V): V = subtract(subtrahend)</span>
+
+<span class="nc" id="L231">    public operator fun times(other: V): E = dotProduct(other)</span>
+
+<span class="nc" id="L233">    public operator fun times(scalar: E): V = scalarMultiply(scalar)</span>
+
+    @Suppress(&quot;UNCHECKED_CAST&quot;)
+<span class="nc" id="L236">    public operator fun unaryPlus(): V = this as V</span>
+
+<span class="nc" id="L238">    public operator fun unaryMinus(): V = negate()</span>
+
+    /**
+     * Returns if [element] is contained in this
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L245">    public operator fun contains(element: E): Boolean = element in elements</span>
+
+    /**
+     * Returns if this is equal to [other] by comparing fields
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+    public fun equalsByComparing(other: V): Boolean {
+<span class="nc bnc" id="L254" title="All 4 branches missed.">        require(size == other.size) { &quot;Equal sizes expected but $size != ${other.size}&quot; }</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        return entries.all { (i, e) -&gt; field.equalityByComparing(e, other[i]) }</span>
+    }
+
+    /**
+     * Returns if this is not equal to [other] by comparing fields
+     *
+     * @throws IllegalArgumentException if sizes are not equal
+     * @since 0.0.1
+     */
+<span class="nc bnc" id="L264" title="All 2 branches missed.">    public fun doesNotEqualByComparing(other: V): Boolean = !equalsByComparing(other)</span>
+
+<span class="nc" id="L266">    override fun hashCode(): Int = Objects.hash(entries)</span>
+
+    override fun equals(other: Any?): Boolean {
+<span class="nc bnc" id="L269" title="All 2 branches missed.">        if (this === other) return true</span>
+<span class="nc bnc" id="L270" title="All 2 branches missed.">        if (other !is AbstractVector&lt;*, *, *, *, *&gt;) return false</span>
+<span class="nc" id="L271">        return entries == other.entries</span>
+    }
+
+<span class="nc" id="L274">    override fun toString(): String = MoreObjects.toStringHelper(this).add(&quot;entries&quot;, entries).toString()</span>
+
+    public companion object {
+        private const val serialVersionUID = 1L
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

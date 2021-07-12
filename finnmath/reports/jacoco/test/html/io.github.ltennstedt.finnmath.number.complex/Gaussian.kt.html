@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Gaussian.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.number.complex</a> &gt; <span class="el_source">Gaussian.kt</span></div><h1>Gaussian.kt</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.number.complex
+
+import com.google.common.annotations.Beta
+import com.google.errorprone.annotations.Immutable
+import org.apiguardian.api.API
+import java.math.MathContext
+import kotlin.math.acos
+import kotlin.math.pow
+import kotlin.math.sqrt
+
+/**
+ * Immutable implementation of a gaussian number which uses [Long] as type for its real and imaginary part
+ *
+ * @property real real part
+ * @property imaginary imaginary part
+ * @constructor Constructs a Gaussian
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+@Immutable
+<span class="nc" id="L39">public class Gaussian @JvmOverloads constructor(</span>
+    real: Long,
+<span class="nc" id="L41">    imaginary: Long = 0L</span>
+<span class="nc" id="L42">) : AbstractComplex&lt;Long, Gaussian, Complex, Double, PolarForm&gt;(</span>
+<span class="nc" id="L43">    real,</span>
+<span class="nc" id="L44">    imaginary</span>
+) {
+<span class="nc" id="L46">    override val isUnit: Boolean by lazy { doesNotEqualByComparing(ZERO) }</span>
+
+    /**
+     * Constructs a Gaussian from [real] and [imaginary]
+     *
+     * Default argument for [imaginary] is `0`
+     *
+     * @since 0.0.1
+     */
+    @JvmOverloads
+<span class="nc" id="L56">    public constructor(real: Int, imaginary: Int = 0) : this(real.toLong(), imaginary.toLong())</span>
+
+    override fun add(summand: Gaussian): Gaussian =
+<span class="nc" id="L59">        Gaussian(real + summand.real, imaginary + summand.imaginary)</span>
+
+<span class="nc" id="L61">    override fun subtract(subtrahend: Gaussian): Gaussian = Gaussian(</span>
+<span class="nc" id="L62">        real - subtrahend.real,</span>
+<span class="nc" id="L63">        imaginary - subtrahend.imaginary</span>
+<span class="nc" id="L64">    )</span>
+
+<span class="nc" id="L66">    override fun multiply(factor: Gaussian): Gaussian = Gaussian(</span>
+<span class="nc" id="L67">        real * factor.real - imaginary * factor.imaginary,</span>
+<span class="nc" id="L68">        real * factor.imaginary + imaginary * factor.real</span>
+<span class="nc" id="L69">    )</span>
+
+    override fun divide(divisor: Gaussian): Complex {
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        require(divisor.isUnit) { &quot;divisor expected to be a unit but divisor = $divisor&quot; }</span>
+<span class="nc" id="L73">        val den = divisor.real.toDouble().pow(2) + divisor.imaginary.toDouble().pow(2)</span>
+<span class="nc" id="L74">        return Complex(</span>
+<span class="nc" id="L75">            (real * divisor.real + imaginary * divisor.imaginary).toDouble() / den,</span>
+<span class="nc" id="L76">            (imaginary * divisor.real - real * divisor.imaginary).toDouble() / den</span>
+        )
+    }
+
+<span class="nc" id="L80">    override fun pow(exponent: Int): Complex = when {</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        exponent &lt; 0 -&gt; (toComplex() * pow(-exponent - 1)).invert()</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        exponent == 0 -&gt; Complex.ONE</span>
+<span class="nc" id="L83">        else -&gt; toComplex() * pow(exponent - 1)</span>
+<span class="nc" id="L84">    }</span>
+
+<span class="nc" id="L86">    override fun negate(): Gaussian = Gaussian(-real, -imaginary)</span>
+
+    override fun invert(): Complex {
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        check(isUnit) { &quot;this expected to be a unit but this = $this&quot; }</span>
+<span class="nc" id="L90">        return ONE / this</span>
+    }
+
+<span class="nc" id="L93">    override fun absPow2(): Long = real * real + imaginary * imaginary</span>
+
+<span class="nc" id="L95">    override fun abs(): Double = sqrt(absPow2().toDouble())</span>
+
+<span class="nc" id="L97">    override fun conjugate(): Gaussian = Gaussian(real, -imaginary)</span>
+
+    override fun argument(): Double {
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L101">        val value = real.toDouble() / abs()</span>
+<span class="nc" id="L102">        val acos = acos(value)</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        return if (imaginary &lt; 0L) -acos else acos</span>
+    }
+
+    override fun toPolarForm(): PolarForm {
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L108">        return PolarForm(abs(), argument())</span>
+    }
+
+    /**
+     * Returns the [BigPolarForm]
+     *
+     * @throws IllegalStateException if this is equal to 0 by comparing
+     * @since 0.0.1
+     */
+    public fun toBigPolarForm(): BigPolarForm {
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L119">        return BigPolarForm(abs().toBigDecimal(), argument().toBigDecimal())</span>
+    }
+
+    /**
+     * Returns the [BigPolarForm] based on the [mathContext]
+     *
+     * @throws IllegalStateException if this is equal to 0 by comparing
+     * @since 0.0.1
+     */
+    public fun toBigPolarForm(mathContext: MathContext): BigPolarForm {
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        check(doesNotEqualByComparing(ZERO)) { &quot;this != 0 expected but this = $this&quot; }</span>
+<span class="nc" id="L130">        return BigPolarForm(abs().toBigDecimal(mathContext), argument().toBigDecimal(mathContext))</span>
+    }
+
+    /**
+     * Returns this as [Complex]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L138">    public fun toComplex(): Complex = Complex(real, imaginary)</span>
+
+    /**
+     * Returns this as [BigGaussian]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L145">    public fun toBigGaussian(): BigGaussian = BigGaussian(real, imaginary)</span>
+
+    /**
+     * Returns this as [BigComplex]
+     *
+     * @since 0.0.1
+     */
+<span class="nc" id="L152">    public fun toBigComplex(): BigComplex = BigComplex(real, imaginary)</span>
+
+    override fun equalsByComparing(other: Gaussian): Boolean =
+<span class="nc bnc" id="L155" title="All 4 branches missed.">        real.compareTo(other.real) == 0 &amp;&amp; imaginary.compareTo(other.imaginary) == 0</span>
+
+    public companion object {
+        /**
+         * `0` as Gaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L164">        public val ZERO: Gaussian = Gaussian(0L)</span>
+
+        /**
+         * `1` as Gaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L172">        public val ONE: Gaussian = Gaussian(1L)</span>
+
+        /**
+         * `i` as Gaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L180">        public val IMAGINARY: Gaussian = Gaussian(0L, 1L)</span>
+
+        /**
+         * `-1` as Gaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L188">        public val MINUS_ONE: Gaussian = -ONE</span>
+
+        /**
+         * `-i` as Gaussian
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L196">        public val MINUS_IMAGINARY: Gaussian = -IMAGINARY</span>
+
+        /**
+         * Units
+         *
+         * @since 0.0.1
+         */
+        @JvmField
+<span class="nc" id="L204">        public val UNITS: Set&lt;Gaussian&gt; = setOf(ONE, IMAGINARY, MINUS_ONE, MINUS_IMAGINARY)</span>
+    }
+<span class="nc" id="L206">}</span>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractVectorJavaBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">finnmath</a> &gt; <a href="index.source.html" class="el_package">io.github.ltennstedt.finnmath.linear.builder</a> &gt; <span class="el_source">AbstractVectorJavaBuilder.java</span></div><h1>AbstractVectorJavaBuilder.java</h1><pre class="source lang-java linenums">/*
+ * Copyright 2021 Lars Tennstedt
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package io.github.ltennstedt.finnmath.linear.builder;
+
+import static com.google.common.base.Preconditions.checkArgument;
+import static java.util.Objects.requireNonNull;
+
+import com.google.common.annotations.Beta;
+import com.google.common.base.MoreObjects;
+import io.github.ltennstedt.finnmath.linear.field.Field;
+import io.github.ltennstedt.finnmath.linear.vector.AbstractVector;
+import io.github.ltennstedt.finnmath.linear.vector.VectorEntry;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.IntFunction;
+import java.util.stream.IntStream;
+import org.apiguardian.api.API;
+import org.jetbrains.annotations.NotNull;
+
+/**
+ * Base class for Java-style vector builders
+ *
+ * @param &lt;E&gt; type of elements
+ * @param &lt;Q&gt; type of quotient of elements
+ * @param &lt;V&gt; type of vector
+ * @param &lt;B&gt; type of builder
+ * @author Lars Tennstedt
+ * @since 0.0.1
+ */
+@API(status = API.Status.EXPERIMENTAL, since = &quot;0.0.1&quot;)
+@Beta
+public abstract class AbstractVectorJavaBuilder&lt;
+    E extends Number,
+    Q extends Number,
+    V extends AbstractVector&lt;E, Q, V, ?, ?&gt;,
+    B extends AbstractVectorJavaBuilder&lt;E, Q, V, B&gt;
+    &gt; {
+<span class="fc" id="L52">    private final @NotNull Set&lt;VectorEntry&lt;E&gt;&gt; entries = new HashSet&lt;&gt;();</span>
+    private final int size;
+<span class="pc" id="L54">    private @NotNull IntFunction&lt;E&gt; computationOfAbsent = i -&gt; getField().getZero();</span>
+
+    /**
+     * Constructor
+     *
+     * @param size size
+     * @throws IllegalArgumentException if {@code size &lt; 1}
+     * @since 0.0.1
+     */
+    @SuppressWarnings(&quot;java:S1192&quot;)
+<span class="fc" id="L64">    protected AbstractVectorJavaBuilder(final int size) {</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        checkArgument(size &gt; 0, &quot;size &gt; 0 expected but size = %s&quot;, size);</span>
+<span class="nc" id="L66">        this.size = size;</span>
+<span class="nc" id="L67">    }</span>
+
+    /**
+     * Puts the element at the index and returns this
+     *
+     * @param index index
+     * @param element element
+     * @return this
+     * @throws IllegalArgumentException if {@code indey &lt; 1 || index &gt; size}
+     * @throws NullPointerException if {@code element == null}
+     */
+    public final @NotNull B set(final int index, final @NotNull E element) {
+<span class="nc bnc" id="L79" title="All 4 branches missed.">        checkArgument(0 &lt; index &amp;&amp; index &lt;= size, &quot;0 &lt; index &lt;= size expected but index = %s&quot;, index);</span>
+<span class="nc" id="L80">        requireNonNull(element, &quot;element&quot;);</span>
+<span class="nc" id="L81">        entries.add(new VectorEntry&lt;&gt;(index, element));</span>
+<span class="nc" id="L82">        @SuppressWarnings(&quot;unchecked&quot;) final B casted = (B) this;</span>
+<span class="nc" id="L83">        return casted;</span>
+    }
+
+    /**
+     * Puts the entry and returns this
+     *
+     * @param entry {@link VectorEntry}
+     * @return this
+     * @throws NullPointerException if {@code entry == null}
+     * @throws IllegalArgumentException if {@code entry.index &lt; 1 || entry.index &gt; size}
+     * @since 0.0.1
+     */
+    public final @NotNull B set(final @NotNull VectorEntry&lt;E&gt; entry) {
+<span class="nc" id="L96">        requireNonNull(entry, &quot;entry&quot;);</span>
+<span class="nc" id="L97">        checkArgument(</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            0 &lt; entry.getIndex() &amp;&amp; entry.getIndex() &lt;= size,</span>
+<span class="nc" id="L99">            &quot;0 &lt; entry.index &lt;= size expected but index = %s&quot;, entry.getIndex());</span>
+<span class="nc" id="L100">        entries.add(entry);</span>
+<span class="nc" id="L101">        @SuppressWarnings(&quot;unchecked&quot;) final B casted = (B) this;</span>
+<span class="nc" id="L102">        return casted;</span>
+    }
+
+    /**
+     * Computes elements if absent based on the function, puts them and returns this
+     *
+     * @param computationOfAbsent {@link IntFunction}
+     * @return this
+     * @throws NullPointerException if {@code function == null}
+     * @since 0.0.1
+     */
+    public final @NotNull B computationOfAbsent(final @NotNull IntFunction&lt;E&gt; computationOfAbsent) {
+<span class="nc" id="L114">        this.computationOfAbsent = requireNonNull(computationOfAbsent, &quot;computationOfAbsent&quot;);</span>
+<span class="nc" id="L115">        @SuppressWarnings(&quot;unchecked&quot;) final B casted = (B) this;</span>
+<span class="nc" id="L116">        return casted;</span>
+    }
+
+    /**
+     * Builds and returns the vector
+     *
+     * @return vector
+     * @since 0.0.1
+     */
+    public final @NotNull V build() {
+<span class="nc" id="L126">        IntStream.rangeClosed(1, size).forEach(i -&gt; {</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">            if (entries.stream().noneMatch(e -&gt; e.getIndex() == i)) {</span>
+<span class="nc" id="L128">                entries.add(new VectorEntry&lt;&gt;(i, computationOfAbsent.apply(i)));</span>
+            }
+<span class="nc" id="L130">        });</span>
+<span class="nc" id="L131">        return getField().getVectorConstructor().invoke(entries);</span>
+    }
+
+    /**
+     * Field
+     *
+     * @return field
+     * @since 0.0.1
+     */
+    protected abstract @NotNull Field&lt;E, Q, V&gt; getField();
+
+    @Override
+    public final @NotNull String toString() {
+<span class="nc" id="L144">        return MoreObjects.toStringHelper(this)</span>
+<span class="nc" id="L145">            .add(&quot;size&quot;, size)</span>
+<span class="nc" id="L146">            .add(&quot;entries&quot;, entries)</span>
+<span class="nc" id="L147">            .add(&quot;computationOfAbsent&quot;, computationOfAbsent)</span>
+<span class="nc" id="L148">            .toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

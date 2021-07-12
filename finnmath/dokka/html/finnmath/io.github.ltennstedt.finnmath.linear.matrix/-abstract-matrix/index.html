@@ -1,0 +1,762 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AbstractMatrix</title>
+<link href="../../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="finnmath::io.github.ltennstedt.finnmath.linear.matrix/AbstractMatrix///PointingToDeclaration//-1220168654">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">finnmath</a>/<a href="../index.html">io.github.ltennstedt.finnmath.linear.matrix</a>/<a href="index.html">AbstractMatrix</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Abstract</span><wbr></wbr><span>Matrix</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract class <a href="index.html">AbstractMatrix</a>&lt;<a href="index.html">E</a> : <span data-unresolved-link="kotlin/Number///PointingToDeclaration/">Number</span>, <a href="index.html">Q</a> : <span data-unresolved-link="kotlin/Number///PointingToDeclaration/">Number</span>, <a href="index.html">V</a> : <a href="../../io.github.ltennstedt.finnmath.linear.vector/-abstract-vector/index.html">AbstractVector</a>&lt;<a href="index.html">E</a>, <a href="index.html">Q</a>, <a href="index.html">V</a>, *, *&gt;, <a href="index.html">M</a> : <a href="index.html">AbstractMatrix</a>&lt;<a href="index.html">E</a>, <a href="index.html">Q</a>, <a href="index.html">V</a>, <a href="index.html">M</a>, <a href="index.html">N</a>, <a href="index.html">B</a>&gt;, <a href="index.html">N</a>, <a href="index.html">B</a>&gt;(entries: <span data-unresolved-link="kotlin.collections/Set///PointingToDeclaration/">Set</span>&lt;<a href="../-matrix-entry/index.html">MatrixEntry</a>&lt;<a href="index.html">E</a>&gt;&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Base class for matrices</p><h4 class="">Author</h4><p class="paragraph">Lars Tennstedt</p><h4 class="">Since</h4><p class="paragraph">0.0.1</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Parameters">Parameters</button><button class="section-tab" data-togglable="Throws">Throws</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Parameters</h2>
+              <div data-togglable="Parameters">
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="Parameters"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div data-togglable="Parameters"><div class="table" data-togglable="Parameters"><div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">E</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">type of elements</p></div></div></div></div></div><div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">Q</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">type of the quotient</p></div></div></div></div></div><div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">V</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">type of the vector</p></div></div></div></div></div><div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">M</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">type of the matrix</p></div></div></div></div></div><div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">N</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">type of the maximum absolute column sum norm, maximum absolute row sum norm and the maximum norm</p></div></div></div></div></div><div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex">B</span></div><div><div class="title"><div data-togglable="Parameters"><p class="paragraph">type of the square of the norms</p></div></div></div></div></div></div></div></div></div>
+              </div>
+              <h4 class="">Throws</h4>
+              <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="table"><div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><span data-unresolved-link="kotlin/IllegalArgumentException///PointingToDeclaration/">kotlin.IllegalArgumentException</span></span></div><div><div class="title"><p class="paragraph">if one value of <a href="entries.html">entries</a> is null</p></div></div></div></div></div></div></div>
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="-666529500%2FConstructors%2F-1220168654" anchor-label="AbstractMatrix" id="-666529500%2FConstructors%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-abstract-matrix.html">AbstractMatrix</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-666529500%2FConstructors%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">fun &lt;<a href="index.html">E</a> : <span data-unresolved-link="kotlin/Number///PointingToDeclaration/">Number</span>&gt; <a href="-abstract-matrix.html">AbstractMatrix</a>(entries: <span data-unresolved-link="kotlin.collections/Set///PointingToDeclaration/">Set</span>&lt;<a href="../-matrix-entry/index.html">MatrixEntry</a>&lt;<a href="index.html">E</a>&gt;&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Constructs an <a href="index.html">AbstractMatrix</a></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Types</h2>
+              <div class="table" data-togglable="Types"><a data-name="1421290236%2FClasslikes%2F-1220168654" anchor-label="Companion" id="1421290236%2FClasslikes%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-companion/index.html">Companion</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1421290236%2FClasslikes%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">object <a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="958587098%2FFunctions%2F-1220168654" anchor-label="add" id="958587098%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="add.html">add</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="958587098%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="add.html">add</a>(summand: <a href="index.html">M</a>): <a href="index.html">M</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="958587098%2FFunctions%2F-1220168654" anchor-label="add" id="958587098%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="958587098%2FFunctions%2F-1220168654" anchor-label="add" id="958587098%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the sum of this and the <a href="add.html">summand</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1512688371%2FFunctions%2F-1220168654" anchor-label="column" id="-1512688371%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="column.html">column</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1512688371%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">fun <a href="column.html">column</a>(columnIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>): <span data-unresolved-link="kotlin.collections/Map///PointingToDeclaration/">Map</span>&lt;<span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>, <a href="index.html">E</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1512688371%2FFunctions%2F-1220168654" anchor-label="column" id="-1512688371%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-1512688371%2FFunctions%2F-1220168654" anchor-label="column" id="-1512688371%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the column at the <a href="column.html">columnIndex</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-556804278%2FFunctions%2F-1220168654" anchor-label="columnVector" id="-556804278%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="column-vector.html">columnVector</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-556804278%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="column-vector.html">columnVector</a>(columnIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>): <a href="index.html">V</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-556804278%2FFunctions%2F-1220168654" anchor-label="columnVector" id="-556804278%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-556804278%2FFunctions%2F-1220168654" anchor-label="columnVector" id="-556804278%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the column vector at the <a href="column-vector.html">columnIndex</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="575124354%2FFunctions%2F-1220168654" anchor-label="contains" id="575124354%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="contains.html">contains</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="575124354%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="contains.html">contains</a>(element: <a href="index.html">E</a>): <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="575124354%2FFunctions%2F-1220168654" anchor-label="contains" id="575124354%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="575124354%2FFunctions%2F-1220168654" anchor-label="contains" id="575124354%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns if <a href="contains.html">element</a> is contained in <a href="index.html">V</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1566532352%2FFunctions%2F-1220168654" anchor-label="determinant" id="1566532352%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="determinant.html">determinant</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1566532352%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">fun <a href="determinant.html">determinant</a>(): <a href="index.html">E</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1566532352%2FFunctions%2F-1220168654" anchor-label="determinant" id="1566532352%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="1566532352%2FFunctions%2F-1220168654" anchor-label="determinant" id="1566532352%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the determinant</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="978865098%2FFunctions%2F-1220168654" anchor-label="doesNotEqualByComparing" id="978865098%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="does-not-equal-by-comparing.html">doesNotEqualByComparing</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="978865098%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">fun <a href="does-not-equal-by-comparing.html">doesNotEqualByComparing</a>(other: <a href="index.html">M</a>): <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="978865098%2FFunctions%2F-1220168654" anchor-label="doesNotEqualByComparing" id="978865098%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="978865098%2FFunctions%2F-1220168654" anchor-label="doesNotEqualByComparing" id="978865098%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns if this is not equal to <a href="does-not-equal-by-comparing.html">other</a> by comparing elements</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1466490020%2FFunctions%2F-1220168654" anchor-label="entry" id="-1466490020%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="entry.html">entry</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1466490020%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">fun <a href="entry.html">entry</a>(rowIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>, columnIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>): <a href="../-matrix-entry/index.html">MatrixEntry</a>&lt;<a href="index.html">E</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1466490020%2FFunctions%2F-1220168654" anchor-label="entry" id="-1466490020%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-1466490020%2FFunctions%2F-1220168654" anchor-label="entry" id="-1466490020%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the <a href="../-matrix-entry/index.html">MatrixEntry</a> at the <a href="entry.html">rowIndex</a> and <a href="entry.html">columnIndex</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1579423140%2FFunctions%2F-1220168654" anchor-label="equals" id="-1579423140%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="equals.html">equals</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1579423140%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">open operator override fun <a href="equals.html">equals</a>(other: <span data-unresolved-link="kotlin/Any///PointingToDeclaration/">Any</span>?): <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-944739505%2FFunctions%2F-1220168654" anchor-label="equalsByComparing" id="-944739505%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="equals-by-comparing.html">equalsByComparing</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-944739505%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">fun <a href="equals-by-comparing.html">equalsByComparing</a>(other: <a href="index.html">M</a>): <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-944739505%2FFunctions%2F-1220168654" anchor-label="equalsByComparing" id="-944739505%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-944739505%2FFunctions%2F-1220168654" anchor-label="equalsByComparing" id="-944739505%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns if this is equal to <a href="equals-by-comparing.html">other</a> by comparing elements</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1105762085%2FFunctions%2F-1220168654" anchor-label="frobeniusNorm" id="-1105762085%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="frobenius-norm.html">frobeniusNorm</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1105762085%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="frobenius-norm.html">frobeniusNorm</a>(mathContext: <span data-unresolved-link="java.math/MathContext///PointingToDeclaration/">MathContext</span>): <span data-unresolved-link="java.math/BigDecimal///PointingToDeclaration/">BigDecimal</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1105762085%2FFunctions%2F-1220168654" anchor-label="frobeniusNorm" id="-1105762085%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-1105762085%2FFunctions%2F-1220168654" anchor-label="frobeniusNorm" id="-1105762085%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the frobenius norm based on the <a href="frobenius-norm.html">mathContext</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-410473408%2FFunctions%2F-1220168654" anchor-label="frobeniusNormPow2" id="-410473408%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="frobenius-norm-pow2.html">frobeniusNormPow2</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-410473408%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="frobenius-norm-pow2.html">frobeniusNormPow2</a>(): <a href="index.html">B</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-410473408%2FFunctions%2F-1220168654" anchor-label="frobeniusNormPow2" id="-410473408%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-410473408%2FFunctions%2F-1220168654" anchor-label="frobeniusNormPow2" id="-410473408%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the square of the frobenius norm</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-341844672%2FFunctions%2F-1220168654" anchor-label="get" id="-341844672%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="get.html">get</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-341844672%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">operator fun <a href="get.html">get</a>(rowIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>, columnIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>): <a href="index.html">E</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-341844672%2FFunctions%2F-1220168654" anchor-label="get" id="-341844672%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-341844672%2FFunctions%2F-1220168654" anchor-label="get" id="-341844672%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the element at the <a href="get.html">rowIndex</a> and <a href="get.html">columnIndex</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="862054154%2FFunctions%2F-1220168654" anchor-label="hashCode" id="862054154%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="hash-code.html">hashCode</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="862054154%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="hash-code.html">hashCode</a>(): <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-895511950%2FFunctions%2F-1220168654" anchor-label="maxAbsColumnSumNorm" id="-895511950%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="max-abs-column-sum-norm.html">maxAbsColumnSumNorm</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-895511950%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="max-abs-column-sum-norm.html">maxAbsColumnSumNorm</a>(): <a href="index.html">N</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-895511950%2FFunctions%2F-1220168654" anchor-label="maxAbsColumnSumNorm" id="-895511950%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-895511950%2FFunctions%2F-1220168654" anchor-label="maxAbsColumnSumNorm" id="-895511950%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the maximum absolute column sum norm</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1923800406%2FFunctions%2F-1220168654" anchor-label="maxAbsRowSumNorm" id="-1923800406%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="max-abs-row-sum-norm.html">maxAbsRowSumNorm</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1923800406%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="max-abs-row-sum-norm.html">maxAbsRowSumNorm</a>(): <a href="index.html">N</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1923800406%2FFunctions%2F-1220168654" anchor-label="maxAbsRowSumNorm" id="-1923800406%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-1923800406%2FFunctions%2F-1220168654" anchor-label="maxAbsRowSumNorm" id="-1923800406%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the maximum absolute row sum norm</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2032838773%2FFunctions%2F-1220168654" anchor-label="maxNorm" id="2032838773%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="max-norm.html">maxNorm</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2032838773%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="max-norm.html">maxNorm</a>(): <a href="index.html">N</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="2032838773%2FFunctions%2F-1220168654" anchor-label="maxNorm" id="2032838773%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="2032838773%2FFunctions%2F-1220168654" anchor-label="maxNorm" id="2032838773%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the maximum norm</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="732906847%2FFunctions%2F-1220168654" anchor-label="minor" id="732906847%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="minor.html">minor</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="732906847%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="minor.html">minor</a>(rowIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>, columnIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>): <a href="index.html">M</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="732906847%2FFunctions%2F-1220168654" anchor-label="minor" id="732906847%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="732906847%2FFunctions%2F-1220168654" anchor-label="minor" id="732906847%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the minor dependent on the <a href="minor.html">rowIndex</a> and <a href="minor.html">columnIndex</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1665531449%2FFunctions%2F-1220168654" anchor-label="multiply" id="-1665531449%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="multiply.html">multiply</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1665531449%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="multiply.html">multiply</a>(factor: <a href="index.html">M</a>): <a href="index.html">M</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1665531449%2FFunctions%2F-1220168654" anchor-label="multiply" id="-1665531449%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-1665531449%2FFunctions%2F-1220168654" anchor-label="multiply" id="-1665531449%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the product of this and the <a href="multiply.html">factor</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1925597492%2FFunctions%2F-1220168654" anchor-label="multiplyVector" id="1925597492%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="multiply-vector.html">multiplyVector</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1925597492%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="multiply-vector.html">multiplyVector</a>(vector: <a href="index.html">V</a>): <a href="index.html">V</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1925597492%2FFunctions%2F-1220168654" anchor-label="multiplyVector" id="1925597492%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="1925597492%2FFunctions%2F-1220168654" anchor-label="multiplyVector" id="1925597492%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the product of this and the <a href="multiply-vector.html">vector</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-855551997%2FFunctions%2F-1220168654" anchor-label="negate" id="-855551997%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="negate.html">negate</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-855551997%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="negate.html">negate</a>(): <a href="index.html">M</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-855551997%2FFunctions%2F-1220168654" anchor-label="negate" id="-855551997%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-855551997%2FFunctions%2F-1220168654" anchor-label="negate" id="-855551997%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the negated <a href="index.html">AbstractMatrix</a> and this</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-562137351%2FFunctions%2F-1220168654" anchor-label="row" id="-562137351%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="row.html">row</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-562137351%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">fun <a href="row.html">row</a>(rowIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>): <span data-unresolved-link="kotlin.collections/Map///PointingToDeclaration/">Map</span>&lt;<span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>, <a href="index.html">E</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-562137351%2FFunctions%2F-1220168654" anchor-label="row" id="-562137351%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-562137351%2FFunctions%2F-1220168654" anchor-label="row" id="-562137351%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the row at the <a href="row.html">rowIndex</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="851572790%2FFunctions%2F-1220168654" anchor-label="rowVector" id="851572790%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="row-vector.html">rowVector</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="851572790%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="row-vector.html">rowVector</a>(rowIndex: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>): <a href="index.html">V</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="851572790%2FFunctions%2F-1220168654" anchor-label="rowVector" id="851572790%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="851572790%2FFunctions%2F-1220168654" anchor-label="rowVector" id="851572790%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the row vector at the <a href="row-vector.html">rowIndex</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-278857133%2FFunctions%2F-1220168654" anchor-label="scalarMultiply" id="-278857133%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="scalar-multiply.html">scalarMultiply</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-278857133%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="scalar-multiply.html">scalarMultiply</a>(scalar: <a href="index.html">E</a>): <a href="index.html">M</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-278857133%2FFunctions%2F-1220168654" anchor-label="scalarMultiply" id="-278857133%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-278857133%2FFunctions%2F-1220168654" anchor-label="scalarMultiply" id="-278857133%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the scalar product of this and the <a href="scalar-multiply.html">scalar</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1610160855%2FFunctions%2F-1220168654" anchor-label="subtract" id="1610160855%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="subtract.html">subtract</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1610160855%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="subtract.html">subtract</a>(subtrahend: <a href="index.html">M</a>): <a href="index.html">M</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1610160855%2FFunctions%2F-1220168654" anchor-label="subtract" id="1610160855%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="1610160855%2FFunctions%2F-1220168654" anchor-label="subtract" id="1610160855%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the difference of this and the <a href="subtract.html">subtrahend</a></div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="683888089%2FFunctions%2F-1220168654" anchor-label="toString" id="683888089%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="to-string.html">toString</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="683888089%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">open override fun <a href="to-string.html">toString</a>(): <span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-330257392%2FFunctions%2F-1220168654" anchor-label="trace" id="-330257392%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="trace.html">trace</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-330257392%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">fun <a href="trace.html">trace</a>(): <a href="index.html">E</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-330257392%2FFunctions%2F-1220168654" anchor-label="trace" id="-330257392%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="-330257392%2FFunctions%2F-1220168654" anchor-label="trace" id="-330257392%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the trace</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1682883740%2FFunctions%2F-1220168654" anchor-label="transpose" id="1682883740%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="transpose.html">transpose</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1682883740%2FFunctions%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><div class="symbol monospace">abstract fun <a href="transpose.html">transpose</a>(): <a href="index.html">M</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1682883740%2FFunctions%2F-1220168654" anchor-label="transpose" id="1682883740%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="brief "><a data-name="1682883740%2FFunctions%2F-1220168654" anchor-label="transpose" id="1682883740%2FFunctions%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Returns the transpose</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="-1231262876%2FProperties%2F-1220168654" anchor-label="columnIndices" id="-1231262876%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="column-indices.html">columnIndices</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1231262876%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-1231262876%2FProperties%2F-1220168654" anchor-label="columnIndices" id="-1231262876%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="column-indices.html">columnIndices</a>: <span data-unresolved-link="kotlin.collections/Set///PointingToDeclaration/">Set</span>&lt;<span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1231262876%2FProperties%2F-1220168654" anchor-label="columnIndices" id="-1231262876%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Column indices</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1187398702%2FProperties%2F-1220168654" anchor-label="columnSize" id="1187398702%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="column-size.html">columnSize</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1187398702%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="1187398702%2FProperties%2F-1220168654" anchor-label="columnSize" id="1187398702%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="column-size.html">columnSize</a>: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1187398702%2FProperties%2F-1220168654" anchor-label="columnSize" id="1187398702%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Column size</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1854625785%2FProperties%2F-1220168654" anchor-label="diagonalElements" id="1854625785%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="diagonal-elements.html">diagonalElements</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1854625785%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="1854625785%2FProperties%2F-1220168654" anchor-label="diagonalElements" id="1854625785%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="diagonal-elements.html">diagonalElements</a>: <span data-unresolved-link="kotlin.collections/List///PointingToDeclaration/">List</span>&lt;<a href="index.html">E</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1854625785%2FProperties%2F-1220168654" anchor-label="diagonalElements" id="1854625785%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Diagonal elements</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1201919622%2FProperties%2F-1220168654" anchor-label="diagonalEntries" id="-1201919622%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="diagonal-entries.html">diagonalEntries</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1201919622%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-1201919622%2FProperties%2F-1220168654" anchor-label="diagonalEntries" id="-1201919622%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="diagonal-entries.html">diagonalEntries</a>: <span data-unresolved-link="kotlin.collections/Set///PointingToDeclaration/">Set</span>&lt;<a href="../-matrix-entry/index.html">MatrixEntry</a>&lt;<a href="index.html">E</a>&gt;&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1201919622%2FProperties%2F-1220168654" anchor-label="diagonalEntries" id="-1201919622%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Diagonal <a href="../-matrix-entry/index.html">MatrixEntries</a></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1387216466%2FProperties%2F-1220168654" anchor-label="elements" id="-1387216466%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="elements.html">elements</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1387216466%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-1387216466%2FProperties%2F-1220168654" anchor-label="elements" id="-1387216466%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="elements.html">elements</a>: <span data-unresolved-link="kotlin.collections/List///PointingToDeclaration/">List</span>&lt;<a href="index.html">E</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1387216466%2FProperties%2F-1220168654" anchor-label="elements" id="-1387216466%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Elements</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1860684507%2FProperties%2F-1220168654" anchor-label="entries" id="-1860684507%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="entries.html">entries</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1860684507%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-1860684507%2FProperties%2F-1220168654" anchor-label="entries" id="-1860684507%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="entries.html">entries</a>: <span data-unresolved-link="kotlin.collections/Set///PointingToDeclaration/">Set</span>&lt;<a href="../-matrix-entry/index.html">MatrixEntry</a>&lt;<a href="index.html">E</a>&gt;&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1860684507%2FProperties%2F-1220168654" anchor-label="entries" id="-1860684507%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>entries</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1167599142%2FProperties%2F-1220168654" anchor-label="isDiagonal" id="1167599142%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-diagonal.html">isDiagonal</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1167599142%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="1167599142%2FProperties%2F-1220168654" anchor-label="isDiagonal" id="1167599142%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="is-diagonal.html">isDiagonal</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1167599142%2FProperties%2F-1220168654" anchor-label="isDiagonal" id="1167599142%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is diagonal</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-574542403%2FProperties%2F-1220168654" anchor-label="isIdentity" id="-574542403%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-identity.html">isIdentity</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-574542403%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-574542403%2FProperties%2F-1220168654" anchor-label="isIdentity" id="-574542403%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="is-identity.html">isIdentity</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-574542403%2FProperties%2F-1220168654" anchor-label="isIdentity" id="-574542403%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is the identity one</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-608582381%2FProperties%2F-1220168654" anchor-label="isInvertible" id="-608582381%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-invertible.html">isInvertible</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-608582381%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-608582381%2FProperties%2F-1220168654" anchor-label="isInvertible" id="-608582381%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">abstract val <a href="is-invertible.html">isInvertible</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-608582381%2FProperties%2F-1220168654" anchor-label="isInvertible" id="-608582381%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is invertible</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1086152633%2FProperties%2F-1220168654" anchor-label="isLowerTriangular" id="-1086152633%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-lower-triangular.html">isLowerTriangular</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1086152633%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-1086152633%2FProperties%2F-1220168654" anchor-label="isLowerTriangular" id="-1086152633%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="is-lower-triangular.html">isLowerTriangular</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1086152633%2FProperties%2F-1220168654" anchor-label="isLowerTriangular" id="-1086152633%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is lower triangular</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="463462610%2FProperties%2F-1220168654" anchor-label="isSkewSymmetric" id="463462610%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-skew-symmetric.html">isSkewSymmetric</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="463462610%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="463462610%2FProperties%2F-1220168654" anchor-label="isSkewSymmetric" id="463462610%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="is-skew-symmetric.html">isSkewSymmetric</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="463462610%2FProperties%2F-1220168654" anchor-label="isSkewSymmetric" id="463462610%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is skew symmetric</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1238219330%2FProperties%2F-1220168654" anchor-label="isSquare" id="-1238219330%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-square.html">isSquare</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1238219330%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-1238219330%2FProperties%2F-1220168654" anchor-label="isSquare" id="-1238219330%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="is-square.html">isSquare</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1238219330%2FProperties%2F-1220168654" anchor-label="isSquare" id="-1238219330%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is square</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1112634152%2FProperties%2F-1220168654" anchor-label="isSymmetric" id="1112634152%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-symmetric.html">isSymmetric</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1112634152%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="1112634152%2FProperties%2F-1220168654" anchor-label="isSymmetric" id="1112634152%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="is-symmetric.html">isSymmetric</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1112634152%2FProperties%2F-1220168654" anchor-label="isSymmetric" id="1112634152%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is symmetric</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1407332164%2FProperties%2F-1220168654" anchor-label="isTriangular" id="1407332164%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-triangular.html">isTriangular</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1407332164%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="1407332164%2FProperties%2F-1220168654" anchor-label="isTriangular" id="1407332164%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="is-triangular.html">isTriangular</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1407332164%2FProperties%2F-1220168654" anchor-label="isTriangular" id="1407332164%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is triangular</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-284244218%2FProperties%2F-1220168654" anchor-label="isUpperTriangular" id="-284244218%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-upper-triangular.html">isUpperTriangular</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-284244218%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-284244218%2FProperties%2F-1220168654" anchor-label="isUpperTriangular" id="-284244218%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="is-upper-triangular.html">isUpperTriangular</a>: <span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-284244218%2FProperties%2F-1220168654" anchor-label="isUpperTriangular" id="-284244218%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Indicates if this is upper triangular</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1445900040%2FProperties%2F-1220168654" anchor-label="rowIndices" id="-1445900040%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="row-indices.html">rowIndices</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1445900040%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="-1445900040%2FProperties%2F-1220168654" anchor-label="rowIndices" id="-1445900040%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="row-indices.html">rowIndices</a>: <span data-unresolved-link="kotlin.collections/Set///PointingToDeclaration/">Set</span>&lt;<span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1445900040%2FProperties%2F-1220168654" anchor-label="rowIndices" id="-1445900040%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Row indices</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="730949402%2FProperties%2F-1220168654" anchor-label="rowSize" id="730949402%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":finnmath:dokkaHtml/main" data-filterable-set=":finnmath:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="row-size.html">rowSize</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="730949402%2FProperties%2F-1220168654"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":finnmath:dokkaHtml/main"><a data-name="730949402%2FProperties%2F-1220168654" anchor-label="rowSize" id="730949402%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a><div class="symbol monospace">val <a href="row-size.html">rowSize</a>: <span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="730949402%2FProperties%2F-1220168654" anchor-label="rowSize" id="730949402%2FProperties%2F-1220168654" data-filterable-set=":finnmath:dokkaHtml/main"></a>Row size</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
