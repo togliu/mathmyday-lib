@@ -45,8 +45,6 @@ gradle default
 ## Implementation details
 
 * Kotlin 1.5 and Java 8
-* The matrices are based on `com.google.common.collect.ImmutableTable` from Guava.
-* The vectors are based on `kotlin.collections.Map` from Kotlin which is read-only.
 * All types are immutable.
 * Absolutely no null values
 * Numbers extend `kotlin.Number` and fractions implements `kotlin.Comparable`

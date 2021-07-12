@@ -117,7 +117,7 @@ public class BigComplexVector(
             .equalsByComparing(BigComplex.ZERO)
     }
 
-    override fun taxicabNorm(): BigDecimal = elements.map(BigComplex::abs).reduce(BigDecimal::add)
+    override fun taxicabNorm(): BigDecimal = elements.map { it.abs() }.reduce { a, b -> a + b }
 
     /**
      * Returns the taxicab norm based on the [mathContext]
@@ -129,7 +129,7 @@ public class BigComplexVector(
 
     override fun euclideanNormPow2(): BigComplex = this * this
 
-    override fun euclideanNorm(): BigDecimal = elements.map { it.abs().pow(2) }.reduce(BigDecimal::add).sqrt()
+    override fun euclideanNorm(): BigDecimal = elements.map { it.abs().pow(2) }.reduce { a, b -> a + b }.sqrt()
 
     /**
      * Returns the euclidean norm based on the [mathContext]
